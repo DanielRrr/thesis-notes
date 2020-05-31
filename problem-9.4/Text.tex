@@ -1,0 +1,258 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{dsfont}
+\usepackage{mathabx}
+\usepackage[all, 2cell]{xy}
+\usepackage[all]{xy}
+\usepackage{wasysym}
+\usepackage{rotating}
+\usepackage{geometry}
+\usepackage{trfsigns}
+\usepackage{cmll}
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{lipsum}
+\usepackage{extpfeil}
+\usepackage{soul}
+\usepackage{graphicx}
+
+\newcommand\mapsfrom{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+
+\theoremstyle{defin}
+\newtheorem{defin}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{prop}
+\newtheorem{prop}{Proposition}
+
+\theoremstyle{lemma}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{ex}
+\newtheorem{ex}{Example}
+
+
+\theoremstyle{col}
+\newtheorem{col}{Corollary}
+
+\author{Daniel Rogozin}
+\date{}
+\title{Model-theoretic aspects of relativised cylindric set algebras}
+
+\begin{document}
+
+\maketitle
+
+\nocite{*}
+
+\section{Model-theoretic and universal algebraic preliminaries}
+
+\subsection{Ultraproducts}
+
+Here are the required notions and facts from model theory and universal algebra \cite{hirsch2002relation} \cite{hodges1997shorter} \cite{sankappanavar1981course}.
+
+Let $A$ be a non-empty set, an \emph{ultrafilter} on $A$ is a set of subsets $U \subseteq \mathcal{P}(\mathcal{P})(A)$ such that $A$ is closed under intersections, $\subseteq$-upwardly closed, and either $X \in U$ or $- X \in U$, where $X \subseteq A$. An ultrafilter is called principal if it has the form $\uparrow X = \{ Y \in \mathcal{P}(A) \: | \: X \subseteq Y \}$.
+
+Let $\Omega = \langle \operatorname{Cnst}, \operatorname{Fn}, \operatorname{Pred} \rangle$ be a signature and $\Lambda$ an index set, and let $\{ M_{\lambda}\}_{\lambda \in \Lambda}$ be an indexed set of $\Omega$ structures. The $\Omega$-structure
+\begin{center}
+  $M = \prod \limits_{\lambda \in \Lambda} M_{\lambda}$
+\end{center}
+is called a \emph{product} that defined as follows. Its domain is the Cartesian product of the domains of $M_{\lambda}$. $a \in M$ is a function $\Lambda \to \bigcup \limits_{\lambda \in \Lambda} \operatorname{dom}(M_{\lambda})$ such that $a(\lambda) \in M_{\lambda}$ for each $\lambda \in \Lambda$.
+Given $\lambda \in \Lambda$ and $a_{\lambda} \in M_{\lambda}$, we denote the function mapping $\lambda$ to $a_{\lambda}$ as
+$\langle a_{\lambda} \: | \: \lambda \in \Lambda \rangle$. We define the interpretation of $\Omega$-symbols as
+
+\begin{enumerate}
+  \item If $c \in \operatorname{Cnst}$, then $c^{M} = \langle c^{M_{\lambda}} \: | \: \lambda \in \Lambda \rangle$
+  \item If $f \in \operatorname{Fn}$ is an $n$-ary function symbol, then $f^{M}(\overline{a}) = \langle f^{M_{\lambda}}(\overline{a}) \: | \: \lambda \in \Lambda \rangle$, where $\overline{n} \in M^{n}$
+  \item If $R \in \operatorname{Pred}$ is an $n$-ary relation symbol and $\overline{n} \in M^{a}$, then $R^{M}(\overline{a}) = \langle R^{M_{\lambda}}(\overline{a}) \: | \: \lambda \in \Lambda \rangle$
+\end{enumerate}
+
+Given $\lambda \in \Lambda$, we define the $\lambda$th projection as $\pi_{\lambda} : M \to M_{\lambda}$ such that $\pi_{\lambda}(a) = a(\lambda)$.
+
+Let $\Lambda$ be an index set and $D$ an ultrafilter on the Boolean algebra $\langle \mathcal{P}(\Lambda), \cup, -, \Lambda, \emptyset \rangle$. Consider the product $M = \prod \limits_{\lambda \in \Lambda} M_{\lambda}$ of the $\Omega$-structures $\{ M_{\lambda}\}_{\lambda \in \Lambda}$ and the equivalence relation on $\operatorname{dom}(M)$ defined as
+\begin{center}
+  $a_1 \sim a_2 \Leftrightarrow \{ \lambda \in \Lambda \: | \: a_1(\lambda) = a_2(\lambda)\} \in D$
+\end{center}
+Let us denote $\operatorname{dom}(M) / \sim$ as $U$ and $[a]_{\sim}$ as $a / D$, where $a \in \operatorname{dom}(M)$. We also denote the \emph{ultraproduct} of $\{ M_{\lambda} \}_{\lambda}$ as $\prod \limits_{\lambda \in \Lambda} M_{\lambda} / D$, or,
+for brevity, as $\prod_{D} M_{\lambda}$. The $\Omega$-symbols have the following interpretation
+\begin{enumerate}
+  \item If $c \in \operatorname{Cnst}$, then $c^{U} = c^{M} / D$
+  \item If $f \in \operatorname{Fn}$ is an $n$-ary function symbol and $\overline{a} \in M^{n}$, then $f^{U}(\overline{a}) = f^{M}(x) = f^{M}(\overline{a}) / D$
+  \item If $R \in \operatorname{Fn}$ is an $n$-ary relation symbol and $\overline{a} \in M^{n}$, then $U \models R(\overline{a} / D)$ iff
+  $\{ \lambda \in \Lambda \: | \: M_{\lambda} \models R(\overline{a} (\lambda))\} \in D$
+\end{enumerate}
+The ultraproduct is principal if $D$ is a principal filter.
+
+\begin{defin}
+$ $
+
+  \begin{enumerate}
+    \item Let $\{ M_{\lambda}\}_{\lambda \in \Lambda}$ be a set of $\Omega$-structures such that every
+    $M_{\lambda}$ is isomorphic to the single structure $M$, then their ultraproduct over $D$ is called the ultrapower over $D$.
+    The denotation is $\prod \limits_{D} M$ or $M^{\Lambda} / D$.
+    \item If $\prod \limits_{D} M \cong N$ for some structure $N$, then $M$ is an ultraroot of $N$.
+  \end{enumerate}
+\end{defin}
+
+\begin{theorem}[\L{}os]
+
+  Let $\{ M_{\lambda}\}_{\lambda \in \Lambda}$ be $\Omega$-structures and $D$ an ultrafilter on $\Lambda$, and let
+  $U = \prod \limits_{D} M_{\lambda}$ be an ultraproduct of $\{ M_{\lambda}\}_{\lambda \in \Lambda}$ over $D$. For each first-order formula
+  $\varphi(x_1, \dots, x_n)$ and for each $a_1 / D, \dots, a_n / D \in U$:
+
+\begin{center}
+  $U \models \varphi(a_1 / D, \dots, a_n / D)$ iff $\{ \lambda \in \Lambda \: | \: \varphi(a_1(\lambda), \dots, a_n(\lambda))\} \in D$
+\end{center}
+\end{theorem}
+
+The \L{}os has the following helpful corollary:
+
+\begin{col}
+  Let $\prod \limits_{D} M$ be an ultrapower of $M$. For $a \in M$, let us define a function $\overline{a} : a \mapsto a / D$.
+  Then such a map is an elementary embedding of $M$ into $\prod \limits_{D} M$.
+\end{col}
+
+Moreover, any elementary equivalent structures have isomorphic ultrapowers.
+
+Recall that a class of $\Omega$-structures ${\bf K}$ is called \emph{elementary}, if ${\bf K} = \operatorname{Mod}(\operatorname{T})$ for some first-order theory ${\bf T}$. In that case, $\operatorname{T}$ is an axiomatisation of ${\bf K}$.
+
+\begin{theorem}
+  Let ${\bf K}$ be a class $\Omega$-structures,
+  ${\bf K}$ is elementary iff ${\bf K}$ is closed under isomorphic copies, ultraroots, and ultrapowers.
+\end{theorem}
+
+\subsection{Preliminaries from universal algebra}
+
+\begin{defin}
+  Let ${\bf K}$ be a class of $\Omega$-structures, then ${\bf K}$ is a variety, if it is defined by some set of equations.
+  The variety generated by ${\bf K}$ is the smallest variety contatining ${\bf K}$. ${\bf K}$ is a quasi-variety, if it is defined by some
+  set of quasi-identities.
+\end{defin}
+
+Given a class ${\bf K}$ of $\Omega$-structures, then ${\bf I}({\bf K})$, ${\bf S}({\bf K})$, ${\bf H}({\bf K})$, and ${\bf P}({\bf K})$ are
+the classes of isomorphic copies, algebras isomorphic to subalgebras belonging to ${\bf K}$,
+algebras isomorphic to homomorphic images belonging to ${\bf K}$, and algebras isomorphic to direct products belonging to ${\bf K}$.
+We claim that ${\bf I}({\bf K}) \subseteq {\bf S}({\bf K})$. ${\bf Up}({\bf K})$ is the class of algebras isomorphic to ultraproducts
+belonging to ${\bf K}$.
+
+\begin{theorem} Let ${\bf K}$ be a class of $\Omega$-structures
+
+  \begin{enumerate}
+    \item ${\bf K}$ is a variety iff ${\bf H}({\bf K}), {\bf S}({\bf K}), {\bf P}({\bf K}) \subseteq {\bf K}$
+    \item ${\bf HSP}({\bf K}) = {\bf H}({\bf S}({\bf P}({\bf K})))$ is the smallest variety containg ${\bf K}$
+    \item ${\bf K}$ is a quasi-variety iff it is closed under subalgebras, products, and ultraproducts, iff ${\bf SPUp}({\bf K}) = {\bf K}$.
+  \end{enumerate}
+\end{theorem}
+
+\subsection{Subdirect products}
+
+\begin{defin}
+  $ $
+
+  \begin{enumerate}
+    \item Let $\{ A \}_{i \in I}$ be $\Omega$-structures, a subdirect product of $\langle A_i \: | \: i \in I \rangle$ is a
+    subalgebra $B$ of $\prod \limits_{i \in I} A_i$ such that for each $i \in I$, a projection map $\pi_i : B \to A_i$ is a surjection.
+    \item A subdirect representation of an $\Omega$-structure is an embedding $f : A \to \prod \limits_{i \in I} A_i$ for some $I$ and
+    $\{ A_i \}_{i \in I}$ such that $f \circ \pi_i : A \to A_i$ is a surjection.
+    \item An $\Omega$-structure $A$ is subdirectly irreducible if for every subdirect representation $f : A \to \prod \limits_{i \in I} A_i$
+    there exists a projection $\pi_i$ such that $f \circ \pi_i$ is an isomorphism.
+    \item ${\bf Sir}({\bf K})$ is the class of subdirectly irreducible structures belonging to ${\bf K}$.
+    \item A subdirect decomposition of $A$ if there exists a subdirect representation $f : A \to \prod \limits_{i \in I} A_i$ such that
+    every $A_i$ is subdirectly irreducible.
+  \end{enumerate}
+\end{defin}
+
+It is known that every Boolean algebra with operators has a subdirect demcomposition. Moreover, that implies:
+\begin{theorem}
+$ $
+
+  \begin{enumerate}
+  \item If ${\bf K}$ is a variety, then every element of ${\bf K}$ has a subdirect decomposition with some subdirect irreducible elements of
+  ${\bf K}$.
+  \item If ${\bf K}$ is a variety and $\varepsilon$ is an equation,
+  ${\bf Sir}({\bf K}) \models \varepsilon \Leftrightarrow {\bf K} \models \varepsilon$.
+\end{enumerate}
+\end{theorem}
+
+\subsection{Pseudo-elementary classes}
+
+\section{Cylindric algebras}
+
+\subsection{(Representable) cylindric algebras and cylindric set algebras}
+
+Let $\alpha$ be an ordinal. Let $U^{\alpha}$ be the set of all functions mapping $\alpha$ to a non-empty set $U$. We denote $x(i) = x_i$ for
+$x \in U^{\alpha}$ and $i < \alpha$.
+
+\begin{defin}
+$ $
+
+  \begin{enumerate}
+    \item A subset of $U^{\alpha}$ is an $\alpha$-ry relation on $U$. For $i, j < \alpha$, the $i,j$-diagonal $D_{ij}$ is the set of all
+    elements of $U$ such that $y_i = y_j$. If $i < \alpha$ and $X$ is an $\alpha$-ry relation on $U$, then
+    the $i$-th cylindrification $C_i X$ is the set of all elements of $U$ that agree with some element of $X$ on each coordinate except the
+    $i$-th one. To be more precise,
+    $C_i X = \{ y \in U^{\alpha} \: | \: \exists x \in X \forall i < \alpha \: (i \neq j \Rightarrow y_j = x_j)\}$.
+    \item A cylindic set algebra of dimension $\alpha$ is an algebra consisting of a set $S$ of $\alpha$-ry relation on some base set $U$
+    with the constants and operations $0 = \emptyset$, $1 = U^{\alpha}$, $\cap$, $-$, the diagonal elements $\{ D_{ij} \}_{i, j < \alpha}$,
+    the cylindrifications $\{ C \}_{i < \alpha}$. A generalised cylindric set algebra of dimension $\alpha$ is a subdirect of
+    cylindric algebras that have dimension $\alpha$
+    \item A cylindric algebra of dimension $\alpha$ is an algebra $\mathcal{C} = \langle \mathcal{B}, \{ c_i \}_{i < \alpha}, \{ d_{ij} \}_{i, j < \alpha} \rangle$ such that
+    \begin{itemize}
+      \item $\mathcal{B}$ is a Boolean algebra, for each $i, j < \alpha$ $c_i$ is an operator and $d_{ij} \in \mathcal{B}$
+      \item For each $i < \alpha$, $a \leq c_i a$, $c_i (a \land c_i b) = c_i a \land c_i b$ and $d_{ii} = 1$
+      \item For every $i, j < \alpha$, $c_i c_j a = c_j c_i a$
+      \item If $k \neq i, j < \alpha$, then $d_{ij} = c_k (d_{ij} \land d_{jk})$
+      \item If $i \neq j$, then $c_i (d_{ij} \land a) \land c_i (d_{ij} \land - a) = 0$
+    \end{itemize}
+    ${\bf CA}_{\alpha}$ is the class of all cylindric algebras of dimension $\alpha$
+    \item An $\alpha$-dimensional cylindric algebra $C$ is representable, if it is isomorphic to a generalised cylindric set algebra
+    of dimension $\alpha$. Such is isomorphism is a representation of $C$.
+    ${\bf RCA}_{\alpha}$ is the class of all representable cylindric algebras that have dimension $\alpha$.
+  \end{enumerate}
+\end{defin}
+
+\subsection{Substitution in cylindric algebras}
+
+\begin{defin}
+  Given a cylindric algebra of dimension $\alpha$ $C$, let $x$ be a term of its signature, the substitution operator $s^{i}_{j}$ have the following definition:
+  \begin{center}
+  $s^{i}_{j} x = \begin{cases} x, \text{if } i = j \\ c_i (d_{ij} \land x), \text{otherwise} \end{cases}$
+  \end{center}
+\end{defin}
+
+\begin{prop} Let $\alpha$ be an ordinal and let $i, j, k, l < \alpha$. The following facts hold in ${\bf CA}_{\alpha}$
+
+  \begin{enumerate}
+    \item $s^{i}_j x \leq c_i x$.
+    \item $s^{i}_j (x \land y) = s^{i}_j x \land s^{i}_j y$, $s^{i}_j (x \lor y) = s^{i}_j x \lor s^{i}_j y$, $- s^{i}_j x = s^{i}_j (- x)$.
+    Moreover, $s^{i}_j$ is completely additive.
+    \item $i \neq k, l$ implies $s^i_j d_{ik} = d_{jk}$ and $s^i_j d_{kl} = d_{kl}$.
+    \item $d_{jk} \land s^{i}_j = d_{jk} \land s^{i}_k$.
+    \item $s^i_j c_i x = c_i x$.
+    \item $k \neq i,j$ implies $s^i_j c_i x = c_i s^i_j x$.
+    \item $c_j s^i_j x = c_i s^j_i x$.
+    \item $i \neq j$ implies $c_i s^i_j x = s^i_j x$.
+    \item $i \neq k$ implies $s^i_j s^i_k = s^i_k x$.
+    \item If either $i \notin \{ k, l\}$ and $k \notin \{ i, j\}$, or $j = l$, then $s^i_j s^k_l x = s^k_l s^i_j x$.
+    \item $s^i_j s^j_i x = s^i_j x$.
+    \item $s^i_k s^j_i x = s^i_k s^j_k x = s^j_k s^i_j x$
+  \end{enumerate}
+\end{prop}
+
+\section{${\bf IG}_{\omega}$ and ultraproducts}
+
+\section{${\bf IG}_{\omega}$ is (not) a variety; is (not) (pseudo-)elementary}
+
+\bibliographystyle{plain}
+\bibliography{Text}
+
+\end{document}
