@@ -155,15 +155,13 @@ The following statements were shown in \cite{andreka1999finite}. This lemma conn
  A \emph{relation structure} (${\bf RS}$) is an arbitrary algebra of the signature $\Omega = \langle \cdot, \setminus, /, \leq \rangle$, where $\cdot, \setminus, /$ are binary function symbols and $\leq$ is a binary relation symbol.
 
 \begin{defin}
-  A residuated semigroup is an algebra $\mathcal{S} = \langle S, \cdot, \leq, \setminus, / \rangle$ such that $\langle S, \cdot, \leq, \rangle$ is an ordered residuated semigroup ${\bf ORS}$ an the following equivalences hold for each $a, b, c \in S$:
+  A residuated semigroup is an algebra $\mathcal{S} = \langle S, \cdot, \leq, \setminus, / \rangle$ such that $\langle S, \cdot, \leq, \rangle$ is an ordered residuated semigroup and the following equivalences hold for each $a, b, c \in S$:
 
   \begin{center}
     $b \leq a \setminus c \Leftrightarrow a \cdot b \leq c \Leftrightarrow a \leq c / b$
   \end{center}
+  ${\bf ORS}$ is the class of all residuated semigroups.
 \end{defin}
-
-It is clear that ${\bf ORS}$ is a quasivariety and, thus \cite{mal2012algebraic}, is closed under subalgebras, products, and ultraproducts, i. e.,
-${\bf ORS} = {\bf S}{\bf P}{\bf Up} \: {\bf ORS}$.
 
 \begin{defin} \label{rrs}
   Let $A$ be a set of binary relations on some base set $W$ such that $R = \cup A$ is transitive and $\{ x, y \: | \: x R y \} = W$. A relation residuated semigroup is an algebra $\mathcal{A} = \langle A, ;, \setminus, /, \subseteq \rangle$ where for each $r, s \in A$
@@ -205,9 +203,9 @@ used for weakly associative algebras.
   representable residuated semigroup a domain of which is finite.
 \end{theorem}
 
-\begin{theorem}
-  That might follow from the previous theorem, Theorem~\label{ors=irrs}, and something else.
-\end{theorem}
+\begin{proof}
+  That might follow from the previous theorem, Theorem~\ref{ors=irrs}, and something else.
+\end{proof}
 
 \begin{col}
   The Lambek calculus has the fmp and the universal theory of ${\bf IRRS}$ is NP-complete.
@@ -216,14 +214,15 @@ used for weakly associative algebras.
 The hypothetical plan is the following one:
 \begin{enumerate}
 \item Define properly relativised representation for residuated semigroups, that should look like ternary Kripke frames for the basic Lambek calculus or arrow logic.
-\item Define the standard translation to such first-order relation structures. TODO: take a look at the loosely guarded fragment stuff.
+\item Define the standard translation to such first-order relation structures. TODO: take a look at loosely guarded fragment stuff.
 \item Every finite residuated semigroup has a finite relativised representation.
 \item If every $\Pi_1$-statement $\varphi$ of the language of residuated semigroups that is valid in every
 residuated semingroup is valid in algebra having a finite relativised representation (one may use here Theorem~\ref{ors=irrs} somehow), then $\varphi$ is valid in ${\bf ORS}$ as well as in ${\bf IRRS}$.
 \item Every finite residuated semigroup should have a finite relativised representation.
 \item Construct a finitely based relation residuated semigroup from that (an analogue of complex algebra or smth like that). This item is the most non-trivial one.
 \item As a corollary, the first-order universal first-order theory of ${\bf IRRS}$ should be decidable and
-(it seems so) $\operatorname{NP}$-complete (that should follow from the results in \cite{pentus2006lambek}).
+(it seems so) $\operatorname{NP}$-complete (that should follow from the results in \cite{pentus2006lambek}). The Lambek calculus is decidable that was shown syntactically via cut elimination and subformula property.
+Here we would have an alternative way of showing decidability for some substructural logics.
 \end{enumerate}
 
 \section{Join-semilattice ordered semigroups}
@@ -247,11 +246,7 @@ Let $A$ be a set of binary relations on some base set $W$ such that $R = \cup A$
 TODO: use games and rainbow stuff
 \end{proof}
 
-\subsection{The finite base property for ${\bf RJSOS}$}
-
-\subsection{The finite algebra property for ${\bf RJSOS}$}
-
-\subsection{The finite algebra on finite base for ${\bf RJSOS}$}
+\subsection{The finite algebra on finite base for ${\bf RJSOS}$ (or its failure)}
 
 \bibliographystyle{plain}
 \bibliography{Text}
