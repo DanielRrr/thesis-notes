@@ -56,28 +56,78 @@
 
 \section{Preliminaries}
 
-\begin{defin} A normal modal logic
+The basic definitions according to \cite{chagrov1997modal}.
+
+\begin{defin} An $n$-modal algebra is an algebra $\mathcal{B} = \langle B, \vee, \neg, \bot, \Diamond_1, \dots, \Diamond_n \rangle$, where $\mathcal{B} = \langle B, \vee, \neg, \bot \rangle$ is a Boolean algebra and for each $i = 1,\dots,n$ $\Diamond_i$ is an order-preserving unary function obeying:
+  \begin{enumerate}
+    \item $\Diamond_i p \vee \Diamond_i q = \Diamond_i (p \vee q)$
+    \item $\Diamond_i \bot = \bot$
+  \end{enumerate}
 \end{defin}
 
-\begin{defin} A Kripke frame, a Kripke model, a general frame
+\begin{defin} An $n$-normal modal logic is a set of formulas containing Boolean tautologies, formulas $\Diamond_i p \vee \Diamond_i q \leftrightarrow \Diamond_i (p \vee q)$ and $\Diamond_i \bot \leftrightarrow \bot$ for $i = 1,\dots,n$, and is closed under ${\bf MP}$, ${\bf Sub}$, and the monotonicity rule: from $\varphi \to \psi$ infer $\Diamond_i \varphi \to \Diamond_i \psi$.
 \end{defin}
 
-\begin{defin} A modal algebra/a complex algebra
+\begin{defin}
+$ $
+\begin{enumerate}
+  \item A Kripke $n$-frame is a structure $\mathcal{F} = \langle W, R_1, \dots, R_n \rangle$, where $R_i \subseteq W \times W$ for each $i = 1,\dots, n$.
+  \item Let $\mathcal{F}$ be a Kripke frame. A Kripke model over $\mathcal{F}$ is a tuple $\mathcal{M} = \langle \mathcal{F}, \vartheta \rangle$, where $\vartheta : \operatorname{PV} \to 2^W$ is a valuation. Modalised formulas have the following semantics:
+  \begin{center}
+    $\mathcal{M}, x \models \Diamond_i \varphi \Leftrightarrow \exists y \in R_i(x) \: \mathcal{M}, y \models \varphi$.
+  \end{center}
+  A formula $\varphi$ is true in $\mathcal{M}$ iff $||\varphi||_{\mathcal{M}} = W$. $\varphi$ is valid in $\mathcal{F} = \langle W, R_1, \dots, R_n \rangle$ iff $||\varphi||_{\mathcal{M}} = W$ for every model $\mathcal{M}$ over $\mathcal{F}$.
+  \item The complex algebra of a Kripke frame $\mathcal{F} = \langle W, R_1, \dots, R_n \rangle$ is a complete modal algebra defined as $\mathcal{F}^{+} = \langle \mathcal{P}(W), \cup, \neg, \emptyset, R_1^{-1}, \dots, R_n^{-1} \rangle$.
+  \item A general $n$-frame is a structure $\mathcal{F} = \langle W, R_1, \dots, R_n, \mathcal{A} \rangle$, where $\mathcal{A}$ is a subalgebra of $\langle W, R_1, \dots, R_n \rangle^{+}$.
+\end{enumerate}
 \end{defin}
 
-\begin{defin} the logic of a frame/class of frames.
+\begin{defin}
+$ $
+  Let $\mathcal{F}$ be an $n$-frame, then $\operatorname{Log}(\mathcal{F}) = \{ \varphi \: | \: \mathcal{F} \models \varphi \}$. If $\mathbb{F}$ is a class of $n$-frames,
+  then $\operatorname{Log}(\mathbb{F}) = \bigcap \limits_{\mathcal{F} \in \mathbb{F}} \operatorname{Log}(\mathcal{F})$. We use the same notation for logics of general frames and modal algebras.
 \end{defin}
 
-\begin{defin} product of frames/product of logics
+We discuss the background on products of modal logics and products of Kripke frames \cite{kurucz2007combining} \cite{kurucz2003many}.
+
+\begin{defin} Let $\mathcal{F}_1 = \langle W_1, R_1^1, \dots, R_1^n\rangle$ be an $n$-frame and $\mathcal{F}_2 = \langle W_2, R_2^1, \dots, R_2^m\rangle$.
+The product frame of $\mathcal{F}_1$ and $\mathcal{F}_2$ is an $n+m$-frame of the form
+\begin{center}
+$\mathcal{F}_1 \times \mathcal{F}_2 = \langle W_1 \times W_2, R_h^1, \dots, R_h^n, R_v^1, \dots, R_v^m \rangle$
+\end{center}
+such that for all $u_1, u_2 \in W_1$ and for all $v_1, v_2 \in W_2$,
+\begin{center}
+  $\langle u_1, v_1 \rangle R^i_h \langle u_2, v_2 \rangle$ iff $u_1 R_1^i u_2$ and $v_1 = v_2$ for
+  $1 \leq i \leq n$.
+
+  $\langle u_1, v_1 \rangle R^j_v \langle u_2, v_2 \rangle$ iff $u_1 = u_2$ and $u_1 R_2^j u_2$ for $1 \leq j \leq m$.
+\end{center}
 \end{defin}
 
-\begin{defin} discrete duality between perfect modal algebras and Kripke frames
-\end{defin}
+Let $\mathcal{L}_1$ be a normal $n$-modal logic and $\mathcal{L}_2$ a normal $m$-modal logic, the product of $\mathcal{L}_1$ and $\mathcal{L}_2$ is defined as
 
-\begin{defin} A finitely axiomatisable normal modal logic
-\end{defin}
+\begin{center}
+  $\mathcal{L}_1 \times \mathcal{L}_2 = \operatorname{Log}(\operatorname{Frames}(\mathcal{L}_1 ) \times \operatorname{Frames}(\mathcal{L}_2))$
+\end{center}
 
-TODO: describe related underlying results
+\begin{prop}
+  $ $
+
+  \begin{enumerate}
+    \item Let $\mathcal{L}_1$, $\mathcal{L}_2$ be modal logics, then $\mathcal{L}_1 * \mathcal{L}_2 \subseteq \mathcal{L}_1 \times \mathcal{L}_2$.
+    \item Let $\mathcal{L}_1$, $\mathcal{L}_2$ be Kripke complete modal logics, then $\mathcal{L}_1 \times \mathcal{L}_2 = \operatorname{Log}(\operatorname{Frames}_r(\mathcal{L}_1) \times \operatorname{Frames}_r(\mathcal{L}_2))$, where $\operatorname{Frames}_r(\mathcal{L}_i) = \{\mathcal{F} \in \operatorname{Frames}(\mathcal{L}_i) \: | \: \mathcal{F} \text{ is rooted }\}$ for $i = 1,2$.
+  \end{enumerate}
+\end{prop}
+
+\subsection{Axiomatising products}
+
+The following properties hold for a product frame having the form $\mathcal{F} = \langle W, R_1, \dots, R_n \rangle$:
+
+\begin{enumerate}
+  \item commutativity 1
+  \item commutativity 2
+  \item confluence
+\end{enumerate}
 
 \section{Tensor products of modal algebras. The basic definitions and results}
 
@@ -102,6 +152,9 @@ TODO: consider the system containing ${\bf GL}$, McKinsey, seriality, and linear
 \section{Solution of Problem 1}
 
 \section{Solution of Problem 4}
+
+\begin{defin} A finitely axiomatisable normal modal logic
+\end{defin}
 
 \bibliographystyle{plain}
 \bibliography{Text}
