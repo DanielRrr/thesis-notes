@@ -103,6 +103,7 @@ such that for all $u_1, u_2 \in W_1$ and for all $v_1, v_2 \in W_2$,
   $\langle u_1, v_1 \rangle R^j_v \langle u_2, v_2 \rangle$ iff $u_1 = u_2$ and $u_1 R_2^j u_2$ for $1 \leq j \leq m$.
 \end{center}
 \end{defin}
+This operation on Kripke frames commutes with disjoint unions, $p$-morphic images, and generated subframes.
 
 Let $\mathcal{L}_1$ be a normal $n$-modal logic and $\mathcal{L}_2$ a normal $m$-modal logic, the product of $\mathcal{L}_1$ and $\mathcal{L}_2$ is defined as
 
@@ -124,10 +125,45 @@ Let $\mathcal{L}_1$ be a normal $n$-modal logic and $\mathcal{L}_2$ a normal $m$
 The following properties hold for a product frame having the form $\mathcal{F} = \langle W, R_1, \dots, R_n \rangle$:
 
 \begin{enumerate}
-  \item commutativity 1
-  \item commutativity 2
-  \item confluence
+  \item (left commutativity) $\forall x, y, z \in W \: (x R_j y \: \& \: y R_i z \Rightarrow \exists u \in W \: (x R_i u \: \& \: u R_j z))$
+  \item (right commutativity) $\forall x, y, z \in W \: (x R_i y \: \& \: y R_j z \Rightarrow \exists u \in W \: (x R_j u \: \& \: u R_i z))$
+  \item (Confluence) $\forall x, y, z \in W (x R_j y \: \& \: x R_i z \Rightarrow \exists u \in W (y R_i u \: \& \: z R_j u))$
 \end{enumerate}
+
+The properties are expressed as modal formulas as well:
+\begin{enumerate}
+  \item ${\bf comm}^{\bf l}_{ij} = \Diamond_j \Diamond_i p \to \Diamond_i \Diamond_j p$
+  \item ${\bf comm}^{\bf r}_{ij} = \Diamond_i \Diamond_j p \to \Diamond_j \Diamond_i p$
+  \item ${\bf cr}_{ij} = \Diamond_i \Box_j p \to \Box_i \Diamond_j p$
+\end{enumerate}
+
+\begin{defin} Given unimodal modals logics $\mathcal{L}_1, \dots, \mathcal{L}_n$, the commutator
+
+  \begin{center}
+    $[\mathcal{L}_1, \dots, \mathcal{L}_n]$
+  \end{center}
+  is the smallest $n$-modal logic containing $\mathcal{L}_i$ and axioms ${\bf comm}^{\bf l}_{ij}$, ${\bf comm}^{\bf r}_{ij}$, and ${\bf cr}_{ij}$ for $i, j \in \{ 1, \dots, n\}$ with $i \neq j$.
+\end{defin}
+
+Since ${\bf comm}^{\bf l}_{ij}$, ${\bf comm}^{\bf r}_{ij}$, and ${\bf comm}^{\bf r}_{ij}$ are Salqvist formulas, one has
+
+\begin{prop}
+  If $\mathcal{L}_1, \dots, \mathcal{L}_n$ are canonical, then $[\mathcal{L}_1, \dots, \mathcal{L}_n]$ is canonical, and thus, elementary and Kripke complete.
+\end{prop}
+
+Moreover, one has
+
+\begin{prop}
+  $[\mathcal{L}_1, \dots, \mathcal{L}_n] \subseteq \mathcal{L}_1 \times \dots \times \mathcal{L}_n$.
+\end{prop}
+
+If the converse inclusion holds, then $\mathcal{L}_1, \dots, \mathcal{L}_n$ are \emph{product-mathcing}, see \cite{gabbay1998products}. The examples of product-matching logics are Horn axiomatisable ones \cite{kurucz2003many}. In particular, the following equality holds for Kripke complete and Horn axiomatisable logics $\mathcal{L}_1, \mathcal{L}_2, \mathcal{L}_3$:
+
+\begin{center}
+  $\mathcal{L}_1 \times \mathcal{L}_2 \times \mathcal{L}_3 = (\mathcal{L}_1 \times \mathcal{L}_2) \times \mathcal{L}_3 = \mathcal{L}_1 \times (\mathcal{L}_2 \times \mathcal{L}_3)$
+\end{center}
+
+Generally, this is an open question whether the product of modal logics is associative.
 
 \section{Tensor products of modal algebras. The basic definitions and results}
 
