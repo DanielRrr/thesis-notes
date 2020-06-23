@@ -1,0 +1,114 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{dsfont}
+\usepackage{mathabx}
+\usepackage[all, 2cell]{xy}
+\usepackage[all]{xy}
+\usepackage{wasysym}
+\usepackage{rotating}
+\usepackage{geometry}
+\usepackage{trfsigns}
+\usepackage{cmll}
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{lipsum}
+\usepackage{extpfeil}
+\usepackage{soul}
+\usepackage{graphicx}
+
+\newcommand\mapsfrom{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+
+\theoremstyle{defin}
+\newtheorem{defin}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{prop}
+\newtheorem{prop}{Proposition}
+
+\theoremstyle{lemma}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{ex}
+\newtheorem{ex}{Example}
+
+
+\theoremstyle{col}
+\newtheorem{col}{Corollary}
+
+\author{Daniel Rogozin}
+\date{}
+\title{Note on filtration of logics containing {\bf K5}}
+
+\begin{document}
+
+\maketitle
+
+\nocite{*}
+
+\section{Preliminaries}
+
+\begin{defin}
+  An $n$-normal modal logic is a set of formulas that contains all Boolean tautologies, formulas $\Diamond_i p \lor \Diamond_i q \leftrightarrow \Diamond_i (p \lor q)$ and $\Diamond_i \bot \leftrightarrow \bot$ for $i \leq n$, and is closed under modus ponens, substitution, and monotonicity: from $\varphi \rightarrow \psi$ infer $\Diamond_i \varphi \rightarrow \Diamond_i \psi$ for $i \leq n$.
+\end{defin}
+
+\begin{defin} An $n$-Kripke model is a triple $\mathcal{M} = \langle W, R_1, \dots, R_n, \vartheta \rangle$, where $R_i \subseteq W \times W$, $\vartheta : \operatorname{PV} \to 2^W$, and the connectives have the following semantics:
+
+  \begin{enumerate}
+    \item $\mathcal{M}, w \models p \Leftrightarrow w \in \vartheta(p)$
+    \item $\mathcal{M}, w \models \not \varphi \Leftrightarrow \mathcal{M}, w \nvDash \varphi$
+    \item $\mathcal{M}, w \models \varphi \lor \psi \Leftrightarrow \mathcal{M}, w \models \varphi \text{ or } \mathcal{M}, w \models \psi$
+    \item $\mathcal{M}, w \models \Diamond_i \varphi \Leftrightarrow \exists v \in R_i(w) \: \mathcal{M}, v \models \varphi$
+  \end{enumerate}
+\end{defin}
+
+By ${\bf K5}$ we mean the logic ${\bf K} \oplus {A5}$, where ${A5} = \Diamond p \to \Box \Diamond p$. It is known that ${\bf K5}$ is the modal logic of all Euqlidean frames. A frame is called Euqlidean if for each $x, y, z$ one has $x R y$ and $x R z$
+
+Let $\mathcal{M} = \langle W, R_1, \dots, R_n, \vartheta \rangle$ be a Kripke model and $\Gamma$ a set of formulas closed under subformulas. An equivalence relation $\sim$ is set to have a finite index if the quotient set $W / \sim$ is finite. The equivalence relation $\sim_{\Gamma}$ induced by $\Gamma$ is defined as
+
+\begin{center}
+  $w \sim_{\Gamma} v \Leftrightarrow \forall \varphi \in \Gamma \: (\mathcal{M}, w \models \varphi \Leftrightarrow \mathcal{M}, v \models \varphi)$.
+\end{center}
+
+If $\Gamma$ is finite, then $\sim_{\Gamma}$ has a finite index. An equivalence relation $\sim$ respects $\sim_{\Gamma}$, if $w \sim v$ implies $w \sim_{\Gamma} v$.
+
+\begin{defin}
+  Let $\mathcal{M} = \langle W, R_1, \dots, R_n, \vartheta \rangle$ be a Kripke model and $\Gamma$ be a Sub-closed set formulas. A $\Gamma$-filtration of $\mathcal{M}$ is a model
+  $\widehat{\mathcal{M}} = \langle \widehat{W}, \widehat{R_1}, \dots, \widehat{R_n}, \widehat{\vartheta} \rangle$ such that:
+  \begin{enumerate}
+    \item $\widehat{W} = W / \sim$, where $\sim$ is an equivalence relation having a finite index that respects $\Gamma$
+    \item $\widehat{\vartheta}(p) = \{ [x]_{\sim} \: | \: x \in W \: \& \: x \in \vartheta(p)\}$
+    \item For each $i \in I$ one has $\widehat{R}_i^{\text{min}} \subseteq \widehat{R}_i \subseteq \widehat{R}_i^{\text{max}}$. $\widehat{R}_{i, \sim}^{\text{min}}$ is the $i$-th minimal filtered relation on $\widehat{W}$ defined as
+    \begin{center}
+      $\hat{x} \widehat{R}_{i, \sim}^{\text{min}} \hat{y} \Leftrightarrow \exists x' \sim x \: \exists y' \sim y \: x R_i y$
+    \end{center}
+    $\widehat{R}_{\Gamma,i}^{\text{max}}$ is the $i$-th maximal filtered relation on $\widehat{W}$ induced by $\Gamma$ defined as
+    \begin{center}
+      $\hat{x} \widehat{R}_{\Gamma,i}^{\text{max}} \hat{y} \Leftrightarrow \forall \Box_i \varphi \in \Gamma (\mathcal{M}, x \models \Box_i \varphi \Rightarrow \mathcal{M}, y \models \varphi)$
+    \end{center}
+  \end{enumerate}
+\end{defin}
+
+If $\Phi$ is finite subset of $\Gamma$ and $\sim = \sim_{\Gamma}$, then $\widehat{M}$ is a definable $\Gamma$-filtration of $\mathcal{M}$ through $\Phi$.
+
+\begin{lemma}
+  Let $\Gamma$ be a finite set of formulas closed under subformulas and $\widehat{M}$ a filtration of $\mathcal{M}$ through $\Gamma$, then for each $x \in W$ and for each $\varphi \in \Gamma$ one has
+  \begin{center}
+    $\mathcal{M}, x \models \varphi \Leftrightarrow \widehat{M}, \hat{x} \models \varphi$
+  \end{center}
+\end{lemma}
+
+\section{Filtration of Euclidian logics}
+
+\bibliographystyle{plain}
+\bibliography{Text}
+
+\end{document}
