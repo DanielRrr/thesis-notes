@@ -70,7 +70,17 @@
   \end{enumerate}
 \end{defin}
 
-By ${\bf K5}$ we mean the logic ${\bf K} \oplus {A5}$, where ${A5} = \Diamond p \to \Box \Diamond p$. It is known that ${\bf K5}$ is the modal logic of all Euqlidean frames. A frame is called Euqlidean if for each $x, y, z$ one has $x R y$ and $x R z$
+By ${\bf K5}$ we mean the logic ${\bf K} \oplus {A5}$, where ${A5} = \Diamond p \to \Box \Diamond p$. It is known that ${\bf K5}$ is the modal logic of all Euclidean frames. A frame is called Euclidean if for each $x, y, z$, $x R y$ and $x R z$ implies $y R z$.
+
+\begin{prop}
+  Let $\mathcal{F} = \langle W, R \rangle$ be an Euclidean frame.
+
+  \begin{enumerate}
+    \item For each $x, y, z \in W$, $x R y$ and $x R z$ implies either $y R z$ or $z R y$.
+    \item $R \subseteq R ; R$, that is, $R$ is dense.
+    \item For each $x \in W$, $R^{*}(x) = \{ x\} \cup R(R(x))$.
+  \end{enumerate}
+\end{prop}
 
 Let $\mathcal{M} = \langle W, R_1, \dots, R_n, \vartheta \rangle$ be a Kripke model and $\Gamma$ a set of formulas closed under subformulas. An equivalence relation $\sim$ is set to have a finite index if the quotient set $W / \sim$ is finite. The equivalence relation $\sim_{\Gamma}$ induced by $\Gamma$ is defined as
 
@@ -92,12 +102,12 @@ If $\Gamma$ is finite, then $\sim_{\Gamma}$ has a finite index. An equivalence r
     \end{center}
     $\widehat{R}_{\Gamma,i}^{\text{max}}$ is the $i$-th maximal filtered relation on $\widehat{W}$ induced by $\Gamma$ defined as
     \begin{center}
-      $\hat{x} \widehat{R}_{\Gamma,i}^{\text{max}} \hat{y} \Leftrightarrow \forall \Box_i \varphi \in \Gamma (\mathcal{M}, x \models \Box_i \varphi \Rightarrow \mathcal{M}, y \models \varphi)$
+      $\hat{x} \widehat{R}_{\Gamma,i}^{\text{max}} \hat{y} \Leftrightarrow \forall \Box_i \varphi \in \Gamma \: (\mathcal{M}, x \models \Box_i \varphi \Rightarrow \mathcal{M}, y \models \varphi)$
     \end{center}
   \end{enumerate}
 \end{defin}
 
-If $\Phi$ is finite subset of $\Gamma$ and $\sim = \sim_{\Gamma}$, then $\widehat{M}$ is a definable $\Gamma$-filtration of $\mathcal{M}$ through $\Phi$.
+If $\Phi$ is finite subset of $\Gamma$ and $\sim = \sim_{\Phi}$, then $\widehat{M}$ is a definable $\Gamma$-filtration of $\mathcal{M}$ through $\Phi$. If $\sim = \sim_{\Gamma}$, then such a filtration by means of the definiton above is called \emph{strict}.
 
 \begin{lemma}
   Let $\Gamma$ be a finite set of formulas closed under subformulas and $\widehat{M}$ a filtration of $\mathcal{M}$ through $\Gamma$, then for each $x \in W$ and for each $\varphi \in \Gamma$ one has
@@ -106,7 +116,23 @@ If $\Phi$ is finite subset of $\Gamma$ and $\sim = \sim_{\Gamma}$, then $\wideha
   \end{center}
 \end{lemma}
 
-\section{Filtration of Euclidian logics}
+\begin{defin} Let $\mathbb{F}$ be a class of Kripke frames and $\Gamma$ a finite set of formulas closed under subformulas. If for every model $\mathcal{M}$ over $\mathcal{F} \in \mathbb{F}$ there exists a model that is a $\Gamma$-definable filtration of $\mathcal{M}$, then $\mathbb{F}$ admits definable filtration. A class of models $\mathbb{M}$ admits definable filtration if for every $\mathcal{M} \in \mathbb{M}$ there exists a model belonging to the same class that is a definable $\Gamma$-filtration of $\mathcal{M}$.
+\end{defin}
+
+\begin{lemma}
+  $ $
+
+\begin{enumerate}
+  \item Let $\mathcal{L}$ be a complete normal modal logic. If $\operatorname{Frames}(\mathcal{L})$ admits filtration, then $\mathcal{L}$ has the finite model property.
+  \item If the class of models $\operatorname{Mod}(\mathcal{L})$ admits filtration, then $\mathcal{L}$ has the finite model property and Kripke complete as well.
+\end{enumerate}
+\end{lemma}
+
+\section{Filtration of Euclidean logics}
+
+First of all, let us ensure that a filtration of an Euclidean frame is not necessary finite.
+Let $[x] \sim_{\Gamma} [y]$ and $[x] \sim_{\Gamma} [z]$. Then for some $x' \in [x]$ $y' \in [y]$, one has
+$x' R y'$ and $x'' R z'$ for some $x'' \in [x]$ and $z' \in [z]$. Clearly, we cannot claim that $x' = x''$ in general. Thus, minimal filtration does not preserve the required property.
 
 \bibliographystyle{plain}
 \bibliography{Text}

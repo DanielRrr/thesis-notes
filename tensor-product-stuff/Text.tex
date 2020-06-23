@@ -90,80 +90,16 @@ $ $
 
 We discuss the background on products of modal logics and products of Kripke frames \cite{kurucz2007combining} \cite{kurucz2003many}.
 
-\begin{defin} Let $\mathcal{F}_1 = \langle W_1, R_1^1, \dots, R_1^n\rangle$ be an $n$-frame and $\mathcal{F}_2 = \langle W_2, R_2^1, \dots, R_2^m\rangle$.
-The product frame of $\mathcal{F}_1$ and $\mathcal{F}_2$ is an $n+m$-frame of the form
-\begin{center}
-$\mathcal{F}_1 \times \mathcal{F}_2 = \langle W_1 \times W_2, R_h^1, \dots, R_h^n, R_v^1, \dots, R_v^m \rangle$
-\end{center}
-such that for all $u_1, u_2 \in W_1$ and for all $v_1, v_2 \in W_2$,
-\begin{center}
-  $\langle u_1, v_1 \rangle R^i_h \langle u_2, v_2 \rangle$ iff $u_1 R_1^i u_2$ and $v_1 = v_2$ for
-  $1 \leq i \leq n$.
-
-  $\langle u_1, v_1 \rangle R^j_v \langle u_2, v_2 \rangle$ iff $u_1 = u_2$ and $u_1 R_2^j u_2$ for $1 \leq j \leq m$.
-\end{center}
-\end{defin}
-This operation on Kripke frames commutes with disjoint unions, $p$-morphic images, and generated subframes.
-
-Let $\mathcal{L}_1$ be a normal $n$-modal logic and $\mathcal{L}_2$ a normal $m$-modal logic, the product of $\mathcal{L}_1$ and $\mathcal{L}_2$ is defined as
-
-\begin{center}
-  $\mathcal{L}_1 \times \mathcal{L}_2 = \operatorname{Log}(\operatorname{Frames}(\mathcal{L}_1 ) \times \operatorname{Frames}(\mathcal{L}_2))$
-\end{center}
-
-\begin{prop}
-  $ $
-
-  \begin{enumerate}
-    \item Let $\mathcal{L}_1$, $\mathcal{L}_2$ be modal logics, then $\mathcal{L}_1 * \mathcal{L}_2 \subseteq \mathcal{L}_1 \times \mathcal{L}_2$.
-    \item Let $\mathcal{L}_1$, $\mathcal{L}_2$ be Kripke complete modal logics, then $\mathcal{L}_1 \times \mathcal{L}_2 = \operatorname{Log}(\operatorname{Frames}_r(\mathcal{L}_1) \times \operatorname{Frames}_r(\mathcal{L}_2))$, where $\operatorname{Frames}_r(\mathcal{L}_i) = \{\mathcal{F} \in \operatorname{Frames}(\mathcal{L}_i) \: | \: \mathcal{F} \text{ is rooted }\}$ for $i = 1,2$.
-  \end{enumerate}
-\end{prop}
-
-\subsection{Axiomatising products}
-
-The following properties hold for a product frame having the form $\mathcal{F} = \langle W, R_1, \dots, R_n \rangle$:
-
-\begin{enumerate}
-  \item (left commutativity) $\forall x, y, z \in W \: (x R_j y \: \& \: y R_i z \Rightarrow \exists u \in W \: (x R_i u \: \& \: u R_j z))$
-  \item (right commutativity) $\forall x, y, z \in W \: (x R_i y \: \& \: y R_j z \Rightarrow \exists u \in W \: (x R_j u \: \& \: u R_i z))$
-  \item (Confluence) $\forall x, y, z \in W (x R_j y \: \& \: x R_i z \Rightarrow \exists u \in W (y R_i u \: \& \: z R_j u))$
-\end{enumerate}
-
-The properties are expressed as modal formulas as well:
-\begin{enumerate}
-  \item ${\bf comm}^{\bf l}_{ij} = \Diamond_j \Diamond_i p \to \Diamond_i \Diamond_j p$
-  \item ${\bf comm}^{\bf r}_{ij} = \Diamond_i \Diamond_j p \to \Diamond_j \Diamond_i p$
-  \item ${\bf cr}_{ij} = \Diamond_i \Box_j p \to \Box_i \Diamond_j p$
-\end{enumerate}
-
-\begin{defin} Given unimodal modals logics $\mathcal{L}_1, \dots, \mathcal{L}_n$, the commutator
-
-  \begin{center}
-    $[\mathcal{L}_1, \dots, \mathcal{L}_n]$
-  \end{center}
-  is the smallest $n$-modal logic containing $\mathcal{L}_i$ and axioms ${\bf comm}^{\bf l}_{ij}$, ${\bf comm}^{\bf r}_{ij}$, and ${\bf cr}_{ij}$ for $i, j \in \{ 1, \dots, n\}$ with $i \neq j$.
+\begin{defin} Let $\mathcal{F}_1 = \langle W_1, R^1_1, \dots, R^1_n\rangle$ be an $n$-frame and $\mathcal{F}_2 = \langle W_2, R^2_1, \dots, R^2_m\rangle$ an $m$-frame
 \end{defin}
 
-Since ${\bf comm}^{\bf l}_{ij}$, ${\bf comm}^{\bf r}_{ij}$, and ${\bf comm}^{\bf r}_{ij}$ are Salqvist formulas, one has
+\begin{defin} discrete duality between perfect modal algebras and Kripke frames
+\end{defin}
 
-\begin{prop}
-  If $\mathcal{L}_1, \dots, \mathcal{L}_n$ are canonical, then $[\mathcal{L}_1, \dots, \mathcal{L}_n]$ is canonical, and thus, elementary and Kripke complete.
-\end{prop}
+\begin{defin} A finitely axiomatisable normal modal logic
+\end{defin}
 
-Moreover, one has
-
-\begin{prop}
-  $[\mathcal{L}_1, \dots, \mathcal{L}_n] \subseteq \mathcal{L}_1 \times \dots \times \mathcal{L}_n$.
-\end{prop}
-
-If the converse inclusion holds, then $\mathcal{L}_1, \dots, \mathcal{L}_n$ are \emph{product-mathcing}, see \cite{gabbay1998products}. The examples of product-matching logics are Horn axiomatisable ones \cite{kurucz2003many}. In particular, the following equality holds for Kripke complete and Horn axiomatisable logics $\mathcal{L}_1, \mathcal{L}_2, \mathcal{L}_3$:
-
-\begin{center}
-  $\mathcal{L}_1 \times \mathcal{L}_2 \times \mathcal{L}_3 = (\mathcal{L}_1 \times \mathcal{L}_2) \times \mathcal{L}_3 = \mathcal{L}_1 \times (\mathcal{L}_2 \times \mathcal{L}_3)$
-\end{center}
-
-Generally, this is an open question whether the product of modal logics is associative.
+TODO: describe related underlying results
 
 \section{Tensor products of modal algebras. The basic definitions and results}
 
@@ -189,8 +125,7 @@ TODO: consider the system containing ${\bf GL}$, McKinsey, seriality, and linear
 
 \section{Solution of Problem 4}
 
-\begin{defin} A finitely axiomatisable normal modal logic
-\end{defin}
+\newpage
 
 \bibliographystyle{plain}
 \bibliography{Text}
