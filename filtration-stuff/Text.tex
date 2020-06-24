@@ -134,11 +134,19 @@ First of all, let us ensure that a filtration of an Euclidean frame is not neces
 Let $[x] \sim_{\Gamma} [y]$ and $[x] \sim_{\Gamma} [z]$. Then for some $x' \in [x]$ $y' \in [y]$, one has
 $x' R y'$ and $x'' R z'$ for some $x'' \in [x]$ and $z' \in [z]$. Clearly, we cannot claim that $x' = x''$ in general. Thus, minimal filtration does not preserve the required property.
 
-\subsection{Clusters for transitive frames}
+\subsection{Clusters}
 
-\subsection{Clusters for transitive Euclidean frames}
+Let $\mathcal{F} = \langle W, R \rangle$ be a transitive frame.
+Let us put $x R^{\bullet} y \Leftrightarrow x R y \: \& \: \neg (x R y)$. A point $x$ is proper if $x R x$. Let us define the following
+equivalence relation:
 
-\subsection{Clusters for Euclidean frames}
+\begin{center}
+  $x \equiv y \Leftrightarrow x R y \: \& \: y R x \lor x = y$.
+\end{center}
+A cluster is an element of the quotient set $W / \equiv$. Given $x \in W$, $C_x$ is a cluster containing $x$. Thus $C_x =
+\{ x\} \cup \{ y \: | x R y x \}$. The original relation lifts to the antisymmetric transitive relation on $W / \equiv$ defined as
+$C_x R C_y$ iff $x R y$. A cluster $C$ is called maximal if $C R C'$ implies $C = C'$. A point is $R$-maximal if $C_x$ is a maximal cluster,
+that is, $R^{\bullet}(x) = \emptyset$. A degenerated cluster is a singleton $\{ x \}$ with $\neg (x R x)$. A cluster is called simple if it has the form $\{ x \}$ with $x R x$. If $\langle W', R' \rangle$ is an inner substructure of $\langle W, R \rangle$, then every $R'$-cluster is an $R$-cluster and every $R$-cluster that intersects $W'$ is a subset of $W'$ and is an $R'$-cluster itself. Given a Kripke model $\mathcal{M}$, a set of formulas $\Gamma$ is satisfied by a cluster $C$ if every member of $\Gamma$ is true at some point of $C$.
 
 \section{Transitive closure stuff}
 
