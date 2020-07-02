@@ -91,6 +91,7 @@ Note that the (quasi)equational theories of those classes coincide, that is
 \begin{center}
   ${\bf IPRA} = {\bf RRA} = {\bf SP}{\bf Rs}$
 \end{center}
+Moreover, ${\bf RRA}$ is a variety, but it cannot be defined by any set of first-order formulas \cite{monk1964representable} \cite{}.
 
 One may express residuals in every $\mathcal{R} \in {\bf RA}$ as follows, for every $a, b \in \mathcal{R}$:
 
@@ -227,23 +228,68 @@ Here we would have an alternative way of showing decidability for some substruct
 
 \section{Join-semilattice ordered semigroups}
 
-\begin{defin} A join-semilattice ordered semigroup (${\bf ASOS}$) is an algebra $\mathcal{S} = \langle S, \cdot, \vee \rangle$ such that $\langle S, \cdot \rangle$ is a semigroup, $\langle S, \vee \rangle$ is a join-semilattice and the following equations hold for each $a, b. c \in S$:
+\begin{defin} A join-semilattice ordered semigroup (${\bf OS^{\vee}}$) is an algebra $\mathcal{S} = \langle S, \cdot, \vee \rangle$ such that $\langle S, \cdot \rangle$ is a semigroup, $\langle S, \vee \rangle$ is a join-semilattice and the following equations hold for each $a, b. c \in S$:
 
   \begin{enumerate}
     \item $a \cdot (b \vee c) = (a \cdot b) \vee (a \cdot c)$
     \item $(a \vee b) \cdot c = (a \cdot c) \vee (b \cdot c)$
   \end{enumerate}
 \end{defin}
-This class is clearly a variety since ${\bf ASOS}$ has the equational definition so far as $\vee$ is defined as an associative, idempotent, and commutative operation.
+This class is clearly a variety since ${\bf OS^{\vee}}$ has the equational definition so far as $\vee$ is defined as an associative, idempotent, and commutative operation.
 
-Let $A$ be a set of binary relations on some base set $W$ such that $R = \cup A$ is transitive and $\{ x, y \: | \: x R y \} = W$ as in Definition~\ref{rrs}. A relation join-semilattice ordered semigroup (${\bf RJSOS}$) is an algebra of binary relations $\mathcal{A} = \langle A, ;, \cup\rangle$ such that $;$ is a relation composition as above and $\cup$ is the set-theoretic union. It is known that the class of all representable join-semilattice ordered semigroups has no finite axiomatisation \cite{andreka1989union}.
+Let $A$ be a set of binary relations on some base set $W$ such that $R = \cup A$ is transitive and $\{ x, y \: | \: x R y \} = W$ as in Definition~\ref{rrs}. A relation join-semilattice ordered semigroup (${\bf ROS^{\vee}}$) is an algebra of binary relations $\mathcal{A} = \langle A, |, \cup \rangle$ such that $;$ is a relation composition as above and $\cup$ is the set-theoretic union. Let us define a representation of
+\begin{defin}
+  Let $\mathcal{S} = \langle S, \cdot, \vee \rangle$ a join-semilattice ordered semigroup. A representation of $\mathcal{S}$ is a map
+  $h : S \to 2^{D \times D}$ for some base set $D$ satisfying the following conditions
+  \begin{itemize}
+    \item $h(a) = h(b) \Rightarrow a = b$
+    \item $h(a \vee b) = h(a) \vee h(b)$
+    \item $h(a ; b) = h(a) | h(b) = \{ (e,d) \in D \times D \: | \: \exists f \in D \: (e,f) \in h(a) \: \& \: (f,d) \in h(b) \}$
+  \end{itemize}
+\end{defin}
+It is known that the class of all representable join-semilattice ordered semigroups has no finite axiomatisation \cite{andreka1989union}. In other words,
 
 \begin{theorem}
   The equational and quasiequational theories of $R(;,\vee)$ is not finitely based.
 \end{theorem}
 
+Let us provide a proof of this fact using the rainbow technique \cite{hirsch2002relation} to show that the complement of ${\bf ROS^{\vee}}$ is not closed ultraproducts. This is (more or less) a standard way, see \cite{hodkinson2000axiomatizability}.
+We note that representability is not decidable for finite relation algebras \cite{hirsch2001representability}. Moreover, representability is undecidable for lattice-ordered semigroups and ordered complemented semigroups \cite{neuzerling2016undecidability}.
+
+First of all, we recall several definitions such as colourings. We define a sequence of relation algebras $\{ \mathfrak{A}_n \}_{n < \omega}$ each of which belongs to ${\bf RA}$. We need these algebras to show that their $\{;, \vee\}$-reducts are not representable. That is, we are seeking to show that
+
+Given $n < \omega$, the set of atoms $\operatorname{At}(\mathfrak{A}_n)$ consists of the following elements:
+\begin{itemize}
+\item identity: ${\bf 1}$, an atom with no colour
+\item greens: ${\bf g}_i$ for $0 \leq i \leq 2^n$
+\item yellow: ${\bf y}$
+\item black: ${\bf b}$
+\item whites: ${\bf b}_{ij}$ for $0 \leq i \leq j \leq 2^n$
+\item reds: ${\bf r}_i$ for $0 <i \leq 2^n$
+\end{itemize}
+We claim that every atom is self-converse ($a^{\smile} = a$). Given $x, y, z \in \mathfrak{A}_n$, a triple $(x,y,z)$ is an  inconsistent triangle if
+\begin{center}
+$x \land (y ; z) = y \land (z ; x) = z \land (x ; y) = 0$
+\end{center}
+We define the set of inconsistent triangles explicitly as follows.
+\begin{itemize}
+  \item $({\bf g}_i, {\bf g}_i, {\bf g}_i)$ for $0 \leq i \leq 2^n$
+  \item $({\bf y}, {\bf y}, {\bf y})$ for $0 \leq i \leq 2^n$
+  \item $({\bf g}_i, {\bf g}_i, {\bf w}_{kj})$ for $0 \leq i \leq 2^n$ and $0 \leq k \leq j \leq 2^n$
+  \item $({\bf r}_i, {\bf r}_j, {\bf r}_k)$ unless $i + k = j$ or $i + k = j$ or $j + k = i$
+  \item $({\bf g}_i, {\bf g}_{i + 1}, {\bf r})$ unless $j = 1$
+  \item $({\bf g}_i, {\bf y}, {\bf w}_{jk})$ unless $i \in \{ j, k \}$
+\end{itemize}
+$({\bf g}_i, {\bf g}_i, {\bf w}_{kj})$ stands for ${\bf g}_i \land ({\bf g}_i ; {\bf w}_{kj}) = {\bf g}_i \land (z ; {\bf g}_i) = {\bf w}_{kj} \land ({\bf g}_i ; {\bf g}_i) = 0$, and so on.
+
+\begin{lemma}
+  For each $n < \omega$, $\mathfrak{A}_n$ does not belong ${\bf RRA}$. The $(\vee, ;)$-reduct $\mathfrak{S}_n$ of $\mathfrak{A}_n$ is not representable as well.
+\end{lemma}
+
 \begin{proof}
-TODO: use games and rainbow stuff
+  See \cite{hodkinson2000axiomatizability} to have a proof that $\mathfrak{A}_n \notin {\bf RRA}$.
+
+  We prove that  
 \end{proof}
 
 \subsection{The finite algebra on finite base for ${\bf RJSOS}$ (or its failure)}
