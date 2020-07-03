@@ -46,7 +46,7 @@
 
 \author{Daniel Rogozin}
 \date{}
-\title{Note on filtration of logics containing {\bf K5}}
+\title{Notes on filtration of logics containing {\bf K5}}
 
 \begin{document}
 
@@ -147,6 +147,33 @@ A cluster is an element of the quotient set $W / \equiv$. Given $x \in W$, $C_x$
 \{ x\} \cup \{ y \: | x R y x \}$. The original relation lifts to the antisymmetric transitive relation on $W / \equiv$ defined as
 $C_x R C_y$ iff $x R y$. A cluster $C$ is called maximal if $C R C'$ implies $C = C'$. A point is $R$-maximal if $C_x$ is a maximal cluster,
 that is, $R^{\bullet}(x) = \emptyset$. A degenerated cluster is a singleton $\{ x \}$ with $\neg (x R x)$. A cluster is called simple if it has the form $\{ x \}$ with $x R x$. If $\langle W', R' \rangle$ is an inner substructure of $\langle W, R \rangle$, then every $R'$-cluster is an $R$-cluster and every $R$-cluster that intersects $W'$ is a subset of $W'$ and is an $R'$-cluster itself. Given a Kripke model $\mathcal{M}$, a set of formulas $\Gamma$ is satisfied by a cluster $C$ if every member of $\Gamma$ is true at some point of $C$.
+
+If clusters coincide then their poitns have the same theory in the original model:
+
+\begin{lemma}
+  $C_x = C_y$ implies $\mathcal{M}, x \models \Box \varphi \Leftrightarrow \mathcal{M}, y \models \Box \varphi$
+\end{lemma}
+
+Let us describe the bulldozing technique allowing one to eliminate nondegenerated clusters \cite{bull1984basic}. Let $\mathcal{L}$ be a transitive logic and $\mathcal{F}$ its frame. We construct first a frame $\mathcal{F}^0 = \langle W^{0}, R^{0} \rangle$ replacing every nondegenerated frame $C$ of $W$ by $C^0 = \{ \langle x, i \rangle \: | \: x \in C, i < \omega \}$. We also replace each degenerated cluster $C$ by $\{ \langle x,0 \rangle\}$.
+Elements of these subsets form $W^0$. The relation $R^{0}$ is defined as
+\begin{center}
+  $\langle x, i \rangle R^{0} \langle y, j \rangle \Leftrightarrow x R^{\bullet} y \text{ or } (x \equiv y \: \& \: i < j) \text{ or } i = j \: \& \: x <_C y$
+\end{center}
+where $<_C$ is an arbitrary strict ordering on the proper cluster $C$ containing $x$ and $y$.
+
+Each nondegenrated cluster $C$ is replaced by an infinite set $C_0$ such that $\langle C_0, R_0 \rangle$ is a strict linear order. Moreover, $\langle y, j \rangle$, a copy of $y$, occurs after $\langle y, j \rangle$, a copy of $x$.
+
+Bulldozing might be extended to models $\mathcal{M} = \langle W, R, \vartheta \rangle$ defining $\vartheta^0$ as follows
+\begin{center}
+  $\vartheta^{0}(p_i) = \{ \langle x, i \rangle \: | \: x \in \vartheta(p_i), i < \omega \}$.
+\end{center}
+
+One may show inductively the following fact.
+\begin{lemma}
+  $\mathcal{M}, x \models \varphi \Leftrightarrow \mathcal{M}^{0}, \langle x, i \rangle \models \varphi$
+\end{lemma}
+
+Let us concretise the case of transitive Euclidean frames. First of all, we consider clusters in ${\bf K}45$ frames.
 
 \section{Transitive closure stuff}
 

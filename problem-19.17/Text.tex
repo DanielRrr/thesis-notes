@@ -290,6 +290,35 @@ $({\bf g}_i, {\bf g}_i, {\bf w}_{kj})$ stands for ${\bf g}_i \land ({\bf g}_i ; 
 
 TODO: define games and networks. Take a look at \cite{hirsch1997step}.
 
+Let $\mathcal{A}$ be a relation algebra
+
+\begin{defin}
+  A network is a complete directed finite graph with edges labelled by elements of $\mathcal{A}$. Such a graph have the following form. $N = \langle E_N, l_N \rangle$, where $E_N = U_N \times U_N$ for some finite base set and $l_n : E_N \to \operatorname{At}(\mathcal{A})$ is function mapping each edge to some atom of $A$. This function obey the following requirements:
+  \begin{enumerate}
+    \item $l_N(x,y) \leq {\bf 1}$ iff $x = y$
+    \item $l_N(x, y) ; l_N(y,z) \geq l_N(x,z)$
+  \end{enumerate}
+\end{defin}
+Given two networks $N = \langle E_N, l_N \rangle$ and $N^{'} = \langle E_{N^{'}}, l_{N^{'}} \rangle$, $N$ is a subnetwork of $N^{'}$ ($N \subseteq N^{'}$) if $E_N \subseteq E_{N^{'}}$ and for each $x,y \in U_N$, $l_{N^{'}}(x,y) = l_{N}(x,y)$.
+
+\begin{defin}
+  Let $n < \omega$. We define a game $\mathcal{G}_n(\mathcal{A})$ for two players $\forall$ (Abelard) and $\exists$ (H\'{e}lo\"{i}se). Abelard and H\'{e}lo\"{i}se build a finite chain of networks $N_0 \subseteq N_1 \dots \subseteq N_n$ as follows. In the first round $\forall$ picks an atom $\alpha$ and $\exists$ plays a network $N_0$ containing an edge $(m_0, n_0)$ such that $l_n(m_0, n_0) = \alpha$. If $\alpha \leq {\bf 1}$, then $m_0 = n_0$, otherwise $m_0 \neq n_0$. If $m_0 \neq n_0$, the edges $(m_0, n_0)$ and $(n_0, m_0)$ belong to Abelard. Suppose $N_{i-1}$ for $i < n$ has been played, then
+  \begin{itemize}
+    \item $\forall$ chooses an edge $(m, n) \in E_{N_{i - 1}}$ and atoms $x, y \in \operatorname{At}(\mathcal{A})$ such that $l_{N_{i - 1}}(m,n) \leq x ; y$.
+    \item $\exists$ provides a network $N_i = \langle E_{N_i}, l_{N_i} \rangle \supseteq N_{i - 1}$ such that there exists
+    $l \in U_{N_i}$ such that $l_{N_i}(m, l) = x$ and $l_{N_i}(l, n) = y$.
+  \end{itemize}
+  If $(m,n) \in E_i$ such that $m \neq n$ and $m, n \in U_{N_{i - 1}}$, then the owner of this edge is the same as in the previous round.
+  The edges $(m, l)$ and $(l, n)$ and their converses belong to Abelard. The rest of the irreflexive edges belongs to H\'{e}lo\"{i}se. $\exists$ wins a match of the game $\mathcal{G}_n(\mathcal{A})$ if she can provide a network $N_i$ for each move of $\forall$ for each $i \leq n$.
+  $\exists$ has a winning strategy if she can win all matches.
+\end{defin}
+
+This lemma has been proved by Hirsch and Hodkinson here \cite{hirsch1997step}:
+
+\begin{lemma}
+  Let $\mathcal{A}$ be an atomic relation algebra. Then $\exists$ has a winning strategy in $\mathcal{G}_n({\mathcal{A}})$ for each $n < \omega$ iff $\mathcal{A}$ is elementary equivalent to some completely representable relation algebra. If $\exists$ has a winning strategy, then $\mathcal{A}$ is representable since ${\bf RRA}$ is elementary.
+\end{lemma}
+
 \begin{lemma}
   Any non-trivial ultraproduct of $\{ \mathfrak{A}_n \}_{n < \omega}$ is representable. The same statement for non-trivial ultraproduct of reducts $\{ \mathfrak{S}_n \}_{n < \omega}$.
 \end{lemma}
