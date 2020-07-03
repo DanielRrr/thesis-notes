@@ -237,16 +237,11 @@ Here we would have an alternative way of showing decidability for some substruct
 \end{defin}
 This class is clearly a variety since ${\bf OS^{\vee}}$ has the equational definition so far as $\vee$ is defined as an associative, idempotent, and commutative operation.
 
-Let $A$ be a set of binary relations on some base set $W$ such that $R = \cup A$ is transitive and $\{ x, y \: | \: x R y \} = W$ as in Definition~\ref{rrs}. A relation join-semilattice ordered semigroup (${\bf ROS^{\vee}}$) is an algebra of binary relations $\mathcal{A} = \langle A, |, \cup \rangle$ such that $;$ is a relation composition as above and $\cup$ is the set-theoretic union. Let us define a representation of
-\begin{defin}
-  Let $\mathcal{S} = \langle S, \cdot, \vee \rangle$ a join-semilattice ordered semigroup. A representation of $\mathcal{S}$ is a map
-  $h : S \to 2^{D \times D}$ for some base set $D$ satisfying the following conditions
-  \begin{itemize}
-    \item $h(a) = h(b) \Rightarrow a = b$
-    \item $h(a \vee b) = h(a) \vee h(b)$
-    \item $h(a ; b) = h(a) | h(b) = \{ (e,d) \in D \times D \: | \: \exists f \in D \: (e,f) \in h(a) \: \& \: (f,d) \in h(b) \}$
-  \end{itemize}
-\end{defin}
+Let $A$ be a set of binary relations on some base set $W$ such that $R = \cup A$ is transitive and $\{ x, y \: | \: x R y \} = W$ as in Definition~\ref{rrs}. A relation join-semilattice ordered semigroup (${\bf ROS^{\vee}}$) is an algebra of binary relations $\mathcal{A} = \langle A, |, \cup \rangle$ such that $;$ is a relation composition as above and $\cup$ is the set-theoretic union.
+
+Recall that a class of structures ${\bf K}$ is called finitely axiomatisable iff both ${\bf K}$ and its complement are closed
+ultraproducts and isomorphic copies.
+
 It is known that the class of all representable join-semilattice ordered semigroups has no finite axiomatisation \cite{andreka1989union}. In other words,
 
 \begin{theorem}
@@ -283,14 +278,25 @@ We define the set of inconsistent triangles explicitly as follows.
 $({\bf g}_i, {\bf g}_i, {\bf w}_{kj})$ stands for ${\bf g}_i \land ({\bf g}_i ; {\bf w}_{kj}) = {\bf g}_i \land (z ; {\bf g}_i) = {\bf w}_{kj} \land ({\bf g}_i ; {\bf g}_i) = 0$, and so on.
 
 \begin{lemma}
-  For each $n < \omega$, $\mathfrak{A}_n$ does not belong ${\bf RRA}$. The $(\vee, ;)$-reduct $\mathfrak{S}_n$ of $\mathfrak{A}_n$ is not representable as well.
+  For each $n < \omega$, $\mathfrak{A}_n$ does not belong ${\bf RRA}$. The $(\vee, ;)$-reduct $\mathfrak{S}_n$ of $\mathfrak{A}_n$ is not representable as well. For each $n < \omega$, there is an equation valid in set algebras failing in $\mathfrak{S}_n$.
 \end{lemma}
 
 \begin{proof}
   See \cite{hodkinson2000axiomatizability} to have a proof that $\mathfrak{A}_n \notin {\bf RRA}$.
 
-  We prove that  
+  We prove that $\mathfrak{S}_n$ is not representable by contradiction.
+  Suppose $h$ is an isomorphism of $\mathfrak{S}_n$ to a set relation of relations having similarity type $\{ ;, \vee \}$. Let $0$ be a zero element of $\mathfrak{A}_n$.
 \end{proof}
+
+TODO: define games and networks. Take a look at \cite{hirsch1997step}.
+
+\begin{lemma}
+  Any non-trivial ultraproduct of $\{ \mathfrak{A}_n \}_{n < \omega}$ is representable.
+\end{lemma}
+
+\begin{lemma}
+  TODO: one needs to realise when $\exists$ has a winning strategy
+\end{lemma}
 
 \subsection{The finite algebra on finite base for ${\bf RJSOS}$ (or its failure)}
 
