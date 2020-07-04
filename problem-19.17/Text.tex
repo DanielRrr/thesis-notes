@@ -46,7 +46,7 @@
 
 \author{Daniel Rogozin}
 \date{}
-\title{The finite base property for some relation algebras subreducts}
+\title{The finite base property and lacking of finite axiomatisation for some subreducts of representable relation algebras}
 
 \begin{document}
 
@@ -259,7 +259,7 @@ Given $n < \omega$, the set of atoms $\operatorname{At}(\mathfrak{A}_n)$ consist
 \item greens: ${\bf g}_i$ for $0 \leq i \leq 2^n$
 \item yellow: ${\bf y}$
 \item black: ${\bf b}$
-\item whites: ${\bf b}_{ij}$ for $0 \leq i \leq j \leq 2^n$
+\item whites: ${\bf w}$, ${\bf w}_{ij}$ for $0 \leq i \leq j \leq 2^n$
 \item reds: ${\bf r}_i$ for $0 <i \leq 2^n$
 \end{itemize}
 We claim that every atom is self-converse ($a^{\smile} = a$). Given $x, y, z \in \mathfrak{A}_n$, a triple $(x,y,z)$ is an  inconsistent triangle if
@@ -268,14 +268,25 @@ $x \land (y ; z) = y \land (z ; x) = z \land (x ; y) = 0$
 \end{center}
 We define the set of inconsistent triangles explicitly as follows.
 \begin{itemize}
-  \item $({\bf g}_i, {\bf g}_i, {\bf g}_i)$ for $0 \leq i \leq 2^n$
-  \item $({\bf y}, {\bf y}, {\bf y})$ for $0 \leq i \leq 2^n$
-  \item $({\bf g}_i, {\bf g}_i, {\bf w}_{kj})$ for $0 \leq i \leq 2^n$ and $0 \leq k \leq j \leq 2^n$
+  \item $({\bf 1}, x, y)$ unless $x = y$
+  \item $({\bf g}_i, {\bf g}_k, {\bf g}_l)$ for $i, k, l \leq 2^n$
+  \item $({\bf y}, {\bf y}, {\bf y})$
+  \item $({\bf y}, {\bf y}, {\bf b})$
+  \item $({\bf g}_i, {\bf g}_j, {\bf w}_{kl})$ for $i, j \leq 2^n$ and $k, j \leq 2^n$
   \item $({\bf r}_i, {\bf r}_j, {\bf r}_k)$ unless $i + k = j$ or $i + k = j$ or $j + k = i$
   \item $({\bf g}_i, {\bf g}_{i + 1}, {\bf r})$ unless $j = 1$
   \item $({\bf g}_i, {\bf y}, {\bf w}_{jk})$ unless $i \in \{ j, k \}$
 \end{itemize}
-$({\bf g}_i, {\bf g}_i, {\bf w}_{kj})$ stands for ${\bf g}_i \land ({\bf g}_i ; {\bf w}_{kj}) = {\bf g}_i \land (z ; {\bf g}_i) = {\bf w}_{kj} \land ({\bf g}_i ; {\bf g}_i) = 0$, and so on.
+$({\bf g}_i, {\bf g}_i, {\bf w}_{kj})$ stands for ${\bf g}_i \land ({\bf g}_i ; {\bf w}_{kj}) = {\bf g}_i \land ({\bf w}_{kj} ; {\bf g}_i) = {\bf w}_{kj} \land ({\bf g}_i ; {\bf g}_i) = 0$, and so on.
+
+$C$ is the set of consistent triangles defined as
+
+\begin{center}
+  $C = \{ (a, b, c ) \: | \: a,b,c \in \operatorname{At}(\mathfrak{A}_n), (a,b,c) \text{ is consistent}\}$
+\end{center}
+
+Let us ensure briefly that $\mathfrak{A}_n$ is indeed a relation algebra defining the multiplication table for composition as in \cite{lyndon1950representation}. For that, it is enough to show associativity for atoms $a, x, y, z$ such that $a \leq (x ; y) ; z$. For that, one needs to find an atom $b$ such that $a \leq x ; b$ and $b \leq y ; z$. If $x = y$, then we put $b = {\bf 1}$. Otherwise, we try to use a white atom or a black atom for $b$ unless $x, a$ are green and $y, z$ are yellow.
+Suppose $x = {\bf g}_i$, $a = {\bf g}_j$, $y = {\bf y}_k$, and $z = {\bf y}_l$, then we put
 
 \begin{lemma}
   For each $n < \omega$, $\mathfrak{A}_n$ does not belong ${\bf RRA}$. The $(\vee, ;)$-reduct $\mathfrak{S}_n$ of $\mathfrak{A}_n$ is not representable as well. For each $n < \omega$, there is an equation valid in set algebras failing in $\mathfrak{S}_n$.
@@ -288,18 +299,16 @@ $({\bf g}_i, {\bf g}_i, {\bf w}_{kj})$ stands for ${\bf g}_i \land ({\bf g}_i ; 
   Suppose $h$ is an isomorphism of $\mathfrak{S}_n$ to a set relation of relations having similarity type $\{ ;, \vee \}$. Let $0$ be a zero element of $\mathfrak{A}_n$.
 \end{proof}
 
-TODO: define games and networks. Take a look at \cite{hirsch1997step}.
-
-Let $\mathcal{A}$ be a relation algebra
+Let us define networks and games according to \cite{hirsch1997step}.
 
 \begin{defin}
-  A network is a complete directed finite graph with edges labelled by elements of $\mathcal{A}$. Such a graph have the following form. $N = \langle E_N, l_N \rangle$, where $E_N = U_N \times U_N$ for some finite base set and $l_n : E_N \to \operatorname{At}(\mathcal{A})$ is function mapping each edge to some atom of $A$. This function obey the following requirements:
+  Let $\mathcal{A}$ be a relation algebra. A network is a complete directed finite graph with edges labelled by elements of $\mathcal{A}$. Such a graph have the following form. $N = \langle E_N, l_N \rangle$, where $E_N = U_N \times U_N$ for some finite base set and $l_n : E_N \to \operatorname{At}(\mathcal{A})$ is function mapping each edge to some atom of $A$. This function obey the following requirements:
   \begin{enumerate}
     \item $l_N(x,y) \leq {\bf 1}$ iff $x = y$
     \item $l_N(x, y) ; l_N(y,z) \geq l_N(x,z)$
   \end{enumerate}
 \end{defin}
-Given two networks $N = \langle E_N, l_N \rangle$ and $N^{'} = \langle E_{N^{'}}, l_{N^{'}} \rangle$, $N$ is a subnetwork of $N^{'}$ ($N \subseteq N^{'}$) if $E_N \subseteq E_{N^{'}}$ and for each $x,y \in U_N$, $l_{N^{'}}(x,y) = l_{N}(x,y)$.
+Given two networks $N = \langle E_N, l_N \rangle$ and $N^{'} = \langle E_{N^{'}}, l_{N^{'}} \rangle$, $N$ is a subnetwork of $N^{'}$ ($N \subseteq N^{'}$, or $N^{'}$ refines $N$) if $E_N \subseteq E_{N^{'}}$ and for each $x,y \in U_N$, $l_{N^{'}}(x,y) = l_{N}(x,y)$.
 
 \begin{defin}
   Let $n < \omega$. We define a game $\mathcal{G}_n(\mathcal{A})$ for two players $\forall$ (Abelard) and $\exists$ (H\'{e}lo\"{i}se). Abelard and H\'{e}lo\"{i}se build a finite chain of networks $N_0 \subseteq N_1 \dots \subseteq N_n$ as follows. In the first round $\forall$ picks an atom $\alpha$ and $\exists$ plays a network $N_0$ containing an edge $(m_0, n_0)$ such that $l_n(m_0, n_0) = \alpha$. If $\alpha \leq {\bf 1}$, then $m_0 = n_0$, otherwise $m_0 \neq n_0$. If $m_0 \neq n_0$, the edges $(m_0, n_0)$ and $(n_0, m_0)$ belong to Abelard. Suppose $N_{i-1}$ for $i < n$ has been played, then
@@ -313,21 +322,21 @@ Given two networks $N = \langle E_N, l_N \rangle$ and $N^{'} = \langle E_{N^{'}}
   $\exists$ has a winning strategy if she can win all matches.
 \end{defin}
 
-This lemma has been proved by Hirsch and Hodkinson here \cite{hirsch1997step}:
+This lemma has been proved by Hirsch and Hodkinson here \cite{hirsch1997step}. This lemma provide a criterion of representability for relation algebras.
 
 \begin{lemma}
   Let $\mathcal{A}$ be an atomic relation algebra. Then $\exists$ has a winning strategy in $\mathcal{G}_n({\mathcal{A}})$ for each $n < \omega$ iff $\mathcal{A}$ is elementary equivalent to some completely representable relation algebra. If $\exists$ has a winning strategy, then $\mathcal{A}$ is representable since ${\bf RRA}$ is elementary.
 \end{lemma}
 
 \begin{lemma}
-  Any non-trivial ultraproduct of $\{ \mathfrak{A}_n \}_{n < \omega}$ is representable. The same statement for non-trivial ultraproduct of reducts $\{ \mathfrak{S}_n \}_{n < \omega}$.
+  Any non-trivial ultraproduct of $\{ \mathfrak{A}_n \}_{n < \omega}$ is representable, that is, belongs to ${\bf RRA}$. The same statement for non-trivial ultraproduct of reducts $\{ \mathfrak{S}_n \}_{n < \omega}$ that belongs to $R(;, \vee)$.
 \end{lemma}
 
 \begin{lemma}
   TODO: one needs to realise when $\exists$ has a winning strategy
 \end{lemma}
 
-\subsection{The finite algebra on finite base for ${\bf RJSOS}$ (or its failure)}
+\subsection{The finite algebra on finite base for $R(;, \vee)$ (or its failure)}
 
 \bibliographystyle{plain}
 \bibliography{Text}
