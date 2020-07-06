@@ -79,6 +79,7 @@ By ${\bf K5}$ we mean the logic ${\bf K} \oplus {A5}$, where ${A5} = \Diamond p 
     \item For each $x, y, z \in W$, $x R y$ and $x R z$ implies either $y R z$ or $z R y$.
     \item $R \subseteq R ; R$, that is, $R$ is dense.
     \item For each $x \in W$, $R^{*}(x) = \{ x\} \cup R(R(x))$.
+    \item $R^{-1} ; R \subseteq R$.
   \end{enumerate}
 \end{prop}
 
@@ -107,12 +108,12 @@ If $\Gamma$ is finite, then $\sim_{\Gamma}$ has a finite index. An equivalence r
   \end{enumerate}
 \end{defin}
 
-If $\Phi$ is finite subset of $\Gamma$ and $\sim = \sim_{\Phi}$, then $\widehat{M}$ is a definable $\Gamma$-filtration of $\mathcal{M}$ through $\Phi$. If $\sim = \sim_{\Gamma}$, then such a filtration by means of the definiton above is called \emph{strict}.
+If $\Phi$ is finite subset of $\Gamma$ and $\sim = \sim_{\Phi}$, then $\widehat{\mathcal{M}}$ is a definable $\Gamma$-filtration of $\mathcal{M}$ through $\Phi$. If $\sim = \sim_{\Gamma}$, then such a filtration by means of the definiton above is called \emph{strict}.
 
 \begin{lemma}
-  Let $\Gamma$ be a finite set of formulas closed under subformulas and $\widehat{M}$ a filtration of $\mathcal{M}$ through $\Gamma$, then for each $x \in W$ and for each $\varphi \in \Gamma$ one has
+  Let $\Gamma$ be a finite set of formulas closed under subformulas and $\widehat{\mathcal{M}}$ a filtration of $\mathcal{M}$ through $\Gamma$, then for each $x \in W$ and for each $\varphi \in \Gamma$ one has
   \begin{center}
-    $\mathcal{M}, x \models \varphi \Leftrightarrow \widehat{M}, \hat{x} \models \varphi$
+    $\mathcal{M}, x \models \varphi \Leftrightarrow \widehat{\mathcal{M}}, \hat{x} \models \varphi$
   \end{center}
 \end{lemma}
 
@@ -133,6 +134,49 @@ If $\Phi$ is finite subset of $\Gamma$ and $\sim = \sim_{\Phi}$, then $\widehat{
 First of all, let us ensure that a filtration of an Euclidean frame is not necessary finite.
 Let $[x] \sim_{\Gamma} [y]$ and $[x] \sim_{\Gamma} [z]$. Then for some $x' \in [x]$ $y' \in [y]$, one has
 $x' R y'$ and $x'' R z'$ for some $x'' \in [x]$ and $z' \in [z]$. Clearly, we cannot claim that $x' = x''$ in general. Thus, minimal filtration does not preserve the required property.
+
+\subsection{Strict filtration for logics containing ${\bf K5}$}
+
+\begin{defin}
+  Let $\mathcal{F} = \langle W, R, \vartheta \rangle$ be a Kripke model. Then its Euclidean Horn closure ($R^E$, $E$-closure) is defined as
+  \begin{center}
+    $R^E = (\bigcup \limits_{n < \omega} (R^{-1})^n); R$
+  \end{center}
+  or, equivalently, $R^{E} = \bigcup \limits_{n < \omega} R_n$, where $R^{0} = R$ and $R_{n + 1} = R_n \cup (R^{-1} ; R_n)$.
+\end{defin}
+
+\begin{lemma}
+  Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ be an Euclidean model, $\Gamma$ a set of $\operatorname{Sub}$-closed formulas, and $\sim$ an equivalence relation having a finite index that respects $\Gamma$. Then its $E$-closure of the minimal filtration of $R$ is a filtration itself.
+\end{lemma}
+
+\begin{proof}
+  Let us show that $\widehat{R^{E}} = \bigcup \limits_{n < \omega} (R_n)^{\text{min}}_{\sim}$ is a filtration and $\langle W / \sim, \widehat{R}^{E}, \widehat{\vartheta} \rangle$ is an Euclidean model.
+
+  Let $\widehat{\mathcal{M}} = \langle \widehat{W}, \widehat{R}, \widehat{\vartheta} \rangle$ be a minimal filtration of an Euclidean model through $\sim$.
+
+  \begin{enumerate}
+    \item Suppose $x R y$, then $[x] \widehat{R} [y]$ by the definition of a minimal filtration. $\widehat{R}$ is clearly a subrelation of $\widehat{R}^{E}$, thus $[x] \widehat{R}^{E} [y]$.
+    \item Suppose $[x] \widehat{R^{E}} [y]$ and $\mathcal{M}, x \models \Box \varphi$ for $\Box \varphi \in \Gamma$. then $([x], [y]) \in \bigcup \limits_{n < \omega} R_n$. Then $([x], [y]) \in R_n$ for some $n < \omega$.
+    There are two cases:
+    \begin{enumerate}
+      \item $n = 0$, then $[x] \widehat{R} [y]$, so, obviously, one has $\mathcal{M}, y \models \varphi$
+      \item $n = m + 1$. Suppose $[x] {\widehat{R}}_{m + 1} [y]$. Thus, $[x] \widehat{R}_n \cup (\widehat{R}^{-1} ; \widehat{R}_n) [y]$.
+      There are the following two cases:
+      \begin{enumerate}
+        \item $([x], [y]) \in \widehat{R}_n$, then the statement holds by IH.
+        \item $([x], [y]) \in \widehat{R}^{-1} ; \widehat{R}_n$.
+        Then there exists $[z]$ such that $[x] \widehat{R}^{-1} [z]$ and $[z] \widehat{R}_m [y]$, that is,
+        $[z] \widehat{R} [x]$ and $[z] \widehat{R}_m [y]$. One has $\mathcal{M}, x \models \Box \varphi$, then
+        $\widehat{\mathcal{M}}, [x] \models \Box \varphi$. So $\widehat{\mathcal{M}}, [z] \models \Diamond \Box \varphi$. On the other hand, $\mathcal{M}, z \models \Diamond \Box \varphi \to \Box \varphi$, so $\mathcal{M}, z \models \Box \varphi$ and,
+        from that, $\widehat{\mathcal{M}}, [z] \models \Box \varphi$, and, thus, $\widehat{\mathcal{M}}, [y] \models \varphi$ and $\mathcal{M}, y \models \varphi$ by IH and the definition of a minimal filtration.
+      \end{enumerate}
+    \end{enumerate}
+  \end{enumerate}
+\end{proof}
+
+\begin{col}
+  ${\bf K}5$ admit strict filtrations.
+\end{col}
 
 \subsection{Clusters}
 
@@ -174,6 +218,8 @@ One may show inductively the following fact.
 \end{lemma}
 
 Let us concretise the case of transitive Euclidean frames. First of all, we consider clusters in ${\bf K}45$ frames.
+
+\subsection{}
 
 \section{Transitive closure stuff}
 
