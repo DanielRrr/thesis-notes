@@ -46,7 +46,7 @@
 
 \author{Daniel Rogozin}
 \date{}
-\title{The finite base property and lacking of finite axiomatisation for some subreducts of representable relation algebras}
+\title{The finite base property for some subreducts of representable relation algebras}
 
 \begin{document}
 
@@ -164,67 +164,56 @@ The following statements were shown in \cite{andreka1999finite}. This lemma conn
   ${\bf ORS}$ is the class of all residuated semigroups.
 \end{defin}
 
+See this paper to have a proof of the following theorem \cite{goldblatt2006kripke}:
+
+\begin{theorem}
+  Every finite residuated semigroup is isomorphic to some residuated subsemigroup of some finite residuated lattice.
+\end{theorem}
+
+
 \begin{defin} \label{rrs}
   Let $A$ be a set of binary relations on some base set $W$ such that $R = \cup A$ is transitive and $\{ x, y \: | \: x R y \} = W$. A relation residuated semigroup is an algebra $\mathcal{A} = \langle A, ;, \setminus, /, \subseteq \rangle$ where for each $r, s \in A$
   \begin{enumerate}
     \item $r ; s = \{ \langle a, c \rangle \: | \: \exists b \in W \: (\langle a, b \rangle \in r \: \& \: \langle b, c \rangle \in s) \}$
     \item $r \setminus s = \{ \langle a, c \rangle \: | \: \forall b \in W \: (\langle b, a \rangle \in r \Rightarrow \langle b, c \rangle \in s)\}$
     \item $r / s = \{ \langle a, c \rangle \: | \: \forall b \in W \: (\langle c, b \rangle \in s \Rightarrow \langle a, b \rangle \in r)\}$
+    \item $r \leq s$ iff $r \subseteq s$.
   \end{enumerate}
 \end{defin}
 Relation residuated semigroup are also called representable relativised relational structure (${\bf RRS}$).
 
-Andr\'{e}ka and Mikul\'{a}s proved the following representation theorem for ${\bf ORS}$ in \cite{andreka1994lambek} that implies relational completeness of the Lambek calculus, the logic of ${\bf ORS}$:
+See \cite{brown1993representation}
+\begin{theorem}
+  Every complete residuated semigroup $\mathcal{A}$ (quantale) is isomorphic to relational complete residuated semigroup on the underlying set of $\mathcal{A}$.
+\end{theorem}
+
+\begin{defin}
+  Let $\mathcal{A} = \langle A, \leq, \cdot, \setminus, / \rangle$ be a residuated semigroup. A representation of $\mathcal{A}$ is an inclusion map $h : \mathcal{A} \to \mathcal{A}'$,
+  where $\mathcal{A}' \in {\bf RRS}$ such that:
+  \begin{enumerate}
+    \item $dom(\mathcal{A}') = \{ \hat{a} \: | \: a \in A\}$, where $\hat{a} = \{ (b, c) \: | \: b \leq a \cdot c \}$.
+  \end{enumerate}
+\end{defin}
+
+Such a map preserves order, residuals, and composition. Andr\'{e}ka and Mikul\'{a}s proved the following representation theorem for ${\bf ORS}$ in \cite{andreka1994lambek} that implies relational completeness of the Lambek calculus, the logic of ${\bf ORS}$:
 
 \begin{theorem}\label{ors=irrs}
   ${\bf ORS} = {\bf IRRS}$, where ${\bf IRRS}$ is a closure of ${\bf RRS}$ under isomorphic copies.
 \end{theorem}
 
-\subsection{The finite base property for ${\bf RRS}$}
-
-\begin{defin}
-  A relativised representation
-\end{defin}
-
-\begin{defin}
-  The standard translation
-\end{defin}
-
-TODO: take a look at relativised representations and loosely guarded fragments in general
-TODO: realise whether it makes sense to use the technique similar to \cite[Theorem 19.13]{hirsch2002relation}
-used for weakly associative algebras.
-
-\begin{theorem}
-  Let $\mathcal{A}$ be a finite residuated semigroup and
-  $|\mathcal{A}| < \omega$, then $\mathcal{A}$ has a finite relativised representation.
-\end{theorem}
-
-\begin{theorem}
-  Let $\mathcal{A}$ be a finite representable residuated semigroup, then $\mathcal{A}$ is isomorphic to
-  representable residuated semigroup a domain of which is finite.
-\end{theorem}
-
-\begin{proof}
-  That might follow from the previous theorem, Theorem~\ref{ors=irrs}, and something else.
-\end{proof}
-
 \begin{col}
-  The Lambek calculus has the fmp and the universal theory of ${\bf IRRS}$ is NP-complete.
+  Every finite representable residuated semigroup is isomorphic to representable residuated subsemigroup of some finite residuated lattice.
 \end{col}
 
-The hypothetical plan is the following one:
-\begin{enumerate}
-\item Define properly relativised representation for residuated semigroups, that should look like ternary Kripke frames for the basic Lambek calculus or arrow logic.
-\item Define the standard translation to such first-order relation structures. TODO: take a look at loosely guarded fragment stuff.
-\item Every finite residuated semigroup has a finite relativised representation.
-\item If every $\Pi_1$-statement $\varphi$ of the language of residuated semigroups that is valid in every
-residuated semingroup is valid in algebra having a finite relativised representation (one may use here Theorem~\ref{ors=irrs} somehow), then $\varphi$ is valid in ${\bf ORS}$ as well as in ${\bf IRRS}$.
-\item Every finite residuated semigroup should have a finite relativised representation.
-\item Construct a finitely based relation residuated semigroup from that (an analogue of complex algebra or smth like that). This item is the most non-trivial one.
-\item As a corollary, the first-order universal first-order theory of ${\bf IRRS}$ should be decidable and
-(it seems so) $\operatorname{NP}$-complete (that should follow from the results in \cite{pentus2006lambek}). The Lambek calculus is decidable that was shown syntactically via cut elimination and subformula property.
-Here we would have an alternative way of showing decidability for some substructural logics.
-\end{enumerate}
+\begin{theorem}
+  Let $\mathcal{A} \in {\bf RRS}$ and $|\mathcal{A}| < \omega$, then there exists a set $W$, a set $A$ of binary relations on $W$, $R = \cup A$ with $dom(R) = A$ such that
+  $\mathcal{A} \cong \langle A, |, \setminus, /, \subseteq \rangle$.
+\end{theorem}
+
+\begin{theorem}
+  The Lambek calculus is complete w.r.t finite relational models (has the fmp).
+\end{theorem}
+
 
 \section{Join-semilattice ordered semigroups}
 
