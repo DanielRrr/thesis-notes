@@ -83,6 +83,25 @@ By ${\bf K5}$ we mean the logic ${\bf K} \oplus {A5}$, where ${A5} = \Diamond p 
   \end{enumerate}
 \end{prop}
 
+\begin{prop} \label{K5proves}
+  ${\bf K5}$ proves
+  \begin{enumerate}
+    \item $\Box^3 p \leftrightarrow \Box^2 p$
+    \item $\Box^2 \Diamond p \leftrightarrow \Box \Diamond p$
+    \item $\Box \Diamond \Box p \leftrightarrow \Box \Box p$
+    \item $\Box \Diamond^2 p \leftrightarrow \Box \Diamond p$
+  \end{enumerate}
+\end{prop}
+
+\begin{prop}
+  Let $\mathcal{M}$ be a ${\bf K}5$ model, $x R y$ for some $x, y \in W$ then one has
+  \begin{center}
+    $\mathcal{M}, x \models \Diamond \Box \varphi$ iff $\mathcal{M}, y \models \Diamond \Box \varphi$.
+  \end{center}
+\end{prop}
+
+\subsection{Filtrations: general definitions}
+
 Let $\mathcal{M} = \langle W, R_1, \dots, R_n, \vartheta \rangle$ be a Kripke model and $\Gamma$ a set of formulas closed under subformulas. An equivalence relation $\sim$ is set to have a finite index if the quotient set $W / \sim$ is finite. The equivalence relation $\sim_{\Gamma}$ induced by $\Gamma$ is defined as
 
 \begin{center}
@@ -135,15 +154,87 @@ First of all, let us ensure that a filtration of an Euclidean frame is not neces
 Let $[x] \sim_{\Gamma} [y]$ and $[x] \sim_{\Gamma} [z]$. Then for some $x' \in [x]$ $y' \in [y]$, one has
 $x' R y'$ and $x'' R z'$ for some $x'' \in [x]$ and $z' \in [z]$. Clearly, we cannot claim that $x' = x''$ in general. Thus, minimal filtration does not preserve the required property.
 
-\subsection{Strict filtration for logics containing ${\bf K5}$}
+\begin{lemma}
+  ${\bf K5}$ admit filtration.
+\end{lemma}
+
+\begin{proof}
+  Let $\mathcal{M}$ be a ${\bf K5}$-model and $\Gamma_0$ a finite set of formulas closed under subformulas.
+  Let us put $\Gamma = \Gamma_0 \cup \operatorname{Sub}(\{ \Diamond \Box \psi \: | \: \Box \psi \in \Gamma_0 \}) \cup \Psi$, where $\Psi = \nabla_1 \nabla_2 \dots \nabla_n \Box \psi$ for $\Box \psi \in \Gamma_0$ and
+  $\nabla_i \in \{ \Diamond, \Box \}$. By Proposition~\ref{K5proves}, any element of $\Phi$ has one of the four forms. Thus, $W \sim_{\equiv_{\Gamma}}$ has a finite index.
+  We put $\widehat{R} = R^{\operatorname{max}}_{\Gamma}$.
+\end{proof}
+
+\begin{defin} A relation $R$ is called Horn, if it is defined with some first-order formula having the form
+
+  \begin{center}
+    $\forall x_1, \dots, x_n (x_{i_1} R x_{j_1} \land \dots \land x_{i_s} R x_{j_s} \rightarrow x_k R x_l)$
+  \end{center}
+\end{defin}
 
 \begin{defin}
-  Let $\mathcal{F} = \langle W, R, \vartheta \rangle$ be a Kripke model. Then its Euclidean Horn closure ($R^E$, $E$-closure) is defined as
-  \begin{center}
-    $R^E = (\bigcup \limits_{n < \omega} (R^{-1})^n); R$
-  \end{center}
-  or, equivalently, $R^{E} = \bigcup \limits_{n < \omega} R_n$, where $R^{0} = R$ and $R_{n + 1} = R_n \cup (R^{-1} ; R_n)$.
+  Let $H$ be a Horn property and $\langle W, R \rangle$ a Kripke frame. A Horn closure of a binary relation $R$ is the minimal relation $R^{H}$ containing $R$ and satisfying $H$.
 \end{defin}
+
+\begin{lemma}
+  $R^{H} = \bigcup \limits_{n < \omega} R_n$ where
+
+  \begin{enumerate}
+    \item $R_0 = R$.
+    \item $R_{n + 1} = R_n \cup \{ (a, b) \in W \: | \: \exists \vec{c} \in W \: P(a, b, \vec{c})\}$, where $P$ is a premise of $H$.
+  \end{enumerate}
+\end{lemma}
+
+$E$-closure (an Euclidean Horn closure of a binary relation) has the following equivalent definitions:
+\begin{lemma}
+  Let $\mathcal{F} = \langle W, R \rangle$ be a Kripke frame.
+  The following conditions are equivalent:
+
+  \begin{enumerate}
+    \item $R^{E}$ is the smallest Euclidean relation containing $R$.
+    \item $R^{E} = \bigcup \limits_{i < \omega} R_i$, where
+    \begin{itemize}
+      \item $R_0 = R$
+      \item $R_{n + 1} = R_n \cup (R^{-1}_n ; R_n)$
+    \end{itemize}
+    \item $x R^E y$ iff there exists $n < \omega$ such that
+    $\exists x_1, \dots, x_n$ with $z_1 R x$ and $z_{n - 1} R y$ and for each $1 < i \leq n$ one has
+    either $z_{i - 1} R z_i$ or $z_i R z_{i - 1}$.
+    \item $R^{E} = R \cup \bigcup \limits_{i < \omega} (R^{-1} ; (R ; R^{-1})^n ; R)$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+$ $
+
+\begin{enumerate}
+  \item $(1) \Rightarrow (2)$
+  Let us show that if $R^{E}$ is the smallest Euclidean relation containing $R$, then $R^{E} = \bigcup \limits_{i < \omega} R_i$. There are two inclusions:
+  \begin{itemize}
+    \item $R^{E} \subseteq \bigcup \limits_{i < \omega} R_i$. It is enough to show that
+    $x R^{E} y$ implies $x R^n y$ for some $n < \omega$.
+    \item $\bigcup \limits_{i < \omega} R_i \subseteq R^{E}$.
+    Let us show that $x R_n y$ for each $n < \omega$ implies $x R^E y$ by induction on $n$.
+    If $n = 0$, then $x R y$, thus, $x R^{E} y$, since $R$ is a subrelation of $R^{E}$.
+    Suppose $n = m + 1$ and $x R_{m + 1} y$. Let us show that $x R^{E} y$.
+    From $x R_{m + 1} y$, one has $(x, y) \in R^n \cup (R^{-1}_n ; R_n)$. There are two cases:
+    \begin{itemize}
+      \item $x R^n y$, one needs to merely apply the IH.
+      \item $x R^{-1}_n ; R_n y$. Then $\exists z \in W \: x R^{-1}_n z \: \& \: z R_n$. That is,
+      $z R_n x$ and $z R_n y$ for some $z$. $R_n$ is already a subrelation of $R^E$. Thus,
+      $z R^{E} x$ and $z R^{E} y$. That implies $x R^{E} y$.
+    \end{itemize}
+  \end{itemize}
+  \item $(2) \Rightarrow (3)$
+  Let $x R^E y$, then $(x, y) \in \bigcup \limits_{i < n} R_n$. That is, $(x, y) \in R_n \cup (R_n^{-1} ; R_n)$ for some $n < \omega$. There are two cases.
+  \begin{itemize}
+    \item $(x, y) \in R_n$ and that's it.
+    \item $(x, y) \in R_n^{-1} ; R_n$, then $(z, x), (z, y) \in R_n$.
+  \end{itemize}
+  \item $(3) \Rightarrow (4)$
+  \item $(4) \Rightarrow (1)$
+\end{enumerate}
+\end{proof}
 
 \begin{lemma}
   Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ be an Euclidean model, $\Gamma$ a set of $\operatorname{Sub}$-closed formulas, and $\sim$ an equivalence relation having a finite index that respects $\Gamma$. Then its $E$-closure of the minimal filtration of $R$ is a filtration itself.
