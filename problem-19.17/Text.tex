@@ -40,9 +40,11 @@
 \theoremstyle{ex}
 \newtheorem{ex}{Example}
 
-
 \theoremstyle{col}
 \newtheorem{col}{Corollary}
+
+\theoremstyle{claim}
+\newtheorem{claim}{Claim}
 
 \author{Daniel Rogozin}
 \date{}
@@ -258,6 +260,8 @@ It is known that the class of all representable join-semilattice ordered semigro
   ${\bf R}(\cup, |)$ is not finitely axiomatisable.
 \end{theorem}
 
+\subsection{The rainbow construction}
+
 Let us provide a proof of this fact using the rainbow technique \cite{hirsch2002relation} to show that the complement of ${\bf ROS^{+}}$ is not closed ultraproducts. This construction sometimes exploits the similar construction used by Andr{\'e}ka \cite{andreka1991representations} and by Maddux \cite{maddux_1989}.
 We note that representability is not decidable for finite relation algebras \cite{hirsch2001representability} and this result has several generalisations \cite{hirsch2012undecidability}. Moreover, representability is undecidable for lattice-ordered semigroups and ordered complemented semigroups \cite{neuzerling2016undecidability}. We use (more or less) a standard way of showing that the class of certain reducts of representable relation algebras has no finite axiomatisation, see \cite{hodkinson2000axiomatizability} \cite{hirsch1997step}.
 
@@ -327,10 +331,12 @@ We have the following steps:
     \item $\vartheta(y_i^{'}) = {\bf r}_i$
     \item $\vartheta(y_i^{''}) = {\bf b}_i$
   \end{enumerate}
-  falsifies $q_n$ in $\mathfrak{A}_n$
+  falsifies $q_n$ in $\mathfrak{A}_n$.
+
+  TODO: visualise the reason for non-representability.
 \end{proof}
 
-The second is to show that any non-trivial ultraproduct $\prod \limits_{D} \mathfrak{A}_n \in {\bf RRA}$, where $D$ is an ultrafilter over $\mathcal{P}(\omega)$. We show that via the rainbow technique. Let us define networks and games according to \cite{hirsch1997step}.
+\subsection{Networks and games}
 
 \begin{defin}
   Let $\mathcal{A}$ be a relation algebra. A network is a complete directed finite graph with edges labelled by elements of $\mathcal{A}$. Such a graph have the following form. $N = \langle E_N, l_N \rangle$, where $E_N = U_N \times U_N$ for some finite base set and $l_n : E_N \to \operatorname{At}(\mathcal{A})$ is function mapping each edge to some atom of $A$. This function obey the following requirements:
@@ -355,17 +361,27 @@ Given two networks $N = \langle E_N, l_N \rangle$ and $N^{'} = \langle E_{N^{'}}
 
 This lemma has been proved by Hirsch and Hodkinson here \cite{hirsch1997step}. This lemma provide a criterion of representability for relation algebras.
 
-\begin{lemma}
+\begin{lemma} \label{win}
   Let $\mathcal{A}$ be an atomic relation algebra. Then $\exists$ has a winning strategy in $\mathcal{G}_n({\mathcal{A}})$ for each $n < \omega$ iff $\mathcal{A}$ is elementary equivalent to some completely representable relation algebra. If $\exists$ has a winning strategy, then $\mathcal{A}$ is representable since ${\bf RRA}$ is elementary.
 \end{lemma}
+
+\subsection{The ultraproduct}
+
+The second is to show that any non-trivial ultraproduct $\prod \limits_{D} \mathfrak{A}_n \in {\bf RRA}$, where $D$ is an ultrafilter over $\mathcal{P}(\omega)$. We show that via the rainbow technique. Let us define networks and games according to \cite{hirsch1997step}.
 
 \begin{lemma}
   Any non-trivial ultraproduct of $\{ \mathfrak{A}_n \}_{n < \omega}$ is representable, that is, belongs to ${\bf RRA}$. The same statement for non-trivial ultraproduct of reducts $\{ \mathfrak{S}_n \}_{n < \omega}$ that belongs to ${\bf R}(\cup, |)$.
 \end{lemma}
 
-\begin{lemma}
-  TODO: one needs to realise when $\exists$ has a winning strategy
-\end{lemma}
+According to the following claim, $\exists$ has a winning strategy on cofinitely many algebras that allows her to win a game on the ultraproduct. Thus, according to Lemma~\ref{win}, the ultraproduct belongs to ${\bf RRA}$.
+
+\begin{claim}
+  Let $l < \omega$. $\exists$ has a winning strategy for $G_l(\mathfrak{A}_n)$ for cofinitely many algebras beloging to the sequence $\{ \mathfrak{A}_n \}_{n < \omega}$.
+\end{claim}
+
+\begin{proof}
+  Let $n \geq l$. We show that $\exists$ has a winning strategy for $G_l(\mathfrak{A}_n)$.
+\end{proof}
 
 \subsection{The finite algebra on finite base for ${\bf R}(\cup, |)$ (or its failure)}
 
