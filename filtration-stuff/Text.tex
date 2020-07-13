@@ -77,9 +77,8 @@ By ${\bf K5}$ we mean the logic ${\bf K} \oplus {A5}$, where ${A5} = \Diamond p 
 
   \begin{enumerate}
     \item For each $x, y, z \in W$, $x R y$ and $x R z$ implies either $y R z$ or $z R y$.
-    \item $R \subseteq R ; R$, that is, $R$ is dense.
     \item For each $x \in W$, $R^{*}(x) = \{ x\} \cup R(R(x))$.
-    \item $R^{-1} ; R \subseteq R$.
+    \item $R^{-1} \circ R \subseteq R$.
   \end{enumerate}
 \end{prop}
 
@@ -93,12 +92,21 @@ By ${\bf K5}$ we mean the logic ${\bf K} \oplus {A5}$, where ${A5} = \Diamond p 
   \end{enumerate}
 \end{prop}
 
-\begin{prop}
-  Let $\mathcal{M}$ be a ${\bf K}5$ model, $x R y$ for some $x, y \in W$ then one has
+\begin{prop} \label{k5useful}
+  Let $\mathcal{M}$ be a ${\bf K}5$ model, $x R y$ for $x, y \in W$ then one has
   \begin{center}
     $\mathcal{M}, x \models \Diamond \Box \varphi$ iff $\mathcal{M}, y \models \Diamond \Box \varphi$.
   \end{center}
 \end{prop}
+
+\begin{proof}
+$ $
+
+  \begin{enumerate}
+    \item Suppose $\mathcal{M}, x \models \Diamond \Box \varphi$. One also has $\mathcal{M}, x \models \Diamond \Box \varphi \to \Box \Diamond \Box \varphi$, so $\mathcal{M}, x \models \Box \Diamond \Box \varphi$. Thus, $\mathcal{M}, y \models \Diamond \Box \varphi$ since $y \in R(x)$.
+    \item Suppose $\mathcal{M}, y \models \Diamond \Box \varphi$, then $\mathcal{M}, y \models \Box \varphi$, so $\mathcal{M}, x \models \Diamond \Box \varphi$.
+  \end{enumerate}
+\end{proof}
 
 \subsection{Filtrations: general definitions}
 
@@ -165,7 +173,7 @@ $x' R y'$ and $x'' R z'$ for some $x'' \in [x]$ and $z' \in [z]$. Clearly, we ca
   We put $\widehat{R} = R^{\operatorname{max}}_{\Gamma}$.
 \end{proof}
 
-\begin{defin} A relation $R$ is called Horn, if it is defined with some first-order formula having the form
+\begin{defin} A first-order formula is called Horn if it has the following form:
 
   \begin{center}
     $\forall x_1, \dots, x_n (x_{i_1} R x_{j_1} \land \dots \land x_{i_s} R x_{j_s} \rightarrow x_k R x_l)$
@@ -186,7 +194,7 @@ $x' R y'$ and $x'' R z'$ for some $x'' \in [x]$ and $z' \in [z]$. Clearly, we ca
 \end{lemma}
 
 $E$-closure (an Euclidean Horn closure of a binary relation) has the following equivalent definitions:
-\begin{lemma}
+\begin{lemma} \label{equivHorn}
   Let $\mathcal{F} = \langle W, R \rangle$ be a Kripke frame.
   The following conditions are equivalent:
 
@@ -195,12 +203,12 @@ $E$-closure (an Euclidean Horn closure of a binary relation) has the following e
     \item $R^{E} = \bigcup \limits_{i < \omega} R_i$, where
     \begin{itemize}
       \item $R_0 = R$
-      \item $R_{n + 1} = R_n \cup (R^{-1}_n ; R_n)$
+      \item $R_{n + 1} = R_n \cup (R^{-1}_n \circ R_n)$
     \end{itemize}
     \item $x R^E y$ iff there exists $n < \omega$ such that
-    $\exists x_1, \dots, x_n$ with $z_1 R x$ and $z_{n - 1} R y$ and for each $1 < i \leq n$ one has
+    either $x R y$ or $\exists z_1, \dots, z_n$ with $z_1 R x$ and $z_{n - 1} R y$ and for each $1 < i \leq n$ one has
     either $z_{i - 1} R z_i$ or $z_i R z_{i - 1}$.
-    \item $R^{E} = R \cup \bigcup \limits_{i < \omega} (R^{-1} ; (R ; R^{-1})^n ; R)$.
+    \item $R^{E} = R \cup \bigcup \limits_{i < \omega} (R^{-1} \circ (R \circ R^{-1})^n \circ R)$.
   \end{enumerate}
 \end{lemma}
 
@@ -211,63 +219,90 @@ $ $
   \item $(1) \Rightarrow (2)$
   Let us show that if $R^{E}$ is the smallest Euclidean relation containing $R$, then $R^{E} = \bigcup \limits_{i < \omega} R_i$. There are two inclusions:
   \begin{itemize}
-    \item $R^{E} \subseteq \bigcup \limits_{i < \omega} R_i$. It is enough to show that
-    $x R^{E} y$ implies $x R^n y$ for some $n < \omega$.
+    \item $R^{E} \subseteq \bigcup \limits_{i < \omega} R_i$. Recall that $R^{E}$ has the form (?):
+    \begin{center}
+      $R^{E} = \bigcap \{ R' \: | \: R \subseteq R', \forall a, b \in W \: R'(a,b) \Rightarrow \exists x \in W \: R'(x, a) \: \& \: R'(x, b)\}$
+    \end{center}
+
     \item $\bigcup \limits_{i < \omega} R_i \subseteq R^{E}$.
     Let us show that $x R_n y$ for each $n < \omega$ implies $x R^E y$ by induction on $n$.
     If $n = 0$, then $x R y$, thus, $x R^{E} y$, since $R$ is a subrelation of $R^{E}$.
     Suppose $n = m + 1$ and $x R_{m + 1} y$. Let us show that $x R^{E} y$.
-    From $x R_{m + 1} y$, one has $(x, y) \in R^n \cup (R^{-1}_n ; R_n)$. There are two cases:
+    From $x R_{m + 1} y$, one has $(x, y) \in R^n \cup (R^{-1}_n \circ R_n)$. There are two cases:
     \begin{itemize}
       \item $x R^n y$, one needs to merely apply the IH.
-      \item $x R^{-1}_n ; R_n y$. Then $\exists z \in W \: x R^{-1}_n z \: \& \: z R_n$. That is,
+      \item $x R^{-1}_n \circ R_n y$. Then $\exists z \in W \: x R^{-1}_n z \: \& \: z R_n$. That is,
       $z R_n x$ and $z R_n y$ for some $z$. $R_n$ is already a subrelation of $R^E$. Thus,
       $z R^{E} x$ and $z R^{E} y$. That implies $x R^{E} y$.
     \end{itemize}
   \end{itemize}
   \item $(2) \Rightarrow (3)$
-  Let $x R^E y$, then $(x, y) \in \bigcup \limits_{i < n} R_n$. That is, $(x, y) \in R_n \cup (R_n^{-1} ; R_n)$ for some $n < \omega$. There are two cases.
-  \begin{itemize}
-    \item $(x, y) \in R_n$ and that's it.
-    \item $(x, y) \in R_n^{-1} ; R_n$, then $(z, x), (z, y) \in R_n$.
-  \end{itemize}
+  Let $(x, y) \in R_m$, let us the statement by induction on $m$.
+  \begin{enumerate}
+    \item Suppose $m = 0$, then $x R y$, and the statement is shown putting $n = 0$.
+    \item Suppose $m = p + 1$ and $x R_{p + 1} y$.
+    Assume that either $x R y$ or $\exists z_1, \dots, z_p$ with $z_1 R x$ and $z_{p - 1} R y$ and for each $1 < i \leq p$ one has
+    either $z_{i - 1} R z_i$ or $z_i R z_{i - 1}$.
+
+    $x R_{p + 1} y$ implies $(x, y) \in R_{p} \cup (R^{-1}_p \circ R_p)$. If $(x, y) \in R_{p}$, then we merely apply the IH.
+    Suppose $(x, y) \in R^{-1}_p \circ R_p$, then $(z, x) \in R_p$ and $(z, y) \in R_p$
+  \end{enumerate}
   \item $(3) \Rightarrow (4)$
+  Suppose either $x R y$ or there exist $n \geq 1$ and $z_1, \dots, z_n$ with $z_1 R x$ and $z_{n - 1} R y$ and for each $1 < i \leq n$ one has either $z_{i - 1} R z_i$ or $z_i R z_{i - 1}$.
+  If $x R y$, then we are done. Otherwise there exists $n \geq 1$ with the condition above. Then $(x, y) \in R_{n + 1}$ that follows from the condition.
   \item $(4) \Rightarrow (1)$
 \end{enumerate}
 \end{proof}
 
 \begin{lemma}
-  Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ be an Euclidean model, $\Gamma$ a set of $\operatorname{Sub}$-closed formulas, and $\sim$ an equivalence relation having a finite index that respects $\Gamma$. Then its $E$-closure of the minimal filtration of $R$ is a filtration itself.
+  Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ be an Euclidean model, $\Gamma$ a set of $\operatorname{Sub}$-closed formulas, and $\sim$ an equivalence relation having a finite index that respects $\Gamma$, then $\widehat{R} = (R^{min}_{\Phi})^{E} \subseteq R^{max}_{\Gamma}$, where $\Phi = \Gamma \cup \{ \Diamond \Box \varphi \: | \: \Box \varphi \in \Gamma \}$.
+
+  Thus, ${\bf K}5$ admits strict filtrations.
 \end{lemma}
 
 \begin{proof}
-  Let us show that $\widehat{R^{E}} = \bigcup \limits_{n < \omega} (R_n)^{\text{min}}_{\sim}$ is a filtration and $\langle W / \sim, \widehat{R}^{E}, \widehat{\vartheta} \rangle$ is an Euclidean model.
-
-  Let $\widehat{\mathcal{M}} = \langle \widehat{W}, \widehat{R}, \widehat{\vartheta} \rangle$ be a minimal filtration of an Euclidean model through $\sim$.
-
+  Recall that $(R^{min}_{\Phi})^{E}$ has the form $(R^{min}_{\Phi})^{E} = \bigcup \limits_{n < \omega} (R^{min}_{\Phi})_n$, where
   \begin{enumerate}
-    \item Suppose $x R y$, then $[x] \widehat{R} [y]$ by the definition of a minimal filtration. $\widehat{R}$ is clearly a subrelation of $\widehat{R}^{E}$, thus $[x] \widehat{R}^{E} [y]$.
-    \item Suppose $[x] \widehat{R^{E}} [y]$ and $\mathcal{M}, x \models \Box \varphi$ for $\Box \varphi \in \Gamma$. then $([x], [y]) \in \bigcup \limits_{n < \omega} R_n$. Then $([x], [y]) \in R_n$ for some $n < \omega$.
-    There are two cases:
-    \begin{enumerate}
-      \item $n = 0$, then $[x] \widehat{R} [y]$, so, obviously, one has $\mathcal{M}, y \models \varphi$
-      \item $n = m + 1$. Suppose $[x] {\widehat{R}}_{m + 1} [y]$. Thus, $[x] \widehat{R}_n \cup (\widehat{R}^{-1} ; \widehat{R}_n) [y]$.
-      There are the following two cases:
-      \begin{enumerate}
-        \item $([x], [y]) \in \widehat{R}_n$, then the statement holds by IH.
-        \item $([x], [y]) \in \widehat{R}^{-1} ; \widehat{R}_n$.
-        Then there exists $[z]$ such that $[x] \widehat{R}^{-1} [z]$ and $[z] \widehat{R}_m [y]$, that is,
-        $[z] \widehat{R} [x]$ and $[z] \widehat{R}_m [y]$. One has $\mathcal{M}, x \models \Box \varphi$, then
-        $\widehat{\mathcal{M}}, [x] \models \Box \varphi$. So $\widehat{\mathcal{M}}, [z] \models \Diamond \Box \varphi$. On the other hand, $\mathcal{M}, z \models \Diamond \Box \varphi \to \Box \varphi$, so $\mathcal{M}, z \models \Box \varphi$ and,
-        from that, $\widehat{\mathcal{M}}, [z] \models \Box \varphi$, and, thus, $\widehat{\mathcal{M}}, [y] \models \varphi$ and $\mathcal{M}, y \models \varphi$ by IH and the definition of a minimal filtration.
-      \end{enumerate}
-    \end{enumerate}
+    \item $(R^{min}_{\Phi})_0 = R^{min}_{\Phi}$
+    \item $(R^{min}_{\Phi})_{m + 1} = (R^{min}_{\Phi})_n \cup (((R^{min}_{\Phi})_n)^{-1} \circ (R^{min}_{\Phi})_n)$
+  \end{enumerate}
+  One needs to show that for each $n < \omega$ $(R^{min}_{\Phi})_n \subseteq R^{max}_{\Gamma}$. We prove this by induction.
+  Suppose $\mathcal{M}, x \models \Box \varphi$ for $\Box \varphi \in \Phi$ and $[x] (R^{min}_{\Phi})^{E} [y]$. We need $\mathcal{M}, y \models \varphi$.
+  \begin{enumerate}
+    \item $([x], [y]) \in (R^{min}_{\Phi})_0$, then $([x], [y]) \in R^{min}_{\Phi}$. Then there exist $x' \in [x]$ and $y' \in [y]$ such that $x' R y'$. So $\mathcal{M}, x' \models \Box \varphi$ and, thus,
+    $\mathcal{M}, y' \models \varphi$. Then $\mathcal{M}, y' \models \varphi$ as well since $y' \in [y]$.
+    \item $([x], [y]) \in (R^{min}_{\Phi})_{m + 1}$, then
+    $([x], [y]) \in (R^{min}_{\Phi})_{m} \cup (((R^{min}_{\Phi})_{m})^{-1} \circ R^{min}_{\Phi})_{m})$.
+
+    If $([x], [y]) \in (R^{min}_{\Phi})_{m}$, then we apply the IH.
+
+    Suppose $([x], [y]) \in (R^{min}_{\Phi})_{m})^{-1} \circ (R^{min}_{\Phi})_{m}$,
+    then there exists $[z] \in W / \sim_{\Phi}$ such that $([z], [x]) \in (R^{min}_{\Phi})_{m})$ and $([z], [y]) \in (R^{min}_{\Phi})_{m}$.
+
+    Then one has the following picture (using Lemma~\ref{equivHorn}):
+
+    \xymatrix{
+&&    [z] & \ar[l]_{R^{min}_{\Phi}} [z_1] \ar@{-}[r]^{R'} & [z_2] \ar@{-}[r]^{R'} & \ar@{-}[r]^{R'} \dots & [z_{m - 1}] \ar@{-}[r]^{R'} & [z_m] \ar[r]^{R^{min}_{\Phi}} & [x] \\
+&&    [z] & \ar[l]^{R^{min}_{\Phi}} [z_1^{'}] \ar@{-}[r]_{R'} & [z_2^{'}] \ar@{-}[r]_{R'} & \ar@{-}[r]_{R'} \dots & [z_{m - 1}] \ar@{-}[r]_{R'} & [z_m^{'}] \ar[r]_{R^{min}_{\Phi}} & [y]
+    }
+  Where $R'$ is either $R^{min}_{\Phi}$ or its converse.
+  One has $\mathcal{M}, x \models \Box \varphi$ for $\Box \varphi \in \Phi$, where $\widehat{M}$ is the minimal filtration of $\mathcal{M}$ through $\Phi$. One has $[z_m] R^{min}_{\Phi} [x]$, then $a_m R a$ for some $a_m \in [z_n]$ and $a \in [x]$. Thus, $\mathcal{M}, a_m \models \Diamond \Box \varphi$ and, thus, $\widehat{\mathcal{M}}, [z_m] \models \Diamond \Box \varphi$.
+
+  Applying Proposition~\ref{k5useful} several times, one may show that $\widehat{\mathcal{M}}, [z_1] \models \Diamond \Box \varphi$.
+  One has $[z_1] R^{min}_{\Phi} [z]$, then for some $a \in [z]$ and $a_1 \in [z_1]$ we have $a_1 R a$.
+
+  Then $\mathcal{M}, a \models \Box \varphi$ and $\widehat{M}, [z] \models \Box \varphi$.
+
+  We have $[z_1^{'}] R^{min}_{\Phi} [z]$, thus, $a_1^{'} R a^{'}$ for some $a_1^{'} \in [z_1^{'}]$ and $a^{'} \in [z]$. Then
+  $\mathcal{M}, a_1^{'} \models \Diamond \Box \varphi$, and, thus, $\widehat{M}, [z_1^{'}] \models \Diamond \Box \varphi$.
+
+  One may show that $\widehat{M}, [z_{m}^{'}] \models \Diamond \Box \varphi$ in the same way via Lemma~\ref{k5useful}. Thus, $\mathcal{M}, z_{m}^{'} \models \Diamond \Box \varphi$. We also have $\mathcal{M}, z_{m}^{'} \models \Diamond \Box \varphi \to \Box \varphi$, and, thus,
+  $\mathcal{M}, z_{m}^{'} \models \Box \varphi$. Then $\widehat{\mathcal{M}}, [z_m^{'}] \models \Box \varphi$.
+
+  One has $[z_m^{'}] R^{min}_{\Phi} [y]$, then $a_m^{'} R y'$ for some $a_m^{'} \in [z_m^{'}]$ and $y' \in [y]$. Then $\mathcal{M}, y' \models \varphi$. But $y' \sim_{\Phi} y$, so $\mathcal{M}, y \models \varphi$.
   \end{enumerate}
 \end{proof}
 
-\begin{col}
-  ${\bf K}5$ admit strict filtrations.
-\end{col}
 
 \subsection{Clusters}
 
