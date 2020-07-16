@@ -1,0 +1,423 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{dsfont}
+\usepackage{mathabx}
+\usepackage[all, 2cell]{xy}
+\usepackage[all]{xy}
+\usepackage{wasysym}
+\usepackage{rotating}
+\usepackage{geometry}
+\usepackage{trfsigns}
+\usepackage{cmll}
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{lipsum}
+\usepackage{extpfeil}
+\usepackage{soul}
+\usepackage{graphicx}
+
+\newcommand\mapsfrom{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+
+\theoremstyle{defin}
+\newtheorem{defin}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{prop}
+\newtheorem{prop}{Proposition}
+
+\theoremstyle{lemma}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{ex}
+\newtheorem{ex}{Example}
+
+\theoremstyle{col}
+\newtheorem{col}{Corollary}
+
+\theoremstyle{claim}
+\newtheorem{claim}{Claim}
+
+\author{Daniel Rogozin}
+\date{}
+\title{The finite base property for subreducts of representable relation algebras}
+
+\begin{document}
+
+\maketitle
+
+\section{Relation algebras and their reducts}
+
+We recall the basic definitions and results about relation algebras \cite{hirsch2002relation} \cite{maddux2006relation}.
+
+\begin{defin}
+  $ $
+
+    A relation algebra is an algebra $\mathcal{R} = \langle R, 0, 1, +, -, ;, {}^{\smile}, {\bf 1 }\rangle$ such that $\langle R, 0, 1, +, - \rangle$ is a Boolean algebra and the following
+    equations hold, for each $a, b, c \in R$:
+    \begin{enumerate}
+      \item $a ; (b ; c) = (a ; b) ; c$
+      \item $(a + b) ; c = (a ; c) + (b ; c)$
+      \item $a ; {\bf 1} = a$
+      \item $a^{\smile \smile} = a$
+      \item $(a + b)^{\smile} = a^{\smile} + b^{\smile}$
+      \item $(a ; b)^{\smile} = b^{\smile} ; a^{\smile}$
+      \item $a^{\smile} ; (- (a ; b)) \leq - b$
+    \end{enumerate}
+    where $a \leq b$ iff $a + b = b$. ${\bf RA}$ denotes the class of all relation
+    algebras.
+\end{defin}
+A relation algebra is called symmetric, if every element is self-converse. A relation algebra is called integral, if
+\begin{center}
+  $a ; b = 0 \Rightarrow a = 0 \text{ or } b = 0$.
+\end{center}
+
+\begin{defin}
+    A proper relation algebra is an algebra $\mathcal{R} = \langle R, 0, 1, \cup, -, |, {}^{\smile}, {\bf 1 }\rangle$ such that $R \subseteq \mathcal{P}(W)$, where $W$ is an equivalence relation; $0 = \emptyset$; $1 = W$; $\cap$, $\cup$, $-$ are set-theoretic intersection, union, and
+    complement respectively; $|$ is relation composition, ${}^{\smile}$ is relation converse, ${\bf 1}$ is a
+    diagonal relation restricted to $W$, that is:
+    \begin{enumerate}
+    \item $a | b = \{ \langle x, z \rangle \: | \: \exists y \: \langle x, y \rangle \in a \: \& \: \langle y, z \rangle \in b \}$
+    \item $a^{\smile} = \{ \langle x, y \rangle \: | \: \langle y, x \rangle \in a \}$
+    \item ${\bf 1} = \{ \langle x, y \rangle \: | \: x = y \}$
+    \end{enumerate}
+      The class of all proper relation algebras is denoted as ${\bf PRA}$. ${\bf Rs}$ is the class of all relation set algebras, proper relation algebra with a diagonal subrelation as an identity. ${\bf RRA}$ is the class of all representable relation algebras, that is, the closure of ${\bf PRA}$ under isomorphic copies. That is,
+      ${\bf RRA} = {\bf IPRA}$.
+\end{defin}
+Note that the (quasi)equational theories of these classes coincide, that is
+\begin{center}
+  ${\bf IPRA} = {\bf RRA} = {\bf SP}{\bf Rs}$
+\end{center}
+It is also known that ${\bf RA}$ and ${\bf RRA}$ are varieties, but ${\bf RRA}$ is not finitely axiomatisable.
+
+We consider signatures include the equality predicate and are subsets of
+$\Omega = \{ =, \leq, 0, 1, {\bf 1}, +, \cdot, -, \smile, ;, \setminus, / \}$. A subset $\tau \subseteq \Omega$ is called a $\tau$-signature.
+
+\begin{defin}
+  An interpretation $R$ of $\tau$-algebra $\mathcal{A}$ over a base $X$ is a map that assigns a binary relation $a^R \subseteq X \times X$
+  for each $a \in X$. An interpretation $R$ is a $\tau$-interpretation if the following hold
+  (for the relevant predicate, function or constant belonging to $\tau$):
+  \begin{enumerate}
+    \item $a^R = b^R$ iff $a = b$,
+    \item $a^R \subseteq b^R$ iff $a \leq b$
+    \item $0^{R} = \emptyset$,
+    \item $(a + b)^{R} = a^R \cup b^R$,
+    \item $(a \cdot b)^{R} = a^R \cap b^R$,
+    \item $(- a)^R = \{ (x, y) \: | \: \exists b \in \mathcal{A} \: (x, y) \in b^R \setminus a^R \}$,
+    \item $({\bf 1}) = \{ (a, a) \: | \: a \in \mathcal{A} \}$,
+    \item $(a;b)^R = \{ (x, y) \: | \: \exists z \in X \: (x, z) \in a^R \: \& \: (z, x) \in b^R \}$,
+    \item $(a \setminus b)^{R} = \{ (x, y) \: | \: \forall z \in X \: ((z, x) \in a^R \Rightarrow (z, y) \in b^R)\}$,
+    \item $(a / b)^{R} = \{ (x, y) \: | \: \forall z \in X \: ((y, z) \in a^R \Rightarrow (x, z) \in b^R)\}$.
+  \end{enumerate}
+\end{defin}
+
+We will the following notations according to, for example, \cite{hirsch2011positive}. Let $\tau$ be a subsets of operations definable in ${\bf RRA}$. ${\bf R}(\tau)$ is the class of subalgebras of $\tau$-reducts of algebras belonging to ${\bf Rs}$.
+
+A $\tau$-structure is \emph{representable} if its isomorphic to some algebra of relations of $\tau$-signature. A representable
+finite $\tau$-structure has a \emph{finite representation over a finite base} if it is isomoprhic to some finite representable over a
+finite base.
+${\bf R}(\tau)$ has the finite representation property if every $\mathcal{A} \in {\bf R}(\tau)$ has a finite representation over a
+finite base.
+
+\subsection{Residuals}
+
+One may express residuals in every $\mathcal{R} \in {\bf RA}$ as follows using Boolean negation, inversion, and composition as follows:
+
+\begin{enumerate}
+  \item $a \setminus b = -(a^{\smile} ; -b)$
+  \item $a / b = - (- a ; b^{\smile})$
+\end{enumerate}
+
+Those residuals have the following interpretation in $\mathcal{R} \in {\bf PRA}$ (as well as in ${\bf RRA}$), for every $a, b \in \mathcal{R}$:
+\begin{enumerate}
+  \item $a \setminus b = \{ \langle x, y \rangle \: | \: \forall z \: (z, x) \in a \Rightarrow (z, y) \in b \}$
+  \item $a / b = \{ \langle x, y \rangle \: | \: \forall z \: (y, z) \in b \Rightarrow (x, z) \in a \}$
+\end{enumerate}
+One may illustrate composition and residuals in ${\bf PRA}$ and ${\bf RRA}$ via the following triangles:
+
+\xymatrix{
+&&& \exists y \ar@{-->}[ddr]^{b} &&& \forall z \ar@{-->}[ddl]_{a} \ar@{-->}[ddr]^{b} &&& \forall z \\
+&&&&&& \Rightarrow &&& \Leftarrow \\
+&& x \ar@{-->}[uur]^{a} \ar[rr]_{a;c} && z & x \ar[rr]_{a \setminus b} && y & x \ar@{-->}[uur]^{a} \ar[rr]_{a / b} && y \ar@{-->}[uul]_{b}
+}
+
+\section{The ${\bf R}(;, \setminus, /, \leq)$ case}
+
+ A \emph{relation semigroup} (${\bf RS}$) is a algebra of the signature $\tau = \langle ;, \setminus, /, \leq \rangle$, where $;, \setminus, /$ are binary function symbols and $\leq$ is a binary relation symbol.
+
+\begin{defin}
+  A residuated semigroup is an algebra $\mathcal{A} = \langle A, ;, \leq, \setminus, / \rangle$ such that $\langle A, ;, \leq, \rangle$ is
+  an ordered residuated semigroup and the following equivalences hold for each $a, b, c \in A$:
+
+  \begin{center}
+    $b \leq a \setminus c \Leftrightarrow a ; b \leq c \Leftrightarrow a \leq c / b$
+  \end{center}
+  ${\bf ORS}$ is the class of all residuated semigroups.
+\end{defin}
+
+Historically, residuated structures were introduced by Krull to study ideals of rings \cite{krull1968idealtheorie}. Such algebras further has been considered within problems of semantics of substructural logics, see \cite{jipsen2002survey}.
+
+Let us define the class ${\bf R}(;, \setminus, /, \leq)$ explicitly:
+
+\begin{defin} \label{rrs}
+  Let $A$ be a set of binary relations on some base set $W$ such that $R = \cup A$ is transitive and $\{ x, y \: | \: x R y \} = W$. A relation residuated semigroup is an algebra $\mathcal{A} = \langle A, ;, \setminus, /, \subseteq \rangle$ where for each $r, s \in A$
+  \begin{enumerate}
+    \item $r ; s = \{ \langle a, c \rangle \: | \: \exists b \in W \: (\langle a, b \rangle \in r \: \& \: \langle b, c \rangle \in s) \}$
+    \item $r \setminus s = \{ \langle a, c \rangle \: | \: \forall b \in W \: (\langle b, a \rangle \in r \Rightarrow \langle b, c \rangle \in s)\}$
+    \item $r / s = \{ \langle a, c \rangle \: | \: \forall b \in W \: (\langle c, b \rangle \in s \Rightarrow \langle a, b \rangle \in r)\}$
+    \item $r \leq s$ iff $r \subseteq s$.
+  \end{enumerate}
+\end{defin}
+Relation residuated semigroup are also called representable relativised relational structure (${\bf RRS}$).
+Andr\'{e}ka and Mikul\'{a}s proved the following representation theorem for ${\bf ORS}$ in \cite{andreka1994lambek} that implies relational completeness of the Lambek calculus, the logic of ${\bf ORS}$:
+
+\begin{theorem}\label{ors=irrs}
+  ${\bf ORS} = {\bf IRRS}$, where ${\bf IRRS}$ is a closure of ${\bf RRS}$ under isomorphic copies.
+\end{theorem}
+One may reformulate this result as $\mathcal{A} \in {\bf R}(;, \setminus, /, \leq)$ iff $\mathcal{A}$ is a residuated semigroup.
+
+\subsection{Quantales and quantic nuclei}
+
+A quantic nucleus is a closure operator on an ordered semigroup allowing one to define subalgebras. Such an operator is a generalisation of a well-known nucleus on a Heyting algebra, see \cite{bezhanishvili2016locales}. The following definition and the proposition below are given according to \cite{galatos2007residuated} and \cite{rosenthal1990quantales}.
+\begin{defin}
+  A quantic nucleus on a partially ordered semigroup $\langle A, ;, \leq \rangle$ is a map $j : A \to A$ such that $j$ a closure operator such that $j a ; j b \leq j (a ; b)$.
+\end{defin}
+
+\begin{prop} \label{subsemi}
+  Let $\mathcal{A} = \langle A, ;, \leq \rangle$ be a partially ordered semigroup and $j$ a quantic conucleus, then
+  $\mathcal{A}_j = \{ a \in A \: | \: j a \leq a \}$ is a partially ordered subsemigroup, where $a ;_j b = j(a ; b)$.
+\end{prop}
+
+\begin{defin}
+  A quantale is an algebra $\mathcal{Q} = \langle Q, \cdot, \bigvee \rangle$ such that $\mathcal{Q} = \langle Q, \bigvee \rangle$ is a complete lattice, $\langle Q, \cdot \rangle$ is a semigroup, and the following conditions hold for each $a \in Q$ and $A \subseteq Q$:
+  \begin{enumerate}
+    \item $a \cdot \bigvee A = \bigvee \{ a \cdot q \: | \: q \in A \}$,
+    \item $\bigvee A \cdot a = \bigvee \{ q \cdot a \: | \: q \in A \}$.
+  \end{enumerate}
+\end{defin}
+Note that any quantale is a residuated semigroup as well. One may express residuals uniquely with suprema and products as follows:
+\begin{enumerate}
+  \item $a \setminus b = \bigvee \{ c \: | \: a \cdot c \leq b \}$,
+  \item $a / b = \bigvee \{ c \: | \: b \cdot c \leq a \}$.
+\end{enumerate}
+
+One may embed any residuated semigroup into a quantale via the Dedekind-MacNeille completion (see, for example, \cite{theunissen2007macneille}) as follows. According to Goldblatt \cite{goldblatt2006kripke}, residuated semigroups have the following representation that exploits quantic conuclei (a closure operator over ordered semigroup) and Galois connection:
+\begin{theorem} \label{orsRep}
+  Every residuated semigroup has an isomorpic embedding to the subalgebra of some quantale.
+\end{theorem}
+\begin{proof}
+  We provide a proof sketch.
+
+  Let $\mathcal{A} = \langle A, \leq, \cdot, \setminus, / \rangle$ be a residuated semigroup.
+
+  Let $X \subseteq A$. We put $lX$ and $uX$ as the sets of lower and upper bounds of $X$ in $A$. We also put $m X = lu X$.
+  Note that the lower cone of an arbitrary $x$, $\downarrow x = \{ y \: | \: S \ni y \leq x\}$, is $m$-closed, that is,
+  $m (\downarrow x) = \downarrow x$. Moreover, $m : \mathcal{P}(A) \to \mathcal{P}(A)$ is a closure operator and
+  $\langle (\mathcal{P}(A))_m, \subseteq \rangle$ (where $(\mathcal{P}(A))_m = \{ X \in \mathcal{P}(S) \: | \: m X = X\}$ ) is a complete
+  lattice with $\bigvee_{m} \mathcal{X} = m ( \bigcup \mathcal{X})$ and $\bigwedge_{m} = \bigcap \mathcal{X}$ \cite{davey2002introduction}.
+  Moreover, according to Proposition~\ref{subsemi}, $\langle (\mathcal{P}(A))_m, \subseteq, ;_m \rangle$ is a subquantale of
+  $\langle (\mathcal{P}(S))_m, \subseteq, ; \rangle$, since $m$ is a quantic nucleus. Here $X ; Y = \{ x ; y \: | \: x \in X, y \in Y \}$ and $X ;_m Y = m (X ; Y)$.
+
+  We define a map $f_m : \mathcal{A} \to (\mathcal{P}(A))_m$ such that $f_m : a \mapsto \downarrow a$. Note that $f_m$ preserves residuals.
+\end{proof}
+
+Note that this (more or less) construction holds for residuated monoids as well, see \cite{goldblatt2011grishin}.
+
+In their turn, quantales have a relational representation. First of all, let us define a relational quantale.
+The notion of relational quantale was introduced by Brown and Gurr to represent quantales as algebras of relations and study relational semantics of the full Lambek calculus, see \cite{brown1993representation} and \cite{brown1995relations}.
+\begin{defin}
+  Let $A$ be a set. A relational quantale on $A$ is an algebra $\langle R, \subseteq, ; \rangle$, where
+  \begin{enumerate}
+    \item $R \subseteq \mathcal{P}(A \times A)$,
+    \item $\langle R, \subseteq \rangle$ is a complete join-semilattice,
+    \item $;$ is a relational composition that respects suprema in each coordinate.
+  \end{enumerate}
+\end{defin}
+
+The following representation theorem for quantale has been proved by Brown and Gurr \cite{brown1993representation}.
+\begin{theorem} \label{quantaleRep}
+  Every complete residuated semigroup $\mathcal{A}$ (quantale) is isomorphic to relational quantale on the underlying set of $\mathcal{A}$.
+\end{theorem}
+
+\begin{proof}
+  Let us describe a proof sketch. Let $\mathcal{Q}$ be a quantale and $\mathcal{G}(\mathcal{Q})$ a set of its generators. We define:
+
+  \begin{center}
+    $\hat{a} = \{ \langle g, q \rangle \: | g \in \mathcal{G}(\mathcal{Q}), q \in \mathcal{Q}, g \leq a \cdot q \}$
+
+    $\widehat{\mathcal{Q}} = \{ \hat{a} \: | \: a \in \mathcal{Q} \}$
+  \end{center}
+
+  The rest of the sketch consists of the following claims.
+
+  {\bf Claim 1} $a \leq b$ iff $\hat{a} \subseteq \hat{b}$.
+
+  {\bf Claim 2} $\widehat{\bigvee A} = \bigvee \widehat{A}$, $\hat{a} ; \hat{b} = \widehat{a \cdot b}$, and $\langle \widehat{\mathcal{Q}}, \subseteq \rangle$ is a complete semilattice.
+
+  {\bf Claim 3}. $\langle \widehat{\mathcal{Q}}, \subseteq, ; \rangle$ is a relational quantale.
+
+  {\bf Claim 4}. $\mathcal{Q}$ is isomorphic to $\langle \widehat{\mathcal{Q}}, \subseteq, ; \rangle$.
+\end{proof}
+
+Theorems \ref{orsRep} and \ref{quantaleRep} imply the following statement.
+\begin{col} \label{orsRep2}
+  Every residuated semigroup is isomorphic to some subalgebra of some relational quantale.
+\end{col}
+
+\subsection{Solution for Problem 19.17 \cite{hirsch2002relation}}
+
+In \cite{hirsch2002relation}, Hirsch and Hoskidson left the problem about having the finite representation property. Given a finite algebra $\mathcal{A} \in {\bf RRS}$, we show that $\mathcal{A}$ is isomorphic to some algebra $\mathcal{B}$ that has the finite base.
+
+First of all, let us show that
+\begin{lemma} \label{rrsLemma}
+  Let $\mathcal{A} = \langle A, \cdot, \setminus, /, \leq \rangle$ be a residuated semigroup, then its representation with relational quantales belongs to ${\bf RRS}$.
+\end{lemma}
+
+\begin{proof}
+  By Corollary~\ref{orsRep2}, $\mathcal{A}$ is isomorphic subalgebra of $\widehat{\mathcal{Q}_{\mathcal{A}}}$, where
+  $\widehat{\mathcal{Q}_{\mathcal{A}}} = \langle R, ;, \bigvee \rangle$ is a quantale of Theorem~\ref{orsRep}.
+  $\mathcal{Q}_{\mathcal{A}}$ is the quantale of Galois stable subsets of $\mathcal{A}$.
+
+  $\widehat{\mathcal{Q}_{\mathcal{A}}}$ is the relational quantale of binary relations on $\mathcal{Q}_{\mathcal{A}}$ as a base set and
+  $R = \{ \hat{A} \: | \: A \in \mathcal{Q}_{\mathcal{A}}\}$.
+
+  Let us show that $W = \bigcup R$ is a transitive relation.
+  Suppose $\widehat{X}, \widehat{Y}, \widehat{Z} \in R$ for $X, Y, Z \in \mathcal{Q}_{\mathcal{A}}$ with
+  $\widehat{X} W \widehat{Y} W \widehat{Z}$.
+
+  $\widehat{X} W \widehat{Y}$ means that $(\widehat{X}, \widehat{Y}) \in W$, i.e., $(\widehat{X}, \widehat{Y}) \in R_1$ for some
+  $R_1 \in R$.
+
+  $\widehat{Y} W \widehat{Z}$ means that $(\widehat{Y}, \widehat{Z}) \in W$, i.e., $(\widehat{Y}, \widehat{Z}) \in R_2$ for some
+  $R_2 \in R$.
+
+  We need $(\widehat{X}, \widehat{Z}) \in W$, that is, there exists $R_3 \in W$ such that $(\widehat{X}, \widehat{Z}) \in R_3$.
+  But $(\widehat{X}, \widehat{Z}) \in R_1 ; R_2$. But $m(R_1 ; R_2) \in R$ as well, thus, $(\widehat{X}, \widehat{Z}) \in W$.
+  We put $R_3 = m(R_1 ; R_2)$, where $m$ is the associated quantic nucleus on $\mathcal{P}(A)$.
+
+  Thus, a representation of $\mathcal{A}$ by means of Theorem~\ref{orsRep} is representable in terms of ``usual'' representations.
+  Thus, ${\bf RRS}$ is closed under such representations.
+\end{proof}
+
+\begin{col}\label{finite}
+  Let $\mathcal{A}$ be a finite residuated semigroup, then its representation with the corresponding relational quantale has the finite base.
+\end{col}
+
+\begin{proof}
+  The base of $\widehat{\mathcal{Q}_{\mathcal{A}}}$ is the set of Galois stable subsets of $\mathcal{A}$, the cardinality of which is clearly finite.
+\end{proof}
+
+
+Theorem \ref{orsRep}, Theorem \ref{quantaleRep}, Lemma \ref{rrsLemma}, and Corollary \ref{finite} provide the solution for Problem 19.17 of \cite{hirsch2002relation}.
+\begin{theorem} \label{solution}
+  Let $\mathcal{A} \in {\bf RRS}$ and $|\mathcal{A}| < \omega$, then there exists a set $W$ such that $|W| < \omega$, a set $A$ of binary relations on $W$, $R = \cup A$ with $dom(R) = W$ such that
+  $\mathcal{A} \cong \langle A, ;, \setminus, /, \subseteq \rangle$.
+\end{theorem}
+Clearly that a desired $W$ is the domain of $\mathcal{A}$.
+
+The main corollary of Theorem~\ref{solution} is that the Lambek calculus has the finite model property. Thus, we have a semantical proof of decidability of the Lambek calculus. Before that, there were several algebraic proofs that the Lambek caclulus has the fmp \cite{buszkowski2008infinitary}, but the authors considered arbitrary algebras, not representable ones.
+Alternatively, one may show that the Lambek calculus is decidable syntactically, that is, via cut elimination and the subformula property \cite{lambek1958mathematics}.
+\begin{col}
+  The Lambek calculus is complete w.r.t finite relational models (has the fmp).
+\end{col}
+
+Modulo the famous result by Pentus \cite{pentus2006lambek}, one may also conclude that
+
+\begin{col}
+  The theory of ${\bf IRRS}$ is $\operatorname{NP}$-complete.
+\end{col}
+
+\subsection{The second proof for Problem 19.17 (the case of residuated monoids)}
+
+The construction above does not work properly for residuated monoids since the identity has the representation $\hat{{\bf 1}} = \{ (a,b) \: | \: a \leq {\bf 1} ; b, a \in \mathcal{G}(\mathcal{Q}), b \in \mathcal{Q}\} = \{ (a,b) \: | \: a \leq b, a \in \mathcal{G}(\mathcal{Q}), b \in \mathcal{Q}\}$, which is not the identity relation at all. Thus, the finite representation property for residuated monoids has to be proved differently.
+
+First of all, let us recall we can prove the finite representation property might be shown for (ordered) monoids.
+
+Let us put $\tau = \{ ;, {\bf 1} \}$. Recall that $\mathcal{A} \in {\bf R}(\tau)$ iff $\mathcal{A} = \langle A, ;, {\bf 1} \rangle$ is a monoid. That is, every monoid is representable. The finite representation property for finite monoids might be shown with a Cayley representation putting $A$ as a base set and defining:
+\begin{center}
+  $a^R = \{ (b, b ; a) \: | \: b \in A \}$
+\end{center}
+Thus, we have
+\begin{lemma}
+  Let $\tau \subseteq \{ ;,  \}$ ${\bf R}(\tau)$ has the finite representation property.
+\end{lemma}
+
+We also note that $\mathcal{A} \in {\bf R}(\leq)$ iff $\mathcal{A}$ is a poset defining a representation over the set of upper cones
+$\operatorname{Up}(\mathcal{A})$ as
+\begin{center}
+  $a^R = \{ (X,X) \: | \: a \in X \in \operatorname{Up}(\mathcal{A}) \}$
+\end{center}
+
+In contrast to usual monoids, the universal theory of representable partially ordered monoids is not finitely axiomatisable \cite{hirsch2005class}.
+
+\begin{lemma}
+  ${\bf R}(;, {\bf 1}, \leq)$ has (?) the finite representation property.
+\end{lemma}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{theorem}
+  ${\bf R}(;, \setminus, /, {\bf 1}, \leq)$ has (?) the finite representation property.
+\end{theorem}
+
+\begin{proof}
+\end{proof}
+
+\section{Signatures containing either Boolean meet or negation}
+
+It is known that the class ${\bf R}(\tau)$ has no the finite representation property where $\tau$ is either $\{ ;, \cdot, \smile\}$ or $\{ ;, \cdot, {\bf 1} \}$ \cite{hirsch2004finite}. That is, they have representations only over infinite bases. This fact has the following proof (a proof sketch, to be more precise).
+\begin{proof}
+Consider the set of atoms $\operatorname{A}(\mathcal{Q}) = \{ {\bf 1}, <, > \}$, where ${\bf 1}$ is the identity, $<^{\smile} = >$ and vice versa. The composition is defined with the following equations:
+\begin{enumerate}
+  \item $< ; < = <$,
+  \item $< ; > = {\bf 1} + < + >$
+\end{enumerate}
+
+Let $R$ be a $\tau$-representation of $\mathcal{Q} \upharpoonright_{\tau}$ over the base $X$. $\leq$ is definable and $0$ is below $<$. Note that $0^{R} \leq <^R$, but it is not necessary that $0^R = \emptyset$. $< \neq 0$, thus, $(x,y) \in <^R \setminus 0^R$. If $(u, v) \in <^R \setminus 0^R$, then $u \neq v$.
+The reason for $u \neq v$ is the following one. Suppose ${\bf 1} \in \tau$, then $(u,u) \in {\bf 1}^R$, so $u = v$ implies $(u, v) \in <^R \cdot {\bf 1} = 0^R$. Suppose $\smile \in \tau$,
+then $u = v$ implies $(u,v) \in (< \cdot >)^R = 0$. Since $< \: \leq \: < ; <$ and $(u, v) \in <^R \setminus 0^R$, then there exists $w \in X$ such that $(u, w) \in <^R$ and $(u, w) \in <^R$. Hence, $(u, v), (v, W) \in <^R \setminus 0^R$. Thus, $<^R \setminus 0^R$ is reflexive and dense, but it is not transitive.
+
+For each $n < \omega$ there exist $x_0, \dots, x_{n - 1} \in X$ such that for each $i < j < n$ one has $(x_i, x_j) \in <^R \setminus 0^R$. Thus, $n \leq |X|$ for each $n < \omega$.
+\end{proof}
+
+Moreover, the stronger theorem holds that has been proved by Maddux \cite{maddux2016finite}:
+\begin{theorem}
+  There exists a finite algebra $\mathcal{A} \in {\bf R}(\tau)$, where $\tau \subseteq \{ ;, \cdot \}$, such that $\mathcal{A}$ has no finite representation.
+\end{theorem}
+
+\begin{theorem}
+  There exists a finite algebra $\mathcal{A} \in {\bf R}(\tau)$, where $\{ ;, \neg \} \subseteq$, such that $\mathcal{A}$ has no finite representation.
+\end{theorem}
+
+\begin{proof}
+  Let $\operatorname{At}(\mathcal{A}) = \{ {\bf 1}, p, q \}$ be the set of atoms of a finite relation algebra $\mathcal{A}$ having the cardinality $8$, where ${\bf 1}$ is the identity.
+
+  Let $\mathcal{A} \upharpoonright_{\tau}$ be the $\tau$-subreduct of $\mathcal{A}$ and $R$ its representation over the base $U$.
+
+  {\bf Claim} For each $n < \omega$ there exists $x_0, \dots, x_{n - 1}$ such that for each $i < j < n$, $(x_i, x_j) \in X$, thus $|X| \geq \omega$.
+\end{proof}
+
+\begin{col}
+  If $\tau$ contains composition and either Boolean meet or complement, then ${\bf R}(\tau)$ fails to have the finite representation property.
+\end{col}
+
+\begin{theorem}
+  Suppose ${\bf R}(\tau)$ fails to have the finite representation property, then $\tau$ contains composition either meet or negation.
+\end{theorem}
+
+\bibliographystyle{plain}
+\bibliography{Text}
+
+
+
+\end{document}
