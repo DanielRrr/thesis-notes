@@ -57,6 +57,11 @@
 
 \nocite{*}
 
+\section{Intro}
+...
+It is known that the equational theory of ${\bf RCA}_{\omega}$ for $\alpha \leq \omega$ is decidable \cite{nemeti1996fine}.
+...
+
 \section{The problems themselves}
 
 \begin{enumerate}
@@ -166,21 +171,25 @@ Let $A$ be a non-empty subset of a Boolean algebra $\mathcal{B}$, $A$ is a \emph
 
 \subsection{(Representable) cylindric algebras and cylindric set algebras}
 
-Let $\alpha$ be an ordinal. Let $U^{\alpha}$ be the set of all functions mapping $\alpha$ to a non-empty set $U$. We denote $x(i) = x_i$ for
-$x \in U^{\alpha}$ and $i < \alpha$.
+Let $\alpha$ be an ordinal. Let $\prescript{\alpha}{}U$ be the set of all functions mapping $\alpha$ to a non-empty set $U$. We denote $x(i) = x_i$ for
+$x \in \prescript{\alpha}{}U$ and $i < \alpha$.
 
 \begin{defin}
 $ $
 
   \begin{enumerate}
-    \item A subset of $U^{\alpha}$ is an $\alpha$-ry relation on $U$. For $i, j < \alpha$, the $i,j$-diagonal $D_{ij}$ is the set of all
-    elements of $U$ such that $y_i = y_j$. If $i < \alpha$ and $X$ is an $\alpha$-ry relation on $U$, then
+    \item A subset of $\prescript{\alpha}{}U$ is an $\alpha$-ry relation on $U$. For $i, j < \alpha$, the $i,j$-diagonal $D_{ij}$ is the set of all
+    elements of $U$ such that $y_i = y_j$.
+
+    If $i < \alpha$ and $X$ is an $\alpha$-ry relation on $U$, then
     the $i$-th cylindrification $C_i X$ is the set of all elements of $U$ that agree with some element of $X$ on each coordinate except the
     $i$-th one. To be more precise,
-    $C_i X = \{ y \in U^{\alpha} \: | \: \exists x \in X \forall i < \alpha \: (i \neq j \Rightarrow y_j = x_j)\}$.
+    $C_i X = \{ y \in \prescript{\alpha}{}U \: | \: \exists x \in X \forall i < \alpha \: (i \neq j \Rightarrow y_j = x_j)\}$.
     \item A cylindic set algebra of dimension $\alpha$ is an algebra consisting of a set $S$ of $\alpha$-ry relation on some base set $U$
-    with the constants and operations $0 = \emptyset$, $1 = U^{\alpha}$, $\cap$, $-$, the diagonal elements $\{ D_{ij} \}_{i, j < \alpha}$,
-    the cylindrifications $\{ C \}_{i < \alpha}$. A generalised cylindric set algebra of dimension $\alpha$ is a subdirect of
+    with the constants and operations $0 = \emptyset$, $1 = \prescript{\alpha}{}U$, $\cap$, $-$, the diagonal elements $\{ D_{ij} \}_{i, j < \alpha}$,
+    the cylindrifications $\{ C \}_{i < \alpha}$.
+
+    A generalised cylindric set algebra of dimension $\alpha$ is a subdirect of
     cylindric algebras that have dimension $\alpha$
     \item A cylindric algebra of dimension $\alpha$ is an algebra $\mathcal{C} = \langle \mathcal{B}, \{ c_i \}_{i < \alpha}, \{ d_{ij} \}_{i, j < \alpha} \rangle$ such that
     \begin{itemize}
@@ -193,8 +202,19 @@ $ $
     ${\bf CA}_{\alpha}$ is the class of all cylindric algebras of dimension $\alpha$
     \item An $\alpha$-dimensional cylindric algebra $C$ is representable, if it is isomorphic to a generalised cylindric set algebra
     of dimension $\alpha$. Such is isomorphism is a representation of $C$.
+
     ${\bf RCA}_{\alpha}$ is the class of all representable cylindric algebras that have dimension $\alpha$. In particular, we are interested in the case when $\alpha = \omega$.
   \end{enumerate}
+\end{defin}
+
+It is well-known that ${\bf RCA}_{\alpha}$ is a variety, ${\bf RCA}_{\alpha}$ ($\alpha \leq 2$) is finitely axiomatisable and ${\bf RCA}_{\alpha}$ ($2 < \alpha < \omega$) has no finite axiomatisation, see \cite{Henkin1988-HENCAP-4}.
+
+Let $\mathcal{A} \in {\bf C}_{\omega}$, then $\mathcal{A}$ has a \emph{complete representation}, if this representation preserves all existing suprema.
+
+Let us discuss the connection between representability and canonical extensions.
+
+\begin{defin}
+  neat embeddable
 \end{defin}
 
 \subsection{Substitution in cylindric algebras}
