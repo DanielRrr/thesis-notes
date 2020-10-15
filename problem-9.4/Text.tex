@@ -37,6 +37,9 @@
 \theoremstyle{lemma}
 \newtheorem{lemma}{Lemma}
 
+\theoremstyle{fact}
+\newtheorem{fact}{Fact}
+
 \theoremstyle{ex}
 \newtheorem{ex}{Example}
 
@@ -54,34 +57,180 @@
 
 \nocite{*}
 
-\section{The problem itself}
+\section{The problems themselves}
 
-Is the class ${\bf IG}_{\omega}$ (the isomorphism-closure of the $\omega$-dimensional cylindric relativised set algebras in which the unit is closed under substitutions and permutations) a variety, or even
+\begin{enumerate}
+\item Suppose $\mathcal{C} \in {\bf RCA}_{\omega}$, whether $\mathcal{C}$ has a complete, $\omega$-dimensional representation?
+\item Is the class ${\bf IG}_{\omega}$ (the isomorphism-closure of the $\omega$-dimensional cylindric relativised set algebras in which the unit is closed under substitutions and permutations) a variety, or even
 a pseudo-elementary class? Is it closed under ultraproducts?
+\end{enumerate}
+
+\section{Boolean algebras with operators and cylindric algebras}
+
+\begin{defin}
+
+$ $
+
+  \begin{enumerate}
+    \item Let $\mathcal{B} = \langle B, +, -, 0, 1 \rangle$ be a Boolean algebra. An operator is an $n$-ary function $\Omega : B^n \to B$ satisfying the following conditions:
+    \begin{itemize}
+      \item Normality: for all $b_0, \dots, b_{n - 1} \in B$, if $b_1 = 0$ for some $i < n$, then
+
+\begin{center}
+      $\Omega(b_0, \dots, b_{i - 1}, 0, b_{i+1}, \dots, b_{n - 1}) = 0$
+\end{center}
+      \item Additivity: for all $b_0, \dots, b_{n - 1}, b, b' \in B$ we have
+      \begin{center}
+        $\Omega(b_0, \dots, b_{i - 1}, (b + b'), b_{i+1}, \dots, b_{n - 1}) = \Omega(b_0, \dots, b_{i - 1}, b, b_{i+1}, \dots, b_{n - 1}) + \Omega(b_0, \dots, b_{i - 1}, b', b_{i+1}, \dots, b_{n - 1})$
+      \end{center}
+    \end{itemize}
+    \item Let $I$ be an index set, a Boolean algebra with operators (BAO) is an algebra $\langle B, +, -, 0, 1, \{ \Omega_{i} \}_{i \in I} \rangle$ such that $\langle B, +, -, 0, 1 \rangle$ is a Boolean algebra and for each $i \in I$ $\Omega_{i}$ is an operator.
+  \end{enumerate}
+\end{defin}
+
+\begin{defin} Let $\mathcal{B} = \langle B, +, -, 0, 1, \{ \Omega_{i} \}_{i \in I} \rangle$ be a BAO, then
+
+  \begin{enumerate}
+    \item An opetator $\Omega$ is completely additive, if for each $b_0, \dots, b_{n - 1} \in B$ and $X \subseteq B$, one has
+
+    \begin{center}
+      $\Omega(b_0, \dots, b_{i-1}, \sum X, b_{i+1}, \dots, b_{n - 1}) = \sum \limits_{x \in X} \Omega(b_0, \dots, b_{i-1}, x, b_{i+1}, \dots, b_{n - 1})$
+    \end{center}
+    \item $\mathcal{B}$ is completely additive, if for each $i \in I$ $\Omega_{i}$ is additive,
+    \item A class $\mathcal{K}$ of BAOs is completely additive, if every $\mathcal{B} \in \mathcal{K}$ is completely additive.
+  \end{enumerate}
+\end{defin}
+
+\subsection{Atom structures and canonical extensions}
+
+\begin{defin}  Let $I$ be an index set and $\{ \Omega_i\}_{i \in I}$ a set of function symbols
+\begin{enumerate}
+  \item An atom structure is a relational structrure
+  $\mathcal{F} = \langle W, \{ R_{i} \}_{i \in I} \rangle$
+  such that $R_{i}$ is a $n+1$-ary relation symbol, if $\Omega_{i \in I}$ is an $n$-ary function symbol,
+  \item Let $\mathcal{B}$ be an atomic BAO of the signature $I$,
+the atom structure of $\mathcal{B}$, written as ${\bf At} \mathcal{B}$, is an atom structure $\langle \operatorname{At}(\mathcal{B}), \{ R_{i}\}_{i \in I} \rangle$ such that for each
+$a, b_0, \dots, b_{n + 1} \in \operatorname{At}(\mathcal{B})$ and for each $i \in I$
+\begin{center}
+  ${\bf At} \mathcal{B} \models R_{i}(a,  b_0, \dots, b_{n + 1})$ iff $\mathcal{B} \models a \leq \Omega_{i}(b_0, \dots, b_{n + 1})$
+\end{center}
+\item Let $\mathcal{F} = \langle W, \{ R_{i} \}_{i \in I} \rangle$ be an atom structure, the complex algebra of $\mathcal{F}$, written as $\bf{Cm} \mathcal{F}$, is a BAO
+$\langle \mathcal{P}(W), \cup, -, \emptyset, W, \{\Omega_{R_{i}}\}_{i \in I} \rangle$ such that
+for all $X_0, \dots, X_{n - 1} \subseteq W$ and for each $i \in I$
+\begin{center}
+  $\Omega_{R_{i}}(X_0, \dots, X_{n - 1}) = \{ a \in W \: | \: \exists b_0 \in X_0 \dots \exists b_{n -1} \in X_{n - 1} \: \mathcal{F} \models R_{i}(a, b_0, \dots, b_{n - 1})\}$
+\end{center}
+\end{enumerate}
+\end{defin}
+
+The following duality is due to Thomason \cite{thomason1975categories}.
+
+\begin{fact}
+  $ $
+
+  \begin{enumerate}
+    \item Let $\mathcal{B}$ be a complete atomic BAO, then $\mathcal{B} \cong \bf{Cm} (\bf{At}(\mathcal{B}))$,
+    \item Let $\mathcal{F}$ be an atom structure, then $\mathcal{F} \cong {\bf At}({\bf Cm}(\mathcal{B}))$.
+  \end{enumerate}
+\end{fact}
+
+Let $A$ be a non-empty subset of a Boolean algebra $\mathcal{B}$, $A$ is a \emph{filter}, if $A$ is closed under finite infima and upwardly closed. $A$ is an ultrafilter, if it has no non-trivial extensions. That is, if $A \subseteq A'$, then $A' = \mathcal{B}$.
+
+\begin{defin}
+  Let $\mathcal{B} = \langle B, +, -, 0, 1, \{ \Omega_i \}_{i \in I} \rangle$ be a BAO and ${\bf Uf}(\mathcal{B})$ the set of its ultrafilters. The ultrafilter frame of $\mathcal{B}$ (or canonical frame) is a relational structure $\mathcal{F}_{\mathcal{B}} = \langle {\bf Uf}(\mathcal{B}), R_{\Omega_i} \rangle$ such that for each ultrafilters $\beta_0, \dots, \beta_{n - 1}, \gamma$ one has
+  \begin{center}
+    ${\bf Uf}(\mathcal{B}) \models R_{\Omega_i}(\beta_0, \dots, \beta_{n - 1}, \gamma)$ iff $\{ \Omega(b_0, \dots, b_{n - 1}) \: | \: b_0 \in \beta_0, \dots, b_{n - 1} \in \beta_{n - 1}\} \subseteq \gamma$.
+  \end{center}
+\end{defin}
+
+\begin{defin} Let $\mathcal{B}$ be a BAO, then
+
+  \begin{enumerate}
+    \item The canonical extension of $\mathcal{B}$ is a complex algebra of the canonical frame ${\bf Cm}(\mathcal{F}_{\mathcal{B}})$ denoted as $\mathcal{B}^{+}$,
+    \item The class of BAOs is canonical, if it is closed under canonical extensions.
+  \end{enumerate}
+\end{defin}
+
+\begin{theorem} Let $\mathcal{A}$, $\mathcal{B}$ be BAOs,
+
+\begin{enumerate}
+  \item There exists $\iota : \mathcal{A} \hookrightarrow \mathcal{A}^{+}$ such that
+  $\iota : a \mapsto \{ \gamma \in {\bf Uf}(\mathcal{A}) \: | \: a \in \gamma \}$.
+  \item If $i : \mathcal{A} \hookrightarrow \mathcal{B}$, then this embedding might be extented to the embedding
+  $i^{+} : \mathcal{A}^{+} \hookrightarrow \mathcal{B}^{+}$
+\end{enumerate}
+\end{theorem}
+
+\begin{fact}
+\end{fact}
+
+\subsection{(Representable) cylindric algebras and cylindric set algebras}
+
+Let $\alpha$ be an ordinal. Let $U^{\alpha}$ be the set of all functions mapping $\alpha$ to a non-empty set $U$. We denote $x(i) = x_i$ for
+$x \in U^{\alpha}$ and $i < \alpha$.
+
+\begin{defin}
+$ $
+
+  \begin{enumerate}
+    \item A subset of $U^{\alpha}$ is an $\alpha$-ry relation on $U$. For $i, j < \alpha$, the $i,j$-diagonal $D_{ij}$ is the set of all
+    elements of $U$ such that $y_i = y_j$. If $i < \alpha$ and $X$ is an $\alpha$-ry relation on $U$, then
+    the $i$-th cylindrification $C_i X$ is the set of all elements of $U$ that agree with some element of $X$ on each coordinate except the
+    $i$-th one. To be more precise,
+    $C_i X = \{ y \in U^{\alpha} \: | \: \exists x \in X \forall i < \alpha \: (i \neq j \Rightarrow y_j = x_j)\}$.
+    \item A cylindic set algebra of dimension $\alpha$ is an algebra consisting of a set $S$ of $\alpha$-ry relation on some base set $U$
+    with the constants and operations $0 = \emptyset$, $1 = U^{\alpha}$, $\cap$, $-$, the diagonal elements $\{ D_{ij} \}_{i, j < \alpha}$,
+    the cylindrifications $\{ C \}_{i < \alpha}$. A generalised cylindric set algebra of dimension $\alpha$ is a subdirect of
+    cylindric algebras that have dimension $\alpha$
+    \item A cylindric algebra of dimension $\alpha$ is an algebra $\mathcal{C} = \langle \mathcal{B}, \{ c_i \}_{i < \alpha}, \{ d_{ij} \}_{i, j < \alpha} \rangle$ such that
+    \begin{itemize}
+      \item $\mathcal{B}$ is a Boolean algebra, for each $i, j < \alpha$ $c_i$ is an operator and $d_{ij} \in \mathcal{B}$
+      \item For each $i < \alpha$, $a \leq c_i a$, $c_i (a \land c_i b) = c_i a \land c_i b$ and $d_{ii} = 1$
+      \item For every $i, j < \alpha$, $c_i c_j a = c_j c_i a$
+      \item If $k \neq i, j < \alpha$, then $d_{ij} = c_k (d_{ij} \land d_{jk})$
+      \item If $i \neq j$, then $c_i (d_{ij} \land a) \land c_i (d_{ij} \land - a) = 0$
+    \end{itemize}
+    ${\bf CA}_{\alpha}$ is the class of all cylindric algebras of dimension $\alpha$
+    \item An $\alpha$-dimensional cylindric algebra $C$ is representable, if it is isomorphic to a generalised cylindric set algebra
+    of dimension $\alpha$. Such is isomorphism is a representation of $C$.
+    ${\bf RCA}_{\alpha}$ is the class of all representable cylindric algebras that have dimension $\alpha$. In particular, we are interested in the case when $\alpha = \omega$.
+  \end{enumerate}
+\end{defin}
+
+\subsection{Substitution in cylindric algebras}
+
+\begin{defin}
+  Given a cylindric algebra of dimension $\alpha$ $C$, let $x$ be a term of its signature, the substitution operator $s^{i}_{j}$ have the following definition:
+  \begin{center}
+  $s^{i}_{j} x = \begin{cases} x, \text{if } i = j \\ c_i (d_{ij} \land x), \text{otherwise} \end{cases}$
+  \end{center}
+\end{defin}
+
+\begin{prop} Let $\alpha$ be an ordinal and let $i, j, k, l < \alpha$. The following facts hold in ${\bf CA}_{\alpha}$
+
+  \begin{enumerate}
+    \item $s^{i}_j x \leq c_i x$.
+    \item $s^{i}_j (x \land y) = s^{i}_j x \land s^{i}_j y$, $s^{i}_j (x \lor y) = s^{i}_j x \lor s^{i}_j y$, $- s^{i}_j x = s^{i}_j (- x)$.
+    Moreover, $s^{i}_j$ is completely additive.
+    \item $i \neq k, l$ implies $s^i_j d_{ik} = d_{jk}$ and $s^i_j d_{kl} = d_{kl}$.
+    \item $d_{jk} \land s^{i}_j = d_{jk} \land s^{i}_k$.
+    \item $s^i_j c_i x = c_i x$.
+    \item $k \neq i,j$ implies $s^i_j c_i x = c_i s^i_j x$.
+    \item $c_j s^i_j x = c_i s^j_i x$.
+    \item $i \neq j$ implies $c_i s^i_j x = s^i_j x$.
+    \item $i \neq k$ implies $s^i_j s^i_k = s^i_k x$.
+    \item If either $i \notin \{ k, l\}$ and $k \notin \{ i, j\}$, or $j = l$, then $s^i_j s^k_l x = s^k_l s^i_j x$.
+    \item $s^i_j s^j_i x = s^i_j x$.
+    \item $s^i_k s^j_i x = s^i_k s^j_k x = s^j_k s^i_j x$
+  \end{enumerate}
+\end{prop}
+
 
 \section{Model-theoretic and universal algebraic preliminaries}
 
 \subsection{Ultraproducts}
 
 Here are the required notions and facts from model theory and universal algebra \cite{hirsch2002relation} \cite{hodges1997shorter} \cite{sankappanavar1981course}.
-
-Let $A$ be a non-empty set, an \emph{ultrafilter} on $A$ is a set of subsets $U \subseteq \mathcal{P}(\mathcal{P})(A)$ such that $A$ is closed under intersections, $\subseteq$-upwardly closed, and either $X \in U$ or $- X \in U$, where $X \subseteq A$. An ultrafilter is called principal if it has the form $\uparrow X = \{ Y \in \mathcal{P}(A) \: | \: X \subseteq Y \}$.
-
-Let $\Omega = \langle \operatorname{Cnst}, \operatorname{Fn}, \operatorname{Pred} \rangle$ be a signature and $\Lambda$ an index set, and let $\{ M_{\lambda}\}_{\lambda \in \Lambda}$ be an indexed set of $\Omega$ structures. The $\Omega$-structure
-\begin{center}
-  $M = \prod \limits_{\lambda \in \Lambda} M_{\lambda}$
-\end{center}
-is called a \emph{product} that defined as follows. Its domain is the Cartesian product of the domains of $M_{\lambda}$. $a \in M$ is a function $\Lambda \to \bigcup \limits_{\lambda \in \Lambda} \operatorname{dom}(M_{\lambda})$ such that $a(\lambda) \in M_{\lambda}$ for each $\lambda \in \Lambda$.
-Given $\lambda \in \Lambda$ and $a_{\lambda} \in M_{\lambda}$, we denote the function mapping $\lambda$ to $a_{\lambda}$ as
-$\langle a_{\lambda} \: | \: \lambda \in \Lambda \rangle$. We define the interpretation of $\Omega$-symbols as
-
-\begin{enumerate}
-  \item If $c \in \operatorname{Cnst}$, then $c^{M} = \langle c^{M_{\lambda}} \: | \: \lambda \in \Lambda \rangle$
-  \item If $f \in \operatorname{Fn}$ is an $n$-ary function symbol, then $f^{M}(\overline{a}) = \langle f^{M_{\lambda}}(\overline{a}) \: | \: \lambda \in \Lambda \rangle$, where $\overline{n} \in M^{n}$
-  \item If $R \in \operatorname{Pred}$ is an $n$-ary relation symbol and $\overline{n} \in M^{a}$, then $R^{M}(\overline{a}) = \langle R^{M_{\lambda}}(\overline{a}) \: | \: \lambda \in \Lambda \rangle$
-\end{enumerate}
-
-Given $\lambda \in \Lambda$, we define the $\lambda$th projection as $\pi_{\lambda} : M \to M_{\lambda}$ such that $\pi_{\lambda}(a) = a(\lambda)$.
 
 Let $\Lambda$ be an index set and $D$ an ultrafilter on the Boolean algebra $\langle \mathcal{P}(\Lambda), \cup, -, \Lambda, \emptyset \rangle$. Consider the product $M = \prod \limits_{\lambda \in \Lambda} M_{\lambda}$ of the $\Omega$-structures $\{ M_{\lambda}\}_{\lambda \in \Lambda}$ and the equivalence relation on $\operatorname{dom}(M)$ defined as
 \begin{center}
@@ -135,133 +284,10 @@ Recall that a class of $\Omega$-structures ${\bf K}$ is called \emph{elementary}
   ${\bf K}$ is elementary iff ${\bf K}$ is closed under isomorphic copies, ultraroots, and ultrapowers.
 \end{theorem}
 
-\subsection{Preliminaries from universal algebra}
-
-\begin{defin}
-  Let ${\bf K}$ be a class of $\Omega$-structures, then ${\bf K}$ is a variety, if it is defined by some set of equations.
-  The variety generated by ${\bf K}$ is the smallest variety contatining ${\bf K}$. ${\bf K}$ is a quasi-variety, if it is defined by some
-  set of quasi-identities.
-\end{defin}
-
-Given a class ${\bf K}$ of $\Omega$-structures, then ${\bf I}({\bf K})$, ${\bf S}({\bf K})$, ${\bf H}({\bf K})$, and ${\bf P}({\bf K})$ are
-the classes of isomorphic copies, algebras isomorphic to subalgebras belonging to ${\bf K}$,
-algebras isomorphic to homomorphic images belonging to ${\bf K}$, and algebras isomorphic to direct products belonging to ${\bf K}$.
-We claim that ${\bf I}({\bf K}) \subseteq {\bf S}({\bf K})$. ${\bf Up}({\bf K})$ is the class of algebras isomorphic to ultraproducts
-belonging to ${\bf K}$.
-
-\begin{theorem} Let ${\bf K}$ be a class of $\Omega$-structures
-
-  \begin{enumerate}
-    \item ${\bf K}$ is a variety iff ${\bf H}({\bf K}), {\bf S}({\bf K}), {\bf P}({\bf K}) \subseteq {\bf K}$
-    \item ${\bf HSP}({\bf K}) = {\bf H}({\bf S}({\bf P}({\bf K})))$ is the smallest variety containg ${\bf K}$
-    \item ${\bf K}$ is a quasi-variety iff it is closed under subalgebras, products, and ultraproducts, iff ${\bf SPUp}({\bf K}) = {\bf K}$.
-  \end{enumerate}
-\end{theorem}
-
-\subsection{Subdirect products}
-
-\begin{defin}
-  $ $
-
-  \begin{enumerate}
-    \item Let $\{ A \}_{i \in I}$ be $\Omega$-structures, a subdirect product of $\langle A_i \: | \: i \in I \rangle$ is a
-    subalgebra $B$ of $\prod \limits_{i \in I} A_i$ such that for each $i \in I$, a projection map $\pi_i : B \to A_i$ is a surjection.
-    \item A subdirect representation of an $\Omega$-structure is an embedding $f : A \to \prod \limits_{i \in I} A_i$ for some $I$ and
-    $\{ A_i \}_{i \in I}$ such that $f \circ \pi_i : A \to A_i$ is a surjection.
-    \item An $\Omega$-structure $A$ is subdirectly irreducible if for every subdirect representation $f : A \to \prod \limits_{i \in I} A_i$
-    there exists a projection $\pi_i$ such that $f \circ \pi_i$ is an isomorphism.
-    \item ${\bf Sir}({\bf K})$ is the class of subdirectly irreducible structures belonging to ${\bf K}$.
-    \item A subdirect decomposition of $A$ if there exists a subdirect representation $f : A \to \prod \limits_{i \in I} A_i$ such that
-    every $A_i$ is subdirectly irreducible.
-  \end{enumerate}
-\end{defin}
-
-It is known that every Boolean algebra with operators has a subdirect demcomposition. Moreover, that implies:
-\begin{theorem}
-$ $
-
-  \begin{enumerate}
-  \item If ${\bf K}$ is a variety, then every element of ${\bf K}$ has a subdirect decomposition with some subdirect irreducible elements of
-  ${\bf K}$.
-  \item If ${\bf K}$ is a variety and $\varepsilon$ is an equation,
-  ${\bf Sir}({\bf K}) \models \varepsilon \Leftrightarrow {\bf K} \models \varepsilon$.
-\end{enumerate}
-\end{theorem}
-
-\subsection{Pseudo-elementary classes}
-
-\section{Cylindric algebras}
-
-\subsection{(Representable) cylindric algebras and cylindric set algebras}
-
-Let $\alpha$ be an ordinal. Let $U^{\alpha}$ be the set of all functions mapping $\alpha$ to a non-empty set $U$. We denote $x(i) = x_i$ for
-$x \in U^{\alpha}$ and $i < \alpha$.
-
-\begin{defin}
-$ $
-
-  \begin{enumerate}
-    \item A subset of $U^{\alpha}$ is an $\alpha$-ry relation on $U$. For $i, j < \alpha$, the $i,j$-diagonal $D_{ij}$ is the set of all
-    elements of $U$ such that $y_i = y_j$. If $i < \alpha$ and $X$ is an $\alpha$-ry relation on $U$, then
-    the $i$-th cylindrification $C_i X$ is the set of all elements of $U$ that agree with some element of $X$ on each coordinate except the
-    $i$-th one. To be more precise,
-    $C_i X = \{ y \in U^{\alpha} \: | \: \exists x \in X \forall i < \alpha \: (i \neq j \Rightarrow y_j = x_j)\}$.
-    \item A cylindic set algebra of dimension $\alpha$ is an algebra consisting of a set $S$ of $\alpha$-ry relation on some base set $U$
-    with the constants and operations $0 = \emptyset$, $1 = U^{\alpha}$, $\cap$, $-$, the diagonal elements $\{ D_{ij} \}_{i, j < \alpha}$,
-    the cylindrifications $\{ C \}_{i < \alpha}$. A generalised cylindric set algebra of dimension $\alpha$ is a subdirect of
-    cylindric algebras that have dimension $\alpha$
-    \item A cylindric algebra of dimension $\alpha$ is an algebra $\mathcal{C} = \langle \mathcal{B}, \{ c_i \}_{i < \alpha}, \{ d_{ij} \}_{i, j < \alpha} \rangle$ such that
-    \begin{itemize}
-      \item $\mathcal{B}$ is a Boolean algebra, for each $i, j < \alpha$ $c_i$ is an operator and $d_{ij} \in \mathcal{B}$
-      \item For each $i < \alpha$, $a \leq c_i a$, $c_i (a \land c_i b) = c_i a \land c_i b$ and $d_{ii} = 1$
-      \item For every $i, j < \alpha$, $c_i c_j a = c_j c_i a$
-      \item If $k \neq i, j < \alpha$, then $d_{ij} = c_k (d_{ij} \land d_{jk})$
-      \item If $i \neq j$, then $c_i (d_{ij} \land a) \land c_i (d_{ij} \land - a) = 0$
-    \end{itemize}
-    ${\bf CA}_{\alpha}$ is the class of all cylindric algebras of dimension $\alpha$
-    \item An $\alpha$-dimensional cylindric algebra $C$ is representable, if it is isomorphic to a generalised cylindric set algebra
-    of dimension $\alpha$. Such is isomorphism is a representation of $C$.
-    ${\bf RCA}_{\alpha}$ is the class of all representable cylindric algebras that have dimension $\alpha$.
-  \end{enumerate}
-\end{defin}
-
-\subsection{Substitution in cylindric algebras}
-
-\begin{defin}
-  Given a cylindric algebra of dimension $\alpha$ $C$, let $x$ be a term of its signature, the substitution operator $s^{i}_{j}$ have the following definition:
-  \begin{center}
-  $s^{i}_{j} x = \begin{cases} x, \text{if } i = j \\ c_i (d_{ij} \land x), \text{otherwise} \end{cases}$
-  \end{center}
-\end{defin}
-
-\begin{prop} Let $\alpha$ be an ordinal and let $i, j, k, l < \alpha$. The following facts hold in ${\bf CA}_{\alpha}$
-
-  \begin{enumerate}
-    \item $s^{i}_j x \leq c_i x$.
-    \item $s^{i}_j (x \land y) = s^{i}_j x \land s^{i}_j y$, $s^{i}_j (x \lor y) = s^{i}_j x \lor s^{i}_j y$, $- s^{i}_j x = s^{i}_j (- x)$.
-    Moreover, $s^{i}_j$ is completely additive.
-    \item $i \neq k, l$ implies $s^i_j d_{ik} = d_{jk}$ and $s^i_j d_{kl} = d_{kl}$.
-    \item $d_{jk} \land s^{i}_j = d_{jk} \land s^{i}_k$.
-    \item $s^i_j c_i x = c_i x$.
-    \item $k \neq i,j$ implies $s^i_j c_i x = c_i s^i_j x$.
-    \item $c_j s^i_j x = c_i s^j_i x$.
-    \item $i \neq j$ implies $c_i s^i_j x = s^i_j x$.
-    \item $i \neq k$ implies $s^i_j s^i_k = s^i_k x$.
-    \item If either $i \notin \{ k, l\}$ and $k \notin \{ i, j\}$, or $j = l$, then $s^i_j s^k_l x = s^k_l s^i_j x$.
-    \item $s^i_j s^j_i x = s^i_j x$.
-    \item $s^i_k s^j_i x = s^i_k s^j_k x = s^j_k s^i_j x$
-  \end{enumerate}
-\end{prop}
-
-\subsection{${\bf IG}_{\omega}$ class}
-
-
 
 \section{${\bf IG}_{\omega}$ and ultraproducts}
 
-TODO: consider rainbow stuff
-
-\section{${\bf IG}_{\omega}$ is (not) a variety; is (not) (pseudo-)elementary}
+\section{${\bf IG}_{\omega}$ is (not) (pseudo-)elementary; is (not) a variety}
 
 \bibliographystyle{plain}
 \bibliography{Text}

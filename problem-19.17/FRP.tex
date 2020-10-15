@@ -121,10 +121,7 @@ $\Omega = \{ =, \leq, 0, 1, {\bf 1}, +, \cdot, -, \smile, ;, \setminus, / \}$. A
 
 We will the following notations according to, for example, \cite{hirsch2011positive}. Let $\tau$ be a subsets of operations definable in ${\bf RRA}$. ${\bf R}(\tau)$ is the class of subalgebras of $\tau$-reducts of algebras belonging to ${\bf Rs}$.
 
-A $\tau$-structure is \emph{representable} if its isomorphic to some algebra of relations of $\tau$-signature. A representable
-finite $\tau$-structure has a \emph{finite representation over a finite base} if it is isomoprhic to some finite representable over a
-finite base.
-${\bf R}(\tau)$ has the finite representation property if every $\mathcal{A} \in {\bf R}(\tau)$ has a finite representation over a
+A $\tau$-structure is \emph{representable} if its isomorphic to some algebra of relations of $\tau$-signature. A representable finite $\tau$-structure has a \emph{finite representation over a finite base} if it is isomoprhic to some finite representable over a finite base. ${\bf R}(\tau)$ has the finite representation property if every $\mathcal{A} \in {\bf R}(\tau)$ has a finite representation over a
 finite base.
 
 \subsection{Residuals}
@@ -182,7 +179,7 @@ Andr\'{e}ka and Mikul\'{a}s proved the following representation theorem for ${\b
 \begin{theorem}\label{ors=irrs}
   ${\bf ORS} = {\bf IRRS}$, where ${\bf IRRS}$ is a closure of ${\bf RRS}$ under isomorphic copies.
 \end{theorem}
-One may reformulate this result as $\mathcal{A} \in {\bf R}(;, \setminus, /, \leq)$ iff $\mathcal{A}$ is a residuated semigroup.
+One may reformulate this result as $\mathcal{A} \in {\bf R}(;, \setminus, /, \leq)$ iff $\mathcal{A}$ is a residuated semigroup. Thus, it is sufficient to show that any finite residuated semigroup has a representation over a finite base.
 
 \subsection{Quantales and quantic nuclei}
 
@@ -274,13 +271,12 @@ Theorems \ref{orsRep} and \ref{quantaleRep} imply the following statement.
 
 \subsection{Solution for Problem 19.17 \cite{hirsch2002relation}}
 
-In \cite{hirsch2002relation}, Hirsch and Hoskidson left the problem about having the finite representation property. Given a finite algebra $\mathcal{A} \in {\bf RRS}$, we show that $\mathcal{A}$ is isomorphic to some algebra $\mathcal{B}$ that has the finite base.
+Hirsch and Hoskidson left the problem about having the finite representation property. Given a finite algebra $\mathcal{A} \in {\bf RRS}$, we show that $\mathcal{A}$ is isomorphic to some algebra over a finite base.
 
 First of all, let us show that
 \begin{lemma} \label{rrsLemma}
   Let $\mathcal{A} = \langle A, \cdot, \setminus, /, \leq \rangle$ be a residuated semigroup, then its representation with relational quantales belongs to ${\bf RRS}$.
 \end{lemma}
-
 \begin{proof}
   By Corollary~\ref{orsRep2}, $\mathcal{A}$ is isomorphic subalgebra of $\widehat{\mathcal{Q}_{\mathcal{A}}}$, where
   $\widehat{\mathcal{Q}_{\mathcal{A}}} = \langle R, ;, \bigvee \rangle$ is a quantale of Theorem~\ref{orsRep}.
@@ -347,7 +343,7 @@ Let us put $\tau = \{ ;, {\bf 1} \}$. Recall that $\mathcal{A} \in {\bf R}(\tau)
 \end{center}
 Thus, we have
 \begin{lemma}
-  Let $\tau \subseteq \{ ;,  \}$ ${\bf R}(\tau)$ has the finite representation property.
+  Let $\tau \subseteq \{ ;, \leq \}$, then ${\bf R}(\tau)$ has the finite representation property.
 \end{lemma}
 
 We also note that $\mathcal{A} \in {\bf R}(\leq)$ iff $\mathcal{A}$ is a poset defining a representation over the set of upper cones
@@ -356,22 +352,30 @@ $\operatorname{Up}(\mathcal{A})$ as
   $a^R = \{ (X,X) \: | \: a \in X \in \operatorname{Up}(\mathcal{A}) \}$
 \end{center}
 
-In contrast to usual monoids, the universal theory of representable partially ordered monoids is not finitely axiomatisable \cite{hirsch2005class}.
+It is known that $\mathcal{A} \in {\bf R}(;, \leq)$ iff $\mathcal{A}$ is an ordered semigroup \cite{zaretskii1959representation} and the class ${\bf R}(;, \leq)$ is finitely axiomatisable.
 
-\begin{lemma}
-  ${\bf R}(;, {\bf 1}, \leq)$ has (?) the finite representation property.
-\end{lemma}
+In contrast to usual monoids, the universal theory of representable partially ordered monoids is not finitely axiomatisable \cite{hirsch2005class}. However, the universal theory of representable residuated monoids coincide with the theory of the whole class of residuated monoids and, thus, is finitely axiomatisable \cite{andreka1994lambek}. Let us recall how the uniform representation for residuated monoids looks like. In fact, we reproduce the proof sketch of Theorem~\ref{ors=irrs} assuming that a given algebra is finite.
 
-\begin{proof}
+\begin{defin}
+  A network
+\end{defin}
 
-\end{proof}
+TODO: a desired network
+
+TODO: inductive steps in a nutshell
+
+TODO: an interpretation
+
+TODO: extract the finite base from a representation
+
 
 \begin{theorem}
-  ${\bf R}(;, \setminus, /, {\bf 1}, \leq)$ has (?) the finite representation property.
+  ${\bf R}(;, \setminus, /, {\bf 1}, \leq)$ has the finite representation property.
 \end{theorem}
 
 \begin{proof}
 \end{proof}
+
 
 \section{Signatures containing either Boolean meet or negation}
 
