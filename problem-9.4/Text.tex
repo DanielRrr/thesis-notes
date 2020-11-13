@@ -65,7 +65,7 @@ It is known that the equational theory of ${\bf RCA}_{\omega}$ for $\alpha \leq 
 \section{The problems themselves}
 
 \begin{enumerate}
-\item Suppose $\mathcal{C} \in {\bf RCA}_{\omega}$, whether $\mathcal{C}$ has a complete, $\omega$-dimensional representation?
+\item Suppose $\mathcal{C} \in {\bf RCA}_{\omega}$, whether $\mathcal{C}^{+}$ has a complete, $\omega$-dimensional representation?
 \item Is the class ${\bf IG}_{\omega}$ (the isomorphism-closure of the $\omega$-dimensional cylindric relativised set algebras in which the unit is closed under substitutions and permutations) a variety, or even
 a pseudo-elementary class? Is it closed under ultraproducts?
 \end{enumerate}
@@ -207,14 +207,46 @@ $ $
   \end{enumerate}
 \end{defin}
 
-It is well-known that ${\bf RCA}_{\alpha}$ is a variety, ${\bf RCA}_{\alpha}$ ($\alpha \leq 2$) is finitely axiomatisable and ${\bf RCA}_{\alpha}$ ($2 < \alpha < \omega$) has no finite axiomatisation, see \cite{Henkin1988-HENCAP-4}.
+It is well known that ${\bf RCA}_{\alpha}$ is a variety, ${\bf RCA}_{\alpha}$ ($\alpha \leq 2$) is finitely axiomatisable and ${\bf RCA}_{\alpha}$ ($2 < \alpha < \omega$) has no finite axiomatisation, see \cite{Henkin1988-HENCAP-4}.
 
 Let $\mathcal{A} \in {\bf C}_{\omega}$, then $\mathcal{A}$ has a \emph{complete representation}, if this representation preserves all existing suprema.
 
-Let us discuss the connection between representability and canonical extensions.
+Let us concretise the definition of a canonical extension for $\alpha$-dimensional cylindric algebras:
 
 \begin{defin}
-  neat embeddable
+  Let $\mathcal{C} = \langle C, +, -, 0, 1, \{ d_{ij} \}_{i, j < \omega}, \{c_i\}_{i < \omega} \rangle$ be an $\omega$-dimensional cylindric algebra. Let ${\bf Uf}(\mathcal{C})$ be the set of all ultrafilters of $\mathfrak{B}\mathcal{C}$, a Boolean reduct of $\mathcal{C}$.
+
+  Let us define ${\bf C}_{i} : {\bf Uf}(\mathcal{C}) \to {\bf Uf}(\mathcal{C})$ for each $i, j < \omega$ as
+  \begin{enumerate}
+\item ${\bf C}_{i} \mathcal{X} = \{ \mathcal{F} \in {\bf Uf}(\mathcal{C}) \: | \: \exists \mathcal{F}' \in {\bf Uf}(\mathcal{C}) \: (a \in \mathcal{F} \Rightarrow c_i a \in \mathcal{F}' R)\}$,
+\item $D_{ij} = \{ \mathcal{F} \in {\bf Uf}(\mathcal{C}) \: | \: d_{ij} \in \mathcal{F} \}$.
+  \end{enumerate}
+  The structure $\mathcal{C}^{+} = \langle  {\bf Uf}(\mathcal{C}), \cup, -, \emptyset, C, {\bf C}_{i < \omega}, \{D_{ij}\}_{i, j < \omega} \rangle$ is called the canonical extension of $\mathcal{C}$.
+\end{defin}
+
+Let us discuss the connection between representability and canonical extensions.
+
+The following definitions and facts are due to Henkin, Monk, and Tarski \cite{henkin1971cylindric}.
+
+Let $\mathcal{C} = \langle C, +, -, 0, 1, \{d_{ij}\}_{i, j < \beta}, \{ c \}_{c < \beta} \rangle$ be a $\beta$-dimensional cylindic algebra and $\alpha \leq \beta$ an ordinal. The \emph{$\alpha$-th reduct} of $\mathcal{C}$, denoted as $\mathfrak{R}\mathfrak{d}_{\alpha}\mathcal{C}$, is an algebra having the form
+\begin{center}
+$\mathfrak{R}\mathfrak{d}_{\alpha}\mathcal{C} = \langle C, +, -, 0, 1, \{d_{ij}\}_{i, j < \alpha}, \{ c \}_{c < \alpha} \rangle$
+\end{center}
+
+$\mathcal{B}$ is a subreduct of $\mathcal{C}$, denoted as $\mathcal{B} \subseteq^{r} \mathcal{C}$, if $\mathcal{B} \subseteq \mathfrak{R}\mathfrak{d}_{\gamma}\mathcal{C}$ for some $\gamma \leq \beta$.
+
+\begin{defin}
+  Let $\mathcal{C}$ be a $\beta$-dimensional cylindic algebra and $\alpha$ an ordinal such that $\alpha \leq \beta$.
+  The neat $\alpha$-reduct of $\mathcal{C}$, denoted as $\mathfrak{N}\mathfrak{r}_\alpha \mathcal{C}$,
+  is the subalgbera $\mathcal{A}$ of $\mathfrak{R}\mathfrak{d}_{\alpha}\mathcal{C}$ with $\mathcal{A} = \operatorname{Cl}_{\kappa}$ where $\alpha + \kappa = \beta$.
+
+  Let $\mathbb{K}$ be a class of $\beta$-dimensional cylindic algebras, then we put
+  \begin{center}
+    ${\bf Nr}_{\alpha}\mathbb{K} = \{ \mathfrak{N}\mathfrak{r}_\alpha \mathcal{C} \: | \: \mathcal{C} \in \mathbb{K} \}$
+  \end{center}
+
+  An algebra $\mathcal{B}$ is a neat subreduct of $\mathcal{C}$, or $\mathcal{B}$ is neatly embeddable to $\mathcal{C}$ if there exists an ordinal $\gamma \leq \alpha$ such that
+  $\mathcal{C} \subseteq \mathfrak{R}\mathfrak{d}_{\gamma}\mathcal{B}$.
 \end{defin}
 
 \subsection{Substitution in cylindric algebras}
