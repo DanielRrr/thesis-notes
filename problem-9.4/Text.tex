@@ -55,8 +55,6 @@
 
 \maketitle
 
-\nocite{*}
-
 \section{Intro}
 ...
 It is known that the equational theory of ${\bf RCA}_{\omega}$ for $\alpha \leq \omega$ is decidable \cite{nemeti1996fine}.
@@ -65,9 +63,9 @@ It is known that the equational theory of ${\bf RCA}_{\omega}$ for $\alpha \leq 
 \section{The problems themselves}
 
 \begin{enumerate}
-\item Suppose $\mathcal{C} \in {\bf RCA}_{\omega}$, whether $\mathcal{C}^{+}$ has a complete, $\omega$-dimensional representation?
+\item Suppose $\mathcal{C} \in {\bf RCA}_{\omega}$, whether $\mathcal{C}^{+}$ has a complete, $\omega$-dimensional representation? \cite{hirsch2002relation}
 \item Is the class ${\bf IG}_{\omega}$ (the isomorphism-closure of the $\omega$-dimensional cylindric relativised set algebras in which the unit is closed under substitutions and permutations) a variety, or even
-a pseudo-elementary class? Is it closed under ultraproducts?
+a pseudo-elementary class? Is it closed under ultraproducts? \cite{hirsch2002relation}
 \end{enumerate}
 
 \section{Boolean algebras with operators and cylindric algebras}
@@ -214,19 +212,38 @@ Let $\mathcal{A} \in {\bf C}_{\omega}$, then $\mathcal{A}$ has a \emph{complete 
 Let us concretise the definition of a canonical extension for $\alpha$-dimensional cylindric algebras:
 
 \begin{defin}
-  Let $\mathcal{C} = \langle C, +, -, 0, 1, \{ d_{ij} \}_{i, j < \omega}, \{c_i\}_{i < \omega} \rangle$ be an $\omega$-dimensional cylindric algebra. Let ${\bf Uf}(\mathcal{C})$ be the set of all ultrafilters of $\mathfrak{B}\mathcal{C}$, a Boolean reduct of $\mathcal{C}$.
+  Let $\mathcal{C} = \langle C, +, -, 0, 1, \{ d_{ij} \}_{i, j < \alpha}, \{c_i\}_{i < \omega} \rangle$ $\mathcal{A}$ be a BAO of type ${\bf CA}_{\alpha}$ Let ${\bf Uf}(\mathcal{C})$ be the set of all ultrafilters of $\mathfrak{B}\mathcal{C}$, the Boolean part of $\mathcal{C}$.
 
-  Let us define ${\bf C}_{i} : {\bf Uf}(\mathcal{C}) \to {\bf Uf}(\mathcal{C})$ for each $i, j < \omega$ as
+  Let us define ${\bf C}_{i} : {\bf Uf}(\mathcal{C}) \to {\bf Uf}(\mathcal{C})$ for each $i, j < \alpha$ as
   \begin{enumerate}
 \item ${\bf C}_{i} \mathcal{X} = \{ \mathcal{F} \in {\bf Uf}(\mathcal{C}) \: | \: \exists \mathcal{F}' \in {\bf Uf}(\mathcal{C}) \: (a \in \mathcal{F} \Rightarrow c_i a \in \mathcal{F}' R)\}$,
 \item $D_{ij} = \{ \mathcal{F} \in {\bf Uf}(\mathcal{C}) \: | \: d_{ij} \in \mathcal{F} \}$.
   \end{enumerate}
-  The structure $\mathcal{C}^{+} = \langle  {\bf Uf}(\mathcal{C}), \cup, -, \emptyset, C, {\bf C}_{i < \omega}, \{D_{ij}\}_{i, j < \omega} \rangle$ is called the canonical extension of $\mathcal{C}$.
+  The structure $\mathcal{C}^{+} = \langle  {\bf Uf}(\mathcal{C}), \cup, -, \emptyset, C, {\bf C}_{i < \alpha}, \{D_{ij}\}_{i, j < \alpha} \rangle$ is called the canonical extension of $\mathcal{C}$.
 \end{defin}
 
 Let us discuss the connection between representability and canonical extensions.
 
 The following definitions and facts are due to Henkin, Monk, and Tarski \cite{henkin1971cylindric}.
+
+Let $\mathcal{A} \in {\bf CA}_{\alpha}$ and $x \in \mathcal{A}$. Recall that \emph{the dimension of $x$}
+is the set of all ordinals $\gamma < \alpha$ such that $c_\gamma x \neq x$. More formally,
+\begin{center}
+  $\Delta x = \{ \gamma \: | \: \gamma < \alpha \: \& \: c_\gamma x \neq x\}$
+\end{center}
+
+Let us discuss some metamathematical intuitions standing behind the notion of a dimension. Let $\Theta$ be a first-order theory and $\mathcal{C}/\equiv_{\Theta}$ its Lindenbaum-Tarski algebra. Let $\varphi$ be a formula in the signature of $\Theta$. Then $\Delta(\varphi/\Theta)$ consists of all $\kappa < \alpha$ such that $\exists x_{\kappa} \varphi \leftrightarrow \varphi$ is not valid in $\Theta$.
+That is, $\Delta(\varphi/\Theta)$ contains ordinals $\kappa$ for which $x_{\kappa}$ is free in $\varphi$. Moreover, $\Delta(\varphi/\Theta)$ consists only of those ordinals for which $x_{\kappa}$ is free in every $\psi \in \varphi/\Theta$.
+
+In particular, an element $x$ is called \emph{zero-dimensional} if $\Delta x = 0$. Zero-dimensional elements reflect equivalence classes of sentences in the Lindenbaum-Tarski algebra of a given first-order theory. Thus, the set of zero-dimensional elements form a Boolean algebras of sentences associated with $\Theta$.
+
+\begin{defin}
+  Let $\mathcal{A}$ be an $\alpha$-dimensional cylindric algebra. Let $\alpha$ be an ordinal and $\Gamma$ a subset $\alpha$, then an element $x \in \mathcal{A}$ is $\Gamma$-closed if $\Delta x \cdot \Gamma = \emptyset$. Alternatively, $x$ is a $\Gamma$-cylinder.
+
+ $\operatorname{Cl}_{\Gamma}\mathcal{A}$ is the set of all $\Gamma$-closed elements.
+\end{defin}
+
+Metamathematically, $\Gamma$-closed elements reflect universal closures (is it correct?).
 
 Let $\mathcal{C} = \langle C, +, -, 0, 1, \{d_{ij}\}_{i, j < \beta}, \{ c \}_{c < \beta} \rangle$ be a $\beta$-dimensional cylindic algebra and $\alpha \leq \beta$ an ordinal. The \emph{$\alpha$-th reduct} of $\mathcal{C}$, denoted as $\mathfrak{R}\mathfrak{d}_{\alpha}\mathcal{C}$, is an algebra having the form
 \begin{center}
@@ -238,7 +255,7 @@ $\mathcal{B}$ is a subreduct of $\mathcal{C}$, denoted as $\mathcal{B} \subseteq
 \begin{defin}
   Let $\mathcal{C}$ be a $\beta$-dimensional cylindic algebra and $\alpha$ an ordinal such that $\alpha \leq \beta$.
   The neat $\alpha$-reduct of $\mathcal{C}$, denoted as $\mathfrak{N}\mathfrak{r}_\alpha \mathcal{C}$,
-  is the subalgbera $\mathcal{A}$ of $\mathfrak{R}\mathfrak{d}_{\alpha}\mathcal{C}$ with $\mathcal{A} = \operatorname{Cl}_{\kappa}$ where $\alpha + \kappa = \beta$.
+  is the subalgbera $\mathcal{A}$ of $\mathfrak{R}\mathfrak{d}_{\alpha}\mathcal{C}$ with $\mathcal{A} = \operatorname{Cl}_{\kappa} \mathcal{C}$ where $\alpha + \kappa = \beta$.
 
   Let $\mathbb{K}$ be a class of $\beta$-dimensional cylindic algebras, then we put
   \begin{center}
@@ -249,6 +266,36 @@ $\mathcal{B}$ is a subreduct of $\mathcal{C}$, denoted as $\mathcal{B} \subseteq
   $\mathcal{C} \subseteq \mathfrak{R}\mathfrak{d}_{\gamma}\mathcal{B}$.
 \end{defin}
 
+\begin{lemma}[Henkin, Monk, Tarski]\label{Neat}
+  $ $
+
+  Let $\mathcal{A}$ be a BAO of type ${\bf CA}_{\alpha}$ and $\mathcal{B}$ be a $\beta$-dimensional cylindric algebra such that $\beta \leq \alpha$ and $\mathcal{A}$ neatly embeds to $\mathcal{B}$ by a complete embedding. Then $\mathcal{A}^{+}$ neatly embeds to $\mathcal{B}^{+}$ by a complete embedding.
+\end{lemma}
+
+\begin{proof}
+\end{proof}
+
+\begin{theorem}[This assumption is by Ian Hodkinson]\label{Neat2}
+  $ $
+
+  Let $\mathcal{A}$ be a BAO of type ${\bf CA}_{\omega}$ such that $\mathcal{A}$ neatly embeds into ${\bf CA}_{\omega + \omega}$ by a complete embedding. Then $\mathcal{A}$ is completely representable as ${\bf CA}_{\omega}$.
+\end{theorem}
+
+\begin{proof}
+  Hmmmmm, I believe so.
+\end{proof}
+
+Lemma~\ref{Neat} and Theorem~\ref{Neat2} imply the following theorem.
+
+\begin{theorem}
+  Let $\mathcal{C} \in {\bf RCA}_{\omega}$, then $\mathcal{C}^{+} \in {\bf RCA}_{\omega}$. That is, ${\bf RCA}_{\omega}$ is closed under canonical extensions.
+\end{theorem}
+
+\begin{proof}
+  :monkahmm:
+\end{proof}
+
+\begin{comment}
 \subsection{Substitution in cylindric algebras}
 
 \begin{defin}
@@ -276,7 +323,6 @@ $\mathcal{B}$ is a subreduct of $\mathcal{C}$, denoted as $\mathcal{B} \subseteq
     \item $s^i_k s^j_i x = s^i_k s^j_k x = s^j_k s^i_j x$
   \end{enumerate}
 \end{prop}
-
 
 \section{Model-theoretic and universal algebraic preliminaries}
 
@@ -340,6 +386,7 @@ Recall that a class of $\Omega$-structures ${\bf K}$ is called \emph{elementary}
 \section{${\bf IG}_{\omega}$ and ultraproducts}
 
 \section{${\bf IG}_{\omega}$ is (not) (pseudo-)elementary; is (not) a variety}
+\end{comment}
 
 \bibliographystyle{plain}
 \bibliography{Text}
