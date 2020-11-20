@@ -52,8 +52,6 @@
 
 \maketitle
 
-\nocite{*}
-
 \section{Preliminaries}
 
 \begin{defin}
@@ -71,16 +69,6 @@
 \end{defin}
 
 By ${\bf K5}$ we mean the logic ${\bf K} \oplus {A5}$, where ${A5} = \Diamond p \to \Box \Diamond p$. It is known that ${\bf K5}$ is the modal logic of all Euclidean frames. A frame is called Euclidean if for each $x, y, z$, $x R y$ and $x R z$ implies $y R z$.
-
-\begin{prop}
-  Let $\mathcal{F} = \langle W, R \rangle$ be an Euclidean frame.
-
-  \begin{enumerate}
-    \item For each $x, y, z \in W$, $x R y$ and $x R z$ implies either $y R z$ or $z R y$.
-    \item For each $x \in W$, $R^{*}(x) = \{ x\} \cup R(R(x))$.
-    \item $R^{-1} \circ R \subseteq R$.
-  \end{enumerate}
-\end{prop}
 
 \begin{prop} \label{K5proves}
   ${\bf K5}$ proves
@@ -341,54 +329,47 @@ $ $
 \end{proof}
 
 
-\subsection{Clusters}
+\section{Filtration for {\bf K4}}
 
-Let $\mathcal{F} = \langle W, R \rangle$ be a transitive frame.
-Let us put $x R^{\bullet} y \Leftrightarrow x R y \: \& \: \neg (x R y)$. A point $x$ is proper if $x R x$. Let us define the following
-equivalence relation:
-
-\begin{center}
-  $x \equiv y \Leftrightarrow x R y \: \& \: y R x \lor x = y$.
-\end{center}
-A cluster is an element of the quotient set $W / \equiv$. Given $x \in W$, $C_x$ is a cluster containing $x$. Thus $C_x =
-\{ x\} \cup \{ y \: | x R y x \}$. The original relation lifts to the antisymmetric transitive relation on $W / \equiv$ defined as
-$C_x R C_y$ iff $x R y$. A cluster $C$ is called maximal if $C R C'$ implies $C = C'$. A point is $R$-maximal if $C_x$ is a maximal cluster,
-that is, $R^{\bullet}(x) = \emptyset$. A degenerated cluster is a singleton $\{ x \}$ with $\neg (x R x)$. A cluster is called simple if it has the form $\{ x \}$ with $x R x$. If $\langle W', R' \rangle$ is an inner substructure of $\langle W, R \rangle$, then every $R'$-cluster is an $R$-cluster and every $R$-cluster that intersects $W'$ is a subset of $W'$ and is an $R'$-cluster itself. Given a Kripke model $\mathcal{M}$, a set of formulas $\Gamma$ is satisfied by a cluster $C$ if every member of $\Gamma$ is true at some point of $C$.
-
-If clusters coincide then their poitns have the same theory in the original model:
+\begin{prop}
+  Let $R$ be a binary relation on $W \neq \emptyset$. Define $R^{+} = \bigcup \limits_{i < \omega} R_i$
+  \begin{enumerate}
+    \item $R_0 = R$
+    \item $R_{n + 1} = R_n \circ R$
+  \end{enumerate}
+  Then $R^{+}$ is transitive
+\end{prop}
 
 \begin{lemma}
-  $C_x = C_y$ implies $\mathcal{M}, x \models \Box \varphi \Leftrightarrow \mathcal{M}, y \models \Box \varphi$
+  Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ be a transitive model and $\overline{\mathcal{M}} = \langle \overline{W}, \overline{R}, \overline{\vartheta} \rangle$ its minimal filtration through a finite $\operatorname{Sub}$-closed set of formulas $\Theta$.
+
+  Then $\overline{\mathcal{M}}^{+} = \langle \overline{W}, (\overline{R})^{+}, \overline{\vartheta} \rangle$ is a $\Theta$-filtration of $\mathcal{M}$.
 \end{lemma}
 
-Let us describe the bulldozing technique allowing one to eliminate nondegenerated clusters \cite{bull1984basic}. Let $\mathcal{L}$ be a transitive logic and $\mathcal{F}$ its frame. We construct first a frame $\mathcal{F}^0 = \langle W^{0}, R^{0} \rangle$ replacing every nondegenerated frame $C$ of $W$ by $C^0 = \{ \langle x, i \rangle \: | \: x \in C, i < \omega \}$. We also replace each degenerated cluster $C$ by $\{ \langle x,0 \rangle\}$.
-Elements of these subsets form $W^0$. The relation $R^{0}$ is defined as
-\begin{center}
-  $\langle x, i \rangle R^{0} \langle y, j \rangle \Leftrightarrow x R^{\bullet} y \text{ or } (x \equiv y \: \& \: i < j) \text{ or } i = j \: \& \: x <_C y$
-\end{center}
-where $<_C$ is an arbitrary strict ordering on the proper cluster $C$ containing $x$ and $y$.
+\begin{proof}
+  $(\overline{R})^{+}$ obviously contains $R$. By the previous proposition, $(\overline{R})^{+}$ is transitive.
+  Let us show that $(\overline{R})^{+} \subseteq R^{max}_{\Theta}$.
 
-Each nondegenrated cluster $C$ is replaced by an infinite set $C_0$ such that $\langle C_0, R_0 \rangle$ is a strict linear order. Moreover, $\langle y, j \rangle$, a copy of $y$, occurs after $\langle y, j \rangle$, a copy of $x$.
+  Let $\hat{x}, \hat{y} \in \overline{W}$ with $\hat{x} (\overline{R})^{+} \hat{y}$ and
+  $\Box \varphi \in \Theta$ with $\mathcal{M}, x \models \Box \varphi$. Let us show that $\mathcal{M}, y \models \varphi$.
 
-Bulldozing might be extended to models $\mathcal{M} = \langle W, R, \vartheta \rangle$ defining $\vartheta^0$ as follows
-\begin{center}
-  $\vartheta^{0}(p_i) = \{ \langle x, i \rangle \: | \: x \in \vartheta(p_i), i < \omega \}$.
-\end{center}
+  If $\hat{x} (\overline{R})^{+} \hat{y}$, then there exist equivalence classes $\hat{x}_1, \dots, \hat{x}_n$ such that
+  \begin{center}
+    $\hat{x} \overline{R} \hat{x}_1 \overline{R} \dots \overline{R} \hat{x}_n \overline{R} \hat{y}$
+  \end{center}
 
-One may show inductively the following fact.
-\begin{lemma}
-  $\mathcal{M}, x \models \varphi \Leftrightarrow \mathcal{M}^{0}, \langle x, i \rangle \models \varphi$
-\end{lemma}
+  $\mathcal{M}, x \models \Box \varphi$ implies $\mathcal{M}, x \models \Box \varphi \to \Box \Box \varphi$. Thus, $\overline{M}, \hat{x} \models \Box \Box \varphi$.
 
-Let us concretise the case of transitive Euclidean frames. First of all, we consider clusters in ${\bf K}45$ frames.
+  $\hat{x} \overline{R} \hat{x}_1$, so there are $x_1 \in \hat{x}$ and $x_2 \in \hat{x}_1$ with $x_1 R x_2$. In particular, $\mathcal{M}, x_2 \models \Box \varphi$,
+  so $\overline{\mathcal{M}}, \hat{x}_2 \models \Box \varphi$, and et cetera.
 
-\subsection{}
+  For each $i \in \{1, \dots, n\}$ we have $\mathcal{M}, x_i \models \Box \varphi$ which is shown inductively:
 
-\section{Transitive closure stuff}
+  If $\mathcal{M}, x_i \models \Box \varphi$ for $x_i \in \hat{x}_i$, so $\mathcal{M}, x_i \models \Box \Box \varphi$, but there exist ${x_i}' \in \hat{x}_i$ and $x_{i + 1} \in \hat{x}_{i + 1}$, so
+  $\mathcal{M}, x_{i + 1} \models \Box \varphi$.
 
-\section{PDLisation of Euclidean logics}
-
-\section{Transitive closure and fusion}
+  Finally, we have $\mathcal{M}, x_n \models \Box \varphi$ for $x_n \in \hat{x}_n$, but $\hat{x}_n \overline{R} \hat{y}$, so $\mathcal{M}, y' \models \varphi$ for each $y' \in \hat{y}$. Thus, $\varphi$ is true at $y$ as well.
+\end{proof}
 
 \bibliographystyle{plain}
 \bibliography{Text}
