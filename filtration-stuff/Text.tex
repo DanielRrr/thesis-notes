@@ -358,7 +358,7 @@ $ $
     $\hat{x} \overline{R} \hat{x}_1 \overline{R} \dots \overline{R} \hat{x}_n \overline{R} \hat{y}$
   \end{center}
 
-  $\mathcal{M}, x \models \Box \varphi$ implies $\mathcal{M}, x \models \Box \varphi \to \Box \Box \varphi$. Thus, $\overline{M}, \hat{x} \models \Box \Box \varphi$.
+  $\mathcal{M}, x \models \Box \varphi$ implies $\mathcal{M}, x \models \Box \Box \varphi$. Thus, $\overline{M}, \hat{x} \models \Box \Box \varphi$.
 
   $\hat{x} \overline{R} \hat{x}_1$, so there are $x_1 \in \hat{x}$ and $x_2 \in \hat{x}_1$ with $x_1 R x_2$. In particular, $\mathcal{M}, x_2 \models \Box \varphi$,
   so $\overline{\mathcal{M}}, \hat{x}_2 \models \Box \varphi$, and et cetera.
@@ -369,6 +369,43 @@ $ $
   $\mathcal{M}, x_{i + 1} \models \Box \varphi$.
 
   Finally, we have $\mathcal{M}, x_n \models \Box \varphi$ for $x_n \in \hat{x}_n$, but $\hat{x}_n \overline{R} \hat{y}$, so $\mathcal{M}, y' \models \varphi$ for each $y' \in \hat{y}$. Thus, $\varphi$ is true at $y$ as well.
+\end{proof}
+
+\begin{proof}
+  Let $\hat{x}, \hat{y} \in \overline{W}$ with $\hat{x} (\overline{R})^{+} \hat{y}$ and
+  $\Box \varphi \in \Theta$ with $\mathcal{M}, x \models \Box \varphi$. Let us show that $\mathcal{M}, y \models \varphi$.
+
+  If $\hat{x} (\overline{R})^{+} \hat{y}$, then there exist equivalence classes $\hat{x}_1, \dots, \hat{x}_n$ such that
+  \begin{center}
+    $\hat{x} \overline{R} \hat{x}_1 \overline{R} \dots \overline{R} \hat{x}_n \overline{R} \hat{y}$
+  \end{center}
+
+  Let us show that $\mathcal{M}, \hat{x}_i \models \Box \varphi$ inductively:
+  \begin{enumerate}
+    \item $n = 1$
+    We have the following sequence:
+    \begin{center}
+      $\hat{x} \overline{R} \hat{x}_1 \overline{R} \hat{y}$
+    \end{center}
+    $\hat{x} \overline{R} \hat{x}_1$, so there are $x' \in \hat{x}$ and $x_1' \in \hat{x}_1$ such that $x' R x_1'$. $\Box \varphi$ is true at $x'$, so is $\Box \Box \varphi$. Then
+    $\mathcal{M}, x_1' \models \Box \varphi$ since $x_1' \in R(x')$.
+    So $\overline{\mathcal{M}}, \hat{x}_1 \models \Box \varphi$.
+
+    \item $n = i + 1$
+    The case is the following:
+    \begin{center}
+      $\hat{x} \overline{R} \hat{x}_1 \overline{R} \dots \overline{R} \hat{x}_i \overline{R} \hat{x}_{i + 1} \overline{R} \hat{y}$
+    \end{center}
+
+    By IH, $\Box \varphi$ is true at $\hat{x}_i$, so is $\Box \Box \varphi$. Hence, we have $\overline{\mathcal{M}}, \hat{x}_{i + 1} \models \Box \varphi$ since
+    $\hat{x}_i \overline{R} \hat{x}_{i + 1}$.
+  \end{enumerate}
+
+  That is, for each $0 < n < \omega$, if we have a sequence of equivalence classes with $\hat{x} \overline{R} \hat{x}_1 \overline{R} \dots \overline{R} \hat{x}_n \overline{R} \hat{y}$ where $\overline{\mathcal{M}}, \hat{x} \models \Box \varphi$, then
+  $\overline{\mathcal{M}}, \hat{x}_n \models \Box \varphi$.
+
+  If $\hat{x}_n \overline{R} \hat{y}$,
+  then there are $x_n' \in \hat{x}_n$ and  $y' \in \hat{y}$ with $x_n' R y'$. $\mathcal{M}, x_n' \models \Box \varphi$ implies $\mathcal{M}, y' \models \varphi$, but $y'$ and $y$ are $\Gamma$-equivalent and $\varphi \in \Gamma$, so $\mathcal{M}, y \models \varphi$.
 \end{proof}
 
 \bibliographystyle{plain}
