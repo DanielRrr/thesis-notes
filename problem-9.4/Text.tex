@@ -49,24 +49,17 @@
 
 \author{Daniel Rogozin}
 \date{}
-\title{Model-theoretic aspects of relativised cylindric set algebras}
+\title{Representable cylindric algebras of dimension $\omega$: the aspects of canonicity}
 
 \begin{document}
 
 \maketitle
 
 \section{Intro}
-...
-It is known that the equational theory of ${\bf RCA}_{\omega}$ for $\alpha \leq \omega$ is decidable \cite{nemeti1996fine}.
-...
 
-\section{The problems themselves}
+\section{The problem itself}
 
-\begin{enumerate}
-\item Suppose $\mathcal{C} \in {\bf RCA}_{\omega}$, whether $\mathcal{C}^{+}$ has a complete, $\omega$-dimensional representation? \cite{hirsch2002relation}
-\item Is the class ${\bf IG}_{\omega}$ (the isomorphism-closure of the $\omega$-dimensional cylindric relativised set algebras in which the unit is closed under substitutions and permutations) a variety, or even
-a pseudo-elementary class? Is it closed under ultraproducts? \cite{hirsch2002relation}
-\end{enumerate}
+Suppose $\mathcal{C} \in {\bf RCA}_{\omega}$, whether $\mathcal{C}^{+}$ has a complete, $\omega$-dimensional representation? \cite{hirsch2002relation}
 
 \section{Boolean algebras with operators and cylindric algebras}
 
@@ -169,7 +162,25 @@ Let $A$ be a non-empty subset of a Boolean algebra $\mathcal{B}$, $A$ is a \emph
 
 \subsection{(Representable) cylindric algebras and cylindric set algebras}
 
-Let $\alpha$ be an ordinal. Let $\prescript{\alpha}{}U$ be the set of all functions mapping $\alpha$ to a non-empty set $U$. We denote $x(i) = x_i$ for
+\begin{defin}
+  $ $
+
+    A relation algebra is an algebra $\mathcal{R} = \langle R, 0, 1, +, -, ;, {}^{\smile}, {\bf 1 }' \rangle$ such that $\langle R, 0, 1, +, - \rangle$ is a Boolean algebra and the following
+    equations hold, for each $a, b, c \in R$:
+    \begin{enumerate}
+      \item $a ; (b ; c) = (a ; b) ; c$
+      \item $(a + b) ; c = (a ; c) + (b ; c)$
+      \item $a ; {\bf 1}' = a$
+      \item $a^{\smile \smile} = a$
+      \item $(a + b)^{\smile} = a^{\smile} + b^{\smile}$
+      \item $(a ; b)^{\smile} = b^{\smile} ; a^{\smile}$
+      \item $a^{\smile} ; (- (a ; b)) \leq - b$
+    \end{enumerate}
+    where $a \leq b$ iff $a + b = b$. ${\bf RA}$ denotes the class of all relation
+    algebras.
+\end{defin}
+
+Cylindric algebras provide a generalisation of relation algebras for relations of an arbitrary arity. Let $\alpha$ be an ordinal. Let $\prescript{\alpha}{}U$ be the set of all functions mapping $\alpha$ to a non-empty set $U$. We denote $x(i) = x_i$ for
 $x \in \prescript{\alpha}{}U$ and $i < \alpha$.
 
 \begin{defin}
@@ -205,6 +216,13 @@ $ $
   \end{enumerate}
 \end{defin}
 
+\begin{defin}
+  Given a cylindric algebra of dimension $\alpha$ $C$, let $x$ be a term of its signature, the substitution operator $s^{i}_{j}$ have the following definition:
+  \begin{center}
+  $s^{i}_{j} x = \begin{cases} x, \text{if } i = j \\ c_i (d_{ij} \land x), \text{otherwise} \end{cases}$
+  \end{center}
+\end{defin}
+
 It is well known that ${\bf RCA}_{\alpha}$ is a variety, ${\bf RCA}_{\alpha}$ ($\alpha \leq 2$) is finitely axiomatisable and ${\bf RCA}_{\alpha}$ ($2 < \alpha < \omega$) has no finite axiomatisation, see \cite{Henkin1988-HENCAP-4}.
 
 Let $\mathcal{A} \in {\bf C}_{\omega}$, then $\mathcal{A}$ has a \emph{complete representation}, if this representation preserves all existing suprema.
@@ -212,7 +230,7 @@ Let $\mathcal{A} \in {\bf C}_{\omega}$, then $\mathcal{A}$ has a \emph{complete 
 Let us concretise the definition of a canonical extension for $\alpha$-dimensional cylindric algebras:
 
 \begin{defin}
-  Let $\mathcal{C} = \langle C, +, -, 0, 1, \{ d_{ij} \}_{i, j < \alpha}, \{c_i\}_{i < \omega} \rangle$ $\mathcal{A}$ be a BAO of type ${\bf CA}_{\alpha}$ Let ${\bf Uf}(\mathcal{C})$ be the set of all ultrafilters of $\mathfrak{B}\mathcal{C}$, the Boolean part of $\mathcal{C}$.
+  Let $\mathcal{C} = \langle C, +, -, 0, 1, \{ d_{ij} \}_{i, j < \alpha}, \{c_i\}_{i < \alpha} \rangle$ $\mathcal{A}$ be a BAO of type ${\bf CA}_{\alpha}$ Let ${\bf Uf}(\mathcal{C})$ be the set of all ultrafilters of $\mathfrak{B}\mathcal{C}$, the Boolean part of $\mathcal{C}$.
 
   Let us define ${\bf C}_{i} : {\bf Uf}(\mathcal{C}) \to {\bf Uf}(\mathcal{C})$ for each $i, j < \alpha$ as
   \begin{enumerate}
@@ -282,13 +300,47 @@ We will adapting the following proof of the fact that ${\bf RRA}$ is canonical \
   \item Voil\'{a}.
 \end{enumerate}
 
-We descibe the following sketch of that proof published by Maddux in \cite{maddux2006relation}.
+\begin{defin}
+  Let $\mathcal{C} \in {\bf CA}_{\alpha}$, where $\alpha \geq 3$. The relation algebra reduct of $\mathcal{C}$, written as $\mathfrak{Ra}(\mathcal{C})$, is the algebra having the form
+
+  \begin{center}
+    $\langle \operatorname{dom}(\mathfrak{Nr}_2(\mathcal{C})), 0, 1, +, -, {\bf 1}', \smile, ; \rangle$
+  \end{center}
+  where:
+
+  \begin{enumerate}
+    \item $+$, $-$, $0$, and $1$ are defined as usual in $\mathcal{C}$,
+    \item ${\bf 1}' = d_{01} \in \mathfrak{Nr}_2(\mathcal{C})$,
+    \item $r^{\smile} = s^{2}_{0} s^{0}_{1} s^{1}_{2} r$ for $r \in \mathfrak{Nr}_2(\mathcal{C})$,
+    \item Let $r, s \in \mathfrak{Nr}_2(\mathcal{C})$, then $r ; s = c_2 (s^{1}_{2}r \cdot s^{0}_{2}s)$
+  \end{enumerate}
+\end{defin}
+
+Moreover, $\mathfrak{Nr}_{\beta}(\mathcal{C})$ and $\mathfrak{Ra}(\mathcal{C})$ are closed under these operations.
+There is also the following fact by due to Henkin, Monk, and Tarski \cite{Henkin1988-HENCAP-4}:
+\begin{theorem}
+  Let $\mathcal{C} \in {\bf CA}_{\alpha}$ for $\alpha \geq 4$, then $\mathfrak{Ra}(\mathcal{C})$ is a relation algebra.
+\end{theorem}
+
+The following characterisation results are by Henkin, Monk, and Tarski \cite{Henkin1988-HENCAP-4} as well:
+\begin{theorem} \label{char}
+  $ $
+
+  \begin{enumerate}
+    \item ${\bf RA} = {\bf S} \mathfrak{Ra} {\bf CA}_4$,
+    \item ${\bf RRA} = \bigcap \limits_{3 \leq n < \omega} {\bf S} \mathfrak{Ra} {\bf CA}_n =  {\bf S} \mathfrak{Ra} {\bf CA}_{\alpha}$, where $\alpha$ is an infinite ordinal.
+  \end{enumerate}
+\end{theorem}
+
+Let $\mathcal{C} \in \mathcal{CA}_{\alpha}$, then $\mathcal{R} \in {\bf RA}$ neatly embeds to $\mathcal{C}$, if $\mathcal{R}$ is isomorphic to some subalgebra of $\mathfrak{Ra}(\mathcal{C})$.
 
 \begin{theorem}
   ${\bf RRA}$ is closed under canonical extensions.
 \end{theorem}
 
-\begin{proof}
+\begin{proof} Let ${\bf R} \in {\bf RRA}$.
+  By the second item of~\ref{char}, every representable relation algebra is isomorphic to some subalgbera of the relation algebra reduct $\mathfrak{Ra}\mathcal{C}$ for some $\mathcal{C} \in {\bf CA}_{\omega}$. But neat embeddings repsect canonical extensions, so if ${\bf R} \hookrightarrow_{n} \mathcal{C}$, so is ${\bf R}^{+} \hookrightarrow_{n} \mathcal{C}^{+}$.
+  ${\bf CA}_{\alpha}$ is closed under canonical extensions, so is ${\bf RRA}$.
 \end{proof}
 
 \begin{lemma}[Henkin, Monk, Tarski]\label{Neat}
@@ -322,13 +374,6 @@ Lemma~\ref{Neat} and Theorem~\ref{Neat2} imply the following theorem.
 
 \begin{comment}
 \subsection{Substitution in cylindric algebras}
-
-\begin{defin}
-  Given a cylindric algebra of dimension $\alpha$ $C$, let $x$ be a term of its signature, the substitution operator $s^{i}_{j}$ have the following definition:
-  \begin{center}
-  $s^{i}_{j} x = \begin{cases} x, \text{if } i = j \\ c_i (d_{ij} \land x), \text{otherwise} \end{cases}$
-  \end{center}
-\end{defin}
 
 \begin{prop} Let $\alpha$ be an ordinal and let $i, j, k, l < \alpha$. The following facts hold in ${\bf CA}_{\alpha}$
 
