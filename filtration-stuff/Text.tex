@@ -83,7 +83,7 @@ By ${\bf K5}$ we mean the logic ${\bf K} \oplus {A5}$, where ${A5} = \Diamond p 
 \begin{prop} \label{k5useful}
   Let $\mathcal{M}$ be a ${\bf K}5$ model, $x R y$ for $x, y \in W$ then one has
   \begin{center}
-    $\mathcal{M}, x \models \Diamond \Box \varphi$ iff $\mathcal{M}, y \models \Diamond \Box \varphi$.
+    $\mathcal{M}, x \models \Box \Diamond \varphi$ iff $\mathcal{M}, y \models \Box \Diamond \varphi$.
   \end{center}
 \end{prop}
 
@@ -91,8 +91,8 @@ By ${\bf K5}$ we mean the logic ${\bf K} \oplus {A5}$, where ${A5} = \Diamond p 
 $ $
 
   \begin{enumerate}
-    \item Suppose $\mathcal{M}, x \models \Diamond \Box \varphi$. One also has $\mathcal{M}, x \models \Diamond \Box \varphi \to \Box \Diamond \Box \varphi$, so $\mathcal{M}, x \models \Box \Diamond \Box \varphi$. Thus, $\mathcal{M}, y \models \Diamond \Box \varphi$ since $y \in R(x)$.
-    \item Suppose $\mathcal{M}, y \models \Diamond \Box \varphi$, then $\mathcal{M}, y \models \Box \varphi$, so $\mathcal{M}, x \models \Diamond \Box \varphi$.
+    \item Suppose $\mathcal{M}, x \models \Box \Diamond \varphi$. Then $\mathcal{M}, y \models \Diamond \varphi$ and $\mathcal{M}, y \models \Box \Diamond \varphi$
+    \item Suppose $\mathcal{M}, y \models \Box \Diamond \varphi$, then $\mathcal{M}, x \models \Diamond \Box \Diamond \varphi$, so $\mathcal{M}, x \models \Box \Diamond \varphi$.
   \end{enumerate}
 \end{proof}
 
@@ -279,52 +279,51 @@ $ $
     \end{enumerate}
 \end{proof}
 
-\begin{lemma}
-  Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ be an Euclidean model, $\Gamma$ a set of $\operatorname{Sub}$-closed formulas, and $\sim$ an equivalence relation having a finite index that respects $\Gamma$, then $\widehat{R} = (R^{min}_{\Phi})^{E} \subseteq R^{max}_{\Gamma}$, where $\Phi = \Gamma \cup \{ \Diamond \Box \varphi \: | \: \Box \varphi \in \Gamma \}$.
+\begin{theorem}
+  Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ be an Euclidean model, $\Gamma$ a set of $\operatorname{Sub}$-closed formulas, and $\sim$ an equivalence relation having a finite index that respects $\Gamma$, then $\widehat{R} = (R^{min}_{\Gamma})^{E} \subseteq R^{max}_{\Gamma}$.
 
   Thus, ${\bf K}5$ admits strict filtrations.
-\end{lemma}
+\end{theorem}
 
 \begin{proof}
-  Recall that $(R^{min}_{\Phi})^{E}$ has the form $(R^{min}_{\Phi})^{E} = \bigcup \limits_{n < \omega} (R^{min}_{\Phi})_n$, where
+  We put $R^{min}_{\Gamma} := \overline{R}$ for brevity.
+
+  Recall that $\overline{R}^{E}$ has the form $\bigcup \limits_{n < \omega} (\overline{R})_n$, where
   \begin{enumerate}
-    \item $(R^{min}_{\Phi})_0 = R^{min}_{\Phi}$
-    \item $(R^{min}_{\Phi})_{m + 1} = (R^{min}_{\Phi})_n \cup (((R^{min}_{\Phi})_n)^{-1} \circ (R^{min}_{\Phi})_n)$
+    \item $\overline{R}_0 = \widehat{R}$
+    \item $\overline{R}_{m + 1} = \overline{R}_n \cup ((\overline{R})^{-1} \circ \overline{R}_n)$
   \end{enumerate}
-  One needs to show that for each $n < \omega$ $(R^{min}_{\Phi})_n \subseteq R^{max}_{\Gamma}$. We prove this by induction.
-  Suppose $\mathcal{M}, x \models \Box \varphi$ for $\Box \varphi \in \Phi$ and $[x] (R^{min}_{\Phi})^{E} [y]$. We need $\mathcal{M}, y \models \varphi$.
+  One needs to show that for each $n < \omega$ $(\overline{R})_n \subseteq R^{max}_{\Gamma}$. We prove this by induction.
+  Suppose $\mathcal{M}, y \models \varphi$ for $\Diamond \varphi \in \Phi$ and $\hat{x} \overline{R}^{E} \hat{x}$. We need $\mathcal{M}, x \models \Diamond \varphi$.
   \begin{enumerate}
-    \item $([x], [y]) \in (R^{min}_{\Phi})_0$, then $([x], [y]) \in R^{min}_{\Phi}$. Then there exist $x' \in [x]$ and $y' \in [y]$ such that $x' R y'$. So $\mathcal{M}, x' \models \Box \varphi$ and, thus,
-    $\mathcal{M}, y' \models \varphi$. Then $\mathcal{M}, y' \models \varphi$ as well since $y' \in [y]$.
-    \item $([x], [y]) \in (R^{min}_{\Phi})_{m + 1}$, then
-    $([x], [y]) \in (R^{min}_{\Phi})_{m} \cup (((R^{min}_{\Phi})_{m})^{-1} \circ R^{min}_{\Phi})_{m})$.
+    \item The case of $n = 0$ is trivial and it follows directly from the definition of a minimal filtration.
+    \item Suppose $n = 1$. $\hat{x} \overline{R}_1 \hat{y}$ means that $(\hat{x}, \hat{y}) \in \overline{R} \cup (\overline{R}^{-1} \circ \overline{R})$.
+    Let us assume that $(\hat{x}, \hat{y}) \in \overline{R}^{-1} \circ \overline{R}$. That is, there exists $\hat{z} \in W / \sim_{\Gamma}$ such that $(\hat{z}, \hat{x}), (\hat{z}, \hat{y}) \in \overline{R}$.
 
-    If $([x], [y]) \in (R^{min}_{\Phi})_{m}$, then we apply the IH.
+    $\hat{z} \overline{R} \hat{y}$ means that there are $z' \in \hat{z}$ and $y' \in \hat{y}$ such that $z' R y'$. $\mathcal{M}, y \models \varphi$ implies $\mathcal{M}, y' \models \varphi$.
+    Then $\mathcal{M}, z' \models \Diamond \varphi$. $\hat{z} \overline{R} \hat{x}$ implies that there are $z'' \in \hat{z}$ and $x' \in \hat{x}$ with $z'' R x'$.
 
-    Suppose $([x], [y]) \in (R^{min}_{\Phi})_{m})^{-1} \circ (R^{min}_{\Phi})_{m}$,
-    then there exists $[z] \in W / \sim_{\Phi}$ such that $([z], [x]) \in (R^{min}_{\Phi})_{m})$ and $([z], [y]) \in (R^{min}_{\Phi})_{m}$.
+    $z'' \sim_{\Gamma} z'$ implies $\mathcal{M}, z'' \models \Diamond \varphi$. $\mathcal{M} \models {\bf K}5$, so $\mathcal{M}, z'' \models \Box \Diamond \varphi$. Thus, $\mathcal{M}, x' \models \Diamond \varphi$ since $x' \in R(z'')$. But $x' \in \hat{x}$, then $\mathcal{M}, x \models \Diamond \varphi$.
 
-    Then one has the following picture (using Lemma~\ref{equivHorn}):
+    \item Suppose $(\overline{R})_n \subseteq R^{max}_{\Gamma}$. Let us show that for $(\overline{R})_{n + 1}$. Then either $(\hat{x}, \hat{y}) \in (\overline{R})_n$ or $(\hat{z}, \hat{y}), (\hat{z}, \hat{x}) \in (\overline{R})_n$. The first alternative holds due to the IH. We consider only the second one.
+
+    By Lemma..., we may visualise $(\hat{z}, \hat{y}), (\hat{z}, \hat{x}) \in (\overline{R})_n$ with the following sequences for some $\widehat{u_1}, \dots, \widehat{u_n}, \widehat{t_1}, \dots, \widehat{t_n}$:
 
     \xymatrix{
-&&    [z] & \ar[l]_{R^{min}_{\Phi}} [z_1] \ar@{-}[r]^{R'} & [z_2] \ar@{-}[r]^{R'} & \ar@{-}[r]^{R'} \dots & [z_{m - 1}] \ar@{-}[r]^{R'} & [z_m] \ar[r]^{R^{min}_{\Phi}} & [x] \\
-&&    [z] & \ar[l]^{R^{min}_{\Phi}} [z_1^{'}] \ar@{-}[r]_{R'} & [z_2^{'}] \ar@{-}[r]_{R'} & \ar@{-}[r]_{R'} \dots & [z_{m - 1}] \ar@{-}[r]_{R'} & [z_m^{'}] \ar[r]_{R^{min}_{\Phi}} & [y]
+    &&& \hat{z} & \ar[l]_{\overline{R}} \widehat{u_1} \ar@{-}[r]^{R'} & \widehat{u_2} \ar@{-}[r]^{R'} & \dots \ar@{-}[r]^{R'} & \widehat{u_{n - 1}} \ar@{-}[r]^{R'} & \widehat{u_n} \ar[r]^{\overline{R}} & \hat{y} \\
+    &&& \hat{z} & \ar[l]^{\overline{R}} \widehat{t_1} \ar@{-}[r]_{R'} & \widehat{t_2} \ar@{-}[r]_{R'} & \dots \ar@{-}[r]_{R'} & \widehat{t_{n - 1}} \ar@{-}[r]_{R'} & \widehat{t_n} \ar[r]_{\overline{R}} & \hat{x}
     }
-  Where $R'$ is either $R^{min}_{\Phi}$ or its converse.
-  One has $\mathcal{M}, x \models \Box \varphi$ for $\Box \varphi \in \Phi$, where $\widehat{M}$ is the minimal filtration of $\mathcal{M}$ through $\Phi$. One has $[z_m] R^{min}_{\Phi} [x]$, then $a_m R a$ for some $a_m \in [z_n]$ and $a \in [x]$. Thus, $\mathcal{M}, a_m \models \Diamond \Box \varphi$ and, thus, $\widehat{\mathcal{M}}, [z_m] \models \Diamond \Box \varphi$.
+    where $R'$ is either $\overline{R}$ or $\overline{R}^{-1}$
 
-  Applying Proposition~\ref{k5useful} several times, one may show that $\widehat{\mathcal{M}}, [z_1] \models \Diamond \Box \varphi$.
-  One has $[z_1] R^{min}_{\Phi} [z]$, then for some $a \in [z]$ and $a_1 \in [z_1]$ we have $a_1 R a$.
+    $\mathcal{M}, y \models \varphi$ and $\widehat{u_n} \overline{R} \hat{y}$, so for some $u_n^{'} \in \widehat{u_n}$ and $y' \in \hat{y}$ with $u_n^{'} R y'$, so $\mathcal{M}, u_n^{'} \models \Diamond \varphi$ and $\widehat{\mathcal{M}}, \widehat{u_n} \models \Diamond \varphi$.
 
-  Then $\mathcal{M}, a \models \Box \varphi$ and $\widehat{M}, [z] \models \Box \varphi$.
+    We have either $\widehat{u_{n - 1}} \overline{R} \widehat{u_n}$ or $\widehat{u_n} \overline{R} \widehat{u_{n - 1}}$.
 
-  We have $[z_1^{'}] R^{min}_{\Phi} [z]$, thus, $a_1^{'} R a^{'}$ for some $a_1^{'} \in [z_1^{'}]$ and $a^{'} \in [z]$. Then
-  $\mathcal{M}, a_1^{'} \models \Diamond \Box \varphi$, and, thus, $\widehat{M}, [z_1^{'}] \models \Diamond \Box \varphi$.
+    If the first holds, then there are $u_{n - 1}^{'} \in \widehat{u_{n - 1}}$ and $u_{n}^{''} \in \widehat{u_{n}}$ with $u_{n - 1}^{'} R u_{n}^{''}$.
+    $\mathcal{M}, u_{n}^{''} \models \Diamond \varphi$. wtf?
 
-  One may show that $\widehat{M}, [z_{m}^{'}] \models \Diamond \Box \varphi$ in the same way via Lemma~\ref{k5useful}. Thus, $\mathcal{M}, z_{m}^{'} \models \Diamond \Box \varphi$. We also have $\mathcal{M}, z_{m}^{'} \models \Diamond \Box \varphi \to \Box \varphi$, and, thus,
-  $\mathcal{M}, z_{m}^{'} \models \Box \varphi$. Then $\widehat{\mathcal{M}}, [z_m^{'}] \models \Box \varphi$.
+    If the second holds, then there $u_{n - 1}^{'} \in \widehat{u_{n - 1}}$ and $u_{n}^{''} \in \widehat{u_{n}}$ with $u_{n}^{''} R u_{n - 1}^{'}$. $\mathcal{M}, u_{n}^{''} \models \Diamond \varphi$ implies $\mathcal{M}, u_{n}^{''} \models \Box \Diamond \varphi$, so $\mathcal{M}, u_{n - 1}^{'} \models \Diamond \varphi$.
 
-  One has $[z_m^{'}] R^{min}_{\Phi} [y]$, then $a_m^{'} R y'$ for some $a_m^{'} \in [z_m^{'}]$ and $y' \in [y]$. Then $\mathcal{M}, y' \models \varphi$. But $y' \sim_{\Phi} y$, so $\mathcal{M}, y \models \varphi$.
   \end{enumerate}
 \end{proof}
 
