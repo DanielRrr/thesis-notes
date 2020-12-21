@@ -280,54 +280,76 @@ $ $
 \end{proof}
 
 \begin{theorem}
-  Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ be an Euclidean model, $\Gamma$ a set of $\operatorname{Sub}$-closed formulas, and $\sim$ an equivalence relation having a finite index that respects $\Gamma$, then $\widehat{R} = (R^{min}_{\Gamma})^{E} \subseteq R^{max}_{\Gamma}$.
-
-  Thus, ${\bf K}5$ admits strict filtrations.
+  ${\bf K}45$ admits strict filtrations.
 \end{theorem}
 
 \begin{proof}
-  We put $R^{min}_{\Gamma} := \overline{R}$ for brevity.
+  Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ be a transitive Euclidean model and $\overline{\mathcal{M}} = \langle \overline{W}, \overline{R}, \overline{\vartheta} \rangle$ its minimal filtration through $\Gamma$, where $\Gamma$ is finite and Sub-closed. Let us put $\widehat{R} = \overline{R}^{+} \cup \overline{R}^{E}$. Let us show that $\overline{R}^{+} \cup \overline{R}^{E} \subseteq \overline{R}^{max}$.
 
-  Recall that $\overline{R}^{E}$ has the form $\bigcup \limits_{n < \omega} (\overline{R})_n$, where
+  That is, if $\mathcal{M}, y \models \varphi$ for $\Diamond \varphi \in \Gamma$ and $\hat{x} \widehat{R} \hat{y}$, then $\mathcal{M}, x \models \Diamond \varphi$.
+
+  Let $\hat{x} \widehat{R} \hat{y}$. Let us consider the case when $(\hat{x}, \hat{y}) \in \overline{R}^{E}$
+
   \begin{enumerate}
-    \item $\overline{R}_0 = \widehat{R}$
-    \item $\overline{R}_{m + 1} = \overline{R}_n \cup ((\overline{R})^{-1} \circ \overline{R}_n)$
-  \end{enumerate}
-  One needs to show that for each $n < \omega$ $(\overline{R})_n \subseteq R^{max}_{\Gamma}$. We prove this by induction.
-  Suppose $\mathcal{M}, y \models \varphi$ for $\Diamond \varphi \in \Phi$ and $\hat{x} \overline{R}^{E} \hat{x}$. We need $\mathcal{M}, x \models \Diamond \varphi$.
-  \begin{enumerate}
-    \item The case of $n = 0$ is trivial and it follows directly from the definition of a minimal filtration.
-    \item Suppose $n = 1$. $\hat{x} \overline{R}_1 \hat{y}$ means that $(\hat{x}, \hat{y}) \in \overline{R} \cup (\overline{R}^{-1} \circ \overline{R})$.
-    Let us assume that $(\hat{x}, \hat{y}) \in \overline{R}^{-1} \circ \overline{R}$. That is, there exists $\hat{z} \in W / \sim_{\Gamma}$ such that $(\hat{z}, \hat{x}), (\hat{z}, \hat{y}) \in \overline{R}$.
+    \item Suppose $(\hat{x}, \hat{y}) \in \overline{R}$, then $\mathcal{M}, x \models \Diamond \varphi$ holds trivially by the definition of the minimal filtration.
+    \item Suppose the statement holds $\overline{R}_n$ and $(\hat{x}, \hat{y}) \in \overline{R}_{n + 1} = \overline{R}_n \cup (\overline{R}_n^{-1} \circ \overline{R}_n)$. We consider the case of $(\hat{x}, \hat{y}) \in (\overline{R}_n^{-1} \circ \overline{R}_n)$.
 
-    $\hat{z} \overline{R} \hat{y}$ means that there are $z' \in \hat{z}$ and $y' \in \hat{y}$ such that $z' R y'$. $\mathcal{M}, y \models \varphi$ implies $\mathcal{M}, y' \models \varphi$.
-    Then $\mathcal{M}, z' \models \Diamond \varphi$. $\hat{z} \overline{R} \hat{x}$ implies that there are $z'' \in \hat{z}$ and $x' \in \hat{x}$ with $z'' R x'$.
+    Then there exists $\hat{z}$ such that $(\hat{z}, \hat{x}), (\hat{z}, \hat{y}) \in \overline{R}_n$.
 
-    $z'' \sim_{\Gamma} z'$ implies $\mathcal{M}, z'' \models \Diamond \varphi$. $\mathcal{M} \models {\bf K}5$, so $\mathcal{M}, z'' \models \Box \Diamond \varphi$. Thus, $\mathcal{M}, x' \models \Diamond \varphi$ since $x' \in R(z'')$. But $x' \in \hat{x}$, then $\mathcal{M}, x \models \Diamond \varphi$.
+    By IH, $\mathcal{M}, z \models \Diamond \varphi$.
 
-    \item Suppose $(\overline{R})_n \subseteq R^{max}_{\Gamma}$. Let us show that for $(\overline{R})_{n + 1}$. Then either $(\hat{x}, \hat{y}) \in (\overline{R})_n$ or $(\hat{z}, \hat{y}), (\hat{z}, \hat{x}) \in (\overline{R})_n$. The first alternative holds due to the IH. We consider only the second one.
+    $(\hat{z}, \hat{y}) \in \overline{R}_n$ iff there are $\hat{u}_1, \dots, \hat{u}_n$ such that
 
-    By Lemma..., we may visualise $(\hat{z}, \hat{y}), (\hat{z}, \hat{x}) \in (\overline{R})_n$ with the following sequences for some $\widehat{u_1}, \dots, \widehat{u_n}, \widehat{t_1}, \dots, \widehat{t_n}$:
+    \vspace{\baselineskip}
 
     \xymatrix{
-    &&& \hat{z} & \ar[l]_{\overline{R}} \widehat{u_1} \ar@{-}[r]^{R'} & \widehat{u_2} \ar@{-}[r]^{R'} & \dots \ar@{-}[r]^{R'} & \widehat{u_{n - 1}} \ar@{-}[r]^{R'} & \widehat{u_n} \ar[r]^{\overline{R}} & \hat{y} \\
-    &&& \hat{z} & \ar[l]^{\overline{R}} \widehat{t_1} \ar@{-}[r]_{R'} & \widehat{t_2} \ar@{-}[r]_{R'} & \dots \ar@{-}[r]_{R'} & \widehat{t_{n - 1}} \ar@{-}[r]_{R'} & \widehat{t_n} \ar[r]_{\overline{R}} & \hat{x}
+    &&& \hat{z} & \ar[l]^{\widehat{R}} \hat{u}_1 \ar[r]_{\widehat{R}'} & \hat{u}_2 \ar[r]_{\widehat{R}'} & \dots \ar[r]_{\widehat{R}'} & \hat{u}_{n - 1} \ar[r]_{\widehat{R}'} & \hat{u}_n \ar[r]_{\widehat{R}} & \hat{y}
     }
-    where $R'$ is either $\overline{R}$ or $\overline{R}^{-1}$
-
-    $\mathcal{M}, y \models \varphi$ and $\widehat{u_n} \overline{R} \hat{y}$, so for some $u_n^{'} \in \widehat{u_n}$ and $y' \in \hat{y}$ with $u_n^{'} R y'$, so $\mathcal{M}, u_n^{'} \models \Diamond \varphi$ and $\widehat{\mathcal{M}}, \widehat{u_n} \models \Diamond \varphi$.
-
-    We have either $\widehat{u_{n - 1}} \overline{R} \widehat{u_n}$ or $\widehat{u_n} \overline{R} \widehat{u_{n - 1}}$.
-
-    If the first holds, then there are $u_{n - 1}^{'} \in \widehat{u_{n - 1}}$ and $u_{n}^{''} \in \widehat{u_{n}}$ with $u_{n - 1}^{'} R u_{n}^{''}$.
-    $\mathcal{M}, u_{n}^{''} \models \Diamond \varphi$. wtf?
-
-    If the second holds, then there $u_{n - 1}^{'} \in \widehat{u_{n - 1}}$ and $u_{n}^{''} \in \widehat{u_{n}}$ with $u_{n}^{''} R u_{n - 1}^{'}$. $\mathcal{M}, u_{n}^{''} \models \Diamond \varphi$ implies $\mathcal{M}, u_{n}^{''} \models \Box \Diamond \varphi$, so $\mathcal{M}, u_{n - 1}^{'} \models \Diamond \varphi$.
-
+    where $\widehat{R}'$ is either $\widehat{R}$ or $\widehat{R}^{-1}$.
   \end{enumerate}
+  As it is known, $\Diamond \Diamond \varphi \to \Box \Diamond \varphi \in {\bf K}45$.
+
+  \vspace{\baselineskip}
+
+  $\hat{u}_1 \widehat \hat{z}$, that is, $u_1' R z'$ for some $u_1' \in \hat{u}_1$ and $z' \in \hat{z}$.
+  That is, $\mathcal{M}, u_1' \models \Diamond \Diamond \varphi$, so $\mathcal{M}, u_1' \models \Diamond \varphi$ and $\overline{M}, \hat{u}_1 \models \Diamond \varphi$.
+
+  We have $\hat{u}_1 \widehat{R}' \hat{u}_2$. Suppose $\mathcal{M}, u_1'' \models \Diamond \varphi$ and $u_1'' R u_2'$.
+  We also have $\mathcal{M}, u_1'' \models \Box \Diamond \varphi$, thus, $\mathcal{M}, u_2' \models \Diamond \varphi$.
+
+  Suppose $\hat{u}_2 \widehat{R} \hat{u}_1$ and $u_2' R u_1''$, then $\mathcal{M}, u_2' \models \Diamond \varphi$.
+
+  Similarly, we have $\mathcal{M}, u_i \models \Diamond \varphi$ iff $\mathcal{M}, u_{i + 1} \models \Diamond \varphi$, whenever $\hat{u}_i \widehat{R}' \hat{u}_{i + 1}$.
+
+  Finally, we have $\hat{u}_n \widehat{R} \hat{x}$. Thus, $u_n' R x'$ for some $u_n' \in \hat{u}_n$ and $x' \in \hat{x}$. $\mathcal{M}, u_n' \models \Diamond \varphi$, so $\mathcal{M}, u_n' \models \Box \Diamond \varphi$. Then $\mathcal{M}, x' \models \Diamond \varphi$.
 \end{proof}
 
+\begin{theorem}
+  ${\bf K}5$ does not admit strict filtrations.
+\end{theorem}
 
+\begin{proof}
+  Let us consider a ${\bf K}5$ model whose Euclidean closure of the minimal filtration does not give us a filtration.
+
+  Let us consider a frame called $\mathcal{F}_{bad}$. We define this frame with the following graph:
+
+\vspace{\baselineskip}
+
+  \xymatrix{
+  &&&&&&& w_5\ar@(ul,ur) \ar@<-.5ex>[d] \\
+  &&&&&& w_1\ar@(ul,ur)  & w_4 \ar@<.5ex>[u] \\
+  &&&&&& w_2 \ar[u] & w_3 \ar[u]
+  }
+\end{proof}
+
+Let us define a valuation $\vartheta$ such that $\vartheta(p) = \{ w_5\}$ and $\vartheta(q) = \{ w_1\}$. Let us consider a minimal filtration of $\mathcal{M}_{bad}$ through the Sub-closure of $\Gamma = \{ \neg p, \neg \Diamond p\}$.
+
+Clearly that $w_2 \sim_{\Gamma} w_3$, since $\neg p$ and $\neg \Diamond p$ are true both at $w_2$ and $w_3$.
+
+Moreover, $R_{min} \cup (R_{min}^{-1} \circ R_{min})$ is not a subset of $R_{max}$ since $(\hat{w_1}, \hat{w_5}) \in (R_{min}^{-1} \circ R_{min})$, but $\Diamond p$ is not true at $w_5$.
+
+Let us also note that strict filtrations of this model is not Euclidean.
+Suppose by contrary that $\widehat{R}^{\mathcal{E}}$ is a strict filtraction of that model. So $R_{min}^E \subseteq \widehat{R}^{\mathcal{E}}$, since $R_{min}^E$ is the minimal Euclidean relation containing $R_{min}$. On the other hand, $R_{min}^E \not\subseteq R_{max}$, so is not $\widehat{R}^{\mathcal{E}}$.
 \section{Filtration for {\bf K4}}
 
 \begin{prop}
