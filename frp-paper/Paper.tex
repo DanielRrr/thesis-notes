@@ -543,15 +543,13 @@ Suppose $(x, y) \in rep(a ; b)$. We need some $z$ with $(x, z) \in rep(a)$ and $
 
 There is $c \leq a ; b$ with $c \in l_{\mathcal{N}}(x,y)$. That is, there are $a_1, a_0 \in \mathcal{A}$ and $\mathcal{N}_i$ such that $c \in l_{\mathcal{N}_i}(x, y)$ where $\forall$ plays $(a_1, a_0)$ for the initial round.
 
-By the condition, $\forall$ makes all witness moves and $\exists$ responds with a witness. Her response is a fresh node $z$ such that $l_{\mathcal{N}_{i + 1}}(x, z) =  \uparrow (l_{\mathcal{N}_i}(x, z) \cup \{ a \})$ and $l_{\mathcal{N}_{i + 1}}(z, y) = \uparrow (l_{\mathcal{N}_i}(z, y) \cup \{ b\})$.
+By the condition, $\forall$ makes the witness moves and $\exists$ responds with a witness. Her response is a fresh node $z$ such that $l_{\mathcal{N}_{i + 1}}(x, z) =  \uparrow (l_{\mathcal{N}_i}(x, z) \cup \{ a \})$ and $l_{\mathcal{N}_{i + 1}}(z, y) = \uparrow (l_{\mathcal{N}_i}(z, y) \cup \{ b\})$. The inclusion $rep(a ; b) \subseteq rep(a) ; rep(b)$ holds since all witness moves have been played and for every such a move there exists a witness.
 
-Let us show the following subitems:
-\begin{itemize}
-  \item $(x, z) \in rep(a)$ ??
-  \item $(z, y) \in rep(b)$ ??
-\end{itemize}
+\item Suppose $(x, y) \in rep(a) ; rep(b)$. We need $(x, y) \in rep(a;b)$. That is, there exists $z \in \mathcal{Nodes}(\mathcal{N})$ with $(x, z) \in rep(a)$ and $(z, y) \in rep(b)$. So, there are $c, d$ such that $c \leq a$ with $c \in l_{\mathcal{N}}(x, z)$ and $d \leq b$ with $d \in l_{\mathcal{N}}(z, y)$.
+We also know that $l_{\mathcal{N}}(x, z) ; l_{\mathcal{N}}(z, y) \subseteq l_{\mathcal{N}}(x, y)$ because all composition moves have been played.
+So $c ; d \in l_{\mathcal{N}}(x, y)$. That makes $(x, y) \in rep(a;b)$ since $c ; d \leq a ; b$.
 
-
+\item Injectivity: TODO.
 \end{itemize}
   \end{enumerate}
 \end{proof}
