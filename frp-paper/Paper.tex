@@ -498,41 +498,61 @@ $ $
       $\mathcal{N}_0 \subseteq \mathcal{N}_1 \subseteq \mathcal{N}_2 \dots$
     \end{center}
 
-    Let us put $\mathcal{N} = \bigcup \limits_{i < \omega} \mathcal{N}_i$.
+    Let us put $\mathcal{N}^{*}(a, b) = \bigcup \limits_{i < \omega} \mathcal{N}_i$. It is clear that $\mathcal{N}^{*}$ is a network.
 
-    Clearly that every $l_{\mathcal{N}}(x, y)$ for each $x, y \in \operatorname{Nodes}(\mathcal{N})$ is join-prime. Let $a + b \in l_{\mathcal{N}}(x, y)$, then there exists $i < \omega$ with
-    $a + b \in l_{\mathcal{N}_i}(x, y)$
+    Let us put the following network:
 
-    $\forall$ makes all possible join moves, so either $a \in l_{\mathcal{N}_{i + 1}}(x, y)$ or $b \in l_{\mathcal{N}_{i + 1}}(x, y)$ depending on what $\exists$ chooses.
-
-    Let us ensure that the labelling function $l_{\mathcal{N}}$ respects $;$. Here, the argument is similar to the proof of \cite[Proposition 5]{hirsch2005class}.
-
-    The map $rep$ defined as follows is a representation:
     \begin{center}
-      $rep(a) = \{ (x, y) \: | \: a \in l_{\mathcal{N}}(x, y)\}$
+      $\mathcal{N} = \bigcup \limits_{\substack{a, b \in \mathcal{A} \\ a \not\leq b}} \mathcal{N}^{*}(a,b)$
     \end{center}
-    This map is well-defined.
 
-    $rep(a + b) = \{ (x, y) \: | \: a + b \in l_{\mathcal{N}}(x, y)\} \subseteq \{ (x, y) \: | \: a \in l_{\mathcal{N}}(x, y) \lor b \in l_{\mathcal{N}}(x, y) \} = rep(a) \cup rep(b)$.
+    $\mathcal{N}$ is really a network since it is the disjoint union of networks.
 
-    The converse inclusion:
+    The labelling function $l_{\mathcal{N}}$ respects $;$. Here, the argument is similar to the proof of \cite[Proposition 5]{hirsch2005class}.
 
-    Suppose $(x,y) \in rep(a) \cup rep(b)$, so either $a \in l_{\mathcal{N}}(x,y)$ or $b \in l_{\mathcal{N}}(x,y)$. If $a \in l_{\mathcal{N}}(x,y)$, then $a + b \in l_{\mathcal{N}}(x,y)$ since $a \leq a + b$ and $l_{\mathcal{N}}(x,y)$ is an upset. The last holds because
-    $l_{\mathcal{N}}(x,y) = \bigcup \limits_{i < \omega} l_{\mathcal{N}_i}(x,y)$ and the union of upsets is an upset.
+    Let us define the $rep : \mathcal{A} \to \operatorname{Nodes}(\mathcal{N})$:
+    \begin{center}
+      $rep(a) = \{ (x, y) \: | \: \exists b \in \downarrow a \:\: b \in l_{\mathcal{N}}(x, y)\}$
+    \end{center}
 
-    The second alternative ($b \in l_{\mathcal{N}}(x,y)$) is similar to the second one.
+    Let us ensure that $rep$ is a representation.
 
-    Thus, $rep(a + b) = rep(a) \cup rep(b)$.
+    \begin{itemize}
+  \item Let us show that $rep(a + b) = rep(a) \cup rep(b)$
 
-\medskip
+  Suppose $(x, y) \in rep(a + b)$. That is, there exists $c \leq a + b$ with $c \in l_{\mathcal{N}}(x, y)$, so does $a + b$ since $l_{\mathcal{N}}$ is an upper cone.
 
-Let us check that $rep(a ; b) = rep(a) | rep(b)$.
+  $a + b \in l_{\mathcal{N}}(x, y)$, that is,
 
-$rep(a;b) = \{ (x,y) \: | \: a;b \in l_{\mathcal{N}}(x,y) \}$
+\begin{center}
+$a + b \in \bigcup \limits_{ \substack{a_1, a_0 \in \mathcal{A} \\ a_1 \not\leq a_0}} l_{\mathcal{N}^{*}(a_1, a_0)}(x,y)$
+\end{center}
 
-Suppose $(x,y) \in rep(a) ; rep(b)$, we need $(x, y) \in rep(a ; b)$, i.e. $a;b \in l_{\mathcal{N}}(x,y)$. Thus, there exists $z \in \operatorname{Nodes}(\mathcal{N})$ such that $(x,z) \in rep(a)$ and $(z,y) \in rep(b)$, i.e. $a \in l_{\mathcal{N}}(x,z)$ and $b \in l_{\mathcal{N}}(z, y)$. $\mathcal{N}$ is a network, so $l_{\mathcal{N}}(x,z) ; l_{\mathcal{N}}(z,y) \subseteq l_{\mathcal{N}}(x,y)$. Thus, $a ; b \in l_{\mathcal{N}}(x,y)$.
+That is, there are $a_1, a_0 \in \mathcal{A}$ with $a_1 \not\leq a_0$ such that $a + b \in l_{\mathcal{N}^{*}(a_1, a_0)}(x,y)$.
+This means $a + b \in \bigcup \limits_{i < \omega} \mathcal{N}_i$.
+$\forall$ makes all possible join moves, so either $a \in l_{\mathcal{N}_{i + 1}}(x, y)$ or $b \in l_{\mathcal{N}_{i + 1}}(x, y)$ depending on what $\exists$ chooses.
+Thus, $(x, y) \in rep(a) \cup rep(b)$.
 
-Suppose for the converse, $(x, y) \in rep(a ; b)$, i.e. $a;b \in l_{\mathcal{N}}(x,y)$. We need some $z$ such that $(x, z) \in rep(a)$ and $(z, y) \in rep(b)$, i.e. $a \in l_{\mathcal{N}}(x,z)$ and $b \in l_{\mathcal{N}}(z,y)$. (Ideally, we need some $c$ with $c \leq a ; b$, but $l_{\mathcal{N}}(x,y)$ is not downward directed)
+Suppose for the converse, $(x, y) \in rep(a)$. We need $(x, y) \in rep(a + b)$.
+In other words, we have some $c \in \mathcal{A}$ with $c \leq a$ and $c \in l_{\mathcal{N}}(x, y)$.
+We have $c \leq a \leq a + b$, so $(x, y) \in rep(a + b)$.
+
+\item Let us show that $rep(a ; b) = rep(a) ; rep(b)$.
+
+Suppose $(x, y) \in rep(a ; b)$. We need some $z$ with $(x, z) \in rep(a)$ and $(z, y) \in rep(b)$.
+
+There is $c \leq a ; b$ with $c \in l_{\mathcal{N}}(x,y)$. That is, there are $a_1, a_0 \in \mathcal{A}$ and $\mathcal{N}_i$ such that $c \in l_{\mathcal{N}_i}(x, y)$ where $\forall$ plays $(a_1, a_0)$ for the initial round.
+
+By the condition, $\forall$ makes all witness moves and $\exists$ responds with a witness. Her response is a fresh node $z$ such that $l_{\mathcal{N}_{i + 1}}(x, z) =  \uparrow (l_{\mathcal{N}_i}(x, z) \cup \{ a \})$ and $l_{\mathcal{N}_{i + 1}}(z, y) = \uparrow (l_{\mathcal{N}_i}(z, y) \cup \{ b\})$.
+
+Let us show the following subitems:
+\begin{itemize}
+  \item $(x, z) \in rep(a)$ ??
+  \item $(z, y) \in rep(b)$ ??
+\end{itemize}
+
+
+\end{itemize}
   \end{enumerate}
 \end{proof}
 
