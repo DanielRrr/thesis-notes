@@ -151,63 +151,7 @@ Let us introduce the notion of a residuated semigroup. Historically, residuated 
   ${\bf RS}$ is the class of all residuated semigroups.
 \end{definition}
 
-The logic of such structures is the Lambek calculus \cite{lambek1958mathematics} allowing one to characterise inference in categorial grammars, the equivalent version of context-free grammars \cite{pentus1993lambek}. One may define the Lambek calculus as the following (cut-free) sequent calculus:
-
-\begin{definition}
-  $ $
-
-  \begin{prooftree}
-  \AxiomC{$ $}
-  \RightLabel{\scriptsize{ax}}
-  \UnaryInfC{$\varphi \vdash \varphi$}
-  \end{prooftree}
-
-\begin{minipage}{0.5\textwidth}
-  \begin{flushleft}
-        \begin{prooftree}
-      \AxiomC{$\Gamma \vdash \varphi$}
-      \AxiomC{$\Delta, \psi, \Theta \vdash \theta$}
-      \RightLabel{$\backslash \vdash $}
-      \BinaryInfC{$\Delta, \Gamma, \varphi \backslash \psi, \Theta \vdash \theta$}
-    \end{prooftree}
-
-    \begin{prooftree}
-      \AxiomC{$\Gamma \vdash \varphi$}
-      \AxiomC{$\Delta, \psi, \Theta \vdash \theta$}
-      \RightLabel{$/ \vdash $}
-      \BinaryInfC{$\Delta, \psi \: / \: \varphi, \Gamma, \Theta \vdash \theta$}
-    \end{prooftree}
-
-    \begin{prooftree}
-      \AxiomC{$\Gamma, \varphi, \psi, \Delta \vdash \theta$}
-      \RightLabel{$\bullet \vdash $}
-      \UnaryInfC{$\Gamma, \varphi \bullet \psi, \Delta \vdash \theta$}
-    \end{prooftree}
-\end{flushleft}
-\end{minipage}
-\begin{minipage}{0.5\textwidth}
-  \begin{flushright}
-       \begin{prooftree}
-      \AxiomC{$\varphi, \Pi \vdash \psi$}
-      \RightLabel{$\vdash \backslash$}
-      \UnaryInfC{$\Pi \vdash \varphi \backslash \psi$}
-    \end{prooftree}
-
-    \begin{prooftree}
-      \AxiomC{$\Pi, \varphi \vdash \psi$}
-      \RightLabel{$\vdash /$}
-      \UnaryInfC{$\Pi \vdash \varphi \: / \: \psi$}
-    \end{prooftree}
-
-    \begin{prooftree}
-      \AxiomC{$\Gamma \vdash \varphi$}
-      \AxiomC{$\Delta \vdash \psi$}
-      \RightLabel{$\vdash \bullet$}
-      \BinaryInfC{$\Gamma, \Delta \vdash \varphi \bullet \psi$}
-    \end{prooftree}
-\end{flushright}
-\end{minipage}
-\end{definition}
+The logic of such structures is the Lambek calculus \cite{lambek1958mathematics} allowing one to characterise inference in categorial grammars, the equivalent version of context-free grammars \cite{pentus1993lambek}. One may define the Lambek calculus as the following (cut-free) sequent calculus.
 
 The class ${\bf R}(;, \setminus, /, \leq)$ consists of the following structures:
 
@@ -473,7 +417,8 @@ Let $\{ \mathcal{N}_i \}_{i \in I}$ be an indexed set of prenetworks (where each
 
   \begin{enumerate}
     \item If $\mathcal{A}$ is representable then $\exists$ has a winning strategy in $\mathcal{G}_{\omega}(\mathcal{A})$.
-    \item If $|\mathcal{A}| = \omega$ and $\exists$ has a winning strategy in $\mathcal{G}_{\omega}(\mathcal{A})$ then $\mathcal{A}$ is representable.
+    \item If $\mathcal{A}$ is infinite and $\exists$ has a winning strategy in $\mathcal{G}_{\omega}(\mathcal{A})$ then $\mathcal{A}$ is representable.
+    \item If $\mathcal{A}$ is infinite and $\forall$ has a winning strategy in $\mathcal{G}_{\omega}(\mathcal{A})$ then $\mathcal{A}$ is not representable.
   \end{enumerate}
 \end{lemma}
 
@@ -481,11 +426,13 @@ Let $\{ \mathcal{N}_i \}_{i \in I}$ be an indexed set of prenetworks (where each
 $ $
 
   \begin{enumerate}
-    \item Let $h$ be a representation of $\mathcal{A}$ over some domain $D$. $\forall$ plays $(a, b)$ with $a \not\leq b$ for the initial round. Let $N = \langle E, V, l \rangle$ be a network being played.
+    \item Let $h$ be a representation of $\mathcal{A}$ over some domain $D$. $\forall$ picks $(a, b)$ with $a \not\leq b$ for the initial round. Let $\mathcal{N} = \langle E, V, l \rangle$ be a network being played. To win the game $\exists$ maintains a map $\iota : E \to D$ such that $(\iota(x_0), \iota(x_1)) \in h(b) \setminus h(a)$ and for each $x, y \in E$ and
+    $a \in l_{\mathcal{N}}(x, y)$ one has $(\iota(x), \iota(y)) \in h(a)$. The argument repeats the proof of the first item of \cite[Proposition 5]{hirsch2005class}.
 
-    TODO: define an embedding $\iota : E \to D$ and check the presence of a winning strategy explicitly
+    \item
+    Firstly, let us suppose that $|\mathcal{A}| = \omega$.
 
-    \item Let $a, b \in \mathcal{A}$ such that $a \not\leq b$. We consider a play of the game where $\forall$ pick the pair $(a, b)$ in the initial round and plays $(\mathcal{N},x, y, z, c, d)$ in the further rounds for each $x, y, z \in \operatorname{Nodes}(\mathcal{N})$ and $c,d \in \mathcal{A}$. Here, $c \in l_N(x, y)$ and $d \in l_N(y, z)$.
+    Let $a, b \in \mathcal{A}$ such that $a \not\leq b$. We consider a play of the game where $\forall$ pick the pair $(a, b)$ in the initial round and plays $(\mathcal{N}, x, y, z, c, d)$ in the further rounds for each $x, y, z \in \operatorname{Nodes}(\mathcal{N})$ and $c,d \in \mathcal{A}$. Here, $c \in l_N(x, y)$ and $d \in l_N(y, z)$.
 
     $\forall$ also plays all rounds $(\mathcal{N},x,y,c,d)$ for each $x, y \in \operatorname{Nodes}(\mathcal{N})$ and $c,d \in \mathcal{A}$ such that there is $e \in \mathcal{A}$ such that
     $e \leq c ; d$ and $e \in l_N(x,y)$.
@@ -545,14 +492,37 @@ There is $c \leq a ; b$ with $c \in l_{\mathcal{N}}(x,y)$. That is, there are $a
 
 By the condition, $\forall$ makes the witness moves and $\exists$ responds with a witness. Her response is a fresh node $z$ such that $l_{\mathcal{N}_{i + 1}}(x, z) =  \uparrow (l_{\mathcal{N}_i}(x, z) \cup \{ a \})$ and $l_{\mathcal{N}_{i + 1}}(z, y) = \uparrow (l_{\mathcal{N}_i}(z, y) \cup \{ b\})$. The inclusion $rep(a ; b) \subseteq rep(a) ; rep(b)$ holds since all witness moves have been played and for every such a move there exists a witness.
 
-\item Suppose $(x, y) \in rep(a) ; rep(b)$. We need $(x, y) \in rep(a;b)$. That is, there exists $z \in \mathcal{Nodes}(\mathcal{N})$ with $(x, z) \in rep(a)$ and $(z, y) \in rep(b)$. So, there are $c, d$ such that $c \leq a$ with $c \in l_{\mathcal{N}}(x, z)$ and $d \leq b$ with $d \in l_{\mathcal{N}}(z, y)$.
+\item Suppose $(x, y) \in rep(a) ; rep(b)$. We need $(x, y) \in rep(a;b)$. That is, there exists $z \in \operatorname{Nodes}(\mathcal{N})$ with $(x, z) \in rep(a)$ and $(z, y) \in rep(b)$. So, there are $c, d$ such that $c \leq a$ with $c \in l_{\mathcal{N}}(x, z)$ and $d \leq b$ with $d \in l_{\mathcal{N}}(z, y)$.
 We also know that $l_{\mathcal{N}}(x, z) ; l_{\mathcal{N}}(z, y) \subseteq l_{\mathcal{N}}(x, y)$ because all composition moves have been played.
 So $c ; d \in l_{\mathcal{N}}(x, y)$. That makes $(x, y) \in rep(a;b)$ since $c ; d \leq a ; b$.
 
-\item Injectivity: TODO.
+\item Injectivity: TODO
+
 \end{itemize}
+Now let us assume that $|\mathcal{A}| \geq \aleph_1$. By elementary chain theorem (see \cite[Theorem 2.5.2]{hodges1997shorter})
+
+\item
   \end{enumerate}
 \end{proof}
+
+\begin{proposition}
+  Let $\mathcal{A}$ be a join semilattice-ordered semigroup, then there exists a game such that $\mathcal{A}$ is representable iff $\exists$ has a winning strategy in the all finite lenght games.
+\end{proposition}
+
+\begin{proof}
+$ $
+
+  \begin{enumerate}
+    \item $(\Rightarrow)$
+    \item $(\Leftarrow)$
+  \end{enumerate}
+\end{proof}
+
+Now we are seeking to obtain the explicit axiomatisation of ${\bf R}(;, +)$. The idea is to axiomatise this class with the additional axioms claiming that $\exists$ has a winning strategy in certain games. See \cite[Chapter 9]{hirsch2002relation} for the discussion in detail to have a more general methodology. Our purpose is to provide the recursively enumerable axiomatisation of ${\bf R}(;, +)$. Thus, according to famous Craig's trick \cite{craig1953axiomatizability}, ${\bf R}(;, +)$ will have the decidable axiomatisation.
+
+\begin{definition}
+
+\end{definition}
 
 \begin{definition}
   Let $V = \{ v_0, v_1, ... \}$ be a countable set of variables. The set of terms $T$ is generated by the following grammar:
@@ -575,18 +545,30 @@ Let $\mathcal{A}$ be a join semilattice-ordered semigroup and $\vartheta : V \to
 
 Let $\mathcal{N} = \langle E, V, l \rangle$ be a term prenetwork, $\mathcal{A}$ be a join-semilattice ordered semigroup and $\vartheta : V \to \underline{{\mathcal{A}}}$ a valuation. Let us define the prenetwork $\mathcal{N}^{\vartheta}$ with the same edges and vertices with the labelling $l^{\vartheta}(x, y) = \{ t^{\vartheta} \: | \: t \in l(x, y)\}$.
 
-\begin{lemma}
+\begin{lemma}\label{ax}
   For each $n < \omega$ there exists a first-order sentence $\sigma_n$ such that $\exists$ has a winning strategy in $\mathcal{G}_n(\mathcal{A})$ iff $\mathcal{A} \models \sigma_n$.
 \end{lemma}
 
 \begin{proof}
+  As usual, for each $n < \omega$ a formula $\sigma_n$ claims that $\exists$ has a winning strategy in the game of lenght $n$.
 
+  Let $\mathcal{N}$ be a term network.
+
+  ...
+
+  We define the sequence of formulas $\{ \sigma_n \}_{n < \omega}$ recursively:
+  \begin{enumerate}
+    \item $\sigma_0(\mathcal{N}, v) = \bigwedge \limits_{a \in l_{\mathcal{N}}(x, y)} \neg (a \leq v)$
+
+    \item $\sigma_{n + 1} = \sigma_{n} \land $
+  \end{enumerate}
 \end{proof}
 
 \begin{theorem}
-  ${\bf R}(+, ;)$ is axiomatised with the axioms of join semilattice-ordered semigroups and $\{ \sigma_n \}_{n < \omega}$.
+  ${\bf R}(+, ;)$ is axiomatised with the axioms of join semilattice-ordered semigroups and $\{ \sigma_n \}_{n < \omega}$ defined in the proof of Lemma~\ref{ax}.
 \end{theorem}
 
+\subsection{The finite representation property for ${\bf R}(+, ;)$}
 
 \begin{theorem}
   ${\bf R}(+, ;)$ has the finite representation property.
@@ -595,6 +577,12 @@ Let $\mathcal{N} = \langle E, V, l \rangle$ be a term prenetwork, $\mathcal{A}$ 
 \begin{proof}
   Let $\mathcal{A} \in {\bf R}(+, ;)$ such that $|\mathcal{A}| < \omega$ and $h$ a representation of $\mathcal{A}$. monkahmm
 \end{proof}
+
+The following corollary follows from finite representability and finite axiomatisability.
+
+\begin{corollary}
+  The class ${\bf R}_{fin}(;, +) = \{ \mathcal{A} \: | \: |\mathcal{A}| < \omega \}$ is recursive. That is, the problem of membership for this class is decidable.
+\end{corollary}
 
 \begin{comment}
 \section{Acknowledgements}
