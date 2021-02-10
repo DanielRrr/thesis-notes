@@ -429,7 +429,7 @@ Suppose by contrary that $\widehat{R}^{\mathcal{E}}$ is a strict filtraction of 
   then there are $x_n' \in \hat{x}_n$ and  $y' \in \hat{y}$ with $x_n' R y'$. $\mathcal{M}, x_n' \models \Box \varphi$ implies $\mathcal{M}, y' \models \varphi$, but $y'$ and $y$ are $\Gamma$-equivalent and $\varphi \in \Gamma$, so $\mathcal{M}, y \models \varphi$.
 \end{proof}
 
-\section{``Finite'' canonical models}
+\section{Finite ``canonical`` models}
 
 Let $\mathcal{L}$ be a normal modal logic, $\mathcal{M}_{\mathcal{L}}$ its canonical model, and $\varphi$. Let us put $\Gamma = \operatorname{Sub}(\varphi) \cup \{ \neg \psi \: | \: \psi \in \operatorname{Sub}(\varphi) \}$.
 
@@ -443,10 +443,17 @@ A subset $\Delta \subseteq \Gamma$ is a \emph{finite $\mathcal{L}$-theory} if $\
 Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one. It is the finite version of Lindenbaum's lemma.
 
 \begin{defin}
-  Let $\mathcal{L}$ be a normal modal logic and $\varphi \not\in \mathcal{L}$. A ``finite'' canonical model is a triple $\mathcal{M}_{\mathcal{L}}^{\varphi} = \langle W_{\mathcal{L}}^{\varphi}, R_{\mathcal{L}}^{\varphi}, \vartheta_{\mathcal{L}}^{\varphi} \rangle$, where
+  Let $\mathcal{L}$ be a normal modal logic and $\varphi \not\in \mathcal{L}$. A finite ``canonical'' model is a triple $\mathcal{M}_{\mathcal{L}}^{\varphi} = \langle W_{\mathcal{L}}^{\varphi}, R_{\mathcal{L}}^{\varphi}, \vartheta_{\mathcal{L}}^{\varphi} \rangle$, where
   \begin{enumerate}
     \item $W_{\mathcal{L}}^{\varphi}$ is the set all maximal theories that extend finite $\mathcal{L}$-theories
-    \item $\Delta_1 R \Delta_2$ iff $\Diamond \psi \in \Delta_2 \Rightarrow \psi \in \Delta_1$
+    \item $R_{\mathcal{L}}^{\varphi}$ is a relation such that
+    $\langle W_{\mathcal{L}}^{\varphi}, R_{\mathcal{L}}^{\varphi} \rangle$ is an $\mathcal{L}$-frame
+    and
+    \begin{center}
+    $\forall \Box \psi \operatorname{Sub}(\varphi) \:\:
+    \forall \Delta_1 \in W_{\mathcal{L}}^{\varphi} \:\: (\Box \psi \in \Delta_1 \Leftrightarrow
+    \forall \Delta_2 \in R_{\mathcal{L}}^{\varphi}(\Delta_1) \:\: \psi \in \Delta_2)$
+    \end{center}
     \item $\vartheta_{\mathcal{L}}^{\varphi}(p) = \{ \Delta \in W_{\mathcal{L}}^{\varphi} \: | \: p \in \Delta \}$.
   \end{enumerate}
 \end{defin}
@@ -475,7 +482,7 @@ Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one
 \begin{theorem} Let $\mathcal{L}$ be a complete normal modal logic, then the following are equivalent:
   \begin{enumerate}
     \item $\mathcal{L}$ admits strict filtrations
-    \item If $\varphi \not\in \mathcal{L}$, then the ``finite'' canonical model $\mathcal{M}_{\mathcal{L}}^{\varphi}$ refutes $\varphi$
+    \item If $\varphi \not\in \mathcal{L}$, then the finite ``canonical'' model $\mathcal{M}_{\mathcal{L}}^{\varphi}$ refutes $\varphi$
   \end{enumerate}
 \end{theorem}
 
@@ -489,14 +496,13 @@ Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one
 
     By lemma above, $\widehat{\mathcal{M}} \models \operatorname{FDiagram}(\widehat{\mathcal{M}})$
 
-    Consider a ``finite'' canonical model
+    Consider a finite ``canonical'' model
     $\mathcal{M}_{\mathcal{L}}^{\operatorname{Sub}(\varphi)} = \langle W_{\mathcal{L}}^{\operatorname{Sub}(\varphi)}, R_{\mathcal{L}}^{\operatorname{Sub}(\varphi)}, \vartheta_{\mathcal{L}}^{\operatorname{Sub}(\varphi)} \rangle$.
     Let us show that $\mathcal{M}_{\mathcal{L}}^{\operatorname{Sub}}$ refutes $\varphi$. For that, we show that $\mathcal{M}_{\mathcal{L}}^{\operatorname{Sub}(\varphi)} \models \operatorname{FDiagram}(\widehat{\mathcal{M}})$.
 
-
     \item $(\Leftarrow)$
 
-    Let $\mathcal{M}_{\mathcal{L}}^{\varphi} = $ be a ``finite'' canonical model that refutes $\varphi$.
+    Let $\mathcal{M}_{\mathcal{L}}^{\varphi}$ be a finite ``canonical'' model that refutes $\varphi$.
 
     Consider $W_{\mathcal{L}}^{\varphi} / \sim_{\operatorname{Sub}(\varphi)}$. Clearly $W_{\mathcal{L}}^{\varphi} = W_{\mathcal{L}}^{\varphi} / \sim_{\operatorname{Sub}(\varphi)}$ since
 
@@ -504,7 +510,13 @@ Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one
       $\Delta_1 \sim_{\operatorname{Sub}(\varphi)} \Delta_2$ iff $\forall \psi \in \operatorname{Sub}(\varphi) \:\: W_{\mathcal{L}}^{\varphi}, \Delta_1 \models \psi \Leftrightarrow W_{\mathcal{L}}^{\varphi}, \Delta_2 \models \psi$ iff $\Delta_1 = \Delta_2$.
     \end{center}
 
-    $R_{\mathcal{L}}^{\varphi}$ also trivially satisfies the required defined. Therefore, $\mathcal{L}$ admits strict filtrations since $\mathcal{M}_{\mathcal{L}}^{\varphi}$ is already finite. In particular, ${\bf K}5$ does not have the ``finite'' canonical property that follows from the contraposition of this statement and Theorem~\ref{sad}.
+    $R_{\mathcal{L}}^{\varphi}$ also satisfies the required definition.
+    Suppose $\Box \psi \in \varphi$ and
+    $\mathcal{M}_{\mathcal{L}}^{\varphi}, \Delta_1 \models \Box \psi$ and
+    $\Delta_1 R_{\mathcal{L}}^{\varphi} \Delta_2$. Clearly that $\psi \in \Delta_2$ by the definition
+    of a finite ``canonical'' model.
+
+    Therefore, $\mathcal{L}$ admits strict filtrations since $\mathcal{M}_{\mathcal{L}}^{\varphi}$ is already finite. In particular, ${\bf K}5$ fails to have the ``canonical'' model property that follows from the contraposition of this statement and Theorem~\ref{sad}.
 
   \end{enumerate}
 \end{proof}
