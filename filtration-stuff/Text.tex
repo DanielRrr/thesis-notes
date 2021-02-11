@@ -450,7 +450,7 @@ Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one
     $\langle W_{\mathcal{L}}^{\varphi}, R_{\mathcal{L}}^{\varphi} \rangle$ is an $\mathcal{L}$-frame
     and
     \begin{center}
-    $\forall \Box \psi \operatorname{Sub}(\varphi) \:\:
+    $\forall \Box \psi \in \operatorname{Sub}(\varphi) \:\:
     \forall \Delta_1 \in W_{\mathcal{L}}^{\varphi} \:\: (\Box \psi \in \Delta_1 \Leftrightarrow
     \forall \Delta_2 \in R_{\mathcal{L}}^{\varphi}(\Delta_1) \:\: \psi \in \Delta_2)$
     \end{center}
@@ -482,7 +482,9 @@ Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one
 \begin{theorem} Let $\mathcal{L}$ be a complete normal modal logic, then the following are equivalent:
   \begin{enumerate}
     \item $\mathcal{L}$ admits strict filtrations
-    \item If $\varphi \not\in \mathcal{L}$, then the finite ``canonical'' model $\mathcal{M}_{\mathcal{L}}^{\varphi}$ refutes $\varphi$
+    \item If $\varphi \not\in \mathcal{L}$, there exists a finite ``canonical'' model $\mathcal{M}_{\mathcal{L}}^{\varphi}$ such that
+    $\mathcal{M}_{\mathcal{L}}^{\varphi} \models \mathcal{L}$ and
+    $\mathcal{M}_{\mathcal{L}}^{\varphi}$ refutes $\varphi$.
   \end{enumerate}
 \end{theorem}
 
