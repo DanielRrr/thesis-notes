@@ -151,8 +151,6 @@ Let us introduce the notion of a residuated semigroup. Historically, residuated 
   ${\bf RS}$ is the class of all residuated semigroups.
 \end{definition}
 
-The logic of such structures is the Lambek calculus \cite{lambek1958mathematics} allowing one to characterise inference in categorial grammars, the equivalent version of context-free grammars \cite{pentus1993lambek}. One may define the Lambek calculus as the following (cut-free) sequent calculus.
-
 The class ${\bf R}(;, \setminus, /, \leq)$ consists of the following structures:
 
 \begin{definition} \label{rrs}
@@ -177,7 +175,7 @@ A residuated semigroup is called \emph{representable} if it is isomorphic to som
   \end{enumerate}
 \end{definition}
 
-Andr\'{e}ka and Mikul\'{a}s proved the representation theorem for ${\bf RS}$ (\cite{andreka1994lambek}) in the fashion of step-by-step representation. See this paper to learn more about step-by-step representations in general \cite{hirsch1997step}. That also implies relational completeness of the Lambek calculus, the logic of ${\bf RS}$.
+ Andr\'{e}ka and Mikul\'{a}s proved the representation theorem for ${\bf RS}$ (\cite{andreka1994lambek}) in the fashion of step-by-step representation. See this paper to learn more about step-by-step representations in general \cite{hirsch1997step}. As it well known, the logic of such structures is the Lambek calculus \cite{lambek1958mathematics}, so we also have the relational completeness of the Lambek calculus.
 
 This fact also claims that the theory of ${\bf R}(;, \setminus, /, \leq)$ is finitely axiomatisable since their theories coincide, and the class of all residuated semigroup is finitely axiomatisable.
 
@@ -405,7 +403,7 @@ Let $\{ \mathcal{N}_i \}_{i \in I}$ be an indexed set of prenetworks (where each
       $\forall$ picks nodes $x, y \in E_n$ and $a + b$ for $a, b \in \mathcal{A}$. $\exists$ has the following two alternatives for her response:
       \begin{enumerate}
         \item $\exists$ chooses $a$ and responds with the prenetwork $\mathcal{N}_{n + 1} = \langle E_n, V_{n}, l_{n + 1} \rangle$, where $l_{n+1}(x, y) = \uparrow (l_n(x,y) \cup \{ a \})$.
-        \item $\exists$ chooses $b$. The response is similar but $l_{n + 1}(x, y) = \uparrow (l_n(x,y) \cup \{ b \}$.
+        \item $\exists$ chooses $b$. The response is similar but $l_{n + 1}(x, y) = \uparrow (l_n(x,y) \cup \{ b \})$.
       \end{enumerate}
     \end{enumerate}
   \end{enumerate}
@@ -521,8 +519,19 @@ Now we are seeking to obtain the explicit axiomatisation of ${\bf R}(;, +)$. See
   \end{center}
 \end{definition}
 
+Let us define the equivalence relation $\approx$ on $T$ as follows for $t_1$ and $t_2$ are terms:
+\begin{center}
+$t_1 \approx t_2$ iff $\theta(t_1) = \theta(t_2)$ for each interpretation of variables in $\theta : V \to F(\omega)$.
+\end{center}
+where $F(\omega)$ is the free countably generated algebra of the variety of all join semilattice-ordered group semigroup. We have the following partial order on the $T$ defined as
+\begin{center}
+  $t_1 \preceq t_2$ iff $t_1 + t_2 \approx t_2$, that is, $F(\omega) \models t_1 + t_2 = t_2$
+\end{center}
+A subset $A \subseteq T$ of terms is called upward closed if for every term $t \in A$ one has $\uparrow t \subseteq A$, where $\uparrow t = \{ t_1 \in T \: | \: t \preceq t_1 \}$.
+
+
 \begin{definition}
-  A term network is a graph $\langle E, V, l \rangle$, where $\langle E, V \rangle$ is a complete directed graph and $l : V \to 2^T$ is a labelling function.
+  A term network is a graph $\langle E, V, l \rangle$, where $\langle E, V \rangle$ is a complete directed graph and $l : V \to \operatorname{Up}(F(\omega), \preceq)$ is a labelling function.
 \end{definition}
 
 Let $\mathcal{A}$ be a join semilattice-ordered semigroup and $\vartheta : V \to \underline{{\mathcal{A}}}$ a valuation. The value of complex terms is defined inductively for $a, b \in T$:
@@ -532,22 +541,34 @@ Let $\mathcal{A}$ be a join semilattice-ordered semigroup and $\vartheta : V \to
   \item $(a + b)^{\vartheta} = a^{\vartheta} + b^{\vartheta}$
 \end{enumerate}
 
-Let $\mathcal{N} = \langle E, V, l \rangle$ be a term prenetwork, $\mathcal{A}$ be a join-semilattice ordered semigroup and $\vartheta : V \to \underline{{\mathcal{A}}}$ a valuation. Let us define the prenetwork $\mathcal{N}^{\vartheta}$ with the same edges and vertices with labelling $l^{\vartheta}(x, y) = \{ t^{\vartheta} \: | \: t \in l_{\mathcal{N}}(x, y)\}$.
+Let $\mathcal{N} = \langle E, V, l \rangle$ a term network, $\mathcal{A}$ be a join-semilattice ordered semigroup and $\vartheta : V \to \underline{{\mathcal{A}}}$ a valuation. Let us define the prenetwork $\mathcal{N}^{\vartheta}$ with the same edges and vertices with labelling $l^{\vartheta}(x, y) = \{ t^{\vartheta} \: | \: t \in l_{\mathcal{N}}(x, y)\}$.
+
+Let us ensure that $\mathcal{N}^{\vartheta}$ is well-defined. Let us consider $\vartheta$ as a homomorphism $F(\omega) \to \mathcal{A}$. We would like to know whether ${\uparrow t^{\vartheta}} \subseteq l^{\vartheta}(x,y)$ for $t^{\vartheta} \in l^{\vartheta}(x,y)$. So $t \in l(x,y)$. Suppose $t \preceq t_1$, then $t_1$ clearly belongs to $l(x,y)$. So $l^{\vartheta}(x,y)$ is upward closed by the construction.
+
+Let $\mathcal{N}$ be a term network. We define the following three extensions of $\mathcal{N}$ reflecting the composition, witness, and join moves respectively:
+\begin{enumerate}
+  \item Let $x, y \in \operatorname{Nodes}(\mathcal{N})$ and $t$ a term. $\mathcal{N}_c$ is the extension of $\mathcal{N}$,
+  where $\operatorname{Nodes}(\mathcal{N}_c) = \operatorname{Nodes}(\mathcal{N})$ and $l_{\mathcal{N}}(x, y) \cup {\uparrow t}$ and $l_{\mathcal{N}_c}(u, v) = l_{\mathcal{N}}(u, v)$ for each $u \neq x$ and $v \neq y$. We denote this network as $\mathcal{N}_c(\mathcal{N}, x, y, t)$.
+  \item
+  Let $x, y \in \operatorname{Nodes}(\mathcal{N})$, $z$ a fresh node, and $t_1$, $t_2$ any terms. Let us define a network $T$ such that $\operatorname{Nodes}(T) = \{ x, y, z\}$. We define labelling as $l_{T}(x, y) = {\uparrow t_1}$ and $l_{T}(y, z) = {\uparrow t_2}$. So we put $\mathcal{N}_w = \mathcal{N} \cup T$.
+  We denote this network as $\mathcal{N}_w(\mathcal{N}, x,y,z, t_1, t_2)$.
+  \item Let $x, y \in \operatorname{Nodes}(\mathcal{N})$ and let $t_1, t_2$ be terms
+  Let us define $T_i = \langle \{ x, y\}, \{ (x, y) \}, l_{T_i} \rangle$, where $l_{T_i}(x, y) = \uparrow (l_{\mathcal{N}}(x, y) \cup t_i)$ for $i = 1,2$. So $\mathcal{N}_{j_1} = \mathcal{N} \cup T_1$ and $\mathcal{N}_{j_2} = \mathcal{N} \cup T_2$.
+  We denote this as $\mathcal{N}_j(\mathcal{N}, x, y, t_1, t_2)$.
+\end{enumerate}
+
+\newpage
 
 \begin{lemma}\label{ax}
   For each $n < \omega$ there exists a first-order sentence $\sigma_n$ such that $\exists$ has a winning strategy in $\mathcal{G}_n(\mathcal{A})$ iff $\mathcal{A} \models \sigma_n$.
 \end{lemma}
 
 \begin{proof}
-  As usual, for each $n < \omega$ a formula $\sigma_n$ claims that $\exists$ has a winning strategy in the game of lenght $n$.
-
-  Let $\mathcal{N}$ be a term network. We define the following three extensions of $\mathcal{N}$ that reflect the composition, witness, and join moves respectively:
-  \begin{enumerate}
-    \item $\mathcal{N}_c = $
-    \item $\mathcal{N}_w = $
-    \item $\mathcal{N}_j = $
-  \end{enumerate}
-  ...
+  As usual, for each $n < \omega$ we construct a formula $\sigma_n$ claiming that $\exists$ has a winning strategy in the game of lenght $n$. To be more precise, our purpose is to have
+  \begin{center}
+    $\exists$ has a winning strategy in $\mathcal{G}_n(\mathcal{N}^{\vartheta}, \mathcal{A}, \vartheta(v))$ if and only if $\mathcal{A} \models \sigma_{n}(\mathcal{N}, v)$
+  \end{center}
+  where $\mathcal{A}$ is a join semilattice-ordered semigroup and $\vartheta : V \to \mathcal{A}$ is a variable assignment.
 
   We define the sequence of formulas $\{ \sigma_n \}_{n < \omega}$ recursively:
   \begin{enumerate}
@@ -555,13 +576,32 @@ Let $\mathcal{N} = \langle E, V, l \rangle$ be a term prenetwork, $\mathcal{A}$ 
 
 This formula merely claims that $\exists$ has a winning strategy in the zero length game.
 
-    \item $\sigma_{n + 1}(\mathcal{N}, v) = \\ \sigma_{n}(\mathcal{N}_c, ..) \land \sigma_{n}(\mathcal{N}_w, ..) \land \sigma_{n}(\mathcal{N}_j, ..)$
+    \item Suppose $\sigma_{n}(\mathcal{N}, v)$ for $n < \omega$. Let us define a formula $\sigma_{n + 1}$ claiming that $\exists$ always has a proper response for a network $\mathcal{N}$ being played (which is defined by $\sigma_{n}(\mathcal{N}, v)$).
+
+    $\sigma_{n + 1}(\mathcal{N}, v)$ is defined as follows:
+    \begin{center}
+      $\sigma_{n + 1}(\mathcal{N}, v) = {\sigma_{n + 1}}_c(\mathcal{N}, v) \land {\sigma_{n + 1}}_w(\mathcal{N}, v) \land {\sigma_{n + 1}}_j(\mathcal{N}, v)$
+    \end{center}
+    where
+    \begin{itemize}
+      \item ${\sigma_{n + 1}}_c(\mathcal{N}, v) = \bigwedge \limits_{x, y, z \in \operatorname{Nodes}(\mathcal{N}), t_1 \in l_{\mathcal{N}}(x, y), t_2 \in l_{\mathcal{N}}(y, z)} \sigma_{n}(\mathcal{N}_c(x, z, t_1, t_2), v)$
+      \item ${\sigma_{n + 1}}_w(\mathcal{N}, v) = \bigwedge \limits_{x,y \in \operatorname{Nodes}(\mathcal{N}), t \in l_{\mathcal{N}}(x,y)} \forall u_1, u_2 (t \leq u_1 ; u_2 \rightarrow \bigvee \mathcal{N}_c(x,y,z, t_1, t_2))$, where $z$ is a fresh node.
+      \item ${\sigma_{n + 1}}_j(\mathcal{N}, v) = \bigwedge \limits_{x, y \in \operatorname{Nodes}(\mathcal{N})} \sigma_{n}(\mathcal{N}_{j_1}(\mathcal{N}, x, y, t_1, t_2), v) \lor \sigma_{n}(\mathcal{N}_{j_2}(\mathcal{N}, x, y, t_1, t_2), v)$
+    \end{itemize}
   \end{enumerate}
+
+  So, $\exists$ has a winning strategy iff these formulas are true under the valuation $\vartheta$ since the formulas $\{ \sigma_n \}_{n < \omega}$ encode the presence of a winning strategy for $\exists$ on every finite round.
 \end{proof}
 
+This inductive sequence of formulas provides us the explicit axiomatisation of the class of representable join semilattice-ordered semigroups.
+
 \begin{theorem}
-  ${\bf R}(+, ;)$ is axiomatised with the axioms of join semilattice-ordered semigroups and $\{ \sigma_n \}_{n < \omega}$ defined in the proof of Lemma~\ref{ax}. Moreover, ${\bf R}(+, ;)$ has the decidable axiomatisation.
+  ${\bf R}(+, ;)$ is axiomatised with the axioms of join semilattice-ordered semigroups and the coutable sequences of universal formulas $\{ \rho_n \}_{n < \omega}$. Moreover, ${\bf R}(+, ;)$ has a recursively enumerable axiomatisation.
 \end{theorem}
+
+\begin{proof}
+  Being the class of ${\bf RRA}$-reducts, ${\bf R}(+, ;)$ forms a pseudo-elementary class (see \cite{eklof1977ultraproducts} to have a rigorous definition). So we apply \cite[Theorem 9.28]{hirsch2002relation}. Therefore, a join semilattice-ordered semigroup $\mathcal{A}$ is representable iff $\mathcal{A} \models \{ \sigma_n \}_{n < \omega}$. Every $\sigma_n$ for $n < \omega$ defined in the proof of Lemma~\ref{ax} is equivalent to the universal formula $\rho_n$ by bringing all universal quantifiers into the prefix of $\sigma_n$.
+\end{proof}
 
 \subsection{The finite representation property for ${\bf R}(+, ;)$}
 
@@ -581,7 +621,7 @@ The following corollary follows from finite representability and finite axiomati
 
 \begin{proof}
   Let $\mathcal{A}$ be a finite semilattice-ordered semigroup. We check axioms with the algorithm that yields ``no'', if $\mathcal{A}$ is not representable. So,
-  In parallel, we check whether $\mathcal{A}$ has a finite representation. If there exists such $n < \omega$ such that $\mathcal{A}$ is representable over size $n$. Both sets are domains of corresponding computable functions, so they are enumerable. That makes ${\bf R}_{fin}(;, +)$ decidable by Post theorem.
+  In parallel, we check whether $\mathcal{A}$ has a finite representation. If there exists such $n < \omega$ such that $\mathcal{A}$ is representable over size $n$. Both sets are domains of corresponding computable functions, so they are enumerable. That makes ${\bf R}_{fin}(;, +)$ decidable by Post's theorem.
 \end{proof}
 
 \begin{comment}
