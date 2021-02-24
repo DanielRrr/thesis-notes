@@ -488,27 +488,6 @@ Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one
   \end{enumerate}
 \end{defin}
 
-\begin{defin} Let $\varphi$ be a modal formula, $\mathcal{L}$ a logic that admits strict filtration, and $\mathcal{M}$ an $\mathcal{L}$-model that refutes $\varphi$. A \emph{filtration diagram} of a model $\widehat{\mathcal{M}}$ (a filtration of $\mathcal{M}$ through $\varphi$) is a formula $\operatorname{FDiagram}(\mathcal{M}_{\mathcal{L}}^{\operatorname{Sub}(\varphi)}) = \bigwedge \Gamma \wedge \bigwedge \Delta$, where
-  \begin{itemize}
-    \item $\Gamma =
-    \{ \psi \in \operatorname{Sub}(\varphi) \: | \: \exists w \in \underline{\mathcal{M}} \: \widehat{M}, \hat{w} \models \psi \}$
-    \item $\Delta = \{ \neg \psi \in \operatorname{Sub}(\varphi) \: | \: \psi \in \operatorname{Sub}(\varphi) \: \& \: \mathcal{M} \nvDash \psi \}$
-  \end{itemize}
-\end{defin}
-
-\begin{lemma}
-  Let $\varphi$ be a modal formula, $\mathcal{L}$ a logic that admits strict filtration, and $\mathcal{M}$ an $\mathcal{L}$-model that refutes $\varphi$. Then $\mathcal{M}_{\mathcal{L}}^{\operatorname{Sub}(\varphi)} \models \operatorname{FDiagram}(\mathcal{M}_{\mathcal{L}}^{\operatorname{Sub}(\varphi)})$
-\end{lemma}
-
-\begin{defin}
-  Let $\mathcal{M}$ be a model and $\Psi$ a set of formulas, then a $\Psi$-theory of a model, denoted as $\operatorname{Th}_{\Psi}$, is the set $\operatorname{Th}_{\Psi} = \{ \varphi \in \Psi \: | \: \mathcal{M} \models \varphi \}$.
-\end{defin}
-
-\begin{lemma}
-  Let $\mathcal{L}$ be a modal logic that admits strict filtrations and $\varphi \not\in \mathcal{L}$.
-  Let $\mathcal{M}$ be a model that refutes $\varphi$ and $\mathcal{N}$ be a different model such that $\mathcal{N} \models \mathcal{L}$. If $\mathcal{N} \models \operatorname{FDiagram}(\mathcal{M}_{\mathcal{L}}^{\operatorname{Sub}(\varphi)})$, then $\operatorname{Th}_{\operatorname{Sub}(\varphi)}(\mathcal{M}_{\mathcal{L}}^{\operatorname{Sub}(\varphi)}) = \operatorname{Th}_{\operatorname{Sub}(\varphi)}(\mathcal{N})$. In particular, $\mathcal{N}$ refutes $\varphi$.
-\end{lemma}
-
 \begin{theorem} Let $\mathcal{L}$ be a canonical logic, then the following are equivalent:
   \begin{enumerate}
     \item $\mathcal{L}$ admits strict filtrations
@@ -524,13 +503,22 @@ Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one
   \begin{enumerate}
     \item $(\Rightarrow)$
 
-    Let $\varphi \not\in \mathcal{L}$, there exists a model $\mathcal{M}$ that refutes $\varphi$, so there exists $w \in \underline{\mathcal{M}}$ such that $\mathcal{M}, w \nvDash \varphi$. But $\mathcal{L}$ admits strict filtration, so there exists a model $\widehat{\mathcal{M}} = \langle \widehat{W}, \widehat{R}, \widehat{\vartheta} \rangle$, where $\widehat{W} = W / \sim_{\varphi}$ and $\hat{R}^{min} \subseteq \widehat{R} \subseteq \hat{R}^{max}$. In particular, $\widehat{\mathcal{M}}, \widehat{w} \nvDash \varphi$.
+    Let $\varphi \not\in \mathcal{L}$, there exists a model $\mathcal{M}$ that refutes $\varphi$, so there exists $w \in \underline{\mathcal{M}}$ such that $\mathcal{M}, w \nvDash \varphi$. But $\mathcal{L}$ admits strict filtration, so there exists a model
+    $\widehat{\mathcal{M}} = \langle \widehat{W}, \widehat{R}, \widehat{\vartheta} \rangle$, where $\widehat{W} = W / \sim_{\varphi}$ and $\hat{R}^{min} \subseteq \widehat{R} \subseteq \hat{R}^{max}$. In particular, $\widehat{\mathcal{M}}, \widehat{w} \nvDash \varphi$.
+    Let us put $T = \operatorname{Th}(\widehat{\mathcal{M}})$.
 
-    By lemma above, $\widehat{\mathcal{M}} \models \operatorname{FDiagram}(\widehat{\mathcal{M}})$
+    ...
 
-    Consider a finite ``canonical'' model
-    $\mathcal{M}_{\mathcal{L}}^{\operatorname{Sub}(\varphi)} = \langle W_{\mathcal{L}}^{\operatorname{Sub}(\varphi)}, R_{\mathcal{L}}^{\operatorname{Sub}(\varphi)}, \vartheta_{\mathcal{L}}^{\operatorname{Sub}(\varphi)} \rangle$.
-    Let us show that $\mathcal{M}_{\mathcal{L}}^{\operatorname{Sub}}$ refutes $\varphi$. For that, we show that $\mathcal{M}_{\mathcal{L}}^{\operatorname{Sub}(\varphi)} \models \operatorname{FDiagram}(\widehat{\mathcal{M}})$.
+    On the other hand, $\mathcal{L}$ is canonical. Therefore, $\mathcal{F}_{\mathcal{L}} \models \mathcal{L}$ as well as $\mathcal{F}_{T} \models \mathcal{L}$.
+
+    Here $\mathcal{F}_{T}$ is a frame $\langle W_T, R_T \rangle$, where $W_T$ is the set of all maximal consistent theories that contain $T$ and $R_T = R_{\mathcal{L}} \cap W_T \times W_T$.
+
+    $\mathcal{M}_{T} = \langle \mathcal{F}_{\widehat{\mathcal{M}}}, \vartheta_{\widehat{\mathcal{M}}} \rangle$,
+    being a generated submodel of $\mathcal{M}_{\mathcal{L}}$, does not have to be a ``finite canonical'' model according to our definition.
+
+    Let us put $W_{\mathcal{L}}^{\varphi} = \{ \Gamma \subseteq \operatorname{Sub}(\varphi) \cup \neg \operatorname{Sub}(\varphi) \: | \: \Gamma \text{ is maximal consistent} \}$.
+
+    ...
 
     \item $(\Leftarrow)$
 
