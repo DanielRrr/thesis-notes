@@ -153,7 +153,8 @@ If $\Gamma$ is finite, then $\sim_{\Gamma}$ has a finite index. An equivalence r
   \end{enumerate}
 \end{defin}
 
-If $\Phi$ is finite subset of $\Gamma$ and $\sim = \sim_{\Phi}$, then $\widehat{\mathcal{M}}$ is a definable $\Gamma$-filtration of $\mathcal{M}$ through $\Phi$. If $\sim = \sim_{\Gamma}$, then such a filtration by means of the definiton above is called \emph{strict}.
+If $\Phi$ is finite subset of $\Gamma$ and $\sim = \sim_{\Phi}$, then $\widehat{\mathcal{M}}$ is a definable $\Gamma$-filtration of $\mathcal{M}$ through $\Phi$. If $\sim = \sim_{\Gamma}$, then such a filtration by means of the definiton above is called \emph{strict}. A class of models $\mathbb{M}$ admits strict filtrations for models (ASF), if for every $\operatorname{Sub}$-closed set $\Gamma$ and for every $\mathcal{M} \in \mathbb{M}$ there exists a $\Gamma$ filtration of $\mathcal{M}$.
+A class of frames $\mathbb{F}$ admits strict filtrations for frames, if for every $\operatorname{Sub}$-closed set $\Gamma$ and for every frame $\mathcal{F} \in \mathbb{F}$ and every model $\mathcal{M}$ over $\mathcal{F}$ there exists a $\Gamma$ filtration of $\mathcal{M}$. If $\mathcal{L}$ is canonical, then the ASF property for frames and ASF property for models are equivalent \cite[Theorem 2.10]{kikot2020completeness}.
 
 \begin{lemma}
   Let $\Gamma$ be a finite set of formulas closed under subformulas and $\widehat{\mathcal{M}}$ a filtration of $\mathcal{M}$ through $\Gamma$, then for each $x \in W$ and for each $\varphi \in \Gamma$ one has
@@ -463,16 +464,16 @@ Suppose by contrary that $\widehat{R}^{\mathcal{E}}$ is a strict filtraction of 
 
 Let $\mathcal{L}$ be a normal modal logic, $\mathcal{M}_{\mathcal{L}}$ its canonical model, and $\varphi$. Let us put $\Gamma = \operatorname{Sub}(\varphi) \cup \{ \neg \psi \: | \: \psi \in \operatorname{Sub}(\varphi) \}$.
 
-A subset $\Delta \subseteq \Gamma$ is a \emph{finite $\mathcal{L}$-theory} if $\bigwedge \Delta \notin \mathcal{L}$. A subset $\Delta$ is maximal, if (the following are obviouslyequivalent):
+A subset $\Delta \subseteq \Gamma$ is a \emph{finite $\mathcal{L}$-consistent set} if $\neg \bigwedge \Delta \notin \mathcal{L}$. A subset $\Delta$ is maximal, if (the following are obviously equivalent):
 \begin{enumerate}
-  \item $\Delta$ is maximal amongst finite $\mathcal{L}$-theories,
+  \item $\Delta$ is maximal amongst finite $\mathcal{L}$-consistent sets,
   \item For each $\psi \in \operatorname{Sub}(\varphi)$ either $\psi \in \Delta$ or
   $\neg \psi \in \Delta$.
 \end{enumerate}
 
 Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one. It is the finite version of Lindenbaum's lemma.
 
-\begin{defin}
+\begin{defin}\label{fin}
   Let $\mathcal{L}$ be a normal modal logic and $\varphi \not\in \mathcal{L}$. A finite ``canonical'' model is a triple $\mathcal{M}_{\mathcal{L}}^{\varphi} = \langle W_{\mathcal{L}}^{\varphi}, R_{\mathcal{L}}^{\varphi}, \vartheta_{\mathcal{L}}^{\varphi} \rangle$, where
   \begin{enumerate}
     \item $W_{\mathcal{L}}^{\varphi}$ is the set all maximal theories that extend finite $\mathcal{L}$-theories
@@ -488,7 +489,7 @@ Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one
   \end{enumerate}
 \end{defin}
 
-\begin{theorem} Let $\mathcal{L}$ be a canonical logic, then the following are equivalent:
+\begin{theorem} $\mathcal{L}$ be a modal logic, then the following are equivalent:
   \begin{enumerate}
     \item $\mathcal{L}$ admits strict filtrations
     \item If $\varphi \not\in \mathcal{L}$, there exists a finite ``canonical'' model $\mathcal{M}_{\mathcal{L}}^{\varphi}$ such that
@@ -502,23 +503,12 @@ Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one
 
   \begin{enumerate}
     \item $(\Rightarrow)$
+    Let $\varphi \not\in \mathcal{L}$, let us put $\Gamma = \operatorname{Sub}(\varphi)$.
+    $\mathcal{L}$.
+    In particular, $\mathcal{M}_{\mathcal{L}} \nvDash \varphi$, where $\mathcal{M}_{\mathcal{L}}$ is the canonical model of $\mathcal{L}$. $\mathcal{L}$ admits strict filtrations, so the filtration of $\mathcal{M}_{\mathcal{L}}$ through $\Gamma$ is also an $\mathcal{L}$-model.
+    The underlying set of $\mathcal{M}_{\mathcal{L}} / \sim_{\Gamma}$ consists of maximal $\mathcal{L}$ theories up to $\Gamma$-equivalence and this quotient set is finite.
 
-    Let $\varphi \not\in \mathcal{L}$, there exists a model $\mathcal{M}$ that refutes $\varphi$, so there exists $w \in \underline{\mathcal{M}}$ such that $\mathcal{M}, w \nvDash \varphi$. But $\mathcal{L}$ admits strict filtration, so there exists a model
-    $\widehat{\mathcal{M}} = \langle \widehat{W}, \widehat{R}, \widehat{\vartheta} \rangle$, where $\widehat{W} = W / \sim_{\varphi}$ and $\hat{R}^{min} \subseteq \widehat{R} \subseteq \hat{R}^{max}$. In particular, $\widehat{\mathcal{M}}, \widehat{w} \nvDash \varphi$.
-    Let us put $T = \operatorname{Th}(\widehat{\mathcal{M}})$.
-
-    ...
-
-    On the other hand, $\mathcal{L}$ is canonical. Therefore, $\mathcal{F}_{\mathcal{L}} \models \mathcal{L}$ as well as $\mathcal{F}_{T} \models \mathcal{L}$.
-
-    Here $\mathcal{F}_{T}$ is a frame $\langle W_T, R_T \rangle$, where $W_T$ is the set of all maximal consistent theories that contain $T$ and $R_T = R_{\mathcal{L}} \cap W_T \times W_T$.
-
-    $\mathcal{M}_{T} = \langle \mathcal{F}_{\widehat{\mathcal{M}}}, \vartheta_{\widehat{\mathcal{M}}} \rangle$,
-    being a generated submodel of $\mathcal{M}_{\mathcal{L}}$, does not have to be a ``finite canonical'' model according to our definition.
-
-    Let us put $W_{\mathcal{L}}^{\varphi} = \{ \Gamma \subseteq \operatorname{Sub}(\varphi) \cup \neg \operatorname{Sub}(\varphi) \: | \: \Gamma \text{ is maximal consistent} \}$.
-
-    ...
+    It is readily checked that the quotient model $\mathcal{M}_{\mathcal{L}} / \sim_{\Gamma}$ satifsfies Definition~\ref{fin}.
 
     \item $(\Leftarrow)$
 
@@ -526,8 +516,7 @@ Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one
     be a finite ``canonical'' model that refutes $\varphi$.
     Let $\mathcal{M}$ be an $\mathcal{L}$-model that also refutes $\varphi$.
     Let us show that there exists a model $\widehat{\mathcal{M}}$ such that
-    $\widehat{\mathcal{M}}$ is a
-    strict filtration of $\mathcal{M}$ through $\operatorname{Sub}(\varphi)$.
+    $\widehat{\mathcal{M}}$ is a strict filtration of $\mathcal{M}$ through $\operatorname{Sub}(\varphi)$.
 
     Let $\sim_{\operatorname{Sub}(\varphi)}$ be an equivalence relation on $\underline{\mathcal{M}}$ defined as usual:
 
@@ -538,28 +527,31 @@ Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one
 
     Let $[u] \in W/\sim_{\operatorname{Sub}(\varphi)}$, where $W = \underline{\mathcal{M}}$,
     consider its truth set $||[u]|| = \{ \psi \in \operatorname{Sub}(\varphi) \: | \: \mathcal{M}, u \models \psi \}$.
-    $||[u]||$ is clearly a finite consistent theory and it consists in some $\Delta \in W_{\mathcal{L}}^{\varphi}$ by the finite analogue of Lindenbaum's lemma. Such a $\Delta$ is clearly unique as well.
+    $||[u]||$ is clearly a finite $\mathcal{L}$-consistent set and it is maximal.
     Consider a map
     \begin{center}
     $\iota : W/\sim_{\operatorname{Sub}(\varphi)} \to W_{\mathcal{L}}^{\varphi}$ with
-    $\iota : [u] \mapsto \Delta \supseteq ||[u]||$
+    $\iota : [u] \mapsto ||[u]||$
     \end{center}
 
-    Consider the set $\iota(W/\sim_{\operatorname{Sub}(\varphi)})$ denoted as $\operatorname{Im}(\iota)$. Let us show that $\operatorname{Im}(\iota)$ is $R_{\mathcal{L}}^{\varphi}$-closed.
+    Consider the set $\iota(W/\sim_{\operatorname{Sub}(\varphi)})$ that we denote as $\operatorname{Im}(\iota)$. Let us show that $\operatorname{Im}(\iota)$ is $R_{\mathcal{L}}^{\varphi}$-closed.
 
     Let $\iota([u]) R_{\mathcal{L}}^{\varphi} \Delta$, let us show that $\Delta \in \iota(W/\sim_{\operatorname{Sub}(\varphi)})$, that is, $\Delta = \iota([v])$ for some $v \in W$.
 
-    Consider $\Delta$ as a finite ultrafilter. Thus, $\Delta$ is principal and it 's generated by $\psi_1 \land \dots \land \psi_n$, where each $\psi_i \in \operatorname{Sub}(\varphi)$. So $\Diamond (\psi_1 \land \dots \land \psi_n) \in \iota([u])$.
+    Note that $\bigwedge \limits_{\psi \in \Delta} \psi \in \Delta$ since $\Delta$ is finite.
+    This conjuction has the form $\bigwedge \limits_{\psi \in \Delta} \psi \in \Delta = \psi_1 \land \dots \land \psi_n$ for some $n < \omega$ and for some $\psi_i \in \operatorname{Sub}(\varphi) \cup \neg \operatorname{Sub}(\varphi)$, where $0 < i < \omega$.
+
+    Therefore $\mathcal{M}^{\varphi}_{\mathcal{L}}, \iota([u]) \models \Diamond (\psi_1 \land \dots \land \psi_n)$.
     Then $\mathcal{M}, u \models \Diamond (\psi_1 \land \dots \land \psi_n)$. That implies $\mathcal{M}, v \models \psi_1 \land \dots \land \psi_n$ for some $v \in R(u)$.
     This is clearly a desired $v$ since $||[v]|| \subseteq \Delta$ and such a $\Delta$ is unique.
 
-    Thus, $\langle \operatorname{Im}(\iota), R_{\mathcal{L}}^{\varphi} \cap \operatorname{Im}(\iota) \times \operatorname{Im}(\iota), {\vartheta'}_{\mathcal{L}}^{\varphi} \rangle$, where ${\vartheta'}_{\mathcal{L}}^{\varphi}(p) = \vartheta_{\mathcal{L}}^{\varphi}(p) \cap \operatorname{Im}(\iota)$ is a generated submodel of $\mathcal{M}_{\mathcal{L}}^{\varphi}$.
+    Thus, $\langle \operatorname{Im}(\iota), R_{\mathcal{L}}^{\varphi}, {\vartheta'}_{\mathcal{L}}^{\varphi} \rangle$, where ${\vartheta'}_{\mathcal{L}}^{\varphi}(p) = \vartheta_{\mathcal{L}}^{\varphi}(p) \cap \operatorname{Im}(\iota)$
+    is a generated submodel of $\mathcal{M}_{\mathcal{L}}^{\varphi}$.
 
     Consider a model $\widehat{\mathcal{M}} = \langle W/\sim_{\operatorname{Sub}(\varphi)}, \widehat{R}, \widehat{\vartheta} \rangle$, where $\widehat{R}$ is defined as
     \begin{center}
-      $[u] \widehat{R} [v]$ iff $||[u]|| {R'}_{\mathcal{L}}^{\varphi} ||[v]||$, where ${R'}_{\mathcal{L}}^{\varphi} R_{\mathcal{L}}^{\varphi} \cap \operatorname{Im}(\iota) \times \operatorname{Im}(\iota)$.
+      $[u] \widehat{R} [v]$ iff $||[u]|| {R}_{\mathcal{L}}^{\varphi} ||[v]||$
     \end{center}
-    Let us prove that $\widehat{\mathcal{M}}$ is a filtration of $\mathcal{M}$ through $\operatorname{Sub}(\varphi)$.
 
     Let us show that $R_{min} \subseteq \widehat{R} \subseteq R_{max}$.
 
@@ -567,7 +559,6 @@ Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one
     $[u] \widehat{R} [v]$. That is, let us show that $\Diamond \iota(v) \subseteq \iota(v)$.
     But if $\mathcal{M}, v' \models \psi$ for $\Diamond \psi \in \operatorname{Sub}(\varphi)$, then
     $\mathcal{M}, u' \models \Diamond \psi$. Recall that $u' \sim_{\operatorname{Sub}(\varphi)} u$ and $v' \sim_{\operatorname{Sub}(\varphi)} v$, so we have $\Diamond ||[v]|| \subseteq ||[u]||$.
-    The same inclusion clearly holds for the maximal extensions of $\Diamond ||[v]||$ and $||[u]||$.
 
     The second inclusion follows from the definition of a relation in a finite ``canonical'' model.
   \end{enumerate}
