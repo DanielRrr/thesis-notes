@@ -162,24 +162,6 @@ Let $A$ be a non-empty subset of a Boolean algebra $\mathcal{B}$, $A$ is a \emph
 
 \subsection{(Representable) cylindric algebras and cylindric set algebras}
 
-\begin{defin}
-  $ $
-
-    A relation algebra is an algebra $\mathcal{R} = \langle R, 0, 1, +, -, ;, {}^{\smile}, {\bf 1 }' \rangle$ such that $\langle R, 0, 1, +, - \rangle$ is a Boolean algebra and the following
-    equations hold, for each $a, b, c \in R$:
-    \begin{enumerate}
-      \item $a ; (b ; c) = (a ; b) ; c$
-      \item $(a + b) ; c = (a ; c) + (b ; c)$
-      \item $a ; {\bf 1}' = a$
-      \item $a^{\smile \smile} = a$
-      \item $(a + b)^{\smile} = a^{\smile} + b^{\smile}$
-      \item $(a ; b)^{\smile} = b^{\smile} ; a^{\smile}$
-      \item $a^{\smile} ; (- (a ; b)) \leq - b$
-    \end{enumerate}
-    where $a \leq b$ iff $a + b = b$. ${\bf RA}$ denotes the class of all relation
-    algebras.
-\end{defin}
-
 Cylindric algebras provide a generalisation of relation algebras for relations of an arbitrary arity. Let $\alpha$ be an ordinal. Let $\prescript{\alpha}{}U$ be the set of all functions mapping $\alpha$ to a non-empty set $U$. We denote $x(i) = x_i$ for
 $x \in \prescript{\alpha}{}U$ and $i < \alpha$.
 
@@ -216,6 +198,18 @@ $ $
   \end{enumerate}
 \end{defin}
 
+One may define a representation explicitly in the following way:
+
+\begin{defin}
+  Let $\mathcal{A}$ be a cylindric algebra of dimension $\alpha$. A representation of $\mathcal{A}$ over the non-empty domain $X$ is a map $f : \mathcal{A} \hookrightarrow 2^{\prescript{\alpha}{}U}$ such that:
+  \begin{enumerate}
+    \item $f(1) = \bigcup \limits_{i \in I} \prescript{\alpha}{}X_i$ for some disjoint family $\{X_i\}_{i \in I}$ where each $X_i \subseteq X$
+    \item $h : \mathcal{A} \to 2^{f(1)}$ is a representation of a Boolean reduct
+    \item for all $\lambda, \eta < \alpha$, $x \in h(d_{\lambda \eta})$ iff $x_{\lambda} = x_{\eta}$
+    \item for all $\lambda < \alpha$ and $a \in \mathcal{A}$, $x \in h(c_{\lambda}(a))$ iff there is $y \in X$ such that $x[\lambda \mapsto y] \in h(a)$
+  \end{enumerate}
+\end{defin}
+
 \begin{defin}
   Given a cylindric algebra of dimension $\alpha$ $C$, let $x$ be a term of its signature, the substitution operator $s^{i}_{j}$ have the following definition:
   \begin{center}
@@ -225,7 +219,10 @@ $ $
 
 It is well known that ${\bf RCA}_{\alpha}$ is a variety, ${\bf RCA}_{\alpha}$ ($\alpha \leq 2$) is finitely axiomatisable and ${\bf RCA}_{\alpha}$ ($2 < \alpha < \omega$) has no finite axiomatisation, see \cite{Henkin1988-HENCAP-4}.
 
-Let $\mathcal{A} \in {\bf C}_{\omega}$, then $\mathcal{A}$ has a \emph{complete representation}, if this representation preserves all existing suprema.
+Let $\mathcal{A} \in {\bf C}_{\omega}$, then $\mathcal{A}$ has a \emph{complete representation}, if this representation preserves all existing suprema. In other words, $\mathcal{A}$ is completely representable.
+
+\begin{defin} Atom
+\end{defin}
 
 Let us concretise the definition of a canonical extension for $\alpha$-dimensional cylindric algebras:
 
@@ -291,10 +288,166 @@ Let $\mathcal{C}$ be a $\beta$-dimensional cylindic algebra and $\alpha$ an ordi
   $\mathfrak{N}\mathfrak{r}_\alpha \mathcal{C} = \langle \{ a \in \mathcal{C} \: | \: \forall j (\alpha \leq j \: \& \: j < \beta \Rightarrow c_j a = a) \}, +, -, 0, 1, \{d_{ij}\}_{i,j < \alpha}, \{c_{\gamma}\}_{\gamma} \rangle$
 \end{center}
 
+\section{The result}
+
+\begin{lemma}\label{Neat}
+  Let $\mathcal{A}$ be a BAO of type ${\bf CA}_{\alpha}$ and $\mathcal{B}$ be a $\beta$-dimensional cylindric algebra such that $\beta \leq \alpha$ and $\mathcal{A}$ neatly embeds to $\mathcal{B}$ by a complete embedding.
+
+  \begin{enumerate}
+  \item $\mathcal{A}^{+}$ neatly embeds to $\mathcal{B}^{+}$ by a complete embedding.
+  \item $\mathcal{A}$ is atomic.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+$ $
+
+\begin{enumerate}
+  \item See \cite[Remark 2.7.25]{henkin1971cylindric}.
+  \item Is it true?
+\end{enumerate}
+\end{proof}
+
+\begin{lemma}[See \cite{hirsch1997complete}]
+  A Boolean algebra is compeletely representable iff it has an atomic representation.
+\end{lemma}
+
+\begin{defin}
+  Let $\mathcal{A}$ be a BAO of type ${\bf CA}_{\omega}$, an $\mathcal{A}$-pre-network is a pair
+  $\mathcal{N} = \langle N, l \rangle$, where $N$ is a set of nodes and $l : \prescript{\omega}{}N \to \operatorname{At}(\mathcal{A})$.
+
+  $\mathcal{N}$ is a network, if the following conditions hold, for all $x, y \in \prescript{\omega}{}N$ and $i, j < \omega$:
+  \begin{enumerate}
+    \item $l(x) \leq d_{ij}$ iff $x(i) = x(j)$
+    \item $x \equiv_i y$ implies $l(x) \leq c_i l(y)$
+  \end{enumerate}
+\end{defin}
+
+Let $\mathcal{N}_1 = \langle N_1, l_1 \rangle$ and $\mathcal{N}_2 = \langle N_2, l_2 \rangle$ be networks, then $\mathcal{N}_1 \subseteq \mathcal{N}_2$ if $N_1 \subseteq N_2$ and $l_1 = l_2 	\upharpoonright_{N_1}$.
+
+Let $\Lambda \in \operatorname{Lim}$ and $\{ \mathcal{N}_{\lambda}\}_{\lambda < \Lambda}$ a sequence of networks such that
+\begin{center}
+  $\langle N_0, l_0 \rangle \subseteq \langle N_1, l_1 \rangle \subseteq \dots \langle N_{\lambda}, l_{\lambda} \rangle \subseteq \dots $ for $\lambda < \Lambda$
+\end{center}
+then \emph{the limit} of the sequence $\{ \mathcal{N}_{\lambda}\}_{\lambda < \Lambda}$ is the network
+\begin{center}
+  $\mathcal{N} = \langle N, l \rangle = \bigcup \limits_{\lambda < \Lambda} \langle N_{\lambda}, l_{\lambda} \rangle$
+\end{center}
+with nodes $N = \bigcup \limits_{\lambda < \Lambda} N_{\lambda}$ and labelling $l = \bigcup \limits_{\lambda < \Lambda} l_{\lambda}$, that is,
+  for any $\lambda \in \Lambda$ and $x \in \prescript{\omega}{}N$ one has $l(x) = l_{\lambda}(x)$.
+
+The elements of $\prescript{\omega}{}N$ are called \emph{$\omega$-dimensional hyperedges} of a network. One may identify a complete representation of an atomic cylindric-type algebra $\mathcal{A}$
+with a set $\{ \mathcal{N}_a \: | \: a \in \operatorname{At}(\mathcal{A}) \}$ of $\mathcal{A}$-networks with the following additional condition:
+\begin{itemize}
+  \item For each $a \in \operatorname{At}(\mathcal{A})$ there exists $x \in \prescript{\omega}{}N_a$ such that $l_a(x) = a$ and for each $z \in \prescript{\omega}{}N_a$ and $b \in \operatorname{At}(\mathcal{A})$, $i < \omega$ with $l_a(z) \leq c_i b$
+  there exists $y \in \prescript{\omega}{}N_a$ such that $z \equiv_i y$ and $l_a(y) = b$.
+\end{itemize}
+
+We define a complete representation $h$ of a cylindric-type algebra $\mathcal{A}$ as follows, for any $b \in \mathcal{A}$:
+\begin{center}
+$h(b) = \{ x \: | \: \exists a \in \operatorname{At}(\mathcal{A}), x \in \prescript{\omega}{}N_a, l_a(x) \leq b \}$
+\end{center}
+
+Let us define an atomic game.
+
+\begin{defin}
+  Let $\mathcal{A}$ be an atomic BAO of type ${\bf CA}_{\omega}$ and $\kappa > 0$ a cardinal. The game $\mathcal{G}^{\kappa}(\mathcal{A})$ is defined as follows. The game has two players: $\forall$ (Abelard) and $\exists$ (H\'{e}lo\"{i}se). A play of the game is the sequence
+  \begin{center}
+    $\mathcal{N}_0 \subseteq \mathcal{N}_1 \subseteq \mathcal{N}_2 \subseteq \dots \subseteq \mathcal{N}_{\lambda} \subseteq \dots$ for $\lambda < \kappa$
+  \end{center}
+  The game consists of the following stages:
+  \begin{enumerate}
+    \item ({\bf Zero round})
+
+    $\forall$ picks an atom $a \in \operatorname{At}(\mathcal{A})$ and $\exists$ plays a network $\mathcal{N}_0$. If there is no $x \in \prescript{\omega}{}N_0$ such that $l_0(x) = a$, then $\forall$ wins the play.
+    \item ({\bf Successor round})
+
+    Let $0 < \lambda$ be a cardinal such that $\lambda + 1 < \kappa$ and $\mathcal{N}_{\lambda} = \langle N_{\lambda}, l_{\lambda} \rangle$ is a network that has been played.
+
+    $\forall$ picks $i < \omega$, $x \in \prescript{\omega}{}N_{\lambda}$, $a \in \operatorname{At}$ such that $l_{\lambda}(x) \leq c_i a$.
+    We denote this move as $(i, x, a)$. $\exists$ responds with a network $\mathcal{N}_{\lambda + 1} \supseteq \mathcal{N}_{\lambda}$. $\forall$ wins, if there is no node $c \in N$ such that $l_{\lambda+1}(x[i/c]) = a$, then $\forall$ wins
+    \item The limit of the play is defined as $\bigcup \limits_{\lambda < \kappa} \mathcal{N}_{\lambda}$. $\forall$ wins the play, if there exists $\kappa_1 < \kappa$ such that $\exists$ does not win the $\kappa_1$th-round. Otherwise, $\exists$ wins the play.
+  \end{enumerate}
+\end{defin}
+
+\begin{theorem}
+  Let $\mathcal{A}$ be an atomic $\omega$-dimensional cylindric-type algebra and $\kappa$ a cardinal such that $|\operatorname{At}(\mathcal{A})| = \kappa$, then the following are equivalent:
+
+  \begin{enumerate}
+    \item $\mathcal{A}$ is completely representable.
+    \item $\exists$ has a winning strategy in $\mathcal{G}^{\kappa + \omega}$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  $ $
+
+  \begin{enumerate}
+    \item $\Rightarrow$
+    If $\mathcal{A}$ is completely representable, then its Boolean reduct is representable as well. $\exists$ maintains that embedding to win the play.
+
+    \item $\Leftarrow$
+
+    Suppose $\exists$ has a winning strategy in $\mathcal{G}^{\kappa + \omega}(\mathcal{A})$.
+    In every round $\forall$ picks all possible $i < \omega$, $a \in \operatorname{At}(\mathcal{A})$, all possible hyperedges and all appropriate atoms.
+    ...
+    Question: Is this claim correct?
+  \end{enumerate}
+\end{proof}
+
+\begin{theorem}[This assumption is by Ian Hodkinson]\label{Neat2}
+  $ $
+
+  Let $\mathcal{A}$ be a BAO of type ${\bf CA}_{\omega}$ such that $\mathcal{A}$ neatly embeds into ${\bf CA}_{\omega + \omega}$ by a complete embedding. Then $\mathcal{A}$ is completely representable as ${\bf CA}_{\omega}$.
+\end{theorem}
+
+\begin{proof}
+  Suppose $\mathcal{A} \subseteq \mathfrak{Nr}_{\omega} \mathcal{B}$, where $\mathcal{B} \in {\bf RCA}_{\omega + \omega}$ and the inclusion map $\rho : \mathcal{A} \hookrightarrow \mathfrak{Nr}_{\omega} \mathcal{B}$ is a complete embedding, that is:
+  \begin{center}
+    $\rho (\sum \limits_{i \in I} a_i) = \sum \limits_{i \in I} (\rho a_i)$, if $\sum \limits_{i \in I} a_i$ exists.
+  \end{center}
+
+  Let us show that $\mathcal{A}$ is atomic.
+
+  Consider $\rho(\mathcal{A})$. Let us show that $\exists$ has a winning strategy on $\mathcal{G}^{\kappa + \omega}(\rho(\mathcal{A}))$
+\end{proof}
+
+Lemma~\ref{Neat} and Theorem~\ref{Neat2} imply the following theorem.
+
+\begin{theorem}
+  Let $\mathcal{C} \in {\bf RCA}_{\omega}$, then $\mathcal{C}^{+} \in {\bf RCA}_{\omega}$. That is, ${\bf RCA}_{\omega}$ is closed under canonical extensions.
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
+\section{Sahlqvist and canonical axiomatisation of ${\bf CA}_{\omega}$}
+
+\section{Notes on the canonicity of ${\bf RRA}$}
+
+\begin{defin}
+  $ $
+
+    A relation algebra is an algebra $\mathcal{R} = \langle R, 0, 1, +, -, ;, {}^{\smile}, {\bf 1 }' \rangle$ such that $\langle R, 0, 1, +, - \rangle$ is a Boolean algebra and the following
+    equations hold, for each $a, b, c \in R$:
+    \begin{enumerate}
+      \item $a ; (b ; c) = (a ; b) ; c$
+      \item $(a + b) ; c = (a ; c) + (b ; c)$
+      \item $a ; {\bf 1}' = a$
+      \item $a^{\smile \smile} = a$
+      \item $(a + b)^{\smile} = a^{\smile} + b^{\smile}$
+      \item $(a ; b)^{\smile} = b^{\smile} ; a^{\smile}$
+      \item $a^{\smile} ; (- (a ; b)) \leq - b$
+    \end{enumerate}
+    where $a \leq b$ iff $a + b = b$. ${\bf RA}$ denotes the class of all relation
+    algebras.
+\end{defin}
+
 We will adapting the following proof of the fact that ${\bf RRA}$ is canonical \footnote{This idea is by Ian Hodkinson} to our case. This proof is due to Monk, but that was describe in McKenzie's thesis \cite{mckenzie1968representation}.
 
 \begin{enumerate}
-  \item A relation algebra $\mathcal{A}$ is representable iff $\mathcal{A}$ neatly embeds to some omege-dimensional cylinric algebra,
+  \item A relation algebra $\mathcal{A}$ is representable iff $\mathcal{A}$ neatly embeds to some $\omega$-dimensional cylinric algebra,
   \item If $\mathcal{A}$ neatly embeds in $\mathcal{A}$ then $\mathcal{A}^{+}$ neatly embeds in $\mathcal{B}^{+}$,
   \item ${\bf CA}_{\alpha}$ is closed under canonical extensions,
   \item Voil\'{a}.
@@ -322,7 +475,7 @@ There is also the following fact by due to Henkin, Monk, and Tarski \cite{Henkin
   Let $\mathcal{C} \in {\bf CA}_{\alpha}$ for $\alpha \geq 4$, then $\mathfrak{Ra}(\mathcal{C})$ is a relation algebra.
 \end{theorem}
 
-The following characterisation results are by Henkin, Monk, and Tarski \cite{Henkin1988-HENCAP-4} as well:
+The following characterisation results are by Henkin, Monk, and Tarski \cite[5.3.13, 5.3.16]{Henkin1988-HENCAP-4} as well:
 \begin{theorem} \label{char}
   $ $
 
@@ -331,6 +484,7 @@ The following characterisation results are by Henkin, Monk, and Tarski \cite{Hen
     \item ${\bf RRA} = \bigcap \limits_{3 \leq n < \omega} {\bf S} \mathfrak{Ra} {\bf CA}_n =  {\bf S} \mathfrak{Ra} {\bf CA}_{\alpha}$, where $\alpha$ is an infinite ordinal.
   \end{enumerate}
 \end{theorem}
+
 
 Let $\mathcal{C} \in \mathcal{CA}_{\alpha}$, then $\mathcal{R} \in {\bf RA}$ neatly embeds to $\mathcal{C}$, if $\mathcal{R}$ is isomorphic to some subalgebra of $\mathfrak{Ra}(\mathcal{C})$.
 
@@ -343,122 +497,6 @@ Let $\mathcal{C} \in \mathcal{CA}_{\alpha}$, then $\mathcal{R} \in {\bf RA}$ nea
   ${\bf CA}_{\alpha}$ is closed under canonical extensions, so is ${\bf RRA}$.
 \end{proof}
 
-\begin{lemma}[Henkin, Monk, Tarski]\label{Neat}
-  $ $
-
-  Let $\mathcal{A}$ be a BAO of type ${\bf CA}_{\alpha}$ and $\mathcal{B}$ be a $\beta$-dimensional cylindric algebra such that $\beta \leq \alpha$ and $\mathcal{A}$ neatly embeds to $\mathcal{B}$ by a complete embedding. Then $\mathcal{A}^{+}$ neatly embeds to $\mathcal{B}^{+}$ by a complete embedding.
-\end{lemma}
-
-\begin{proof}
-\end{proof}
-
-\begin{theorem}[This assumption is by Ian Hodkinson]\label{Neat2}
-  $ $
-
-  Let $\mathcal{A}$ be a BAO of type ${\bf CA}_{\omega}$ such that $\mathcal{A}$ neatly embeds into ${\bf CA}_{\omega + \omega}$ by a complete embedding. Then $\mathcal{A}$ is completely representable as ${\bf CA}_{\omega}$.
-\end{theorem}
-
-\begin{proof}
-  Hmmmmm, I believe so.
-\end{proof}
-
-Lemma~\ref{Neat} and Theorem~\ref{Neat2} imply the following theorem.
-
-\begin{theorem}
-  Let $\mathcal{C} \in {\bf RCA}_{\omega}$, then $\mathcal{C}^{+} \in {\bf RCA}_{\omega}$. That is, ${\bf RCA}_{\omega}$ is closed under canonical extensions.
-\end{theorem}
-
-\begin{proof}
-  :monkahmm:
-\end{proof}
-
-\section{Sahlqvist and canonical axiomatisation of ${\bf CA}_{\omega}$}
-
-\begin{comment}
-\subsection{Substitution in cylindric algebras}
-
-\begin{prop} Let $\alpha$ be an ordinal and let $i, j, k, l < \alpha$. The following facts hold in ${\bf CA}_{\alpha}$
-
-  \begin{enumerate}
-    \item $s^{i}_j x \leq c_i x$.
-    \item $s^{i}_j (x \land y) = s^{i}_j x \land s^{i}_j y$, $s^{i}_j (x \lor y) = s^{i}_j x \lor s^{i}_j y$, $- s^{i}_j x = s^{i}_j (- x)$.
-    Moreover, $s^{i}_j$ is completely additive.
-    \item $i \neq k, l$ implies $s^i_j d_{ik} = d_{jk}$ and $s^i_j d_{kl} = d_{kl}$.
-    \item $d_{jk} \land s^{i}_j = d_{jk} \land s^{i}_k$.
-    \item $s^i_j c_i x = c_i x$.
-    \item $k \neq i,j$ implies $s^i_j c_i x = c_i s^i_j x$.
-    \item $c_j s^i_j x = c_i s^j_i x$.
-    \item $i \neq j$ implies $c_i s^i_j x = s^i_j x$.
-    \item $i \neq k$ implies $s^i_j s^i_k = s^i_k x$.
-    \item If either $i \notin \{ k, l\}$ and $k \notin \{ i, j\}$, or $j = l$, then $s^i_j s^k_l x = s^k_l s^i_j x$.
-    \item $s^i_j s^j_i x = s^i_j x$.
-    \item $s^i_k s^j_i x = s^i_k s^j_k x = s^j_k s^i_j x$
-  \end{enumerate}
-\end{prop}
-
-\section{Model-theoretic and universal algebraic preliminaries}
-
-\subsection{Ultraproducts}
-
-Here are the required notions and facts from model theory and universal algebra \cite{hirsch2002relation} \cite{hodges1997shorter} \cite{sankappanavar1981course}.
-
-Let $\Lambda$ be an index set and $D$ an ultrafilter on the Boolean algebra $\langle \mathcal{P}(\Lambda), \cup, -, \Lambda, \emptyset \rangle$. Consider the product $M = \prod \limits_{\lambda \in \Lambda} M_{\lambda}$ of the $\Omega$-structures $\{ M_{\lambda}\}_{\lambda \in \Lambda}$ and the equivalence relation on $\operatorname{dom}(M)$ defined as
-\begin{center}
-  $a_1 \sim a_2 \Leftrightarrow \{ \lambda \in \Lambda \: | \: a_1(\lambda) = a_2(\lambda)\} \in D$
-\end{center}
-Let us denote $\operatorname{dom}(M) / \sim$ as $U$ and $[a]_{\sim}$ as $a / D$, where $a \in \operatorname{dom}(M)$. We also denote the \emph{ultraproduct} of $\{ M_{\lambda} \}_{\lambda}$ as $\prod \limits_{\lambda \in \Lambda} M_{\lambda} / D$, or,
-for brevity, as $\prod_{D} M_{\lambda}$. The $\Omega$-symbols have the following interpretation
-\begin{enumerate}
-  \item If $c \in \operatorname{Cnst}$, then $c^{U} = c^{M} / D$
-  \item If $f \in \operatorname{Fn}$ is an $n$-ary function symbol and $\overline{a} \in M^{n}$, then $f^{U}(\overline{a}) = f^{M}(x) = f^{M}(\overline{a}) / D$
-  \item If $R \in \operatorname{Fn}$ is an $n$-ary relation symbol and $\overline{a} \in M^{n}$, then $U \models R(\overline{a} / D)$ iff
-  $\{ \lambda \in \Lambda \: | \: M_{\lambda} \models R(\overline{a} (\lambda))\} \in D$
-\end{enumerate}
-The ultraproduct is principal if $D$ is a principal filter.
-
-\begin{defin}
-$ $
-
-  \begin{enumerate}
-    \item Let $\{ M_{\lambda}\}_{\lambda \in \Lambda}$ be a set of $\Omega$-structures such that every
-    $M_{\lambda}$ is isomorphic to the single structure $M$, then their ultraproduct over $D$ is called the ultrapower over $D$.
-    The denotation is $\prod \limits_{D} M$ or $M^{\Lambda} / D$.
-    \item If $\prod \limits_{D} M \cong N$ for some structure $N$, then $M$ is an ultraroot of $N$.
-  \end{enumerate}
-\end{defin}
-
-\begin{theorem}[\L{}os]
-
-  Let $\{ M_{\lambda}\}_{\lambda \in \Lambda}$ be $\Omega$-structures and $D$ an ultrafilter on $\Lambda$, and let
-  $U = \prod \limits_{D} M_{\lambda}$ be an ultraproduct of $\{ M_{\lambda}\}_{\lambda \in \Lambda}$ over $D$. For each first-order formula
-  $\varphi(x_1, \dots, x_n)$ and for each $a_1 / D, \dots, a_n / D \in U$:
-
-\begin{center}
-  $U \models \varphi(a_1 / D, \dots, a_n / D)$ iff $\{ \lambda \in \Lambda \: | \: \varphi(a_1(\lambda), \dots, a_n(\lambda))\} \in D$
-\end{center}
-\end{theorem}
-
-The \L{}os has the following helpful corollary:
-
-\begin{col}
-  Let $\prod \limits_{D} M$ be an ultrapower of $M$. For $a \in M$, let us define a function $\overline{a} : a \mapsto a / D$.
-  Then such a map is an elementary embedding of $M$ into $\prod \limits_{D} M$.
-\end{col}
-
-Moreover, any elementary equivalent structures have isomorphic ultrapowers.
-
-Recall that a class of $\Omega$-structures ${\bf K}$ is called \emph{elementary}, if ${\bf K} = \operatorname{Mod}(\operatorname{T})$ for some first-order theory ${\bf T}$. In that case, $\operatorname{T}$ is an axiomatisation of ${\bf K}$.
-
-\begin{theorem}
-  Let ${\bf K}$ be a class $\Omega$-structures,
-  ${\bf K}$ is elementary iff ${\bf K}$ is closed under isomorphic copies, ultraroots, and ultrapowers.
-\end{theorem}
-
-
-\section{${\bf IG}_{\omega}$ and ultraproducts}
-
-\section{${\bf IG}_{\omega}$ is (not) (pseudo-)elementary; is (not) a variety}
-\end{comment}
 
 \bibliographystyle{plain}
 \bibliography{Text}
