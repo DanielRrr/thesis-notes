@@ -50,83 +50,9 @@
 \author{Daniel Rogozin}
 \date{}
 \title{Notes on filtration of logics containing {\bf K5}}
-
 \begin{document}
 
 \maketitle
-
-\section{Preliminaries}
-
-\begin{defin}
-  A normal modal logic is a set of formulas that contains all Boolean tautologies,
-  formulas $\Diamond p \lor \Diamond q \leftrightarrow \Diamond (p \lor q)$ and
-  $\Diamond \bot \leftrightarrow \bot$, and is closed under Modus Ponens, Substitution, and
-  Monotonicity:
-  from $\varphi \rightarrow \psi$ infer $\Diamond \varphi \rightarrow \Diamond \psi$.
-\end{defin}
-
-\begin{defin} An Kripke model is a triple $\mathcal{M} = \langle W, R, \vartheta \rangle$,
-  where $R \subseteq W \times W$, $\vartheta : \operatorname{PV} \to 2^W$, and
-  the connectives have the following semantics:
-
-  \begin{enumerate}
-    \item $\mathcal{M}, w \models p \Leftrightarrow w \in \vartheta(p)$
-    \item $\mathcal{M}, w \models \neg \varphi \Leftrightarrow \mathcal{M}, w \nvDash \varphi$
-    \item $\mathcal{M}, w \models \varphi \lor \psi \Leftrightarrow \mathcal{M}, w \models \varphi \text{ or } \mathcal{M}, w \models \psi$
-    \item $\mathcal{M}, w \models \Diamond \varphi \Leftrightarrow \exists v \in R(w) \: \mathcal{M}, v \models \varphi$
-  \end{enumerate}
-\end{defin}
-
-\begin{defin}
-  Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ be a Kripke model.
-  A Kripke model $\mathcal{M}' = \langle W', R', \vartheta' \rangle$ is a generated submodel of
-  $\mathcal{M}$, where:
-  \begin{enumerate}
-    \item $\emptyset \neq W' \subseteq W$ and $W'$ is $R$-closed, i.e., for each $u \in W'$ and $v \in W$,
-    $u R v$ implies $v \in W'$
-    \item $R' = R \cap W' \times W'$
-    \item for every propositional variable $p$, $\vartheta(p)' = \vartheta(p) \cap W'$
-  \end{enumerate}
-\end{defin}
-
-\begin{fact}
-  Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ be a Kripke model and
-  $\mathcal{M}' = \langle W', R', \vartheta' \rangle$ its generated submodel,
-  then for each $w \in W'$
-  \begin{center}
-    $\mathcal{M}, w \models \varphi$ iff $\mathcal{M}', w \models \varphi$
-  \end{center}
-\end{fact}
-
-By ${\bf K5}$ we mean the logic ${\bf K} \oplus {A5}$, where ${A5} = \Diamond p \to \Box \Diamond p$. It is known that ${\bf K5}$ is the modal logic of all Euclidean frames. A frame is called Euclidean if for each $x, y, z$, $x R y$ and $x R z$ implies $y R z$.
-
-\begin{prop} \label{K5proves}
-  ${\bf K5}$ proves
-  \begin{enumerate}
-    \item $\Box^3 p \leftrightarrow \Box^2 p$
-    \item $\Box^2 \Diamond p \leftrightarrow \Box \Diamond p$
-    \item $\Box \Diamond \Box p \leftrightarrow \Box \Box p$
-    \item $\Box \Diamond^2 p \leftrightarrow \Box \Diamond p$
-  \end{enumerate}
-\end{prop}
-
-\begin{prop} \label{k5useful}
-  Let $\mathcal{M}$ be a ${\bf K}5$ model, $x R y$ for $x, y \in W$ then one has
-  \begin{center}
-    $\mathcal{M}, x \models \Box \Diamond \varphi$ iff $\mathcal{M}, y \models \Box \Diamond \varphi$.
-  \end{center}
-\end{prop}
-
-\begin{proof}
-$ $
-
-  \begin{enumerate}
-    \item Suppose $\mathcal{M}, x \models \Box \Diamond \varphi$. Then $\mathcal{M}, y \models \Diamond \varphi$ and $\mathcal{M}, y \models \Box \Diamond \varphi$
-    \item Suppose $\mathcal{M}, y \models \Box \Diamond \varphi$, then $\mathcal{M}, x \models \Diamond \Box \Diamond \varphi$, so $\mathcal{M}, x \models \Box \Diamond \varphi$.
-  \end{enumerate}
-\end{proof}
-
-\subsection{Filtrations: general definitions}
 
 Let $\mathcal{M} = \langle W, R_1, \dots, R_n, \vartheta \rangle$ be a Kripke model and $\Gamma$ a set of formulas closed under subformulas. An equivalence relation $\sim$ is set to have a finite index if the quotient set $W / \sim$ is finite. The equivalence relation $\sim_{\Gamma}$ induced by $\Gamma$ is defined as
 
@@ -171,26 +97,9 @@ A class of frames $\mathbb{F}$ admits strict filtrations for frames, if for ever
 
 \begin{enumerate}
   \item Let $\mathcal{L}$ be a complete normal modal logic. If $\operatorname{Frames}(\mathcal{L})$ admits filtration, then $\mathcal{L}$ has the finite model property.
-  \item If the class of models $\operatorname{Mod}(\mathcal{L})$ admits filtration, then $\mathcal{L}$ has the finite model property and Kripke complete as well.
+  \item If the class of models $\operatorname{Mod}(\mathcal{L})$ admits filtration, then $\mathcal{L}$ has the finite model property and it is Kripke complete as well.
 \end{enumerate}
 \end{lemma}
-
-\section{Filtration of Euclidean logics}
-
-First of all, let us ensure that a minimal filtration of an Euclidean frame is not necessary Euclidean.
-Let $[x] \sim_{\Gamma} [y]$ and $[x] \sim_{\Gamma} [z]$. Then for some $x' \in [x]$ $y' \in [y]$, one has
-$x' R y'$ and $x'' R z'$ for some $x'' \in [x]$ and $z' \in [z]$. Clearly, we cannot claim that $x' = x''$ in general. Thus, minimal filtration does not preserve the required property.
-
-\begin{lemma}
-  ${\bf K5}$ admit filtrations.
-\end{lemma}
-
-\begin{proof}
-  Let $\mathcal{M}$ be a ${\bf K5}$-model and $\Gamma_0$ a finite set of formulas closed under subformulas.
-  Let us put $\Gamma = \Gamma_0 \cup \operatorname{Sub}(\{ \Diamond \Box \psi \: | \: \Box \psi \in \Gamma_0 \}) \cup \Psi$, where $\Psi = \nabla_1 \nabla_2 \dots \nabla_n \Box \psi$ for $\Box \psi \in \Gamma_0$ and
-  $\nabla_i \in \{ \Diamond, \Box \}$. By Proposition~\ref{K5proves}, any element of $\Phi$ has one of the four forms. Thus, $W \sim_{\equiv_{\Gamma}}$ has a finite index.
-  We put $\widehat{R} = R^{\operatorname{max}}_{\Gamma}$.
-\end{proof}
 
 \begin{defin} A first-order formula is called Horn if it has the following form:
 
@@ -368,7 +277,7 @@ $ $
 
   \xymatrix{
   &&&&&&& w_5\ar@(ul,ur) \ar@<-.5ex>[d] \\
-  &&&&&& w_1\ar@(ul,ur)  & w_4 \ar@<.5ex>[u] \\
+  &&&&&& w_1\ar@(ul,ur)  & w_4 \ar@<.5ex>[u] \ar@(dl,ul)^{} \\
   &&&&&& w_2 \ar[u] & w_3 \ar[u]
   }
 \end{proof}
@@ -381,84 +290,6 @@ Moreover, $R_{min} \cup (R_{min}^{-1} \circ R_{min})$ is not a subset of $R_{max
 
 Let us also note that strict filtrations of this model is not Euclidean.
 Suppose by contrary that $\widehat{R}^{\mathcal{E}}$ is a strict filtraction of that model. So $R_{min}^E \subseteq \widehat{R}^{\mathcal{E}}$, since $R_{min}^E$ is the minimal Euclidean relation containing $R_{min}$. On the other hand, $R_{min}^E \not\subseteq R_{max}$, so is not $\widehat{R}^{\mathcal{E}}$.
-\section{Filtration for {\bf K4}}
-
-\begin{prop}
-  Let $R$ be a binary relation on $W \neq \emptyset$. Define $R^{+} = \bigcup \limits_{i < \omega} R_i$
-  \begin{enumerate}
-    \item $R_0 = R$
-    \item $R_{n + 1} = R_n \circ R$
-  \end{enumerate}
-  Then $R^{+}$ is transitive
-\end{prop}
-
-\begin{lemma}
-  Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ be a transitive model and $\overline{\mathcal{M}} = \langle \overline{W}, \overline{R}, \overline{\vartheta} \rangle$ its minimal filtration through a finite $\operatorname{Sub}$-closed set of formulas $\Theta$.
-
-  Then $\overline{\mathcal{M}}^{+} = \langle \overline{W}, (\overline{R})^{+}, \overline{\vartheta} \rangle$ is a $\Theta$-filtration of $\mathcal{M}$.
-\end{lemma}
-
-\begin{proof}
-  $(\overline{R})^{+}$ obviously contains $R$. By the previous proposition, $(\overline{R})^{+}$ is transitive.
-  Let us show that $(\overline{R})^{+} \subseteq R^{max}_{\Theta}$.
-
-  Let $\hat{x}, \hat{y} \in \overline{W}$ with $\hat{x} (\overline{R})^{+} \hat{y}$ and
-  $\Box \varphi \in \Theta$ with $\mathcal{M}, x \models \Box \varphi$. Let us show that $\mathcal{M}, y \models \varphi$.
-
-  If $\hat{x} (\overline{R})^{+} \hat{y}$, then there exist equivalence classes $\hat{x}_1, \dots, \hat{x}_n$ such that
-  \begin{center}
-    $\hat{x} \overline{R} \hat{x}_1 \overline{R} \dots \overline{R} \hat{x}_n \overline{R} \hat{y}$
-  \end{center}
-
-  $\mathcal{M}, x \models \Box \varphi$ implies $\mathcal{M}, x \models \Box \Box \varphi$. Thus, $\overline{M}, \hat{x} \models \Box \Box \varphi$.
-
-  $\hat{x} \overline{R} \hat{x}_1$, so there are $x_1 \in \hat{x}$ and $x_2 \in \hat{x}_1$ with $x_1 R x_2$. In particular, $\mathcal{M}, x_2 \models \Box \varphi$,
-  so $\overline{\mathcal{M}}, \hat{x}_2 \models \Box \varphi$, and et cetera.
-
-  For each $i \in \{1, \dots, n\}$ we have $\mathcal{M}, x_i \models \Box \varphi$ which is shown inductively:
-
-  If $\mathcal{M}, x_i \models \Box \varphi$ for $x_i \in \hat{x}_i$, so $\mathcal{M}, x_i \models \Box \Box \varphi$, but there exist ${x_i}' \in \hat{x}_i$ and $x_{i + 1} \in \hat{x}_{i + 1}$, so
-  $\mathcal{M}, x_{i + 1} \models \Box \varphi$.
-
-  Finally, we have $\mathcal{M}, x_n \models \Box \varphi$ for $x_n \in \hat{x}_n$, but $\hat{x}_n \overline{R} \hat{y}$, so $\mathcal{M}, y' \models \varphi$ for each $y' \in \hat{y}$. Thus, $\varphi$ is true at $y$ as well.
-\end{proof}
-
-\begin{proof}
-  Let $\hat{x}, \hat{y} \in \overline{W}$ with $\hat{x} (\overline{R})^{+} \hat{y}$ and
-  $\Box \varphi \in \Theta$ with $\mathcal{M}, x \models \Box \varphi$. Let us show that $\mathcal{M}, y \models \varphi$.
-
-  If $\hat{x} (\overline{R})^{+} \hat{y}$, then there exist equivalence classes $\hat{x}_1, \dots, \hat{x}_n$ such that
-  \begin{center}
-    $\hat{x} \overline{R} \hat{x}_1 \overline{R} \dots \overline{R} \hat{x}_n \overline{R} \hat{y}$
-  \end{center}
-
-  Let us show that $\mathcal{M}, \hat{x}_i \models \Box \varphi$ inductively:
-  \begin{enumerate}
-    \item $n = 1$
-    We have the following sequence:
-    \begin{center}
-      $\hat{x} \overline{R} \hat{x}_1 \overline{R} \hat{y}$
-    \end{center}
-    $\hat{x} \overline{R} \hat{x}_1$, so there are $x' \in \hat{x}$ and $x_1' \in \hat{x}_1$ such that $x' R x_1'$. $\Box \varphi$ is true at $x'$, so is $\Box \Box \varphi$. Then
-    $\mathcal{M}, x_1' \models \Box \varphi$ since $x_1' \in R(x')$.
-    So $\overline{\mathcal{M}}, \hat{x}_1 \models \Box \varphi$.
-
-    \item $n = i + 1$
-    The case is the following:
-    \begin{center}
-      $\hat{x} \overline{R} \hat{x}_1 \overline{R} \dots \overline{R} \hat{x}_i \overline{R} \hat{x}_{i + 1} \overline{R} \hat{y}$
-    \end{center}
-
-    By IH, $\Box \varphi$ is true at $\hat{x}_i$, so is $\Box \Box \varphi$. Hence, we have $\overline{\mathcal{M}}, \hat{x}_{i + 1} \models \Box \varphi$ since
-    $\hat{x}_i \overline{R} \hat{x}_{i + 1}$.
-  \end{enumerate}
-
-  That is, for each $0 < n < \omega$, if we have a sequence of equivalence classes with $\hat{x} \overline{R} \hat{x}_1 \overline{R} \dots \overline{R} \hat{x}_n \overline{R} \hat{y}$ where $\overline{\mathcal{M}}, \hat{x} \models \Box \varphi$, then
-  $\overline{\mathcal{M}}, \hat{x}_n \models \Box \varphi$.
-
-  If $\hat{x}_n \overline{R} \hat{y}$,
-  then there are $x_n' \in \hat{x}_n$ and  $y' \in \hat{y}$ with $x_n' R y'$. $\mathcal{M}, x_n' \models \Box \varphi$ implies $\mathcal{M}, y' \models \varphi$, but $y'$ and $y$ are $\Gamma$-equivalent and $\varphi \in \Gamma$, so $\mathcal{M}, y \models \varphi$.
-\end{proof}
 
 \section{Finite ``canonical'' models}
 
@@ -489,51 +320,53 @@ Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one
   \end{enumerate}
 \end{defin}
 
-\begin{lemma}
+\begin{lemma}\label{good}
   Let $\mathcal{L}$ be a modal logic and $\varphi \not\in \mathcal{L}$, then $\mathcal{M}_{\mathcal{L}}^{\operatorname{Sub}(\varphi)} \nvDash \varphi$.
 \end{lemma}
 
-\begin{theorem} $\mathcal{L}$ be a modal logic, then the following are equivalent:
-  \begin{enumerate}
-    \item $\mathcal{L}$ admits strict filtrations
-    \item If $\Gamma$ is a finite $\operatorname{Sub}$-closed set of formulas , there exists a finite ``canonical'' model $\mathcal{M}_{\mathcal{L}}^{\Gamma}$ such that
-    $\mathcal{M}_{\mathcal{L}}^{\Gamma} \models \mathcal{L}$.
-  \end{enumerate}
-\end{theorem}
+\begin{lemma} Let $\mathcal{L}$ be a modal logic and $\Gamma$ a finite $\operatorname{Sub}$-closed set of formulas, then if $\mathcal{L}$ admits strict filtrations, then there exists a finite ``canonical'' model $\mathcal{M}_{\mathcal{L}}^{\Gamma}$ such that $\mathcal{M}_{\mathcal{L}}^{\Gamma} \models \mathcal{L}$.
+\end{lemma}
 
 \begin{proof}
   $ $
-
-  \begin{enumerate}
-    \item $(\Rightarrow)$
+$(\Rightarrow)$
   Let $\Gamma$ be a finite $\operatorname{Sub}$-closed of formulas. $\mathcal{L}$ admits strict filtrations, so the filtration of the canonical model $\mathcal{M}_{\mathcal{L}}$ through $\Gamma$ is also an $\mathcal{L}$-model. The underlying set of $\mathcal{M}_{\mathcal{L}} / \sim_{\Gamma}$ consists of maximal $\mathcal{L}$ theories up to $\Gamma$-equivalence and this quotient set is finite.
 
   It is readily checked that the quotient model $\mathcal{M}_{\mathcal{L}} / \sim_{\Gamma}$ satifsfies Definition~\ref{fin}.
+\end{proof}
 
-    \item $(\Leftarrow)$
+The converse implication does not have to true generally. We prove a bit more weak version of this implication. A logic admits $\mathcal{L}$ admits $\Diamond$-filtrations, if for each model $\mathcal{M} \models \mathcal{L}$ and for each $\Gamma$, a $\operatorname{Sub}$-closed set of formulas, there exists a model $\widehat{\mathcal{M}}$, a filtration of $\mathcal{L}$ through $\operatorname{Sub}(\Gamma \cup \Diamond \Gamma)$.
 
-    Let $\Gamma$ be a finite $\operatorname{Sub}$-closed of formulas and $\mathcal{M}_{\mathcal{L}}^{\Gamma} = \langle W_{\mathcal{L}}^{\Gamma}, R_{\mathcal{L}}^{\Gamma}, \vartheta_{\mathcal{L}}^{\Gamma} \rangle$ a ``finite canonical'' model generated by $\Gamma$.
+${\bf K}5$ is an example of such a logic since ${\bf K}5$ admits filtrations through sets having the form $\Gamma \cup \{ \Diamond \Box \psi \: | \: \Box \psi \in \Gamma \}$.
 
-    Let us show that there exists a model $\widehat{\mathcal{M}}$ such that
-    $\widehat{\mathcal{M}}$ is a strict filtration of $\mathcal{M}$ through $\operatorname{Sub}(\Gamma)$.
+Note that, if $\mathcal{L}$ admits $\Diamond$-filtrations, so $\mathcal{L}$ admits the ``finite canonical'' model property, the proof is the same as in Lemma~\ref{good}.
 
-    Let $\sim$ be an equivalence relation on $\underline{\mathcal{M}}$ defined as usual:
+\begin{lemma}
+  Let $\mathcal{L}$ be a logic that admits $\Diamond$-filtrations and $\Gamma$ a $\operatorname{Sub}$-closed set of formulas, then there exists a ``finite canonical'' model $\mathcal{M}^{\Gamma}_{\mathcal{L}} \models \mathcal{L}$
+\end{lemma}
+
+\begin{proof}
+Let $\Gamma$ be a finite $\operatorname{Sub}$-closed of formulas and $\mathcal{M}_{\mathcal{L}}^{\Gamma} = \langle W_{\mathcal{L}}^{\Gamma}, R_{\mathcal{L}}^{\Gamma}, \vartheta_{\mathcal{L}}^{\Gamma} \rangle$ a ``finite canonical'' model generated by $\Gamma$.
+
+Let us show that there exists a model $\widehat{\mathcal{M}}$, a strict filtration of $\mathcal{M}$ through $\operatorname{Sub}(\Gamma \cup \Diamond \Gamma) := \Psi$.
+
+Let $\sim$ be an equivalence relation on $\mathcal{M}$ defined as usual:
 
     \begin{center}
-      $u \sim v$ iff $\forall \psi \in \Gamma$
+      $u \sim v$ iff $\forall \psi \in \Psi$
       $\mathcal{M}, u \models \psi \Leftrightarrow \mathcal{M}, v \models \psi$
     \end{center}
 
-    Let $[u] \in \mathcal{M}/\sim$, consider its truth set $||[u]|| = \{ \psi \in \Gamma \: | \: \mathcal{M}, u \models \psi \}$.
+    Let $[u] \in \mathcal{M}/\sim$, consider its truth set $||[u]|| = \{ \psi \in \Psi \: | \: \mathcal{M}, u \models \psi \}$.
     $||[u]||$ is clearly a finite $\mathcal{L}$-consistent set and it is maximal.
-    Consider a map
+    Consider a map:
     \begin{center}
-    $\iota : W/\sim \to W_{\mathcal{L}}^{\varphi}$ with $\iota : [u] \mapsto ||[u]||$
+    $\iota : W/\sim \to W_{\mathcal{L}}^{\Gamma}$ with $\iota : [u] \mapsto ||[u]||$
     \end{center}
 
-    Consider the set $\iota(W/\sim)$ that we denote as $\operatorname{Im}(\iota)$. Let us show that $\operatorname{Im}(\iota)$ is $R_{\mathcal{L}}^{\varphi}$-closed.
+    Consider the set $\iota(W/\sim)$ that we denote as $\operatorname{Im}(\iota)$. Let us show that $\operatorname{Im}(\iota)$ is $R_{\mathcal{L}}^{\Gamma}$-closed.
 
-    Let $\iota([u]) R_{\mathcal{L}}^{\varphi} \Delta$, let us show that $\Delta \in \iota(W/\sim)$, that is, $\Delta = \iota([v])$ for some $v \in W$.
+    Let $\iota([u]) R_{\mathcal{L}}^{\Gamma} \Delta$, let us show that $\Delta \in \iota(W/\sim)$, that is, $\Delta = \iota([v])$ for some $v \in W$.
 
     Note that $\bigwedge \limits_{\psi \in \Delta} \psi \in \Delta$ since $\Delta$ is finite.
     This conjuction has the form $\bigwedge \limits_{\psi \in \Delta} \psi \in \Delta = \psi_1 \land \dots \land \psi_n$ for some $n < \omega$ and for some $\psi_i \in \Gamma \cup \neg \Gamma$, where $0 < i < \omega$.
@@ -553,18 +386,18 @@ Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one
     Let us show that $R_{min} \subseteq \widehat{R} \subseteq R_{max}$.
 
     Suppose that there are $u' \in [u]$ and $v' \in [v]$ with $u' R v'$. Let us show that
-    $[u] \widehat{R} [v]$. That is, let us show that $\Diamond \iota(v) \subseteq \iota(v)$.
-    But if $\mathcal{M}, v' \models \psi$ for $\Diamond \psi \in \Gamma$, then
-    $\mathcal{M}, u' \models \Diamond \psi$. Recall that $u' \sim u$ and $v' \sim v$, so we have $\Diamond ||[v]|| \subseteq ||[u]||$.
+    $[u] \widehat{R} [v]$. That is, let us show that $\Diamond \iota(v) \subseteq \iota(u)$.
+
+    Suppose $\psi \in \iota(v)$, that is, $\psi \in ||v||$, that denotes $\psi \in \Psi$ and $\mathcal{M}, v \models \psi$. Therefore, $\mathcal{M}, v' \models \psi$. Then $\mathcal{M}, u' \models \Diamond \psi$. $\Diamond \psi \in \Psi$ and $u \sim_{\Gamma} u'$, so
+    $\mathcal{M}, u \models \Diamond \psi$.
 
     The second inclusion follows from the definition of a relation in a finite ``canonical'' model.
-  \end{enumerate}
 \end{proof}
 
-In particular, ${\bf K}5$ fails to have the finite ``canonical'' model property that
-follows from the contraposition of the theorem above and Theorem~\ref{sad}.
+In particular, ${\bf K}5$ has the finite ``canonical'' model property.
 
 \bibliographystyle{plain}
 \bibliography{Text}
+
 
 \end{document}
