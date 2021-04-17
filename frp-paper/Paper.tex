@@ -519,7 +519,7 @@ So $c ; d \in l_{\mathcal{N}}(x, y)$. That makes $(x, y) \in \operatorname{rep}(
   \end{enumerate}
 \end{proof}
 
-The following proposition is a version of \cite[Proposition 7.24]{hirsch2002relation} and the right-to-left part is proved using K\"{o}nig's lemma \cite[Exercise 5.6.3]{hodges1997shorter}.
+The following proposition is a version of \cite[Proposition 7.24]{hirsch2002relation} and the right-to-left part is proved using K\"{o}nig's lemma \cite[Exercise 5.6.5]{hodges1993model}.
 
 \begin{proposition} \label{fin}
   Let $\mathcal{A}$ be a join semilattice-ordered semigroup, then there exists a game such that $\mathcal{A}$ is representable iff $\exists$ has a winning strategy in the all finite lenght games.
@@ -623,13 +623,13 @@ We have already considered finite and countable algebras. Let us consider also a
   every $\mathcal{G}_{m}(\mathcal{A}')$ for $m < \omega$ (Proposition~\ref{fin}). Thus, so $\exists$ has a winning strategy in
   every $\mathcal{G}_{m}(\mathcal{A})$ since $\mathcal{A}$ and $\mathcal{A}'$ are elementary equivalent.
 
-  Suppose $\exists$ has a winning strategy has a winning strategy in $\mathcal{G}_m(\mathcal{A})$ for $m < \omega$. The proof scheme is the same as for relation or cylindric algebras, so we provide the following sketch. In particular, we have the following proof that may be proved using \strokeL o\'s's Theorem similarly to.
+  Suppose $\exists$ has a winning strategy has a winning strategy in $\mathcal{G}_m(\mathcal{A})$ for $m < \omega$. The proof scheme is the same as for relation (see \cite[Lemma 19]{hirsch1997complete}) or cylindric algebras (see \cite[Corollary 3.3.5]{hirsch2013completions}), so we provide the following sketch. In particular, we have the following proof that may be proved using \strokeL o\'s's theorem (see \cite[Theorem 9.5.1]{hodges1993model}) similarly to.
 
   \begin{claim}
     If $\exists$ has a winning strategy has a winning strategy in $\mathcal{G}_m(\mathcal{A})$ for $m < \omega$, then $\exists$ has a winning strategy for $\mathcal{G}_{\omega}(\Pi_{U} \mathcal{A})$, where $\Pi_{U} \mathcal{A}$ is a non-principal ultrapower of $\mathcal{A}$ for $U$, an ultrafilter over $\omega$.
   \end{claim}
 
-  Consider $\mathcal{B}$, a countable elementary equivalent subalgbera of $\Pi_{U} \mathcal{A}$ that exists by the downward L\"{o}wenheim-Skolem theorem.
+  Consider $\mathcal{B}$, a countable elementary equivalent subalgbera of $\Pi_{U} \mathcal{A}$ that exists by the downward L\"{o}wenheim-Skolem theorem, see \cite[Corollary 3.1.5]{hodges1993model}.
   We construct the following elementary chain inxeded over $\omega$:
   \begin{center}
     $\mathcal{B}_0 \preceq \mathcal{B}_1 \preceq \dots \mathcal{B}_i \preceq\mathcal{B}_{i + 1} \preceq \dots (\preceq \Pi_{U} \mathcal{A})$.
@@ -641,7 +641,8 @@ We have already considered finite and countable algebras. Let us consider also a
 
   Consider $\sigma \upharpoonright_{\mathcal{B}_i}$, a restriction of $\sigma$, where $\forall$ takes elements only from $\mathcal{B}_i$ for his moves. The range of this restriction consists of $\Pi_{U} \mathcal{A}$-networks, and $E$, the set of elements that occur in those networks is also countable. We define $\mathcal{B}_{i + 1}$ as a countable elementary subalgebra of $\Pi_{U} \mathcal{A}$ that contains $\mathcal{B}_{i}$ and $E$. The existence follows from the downward L\"{o}wenheim-Skolem theorem.
 
-  Let us put $\mathfrak{B} = \bigcup \limits_{i < \omega} \mathcal{B}_i$. Note that $\mathfrak{B}$ is countable. By Tarksi-Vaught elementary chain union theorem, for each $i < \omega$ $\mathcal{B}_i \preceq \mathfrak{B}$. Therefore, $\mathfrak{B} \equiv \Pi_{U} \mathcal{A}$. On the other hand, $\mathcal{A} \equiv \Pi_{U} \mathcal{A}$.
+  Let us put $\mathfrak{B} = \bigcup \limits_{i < \omega} \mathcal{B}_i$. Note that $\mathfrak{B}$ is countable. By Tarksi-Vaught elementary chain union theorem (see \cite[Theorem 2.5.2]{hodges1993model}), for each $i < \omega$ $\mathcal{B}_i \preceq \mathfrak{B}$. Therefore, $\mathfrak{B} \equiv \Pi_{U} \mathcal{A}$.
+  On the other hand, $\mathcal{A} \equiv \Pi_{U} \mathcal{A}$ (see \cite[Corollary 9.5.2]{hodges1993model}).
   Moreover, $\mathfrak{B}$ is representable and $\mathfrak{B} \equiv \mathcal{A}$.
 \end{proof}
 
