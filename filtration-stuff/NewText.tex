@@ -22,6 +22,7 @@
 \usepackage{extpfeil}
 \usepackage{soul}
 \usepackage{graphicx}
+\usepackage{wasysym}
 
 \newcommand\mapsfrom{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
 
@@ -46,6 +47,9 @@
 
 \theoremstyle{col}
 \newtheorem{col}{Corollary}
+
+\theoremstyle{claim}
+\newtheorem{claim}{Claim}
 
 \author{Daniel Rogozin}
 \date{}
@@ -280,7 +284,6 @@ $ $
   &&&&&& w_1\ar@(ul,ur)  & w_4 \ar@<.5ex>[u] \ar@(dl,ul)^{} \\
   &&&&&& w_2 \ar[u] & w_3 \ar[u]
   }
-\end{proof}
 
 Let us define a valuation $\vartheta$ such that $\vartheta(p) = \{ w_5\}$ and $\vartheta(q) = \{ w_1\}$. Let us consider a minimal filtration of $\mathcal{M}_{bad}$ through the Sub-closure of $\Gamma = \{ \neg p, \neg \Diamond p\}$.
 
@@ -290,6 +293,42 @@ Moreover, $R_{min} \cup (R_{min}^{-1} \circ R_{min})$ is not a subset of $R_{max
 
 Let us also note that strict filtrations of this model is not Euclidean.
 Suppose by contrary that $\widehat{R}^{\mathcal{E}}$ is a strict filtraction of that model. So $R_{min}^E \subseteq \widehat{R}^{\mathcal{E}}$, since $R_{min}^E$ is the minimal Euclidean relation containing $R_{min}$. On the other hand, $R_{min}^E \not\subseteq R_{max}$, so is not $\widehat{R}^{\mathcal{E}}$.
+
+\end{proof}
+
+Let us define the logic $\mathcal{L}$ as ${\bf K} \oplus \Diamond \Diamond \Diamond p \to \Diamond p$. Let $R$ be a binary relation, the $\mathcal{L}$-closure of $R$ is defined (denoted as $R^{\davidsstar}$) as the following union:
+\begin{center}
+  $R^{\davidsstar} = R \cup R^3 \cup R^5 \cup \dots \cup R^{2k+1} \cup \dots$
+\end{center}
+
+\begin{theorem}
+  $\mathcal{L}$ does not admit strict filtrations.
+\end{theorem}
+
+\begin{proof}
+  Consider the following frame $\mathcal{F} = \langle W, R \rangle$:
+
+\vspace{\baselineskip}
+
+  \xymatrix{
+  &&&&& x \ar@(ur,ul) \ar[r] & y \\
+  &&&&&& y_1 \ar[r] \ar@/_/[rr] & z_1 \ar[r] & z \ar@(ur,ul)
+  }
+
+\vspace{\baselineskip}
+
+  Clearly that $\mathcal{F}$ is an $\mathcal{L}$-frame. We define the valuation $\vartheta$ as follows:
+
+  \begin{center}
+    $\vartheta(p) = \{ x \}$
+
+    $\vartheta(q) = \{ y, y_1 \}$
+
+    $\vartheta(r) = \{ z \}$
+  \end{center}
+  Let us put $\Gamma = \operatorname{Sub} \{ p, q, \Diamond r \}$. We factorise $W$ through $\sim_{\Gamma}$ and consider a model $\widehat{\mathcal{M}} = \langle W / \sim_{\Gamma}, \widehat{R}, \widehat{\vartheta} \rangle$, where $\widehat{R} = (\widehat{R}_{min})^{\davidsstar}$.
+  We have $(\hat{x}, \hat{z}) \in \widehat{R} \circ \widehat{R} \circ \widehat{R}$, but $\Diamond r$ is not true at $x$.
+\end{proof}
 
 \section{Finite ``canonical'' models}
 
@@ -335,44 +374,110 @@ $(\Rightarrow)$
   It is readily checked that the quotient model $\mathcal{M}_{\mathcal{L}} / \sim_{\Gamma}$ satifsfies Definition~\ref{fin}.
 \end{proof}
 
-The converse implication does not have to true generally.
+The converse implication does not have to true generally. ${\bf GL}$ might be an example of a logic that has the ``finite canonical'' model property with no filtrations.
 
-Recall that ${\bf GL} = {\bf K} \oplus \Diamond (p \land \neg \Diamond p) \to \Diamond p$. ${\bf GL}$ does not admit filtrations, but one may prove that ${\bf GL}$ has the FMP using the selective filtation technique.
+\section{Fusion stuff}
 
 \begin{defin}
-  Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ be a model and $\Gamma$ a set closed under subformulas, then a weak submodel $\mathcal{M} = \langle W', R', \eta \rangle$ (that is, $W' \subseteq W$, $R' \subseteq R$, $\eta = \vartheta \upharpoonright_{W'}$) is called a selective filtration of $\mathcal{M}$ through $\Gamma$ is the following holds, for $\Diamond \psi \in \Gamma$, $x \in W'$:
-  \begin{center}
-    $\mathcal{M}, x \models \Diamond \psi$ iff $\mathcal{M}, y \models \psi$ for some $y \in R'(x)$
-  \end{center}
+  Let $\mathcal{L}_1$ and $\mathcal{L}_2$ be modal logics, then the fusion $\mathcal{L}_1 * \mathcal{L}_2$ is the minimal bimodal logic that contains $\mathcal{L}_1$ and $\mathcal{L}_2$ \cite{kurucz200715}.
 \end{defin}
 
 \begin{theorem}
-  ${\bf GL}$ admits the ``finite canonical'' model property.
+  $ $
+
+  \begin{enumerate}
+  \item ${\bf K}5 * {\bf K}5$ admits definable filtrations.
+  \item ${\bf K}5 * \dots * {\bf K}5$ admits definable filtrations.
+  \item If $\mathcal{L}_1, \dots, \mathcal{L}_n$ admit strict filtrations, then ${\bf K}5 * \dots * \dots * {\bf K}5 * \mathcal{L}_1 * \dots * \mathcal{L}_n$
+  \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-  Let $\Gamma$ be a finite $\operatorname{\bf Sub}$-closed set. So, $\Gamma = \operatorname{\bf Sub}(\gamma_1) \cup \dots \operatorname{\bf Sub}(\gamma_n)$, for some $\gamma_1, \dots, \gamma_n \in \Gamma$ and every $\gamma_i$ is ${\bf GL}$-consistent.
+$ $
 
+  \begin{enumerate}
+  \item Let $\Gamma$ be a finite $\operatorname{Sub}$-closed set of bimodal formulas,
+  $\mathcal{F} = \langle W, R_1, R_2 \rangle$ a ${\bf K}5 * {\bf K}5$-frame, and $\vartheta$ a valuation on $\mathcal{F}$. Denote $\langle \mathcal{F}, \vartheta \rangle$ as $\mathcal{M}$.
 
-  $\gamma$ is true in $\mathcal{M}_{\Gamma} = \langle V, R^{\bf GL}, \vartheta \rangle$, where
+  We introduce the set of fresh variables $V = \{ p_{\psi} \: | \: \psi \in \Gamma \}$ and define a new model $\mathcal{M}' = \langle \mathcal{F}, \vartheta' \rangle$ as follows:
   \begin{center}
-  $V_{\Gamma} = \bigcup \limits_{\psi \in \Gamma} \{ x \in W_{\bf GL} \: | \: \mathcal{M}_{\bf GL}, x \models \psi \land \neg \Diamond \psi \}$
+    For all $\psi \in \Gamma$, $\mathcal{M}, x \models \psi \Leftrightarrow \mathcal{M}', x \models \psi \Leftrightarrow \mathcal{M}', x \models p_{\psi}$.
   \end{center}
-  since $\mathcal{M}_{\Gamma}$ is a selective filtration of $\mathcal{M}_{\bf M}$ through $\Gamma$.
 
-  Let $x \in V$, consider $||x|| = \{ \psi \in \Gamma \: | \: \mathcal{M}_{\bf GL}, x \models \psi \}$
-  and define $x R^{\bf GL} y$ implies $||x|| R_{\Gamma} ||y||$. Every $||x||$ is clearly finite.
-  The valuation map is usual, $\vartheta_{\Gamma}(p) = \{ ||x|| \: | \: p \in ||x|| \}$ for $p \in \operatorname{PV} \cap \Gamma$. We put $W_{\Gamma}$
+  Consider these modifications of $\Gamma$ and $V$:
 
-  Let us check that $\langle W_{\Gamma}, R_{\Gamma}, \vartheta_{\Gamma} \rangle$ is a ``finite canonical`` ${\bf GL}$-model.
-  Let us check that $R_{\Gamma}$ is transitive and Noetherian and it has no relflexive points.
-  If $W_{\Gamma}$ had a relfexive point, say $||y||$, then we would have $\mathcal{M}, y \models \psi \to \Diamond \psi$, but that is not impossible. Transitivity is obvious.
+  \begin{center}
+    $\Gamma' = \Gamma \cup \{ \Diamond_1 \Box_1 \psi \: | \: \Box_1 \psi \in \Gamma \} \cup \{ \Diamond_2 \Box_2 \psi \: | \: \Box_2 \psi \in \Gamma \}$
 
-  Clearly that $x R^{\bf GL} y$ implies $||x|| R_{\Gamma} ||y||$ and vice versa. So, if we had an infinite decreasing $R_{\Gamma}$-chain, then we would have an infinite decreasing $R^{\bf GL}$-chain, but that is not possible.
-  So $\langle W_{\Gamma}, R_{\Gamma}, \vartheta_{\Gamma} \rangle$ is a ``finite canonical`` ${\bf GL}$-model.
+    $\Delta_1 = V \cup \operatorname{Sub}(\{ \Diamond \Box p_{\psi} \: | \: \Box_1 \psi \in \Gamma \})$
+
+    $\Delta_2 = V \cup \operatorname{Sub}(\{ \Diamond \Box p_{\psi} \: | \: \Box_2 \psi \in \Gamma \})$
+  \end{center}
+  Let us define equivalence relations $\sim_1$ and $\sim_2$ induced by $\Delta_1$ and $\Delta_2$ respectively.
+
+  Consider $\mathcal{M}_i = \langle W, R_i, \vartheta' \rangle$, a reduct of $\mathcal{M}'$, we have:
+  \begin{enumerate}
+    \item $\mathcal{M}_i, x \models \Box p_{\psi}$ iff $\mathcal{M}, x \models \Box_i \psi$
+    \item $\mathcal{M}_i, x \models \Diamond \Box p_{\psi}$ iff $\mathcal{M}, x \models \Diamond_i \Box_i \psi$
+  \end{enumerate}
+  So $\sim_i = \sim_{\Gamma'}$ by the construction. Let us put $\widehat{W} = W / \sim_{\Gamma'}$.
+
+  \begin{claim}
+    Let $\widehat{R}_i = (R^{min}_{\Delta_i})^{E}$ and
+    $\widehat{\vartheta(p)} = \{ [x]_{\sim_i} \: | \: \mathcal{M}_i, x \models p \}$ for $p \in \Delta_1$, define $\widehat{\mathcal{M}}_i = \widehat{W}, \widehat{R}_i, \widehat{\vartheta}$. Then $\widehat{\mathcal{M}}_i \models {\bf K}5$ and $\widehat{\mathcal{M}}_i$ is a filtration of $\mathcal{M}_i$ through $\Delta_i$.
+  \end{claim}
+  \begin{proof}
+    Let us show that $\widehat{R}_i \subseteq R^{max}_{\Delta_i}$ by induction.
+    Let $\hat{x} \widehat{R}_i \hat{y}$ such that $\mathcal{M}_i, x \models \Box p_{\psi}$.
+    We need $\mathcal{M}_i, y \models p_{\psi}$.
+    Recall that $\widehat{R}_i$ is defined inductively as:
+    \begin{enumerate}
+      \item $R_{\Delta_i}^{0} = R_{\Delta_i}^{min}$
+      \item $R_{\Delta_i}^{n + 1} = R_{\Delta_i}^{n} \cup ({R_{\Delta_i}^{n}}^{-1} \circ R_{\Delta_i}^{n})$
+      \item $(R^{min}_{\Delta_i})^{E} = \bigcup_{k < \omega} R_{\Delta_i}^{k}$
+    \end{enumerate}
+
+    \begin{enumerate}
+      \item $n = 0$. This is obvious.
+      \item $m = n + 1$. Suppose the statement holds for $R_{\Delta_i}^{n}$, we also have $(\hat{x}, \hat{y}) \in R_{\Delta_i}^{n} \cup ({R_{\Delta_i}^{n}}^{-1} \circ R_{\Delta_i}^{n})$.
+      If $(\hat{x}, \hat{y}) \in R_{\Delta_i}^{n}$, then we just apply IH.
+
+      $(\hat{x}, \hat{y}) \in {R_{\Delta_i}^{n}}^{-1} \circ R_{\Delta_i}^{n} \in R_{\Delta_i}^{n}$, then there exists $\hat{z}$ such that $(\hat{z}, \hat{x}) \in R_{\Delta_i}^{n}$ and $(\hat{z}, \hat{y}) \in R_{\Delta_i}^{n}$.
+
+      We rewrite $(\hat{z}, \hat{x}) \in R_{\Delta_i}^{n}$ as the following sausage (for some $\widehat{u_1},  \widehat{u_2}, \dots, \widehat{u_{n - 1}}, \widehat{u_{n}}$):
+
+      \vspace{\baselineskip}
+
+\xymatrix{
+&&& \hat{z} & \ar[l]_{R_{\Delta_i}^{min}} \ar[r]^{R'} \widehat{u_1} & \ar[r]^{R'} \widehat{u_2} \ar[r]^{R'} & \dots & \ar[r]^{R'} \widehat{u_{n - 1}} \ar[r]^{R'} & \widehat{u_{n}} \ar[r]^{R_{\Delta_i}^{min}} & \hat{x}
+}
+\vspace{\baselineskip}
+
+where $R'$ is either $R_{\Delta_i}^{min}$ or its converse. We clearly have $\mathcal{M}, z \models \Box p_{\psi}$, since $\mathcal{M}, x \models \Box p_{\psi}$ implies $\mathcal{M}, u_{n} \models \Diamond \Box p_{\psi}$. After that we apply the following property of ${\bf K}5$-models:
+\begin{center}
+  For each $a, b \in M_i$ such that $a R_i b$ we have $\mathcal{M}_i, a \models \Diamond \Box p_{\psi}$ iff $\mathcal{M}_i, b \models \Diamond \Box p_{\psi}$
+\end{center}
+Then $\mathcal{M}_i, y \models p_{\psi}$ by IH.
+    \end{enumerate}
+  \end{proof}
+
+  Finally, we consider a model $\widehat{\mathcal{M}} = \langle \widehat{W}, \widehat{R}_1, \widehat{R}_2, \vartheta \rangle$, where $\widehat{R_{\Gamma'}}_i = {{R_i}^{min}_{\Gamma'}}^E$ and $\vartheta(p)$ is defined as usual for $p \in \Gamma$. $\widehat{\mathcal{M}}$ is a filtration of $\mathcal{M}$ through $\Gamma'$.
+
+  Let $\hat{x} \widehat{R_{\Gamma'}}_i \hat{y}$ and $\mathcal{M}, x \models \Box_i \psi$ for $\Box_i \psi \in \Gamma$. Then $\mathcal{M}_i, x \models \Box p_{\psi}$, so $\widehat{\mathcal{M}_i}, \hat{x} \models \Box p_{\psi}$.
+  By the claim above, $\widehat{\mathcal{M}_i}$ is a filtration of $\mathcal{M}_i$ through $\Delta_i$, so $\mathcal{M}_i, y \models p_{\psi}$. Then $\mathcal{M}, y \models \psi$.
+
+  \item Likewise
+  \item
+  \end{enumerate}
 \end{proof}
 
-So we have an example of a logic that has the ``finite canonical'' model property with no filtrations.
+\begin{theorem}
+  Let $\mathcal{L}_1$ and $\mathcal{L}_2$ be modal logics such that $\operatorname{Fr}(\mathcal{L}_1)$ and $\operatorname{Fr}(\mathcal{L}_2)$ admit filtrations, so does $\operatorname{Fr}(\mathcal{L}_1 * \mathcal{L}_2$).
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
 
 \bibliographystyle{plain}
 \bibliography{Text}

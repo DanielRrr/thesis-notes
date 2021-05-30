@@ -405,7 +405,7 @@ We  note  that  a  similar  construction  does  not  work  for  finite  represen
 
 In this section, we show that ${\bf R}(+, ;)$ has a recursively enumerable universal axiomatisation. For that, we characterise representability using Ehrenfeucht-Fra\"{i}ss\'{e} games on networks. After that, we show that every finite $\mathcal{A} \in {\bf R}(+, ;)$ is representable by factorising its network through an equivalence relation having a finite index. That is, an equivalence relation whose quotient is finite.
 
-\subsection{Axiomatisating ${\bf R}(+, ;)$}
+\subsection{Axiomatising ${\bf R}(+, ;)$}
 
 \begin{definition} Let $\mathcal{A}$ be a join-semilattice ordered semigroup. A \emph{prenetwork} over $\mathcal{A}$ is a tuple $(V, E, l)$, where $V$ is a set of vertices, $E$ is a set of edges such that $\langle V, E \rangle$ is a directed graph, and $l$ is a labelling function $l : E \to \operatorname{Up}(\mathcal{A})$.
 
@@ -442,7 +442,7 @@ Let $I$ be a non-empty index set and let $\{ \mathcal{N}_i \}_{i \in I}$ be an i
       is the same as $\mathcal{N}_n$, but $l_{n + 1}(x, z) = \up{(l_{n}(x, z)} \cup \{ b \: ; \: c \})$.
       \item ({\bf Witness move}):
 
-      $\forall$ picks nodes $x, y \in V_n$ and $d, e \in \mathcal{A}$ such that $c \leq d ; e$ for $c \in l_n(x, y)$. $\exists$ has to find a witness. She has to find a $z$ which is either a fresh node or an old one. If $z$ is fresh, then she defines the prenetwork $T$, the edges of which are $x, y, z$ with the labelling:
+      $\forall$ picks an edge $(x, y) \in E_n$ and $d, e \in \mathcal{A}$ such that $c \leq d ; e$ for $c \in l_n(x, y)$. $\exists$ has to find a witness. She has to find a $z$ which is either a fresh node or an old one. If $z$ is fresh, then she defines the prenetwork $T$, the edges of which are $x, y, z$ with labelling:
       \begin{enumerate}
         \item $l_T(x, z) = \up{d}$
         \item $l_T(z, y) = \up{e}$
@@ -451,7 +451,7 @@ Let $I$ be a non-empty index set and let $\{ \mathcal{N}_i \}_{i \in I}$ be an i
       For her response, $\exists$ plays $N_{n + 1} = N_n \cup T$
       \item ({\bf Join move}):
 
-      $\forall$ picks nodes $x, y \in V_n$ and $c + d$ for $c, d \in \mathcal{A}$. $\exists$ has the following two alternatives for her response:
+      $\forall$ picks an edge $(x, y) \in E_n$ and $c + d$ for $c, d \in \mathcal{A}$. $\exists$ has the following two alternatives for her response:
       \begin{enumerate}
         \item $\exists$ chooses $c$ and responds with the prenetwork $\mathcal{N}_{n + 1} = \langle V_{n + 1}, E_{n + 1}, l_{n + 1} \rangle$, where $l_{n+1}(x, y) = \up{(l_n(x,y) \cup \{ c \})}$.
         \item $\exists$ chooses $b$. The response is similar but $l_{n + 1}(x, y) = \up{(l_n(x,y) \cup \{ d \})}$.
@@ -459,7 +459,7 @@ Let $I$ be a non-empty index set and let $\{ \mathcal{N}_i \}_{i \in I}$ be an i
     \end{enumerate}
   \end{enumerate}
 
-  $\forall$ wins the play if there exists $b \leq a$ such that $b \in \mathcal{A}$ such that $b \in l_{\mathcal{N}_i}(x,y)$ for some $i < n$. Otherwise, $\exists$ wins the play.
+  $\forall$ wins the play if $b \notin l_{\mathcal{N}_i}(x,y)$ for some $i < n$. Otherwise, $\exists$ wins the play.
 
   Let $a \in \mathcal{A}$ and $\mathcal{N}$ a network, define a game $\mathcal{G}(\mathcal{N}, \mathcal{A}, a)$ such that $\forall$ picks $a$ in the initial round and $\mathcal{N}_0 = \mathcal{N}$. The rules of the game are the same as previously.
 \end{definition}
@@ -476,7 +476,7 @@ Let $I$ be a non-empty index set and let $\{ \mathcal{N}_i \}_{i \in I}$ be an i
 $ $
 
   \begin{enumerate}
-    \item Let $h : \mathcal{A} \to 2^{D \times D}$ is a representation of the base set $D \neq \emptyset$. $\exists$ maintains a map ${}^{'} : \operatorname{Nodes}(\mathcal{N}) \to D$, where $\mathcal{N}$ is a network being played, such that $(x',y') \in h(a)$ iff $\up a \subseteq l_{\mathcal{N}}(x,y)$.
+    \item Let $h : \mathcal{A} \to 2^{D \times D}$ is a representation of the base set $D \neq \emptyset$. $\exists$ maintains a map ${}^{'} : \operatorname{Nodes}(\mathcal{N}) \to D$, where $\mathcal{N}$ is a network being played, such that $a \in l_{\mathcal{N}}(x,y)$ implies $(x',y') \in h(a)$.
 
     \item
     Let $a \in \mathcal{A}$. We consider a play of the game where $\forall$ picks $a$ and $b$ with $a \not\leq b$ in the initial round and plays $(\mathcal{N}, x, y, z, c, d)$ in the further rounds for each $x, y, z \in \operatorname{Nodes}(\mathcal{N})$ and $c,d \in \mathcal{A}$. Here, $c \in l_N(x, y)$ and $d \in l_N(y, z)$.
@@ -561,7 +561,7 @@ Now we are seeking to obtain the explicit axiomatisation of ${\bf R}(;, +)$. See
 \end{definition}
 
 \begin{definition}
-  A \emph{term network} is a finite network $\langle V, E, l \rangle$, where $\langle V, E \rangle$ is a directed graph and $l : E \to 2^{Term}$ is a labelling function such that every $l_(x,y)$ is finite for each $(x, y) \in E$.
+  A \emph{term network} is a finite network $\langle V, E, l \rangle$, where $\langle V, E \rangle$ is a directed graph and $l : E \to 2^{Term}$ is a labelling function such that every $l(x,y)$ is finite for each $(x, y) \in E$.
 \end{definition}
 
 Let $\mathcal{A}$ be a join semilattice-ordered semigroup and $\vartheta : \operatorname{Var} \to \mathcal{A}$ a valuation. The value of complex terms is defined inductively for $a, b \in T$:
@@ -571,7 +571,7 @@ Let $\mathcal{A}$ be a join semilattice-ordered semigroup and $\vartheta : \oper
   \item $(a + b)^{\vartheta} = a^{\vartheta} + b^{\vartheta}$
 \end{enumerate}
 
-Let $\mathcal{N} = \langle V, E, l \rangle$ a term network, $\mathcal{A}$ be a join-semilattice ordered semigroup and $\vartheta : \operatorname{Var} \to {\mathcal{A}}$ a valuation. Let us define the prenetwork $\mathcal{N}^{\vartheta}$ with the same edges and vertices with labelling $l^{\vartheta}(x, y) = \bigcup \{ F \in \operatorname{Up}(\mathcal{A}, \leq) \: | \: l_{\mathcal{N}}(x, y) \subseteq F \}$.
+Let $\mathcal{N} = \langle V, E, l \rangle$ a term network, $\mathcal{A}$ be a join-semilattice ordered semigroup and $\vartheta : \operatorname{Var} \to {\mathcal{A}}$ a valuation. Let us define the prenetwork $\mathcal{N}^{\vartheta}$ with the same edges and vertices with labelling $l^{\vartheta}(x, y) = \up \vartheta[l_{\mathcal{N}}(x, y)]$.
 
 Let $\mathcal{N}$ be a term network. We define the following three extensions of $\mathcal{N}$ reflecting the composition, witness, and join moves respectively:
 \begin{enumerate}
@@ -640,79 +640,24 @@ This inductive sequence of formulas provides us the explicit axiomatisation of t
 
 Let us show finite representability for ${\bf R}(+, ;)$. Suppose that a finite $\mathcal{A}$ is representable, so $\exists$ has a winning strategy on $\mathcal{G}^{\omega}(\mathcal{A})$. Let us consider $\mathcal{N} = \langle V, E, l \rangle$, the network constructed during the $\mathcal{G}^{\omega}(\mathcal{A})$ game.
 
-$\mathcal{N} = \langle V, E, l \rangle$ be a $\mathcal{A}$-network and $\mathcal{A}$ is finite. Define the following equivalence relation on $E \times E$ for $(x_1, y_1), (x_2, y_2) \in E$:
-\begin{center}
-  $(x_1, y_1) \equiv (x_2, y_2)$ iff $l_{\mathcal{N}}(x_1, y_1) = l_{\mathcal{N}}(x_2, y_2)$
-\end{center}
-If $A$ is finite, then $E /_{\equiv}$ is finite as well since the set $\operatorname{Up}(\mathcal{A}, \leq)$ is finite.
-
-Let us construct the following $\mathcal{A}$-prenetwork $\mathcal{N}_{\equiv} = \langle V_{\equiv}, E /_{\equiv}, l \rangle$ such that:
-\begin{enumerate}
-  \item $V_{\equiv} = \bigcup \{ \{ x, y \} \: | \: [x,y]_{\equiv} \in E /_{\equiv} \}$, that is, the union of two element sets $\{ x, y \}$ such that there exists an edge $(x,y)$ up to $\equiv$.
-  \item $l([x,y]_{\equiv}) = l_{\mathcal{N}}(x,y)$
-\end{enumerate}
-
-\begin{lemma} Let $\mathcal{A}$ be a finite join semilattice-ordered semigroup and $\mathcal{N} = \langle V, E, l \rangle$ an $\mathcal{A}$-prenetwork.
+\begin{definition}
+  Let $\mathcal{A}$ be a join semilattice-ordered semigroup and let $\mathcal{N}_1$ and $\mathcal{N}_2$ be $\mathcal{A}$-networks. A strong homomorphism from $\mathcal{N}_1$ onto $\mathcal{N}_2$ is a map $f : \mathcal{N}_1 \twoheadrightarrow \mathcal{N}_2$ such that:
   \begin{enumerate}
-  \item Let $a \in \mathcal{A}$, then $a \in l_{\mathcal{N}}(x,y)$ iff $a \in l([x,y]_{\equiv})$.
+    \item $(x, y) \in E_2$ implies $(f(x), f(y)) \in E_1$,
+    \item If $(x', y') \in E_2$, then there exists $x, y \in E_1$ such that $f(x) = x'$ and $f(y) = y'$ and $(x, y) \in E_1$,
+    \item $l_{\mathcal{N}_1}(x, y) = l_{\mathcal{N}_2}(f(x),f(y))$
+  \end{enumerate}
+  By $\mathcal{N}_1 \twoheadrightarrow \mathcal{N}_2$ we mean that there exists a strong homomorphism of $\mathcal{N}_1$ onto $\mathcal{N}_2$.
+\end{definition}
 
-  \item Let $\mathcal{A}$ be a finite join semilattice-ordered semigroup and $\mathcal{N}$ an $\mathcal{A}$-prenetwork. If $\mathcal{A}$ is a network, so is $\mathcal{N}_{\equiv}$. Moreover, $\mathcal{N}_{\equiv}$ is finite.
-\end{enumerate}
+\begin{lemma}
+  Let $\mathcal{A}$ be a representable join semilattice-ordered semigroup and $\mathcal{N} = \langle V, E, l \rangle$ and $\mathcal{N}' = \langle V', E', l' \rangle$ $\mathcal{A}$-networks.
+
+  Suppose $\mathcal{N} \twoheadrightarrow \mathcal{N}'$. If $\mathcal{N}^{*}$ is a representation of $\mathcal{A}$, so is $ $
 \end{lemma}
 
-\begin{proof}
-$ $
-  \begin{enumerate}
-  \item If $a \in l_{\mathcal{N}}(x,y)$, suppose $(x_1,y_1) \equiv (x,y)$, so $l_{\mathcal{N}}(x,y) = l_{\mathcal{N}}(x_1,y_1)$, then $a \in l_{\mathcal{N}}(x_1,y_1)$. Therefore, $a \in l([x,y]_{\equiv})$. The converse implication is obvious.
-  \item Follows from the definition of a network and the fact that the proof does not depend on the choice of equivalence classes representatives.
-  Let us check join-primeness as an example. The rest of the cases are considered in a similar fashion:
-  Let $a, b \in \mathcal{A}$ and $x, y \in V$ such that $a + b \in l([x,y]_{\equiv})$.
-  Then $a + b \in l(x,y)$ in the original network. Then we have either $a \in l(x,y)$ or $b \in l(x,y)$ by the join-primeness condition. Therefore, either $a \in l([x,y]_{\equiv})$ or $b \in l([x,y]_{\equiv})$
-
-  $\mathcal{N}_{\equiv}$ is finite since $E_{\equiv}$ is finite. That makes $V_{\equiv}$ finite as well.
-  \end{enumerate}
-\end{proof}
-
-\begin{theorem}\label{frpjoin}
-  ${\bf R}(+, ;)$ has the finite representation property.
-\end{theorem}
-
-\begin{proof}
-  Let $\mathcal{A} \in {\bf R}(+, ;)$ and $\mathcal{A}$ is finite.
-  Let us show that $\mathcal{A}$ has a representation over a finite base.
-  We already know that $\exists$ has a winning strategy on $\mathcal{G}^{\omega}(\mathcal{A})$, so we have $\mathcal{N}$, the resulting network. So $\mathcal{N}_{\equiv}$ is a finite network by the previous lemma.
-  Define the following map $f : \mathcal{A} \to 2^{E_{\equiv}}$ as follows:
-\begin{center}
-  $f : a \mapsto \{ (x,y) \: | \: \exists b \leq a \: \& \: b \in l([x,y]_{\equiv}) \}$.
-\end{center}
-$f$ preserves all operations and it is injective for the same reason as $\operatorname{rep}$ constructed above. Let us check that.
-
-If $(x,y) \in f(a + b)$, then there is $c \leq a + b$ such that $c \in l([x,y]_{\equiv})$, then $c \in l_{\mathcal{N}}(x,y)$, so we have either $a \in l_{\mathcal{N}}(x,y)$ or $b \in l_{\mathcal{N}}(x,y)$. Thus, either $a \in l([x,y]_{\equiv})$ or $b \in l([x,y]_{\equiv})$.
-If $(x, y) \in f(a)$, then there exists $c \leq a$ such that $c \in l([x,y]_{\equiv})$, but $a + b \in \in l([x,y]_{\equiv})$. Therefore, $f(a + b) = f(a) \cup f(b)$.
-
-If $(x,y) \in f(a ; b)$, then there exists $c \leq a ; b$ with $c \in l([x,y]_{\equiv})$, then $c \in l_{\mathcal{N}}(x,y)$. By the saturation condition, there is $z \in \operatorname{Nodes}(\mathcal{N})$ with $a \in l_{\mathcal{N}}(x,z)$ and $b \in l_{\mathcal{N}}(z,y)$.
-Then $a \in l([x,z]_{\equiv})$ and $b \in l([z,y]_{\equiv})$.
-If $(x,y) \in f(a);f(b)$, then there is $z \in V_{\equiv}$ with $(x, z) \in f(a)$ and $(z, y) \in f(b)$, then there are $c$ and $d$ with $c \leq a$ and $c \in l([x,z]_{\equiv})$ and $d \leq b \in l([z,y]_{\equiv})$ respectively. Then $c ; d \in l([x,y]_{\equiv})$ by the saturation condition.
-
-Suppose $a \neq b$, so we have either $a \not\leq b$ or $b \not\leq a$.
-Suppose $a \not\leq b$. Let $(x, y) \in f(a)$, then there is $c \leq a$ with $c \in l([x,y]_{\equiv})$, then $c \in l_{\mathcal{N}}(x,y))$ and, moreover, $c \in l_{\mathcal{N}^{*}(a,b)}(x,y))$.
-We know that $\exists$ has a winning strategy in $\mathcal{G}_{\omega}(\mathcal{A})$, so
-$b \notin l_{\mathcal{N}^{*}(a,b)}(x,y))$. So $b \notin l([x,y]_{\equiv})$ and $f(a) \neq f(b)$.
-The second alternative is similar to the previous one.
-
-The base set of a representation, $V /_{\equiv}$, is finite, see the previous lemma.
-\end{proof}
-
-In turn, the finite representation property and the presence of a recursively enumerable axiomatisation imply the following corollary.
-
-\begin{corollary}
-  The problem of membership to ${\bf R}(;, +)$ is decidable for finite structures.
-\end{corollary}
-
-\begin{proof}
-  Follows from Proposition~\ref{dec}, Theorem~\ref{axiomatisation}, and Theorem~\ref{frpjoin}.
-\end{proof}
-
+\begin{lemma}
+\end{lemma}
 
 \section{Acknowledgements}
 
