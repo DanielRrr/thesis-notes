@@ -382,6 +382,36 @@ The converse implication does not have to true generally. ${\bf GL}$ might be an
   Let $\mathcal{L}_1$ and $\mathcal{L}_2$ be modal logics, then the fusion $\mathcal{L}_1 * \mathcal{L}_2$ is the minimal bimodal logic that contains $\mathcal{L}_1$ and $\mathcal{L}_2$ \cite{kurucz200715}.
 \end{defin}
 
+\begin{lemma}\label{extension}
+  Let $\Gamma$ be a finite and $\operatorname{Sub}$-closed set of formulas and $\mathcal{M} = \langle W, R, \vartheta \rangle$. Consider $\Gamma' = \Gamma \cup \{ \Diamond \Box \psi \: | \: \Box \psi \in \Gamma \}$. Let $\Delta$ be any finite and $\operatorname{Sub}$-closed extension of $\Gamma'$. Then a model $\widehat{M} = \langle W / \sim_{\Delta}, (R^{min}_{\Delta})^{E}, \widehat{\vartheta} \rangle$ is a filtration of $\mathcal{M}$ through $\Delta$.
+\end{lemma}
+
+\begin{proof}
+  Recall that $(R^{min}_{\Delta})^{E}$ is defined inductively as:
+  \begin{enumerate}
+    \item $R_{\Delta}^{0} = R_{\Delta}^{min}$
+    \item $R_{\Delta}^{n + 1} = R_{\Delta}^{n} \cup ({R_{\Delta}^{n}}^{-1} \circ R_{\Delta}^{n})$
+    \item $(R^{min}_{\Delta})^{E} = \bigcup_{k < \omega} R_{\Delta}^{k}$
+  \end{enumerate}
+
+  If $R^{min}_{\Delta}$ is already a subrelation of $R^{max}$, so the base case is self-evident.
+
+  Suppose the statement holds for $R_{\Delta}^{n}$, $(\hat{x},\hat{y}) \in R_{\Delta}^{n + 1}$, that is, there exists $\hat{z}$ such that $(\hat{z}, \hat{x}), (\hat{z}, \hat{y}) \in R_{\Delta}^{n}$.
+  Let $\mathcal{M}, x \models \Box \psi$ (for $\Box \psi \in \Gamma$).
+
+  We rewrite $(\hat{z}, \hat{x}) \in R_{\Delta}^{n}$ as the following sausage (for some $\widehat{u_1},  \widehat{u_2}, \dots, \widehat{u_{n - 1}}, \widehat{u_{n}}$):
+
+  \xymatrix{
+  &&& \hat{z} & \ar[l]_{R_{\Delta}^{min}} \ar[r]^{R'} \widehat{u_1} & \ar[r]^{R'} \widehat{u_2} \ar[r]^{R'} & \dots \ar[r]^{R'} & \widehat{u_{n - 1}} \ar[r]^{R'} & \widehat{u_{n}} \ar[r]^{R_{\Delta}^{min}} & \hat{x}
+  }
+  where $R'$ is either $R_{\Delta}^{min}$ or its converse. We have $\mathcal{M}, z \models \Box \psi$, since $\mathcal{M}, x \models \Box \psi$ implies $\mathcal{M}, u_{n} \models \Diamond \Box \psi$. After that we apply the following property of ${\bf K}5$-models:
+  \begin{center}
+    For each $a, b \in M_i$ such that $a R_i b$ we have $\mathcal{M}_i, a \models \Diamond \Box p_{\psi}$ iff $\mathcal{M}_i, b \models \Diamond \Box p_{\psi}$
+  \end{center}
+  Note that we always stay within $\Delta$ since $\Gamma' \subseteq \Delta$.
+  Finally, we conclude $\mathcal{M}, x \models \psi$ from IH and $\mathcal{M}, z \models \Box \psi$.
+\end{proof}
+
 \begin{theorem}
   $ $
 
@@ -409,65 +439,28 @@ $ $
   \begin{center}
     $\Gamma' = \Gamma \cup \{ \Diamond_1 \Box_1 \psi \: | \: \Box_1 \psi \in \Gamma \} \cup \{ \Diamond_2 \Box_2 \psi \: | \: \Box_2 \psi \in \Gamma \}$
 
-    $\Delta_1 = V \cup \operatorname{Sub}(\{ \Diamond \Box p_{\psi} \: | \: \Box_1 \psi \in \Gamma \})$
-
-    $\Delta_2 = V \cup \operatorname{Sub}(\{ \Diamond \Box p_{\psi} \: | \: \Box_2 \psi \in \Gamma \})$
+    $\Delta = V \cup \operatorname{Sub}(\{ \Diamond \Box p_{\psi} \: | \: \Box_i \psi \in \Gamma, i n= 1,2 \})$
   \end{center}
-  Let us define equivalence relations $\sim_1$ and $\sim_2$ induced by $\Delta_1$ and $\Delta_2$ respectively.
+  Let us define an equivalence relation $\sim_{\Delta}$ induced by $\Delta$.
 
   Consider $\mathcal{M}_i = \langle W, R_i, \vartheta' \rangle$, a reduct of $\mathcal{M}'$, we have:
   \begin{enumerate}
     \item $\mathcal{M}_i, x \models \Box p_{\psi}$ iff $\mathcal{M}, x \models \Box_i \psi$
     \item $\mathcal{M}_i, x \models \Diamond \Box p_{\psi}$ iff $\mathcal{M}, x \models \Diamond_i \Box_i \psi$
   \end{enumerate}
-  So $\sim_i = \sim_{\Gamma'}$ by the construction. Let us put $\widehat{W} = W / \sim_{\Gamma'}$.
+  So $\sim = \sim_{\Gamma'}$ by the construction. Let us put $\widehat{W} = W / \sim_{\Gamma'}$. Lemma~\ref{extension} implies the following claim:
 
   \begin{claim}
-    Let $\widehat{R}_i = (R^{min}_{\Delta_i})^{E}$ and
-    $\widehat{\vartheta(p)} = \{ [x]_{\sim_i} \: | \: \mathcal{M}_i, x \models p \}$ for $p \in \Delta_1$, define $\widehat{\mathcal{M}}_i = \widehat{W}, \widehat{R}_i, \widehat{\vartheta}$. Then $\widehat{\mathcal{M}}_i \models {\bf K}5$ and $\widehat{\mathcal{M}}_i$ is a filtration of $\mathcal{M}_i$ through $\Delta_i$.
+    Let $\widehat{R}_i = (R^{min}_{\Delta})^{E}$ and
+    $\widehat{\vartheta(p)} = \{ [x]_{\sim_i} \: | \: \mathcal{M}_i, x \models p \}$ for $p \in \Delta_1$, define $\widehat{\mathcal{M}}_i = \widehat{W}, \widehat{R}_i, \widehat{\vartheta}$. Then $\widehat{\mathcal{M}}_i \models {\bf K}5$ and $\widehat{\mathcal{M}}_i$ is a filtration of $\mathcal{M}_i$ through $\Delta$.
   \end{claim}
-  \begin{proof}
-    Let us show that $\widehat{R}_i \subseteq R^{max}_{\Delta_i}$ by induction.
-    Let $\hat{x} \widehat{R}_i \hat{y}$ such that $\mathcal{M}_i, x \models \Box p_{\psi}$.
-    We need $\mathcal{M}_i, y \models p_{\psi}$.
-    Recall that $\widehat{R}_i$ is defined inductively as:
-    \begin{enumerate}
-      \item $R_{\Delta_i}^{0} = R_{\Delta_i}^{min}$
-      \item $R_{\Delta_i}^{n + 1} = R_{\Delta_i}^{n} \cup ({R_{\Delta_i}^{n}}^{-1} \circ R_{\Delta_i}^{n})$
-      \item $(R^{min}_{\Delta_i})^{E} = \bigcup_{k < \omega} R_{\Delta_i}^{k}$
-    \end{enumerate}
-
-    \begin{enumerate}
-      \item $n = 0$. This is obvious.
-      \item $m = n + 1$. Suppose the statement holds for $R_{\Delta_i}^{n}$, we also have $(\hat{x}, \hat{y}) \in R_{\Delta_i}^{n} \cup ({R_{\Delta_i}^{n}}^{-1} \circ R_{\Delta_i}^{n})$.
-      If $(\hat{x}, \hat{y}) \in R_{\Delta_i}^{n}$, then we just apply IH.
-
-      $(\hat{x}, \hat{y}) \in {R_{\Delta_i}^{n}}^{-1} \circ R_{\Delta_i}^{n} \in R_{\Delta_i}^{n}$, then there exists $\hat{z}$ such that $(\hat{z}, \hat{x}) \in R_{\Delta_i}^{n}$ and $(\hat{z}, \hat{y}) \in R_{\Delta_i}^{n}$.
-
-      We rewrite $(\hat{z}, \hat{x}) \in R_{\Delta_i}^{n}$ as the following sausage (for some $\widehat{u_1},  \widehat{u_2}, \dots, \widehat{u_{n - 1}}, \widehat{u_{n}}$):
-
-      \vspace{\baselineskip}
-
-\xymatrix{
-&&& \hat{z} & \ar[l]_{R_{\Delta_i}^{min}} \ar[r]^{R'} \widehat{u_1} & \ar[r]^{R'} \widehat{u_2} \ar[r]^{R'} & \dots & \ar[r]^{R'} \widehat{u_{n - 1}} \ar[r]^{R'} & \widehat{u_{n}} \ar[r]^{R_{\Delta_i}^{min}} & \hat{x}
-}
-\vspace{\baselineskip}
-
-where $R'$ is either $R_{\Delta_i}^{min}$ or its converse. We clearly have $\mathcal{M}, z \models \Box p_{\psi}$, since $\mathcal{M}, x \models \Box p_{\psi}$ implies $\mathcal{M}, u_{n} \models \Diamond \Box p_{\psi}$. After that we apply the following property of ${\bf K}5$-models:
-\begin{center}
-  For each $a, b \in M_i$ such that $a R_i b$ we have $\mathcal{M}_i, a \models \Diamond \Box p_{\psi}$ iff $\mathcal{M}_i, b \models \Diamond \Box p_{\psi}$
-\end{center}
-Then $\mathcal{M}_i, y \models p_{\psi}$ by IH.
-    \end{enumerate}
-  \end{proof}
 
   Finally, we consider a model $\widehat{\mathcal{M}} = \langle \widehat{W}, \widehat{R}_1, \widehat{R}_2, \vartheta \rangle$, where $\widehat{R_{\Gamma'}}_i = {{R_i}^{min}_{\Gamma'}}^E$ and $\vartheta(p)$ is defined as usual for $p \in \Gamma$. $\widehat{\mathcal{M}}$ is a filtration of $\mathcal{M}$ through $\Gamma'$.
 
   Let $\hat{x} \widehat{R_{\Gamma'}}_i \hat{y}$ and $\mathcal{M}, x \models \Box_i \psi$ for $\Box_i \psi \in \Gamma$. Then $\mathcal{M}_i, x \models \Box p_{\psi}$, so $\widehat{\mathcal{M}_i}, \hat{x} \models \Box p_{\psi}$.
-  By the claim above, $\widehat{\mathcal{M}_i}$ is a filtration of $\mathcal{M}_i$ through $\Delta_i$, so $\mathcal{M}_i, y \models p_{\psi}$. Then $\mathcal{M}, y \models \psi$.
+  By the claim above, $\widehat{\mathcal{M}_i}$ is a filtration of $\mathcal{M}_i$ through $\Delta$, so $\mathcal{M}_i, y \models p_{\psi}$. Then $\mathcal{M}, y \models \psi$.
 
   \item Likewise
-  \item
   \end{enumerate}
 \end{proof}
 
