@@ -53,10 +53,12 @@
 
 \author{Daniel Rogozin}
 \date{}
-\title{Notes on filtration of logics containing {\bf K5}}
+\title{Notes on filtrations for logics that contain {\bf K5}}
 \begin{document}
 
 \maketitle
+
+\section{Preliminaries}
 
 Let $\mathcal{M} = \langle W, R_1, \dots, R_n, \vartheta \rangle$ be a Kripke model and $\Gamma$ a set of formulas closed under subformulas. An equivalence relation $\sim$ is set to have a finite index if the quotient set $W / \sim$ is finite. The equivalence relation $\sim_{\Gamma}$ induced by $\Gamma$ is defined as
 
@@ -124,6 +126,8 @@ A class of frames $\mathbb{F}$ admits strict filtrations for frames, if for ever
     \item $R_{n + 1} = R_n \cup \{ (a, b) \in W \: | \: \exists \vec{c} \in W \: P(a, b, \vec{c})\}$, where $P$ is a premise of $H$.
   \end{enumerate}
 \end{lemma}
+
+\section{Filtrations for {\bf K5}}
 
 $E$-closure (an Euclidean Horn closure of a binary relation) has the following equivalent definitions:
 \begin{lemma} \label{equivHorn}
@@ -383,7 +387,12 @@ The converse implication does not have to true generally. ${\bf GL}$ might be an
 \end{defin}
 
 \begin{lemma}\label{extension}
-  Let $\Gamma$ be a finite and $\operatorname{Sub}$-closed set of formulas and $\mathcal{M} = \langle W, R, \vartheta \rangle$. Consider $\Gamma' = \Gamma \cup \{ \Diamond \Box \psi \: | \: \Box \psi \in \Gamma \}$. Let $\Delta$ be any finite and $\operatorname{Sub}$-closed extension of $\Gamma'$. Then a model $\widehat{M} = \langle W / \sim_{\Delta}, (R^{min}_{\Delta})^{E}, \widehat{\vartheta} \rangle$ is a filtration of $\mathcal{M}$ through $\Delta$.
+  $ $
+
+  \begin{itemize}
+  \item Let $\Gamma$ be a finite and $\operatorname{Sub}$-closed set of formulas and $\mathcal{M} = \langle W, R, \vartheta \rangle$. Consider $\Gamma' = \Gamma \cup \{ \Diamond \Box \psi \: | \: \Box \psi \in \Gamma \}$. Let $\Delta$ be any finite and $\operatorname{Sub}$-closed extension of $\Gamma'$. Then a model $\widehat{M} = \langle W / \sim_{\Delta}, (R^{min}_{\Delta})^{E}, \widehat{\vartheta} \rangle$ is a filtration of $\mathcal{M}$ through $\Delta$.
+  \item The same for ${\bf K} \oplus \Diamond \Diamond \Diamond p \to \Diamond p$
+  \end{itemize}
 \end{lemma}
 
 \begin{proof}
@@ -410,6 +419,8 @@ The converse implication does not have to true generally. ${\bf GL}$ might be an
   \end{center}
   Note that we always stay within $\Delta$ since $\Gamma' \subseteq \Delta$.
   Finally, we conclude $\mathcal{M}, x \models \psi$ from IH and $\mathcal{M}, z \models \Box \psi$.
+
+  The second item is shown similarly.
 \end{proof}
 
 \begin{theorem}
@@ -418,7 +429,10 @@ The converse implication does not have to true generally. ${\bf GL}$ might be an
   \begin{enumerate}
   \item ${\bf K}5 * {\bf K}5$ admits definable filtrations.
   \item ${\bf K}5 * \dots * {\bf K}5$ admits definable filtrations.
+  \item If $\mathcal{L}$ admits strict filtrations, then ${\bf K}5 * \mathcal{L}$ admits definable filtrations
   \item If $\mathcal{L}_1, \dots, \mathcal{L}_n$ admit strict filtrations, then ${\bf K}5 * \dots * \dots * {\bf K}5 * \mathcal{L}_1 * \dots * \mathcal{L}_n$
+  \item Let $\mathcal{L} = {\bf K} \oplus \Diamond \Diamond \Diamond p \to \Diamond p$  (here and below), then $\mathcal{L} * \mathcal{L}$ admits definable filtrations.
+  \item Let $\mathcal{L} = {\bf K} \oplus \Diamond \Diamond \Diamond p \to \Diamond p$ and $\mathcal{L}_1$ a logic that admits strict filtrations, then $\mathcal{L} * \mathcal{L}_1$
   \end{enumerate}
 \end{theorem}
 
@@ -461,15 +475,51 @@ $ $
   By the claim above, $\widehat{\mathcal{M}_i}$ is a filtration of $\mathcal{M}_i$ through $\Delta$, so $\mathcal{M}_i, y \models p_{\psi}$. Then $\mathcal{M}, y \models \psi$.
 
   \item Likewise
+  \item The argument is the same as in the proof of the first item, except for {\bf Claim} 1 that has the following formulation:
+  Let $\widehat{R}_1 = (R^{min}_{\Delta})^{E}$ and $\widehat{R}_2 = (R^{min}_{\Delta})^{\mathcal{L}_1}$
+  Define a valuation as usual as $\widehat{\vartheta(p)} = \{ [x]_{\sim_i} \: | \: \mathcal{M}_i, x \models p \}$ for $p \in \Delta_1$, define $\widehat{\mathcal{M}}_1 = \langle \widehat{W}, \widehat{R}_1, \widehat{\vartheta} \rangle$ and $\widehat{\mathcal{M}}_2 = \langle \widehat{W}, \widehat{R}_2, \widehat{\vartheta} \rangle$.
+
+  Then $\widehat{\mathcal{M}}_1 \models {\bf K}5$ and $\widehat{\mathcal{M}}_1 \models {\bf L}$ and $\widehat{\mathcal{M}}_i$ is a filtration of $\mathcal{M}_i$ through $\Delta$.
+
+  \item Likewise
+  \item The argument is similar to the proof of first item, but filtrations are slightly different.
+  Let $\mathcal{M} = \langle W, R_1, R_2, \vartheta \rangle$ be a $\mathcal{L} * \mathcal{L}$ model and $\Gamma$ a $\operatorname{Sub}$-closed set of formulas. As above, we define a set $V$ and a model $\mathcal{M}'$. Define extensions of $\Gamma$ and $V$:
+
+  \begin{center}
+    $\Gamma' = \Gamma \cup \{ \Diamond_1 \Diamond_1 \psi \: | \: \Diamond_1 \psi \in \Gamma \} \cup \{ \Diamond_2 \Diamond_2 \psi \: | \: \Diamond_2 \psi \in \Gamma \}$
+
+    $\Delta = V \cup \operatorname{Sub}(\{ \Diamond \Diamond p_{\psi} \: | \: \Diamond \psi \in \Gamma, i = 1,2 \})$
+  \end{center}
+  As above $\sim_{\Delta} = \Gamma'$ and $\widehat{\mathcal{M}'} = \langle W /\sim_{\Delta}, \widehat{R_i}, \widehat{\vartheta} \rangle$ are filtrations of reducts of $\mathcal{M}'$ through $\Delta$. Then $\widehat{\mathcal{M}} = \langle W /\sim_{\Delta}, \widehat{R_1}, \widehat{R_2}, \widehat{\vartheta} \rangle$ is a required filtration of the original $\mathcal{M}$.
+  \item Extend $\Gamma$ with $\{ \Diamond_i \Diamond_i \psi \: | \: \Diamond_i \psi \in \Gamma, i = 1,2 \}$ and
+  $V$ with $\{\Diamond \Diamond p_{\psi} \: | \: \Diamond_i {\psi}, i = 1, 2\}$
   \end{enumerate}
 \end{proof}
 
 \begin{theorem}
-  Let $\mathcal{L}_1$ and $\mathcal{L}_2$ be modal logics such that $\operatorname{Fr}(\mathcal{L}_1)$ and $\operatorname{Fr}(\mathcal{L}_2)$ admit filtrations, so does $\operatorname{Fr}(\mathcal{L}_1 * \mathcal{L}_2$).
+  Let $\mathcal{L}_1$ and $\mathcal{L}_2$ be modal logics that admit definable filtrations. If $\operatorname{Mod}(\mathcal{L}_1)$ and $\operatorname{Mod}(\mathcal{L}_2)$ admit definable filtrations, so does $\operatorname{Mod}(\mathcal{L}_1 * \mathcal{L}_2$).
 \end{theorem}
 
 \begin{proof}
+  Let $\mathcal{M} = \langle W, R_1, R_2, \vartheta \rangle$ be an $\mathcal{L}_1 * \mathcal{L}_2$.
+  We define a notation $\nabla = \{ \neg \Diamond, \Diamond \neg, \Diamond \}$.
 
+  Both logics admit definable filtrations, so for every finite $\operatorname{Sub}$-closed set $\Gamma$ and for every $\mathfrak{M}$, an $\mathcal{L}_1$-model (or an $\mathcal{L}_2$ one) there exists there exists $\Delta$, a extension of $\Gamma$ having the form:
+  \begin{center}
+    $\Delta_1 = \Gamma \cup \operatorname{Sub}\{ \nabla_1 \nabla_2 \dots \nabla_n \Diamond \psi \: | \: \Diamond \psi \in \Gamma \}$ (for $\mathcal{L}_1$)
+
+    $\Delta_2 = \Gamma \cup \operatorname{Sub}\{ \nabla_1 \nabla_2 \dots \nabla_k \Diamond \psi \: | \: \Diamond \psi \in \Gamma \}$ (for $\mathcal{L}_2$)
+  \end{center}
+  such that $\widehat{\mathfrak{M}} = \langle W / \sim_{\Delta_i}, \widehat{R}, \vartheta \rangle$ is a filtration of $\mathfrak{M}$ through the corresponding $\Delta_i$.
+
+  Let $V$ be a set of fresh variables indexed over $\Gamma$ as in the proof for a fusion of ${\bf K5}$ with something else. Let $\mathcal{M}'$ be a model defined as previously. We extend $V$ and $\Gamma$ in the following way:
+
+\begin{center}
+  $\Gamma' = \Gamma \cup \operatorname{Sub}\{ {\nabla_1}_1 {\nabla_2}_1 \dots {\nabla_n}_1 \Diamond_1 \psi \: | \: \Diamond_1 \psi \in \Gamma \} \cup \operatorname{Sub}\{ {\nabla_1}_2 {\nabla_2}_2 \dots {\nabla_n}_2 \Diamond_2 \psi \: | \: \Diamond_2 \psi \in \Gamma \}$
+
+  $\Delta = V \cup \operatorname{Sub}\{ \nabla_1 \nabla_2 \dots \nabla_n \Diamond p_{\psi} \: | \: {\nabla_{n + 1}}_1 \psi \in \Gamma' \} \cup \operatorname{Sub}\{ \nabla_1 \nabla_2 \dots \nabla_k \Diamond p_{\psi} \: | \: \Diamond_2 \psi \in \Gamma \}$.
+\end{center}
+By the construction, $\sim_{\Gamma'} = \sim_{\Delta}$. So we have filtrations for the corresponding reducts of $\mathcal{M}'$ through $\Delta$ as well as for the original $\mathcal{M}$.
 \end{proof}
 
 \bibliographystyle{plain}
