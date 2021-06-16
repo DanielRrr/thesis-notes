@@ -300,6 +300,51 @@ Suppose by contrary that $\widehat{R}^{\mathcal{E}}$ is a strict filtraction of 
 
 \end{proof}
 
+\section{i,j-Euclideaness}
+
+Let $R$ be a binary relation on $W \neq \emptyset$, then the $i,j$-Euclidean closure of $R$ (where $i, j < \omega$), denoted as $R^{E_{i,j}}$, is a binary relation defined recursively as follows:
+\begin{enumerate}
+  \item $R_0 = R$
+  \item $R_{n + 1} = R_n \cup (((R_n)^{-1})^i \circ {R_n}^j)$
+  \item $R^{E_{i,j}} = \bigcup \limits_{k < \omega} R_k$
+\end{enumerate}
+
+\begin{prop}
+  If $R$ be a binary relation on $W \neq \emptyset$, $R^{E_{i,j}}$ is $i,j$-Euclidean.
+\end{prop}
+\begin{proof}
+  By induction. Let $(x,y_1), (y_1,y_2), (y_2,y_3), \dots, (y_{i - 1},y_i), (x,z_1), (z_1,z_2), (z_2,z_3), \dots, (z_{j - 1},z_j) \in R^{E_{i,j}}$.
+  That is, each of these pairs belong to some $R_k$ and every $k < \omega$ for every pair is its own.
+  If $k = 0$ for each pair, then $(y_i, z_j) \in R_1$.
+  If some those $k$ is non-zero, then we take the greatest amongst them, say $e$ and all given pairs will be elements of $R_{e + 1}$.
+\end{proof}
+
+\begin{theorem}
+  ${\bf K5}^{i,j} = {\bf K} \oplus \Diamond^{i} p \to \Box^{j} \Diamond p$ admits definable filtrations.
+\end{theorem}
+
+\begin{proof}
+  Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ and $\Gamma$ a finite $\operatorname{Sub}$-closed of formulas. We extend $\Gamma$ as
+  \begin{center}
+    $\Delta = \Gamma \cup \operatorname{Sub}\{  \Diamond^{i} \psi \: | \: \Box \psi \in \Gamma \} \cup \operatorname{Sub}\{ \Box^{j} \Diamond \psi \: | \: \Diamond \psi \in \Gamma \}$
+  \end{center}
+  Let $(\hat{x}, \hat{y}) \in R^{E_{i,j}}$, $\mathcal{M}, x \models \Box \psi$ for $\Box \psi$ in $\Delta$.
+  If $n = 0$, then the statement is obvious. Suppose $n = 1$.
+  Then $(\hat{x}, \hat{y}) \in R_{min} \cup (((R_{min})^{-1})^i \circ {R_{min}}^j)$. Consider the second alternative. Then there exists $\hat{z}$ such that $(\hat{x}, \hat{z}) \in ((R_{min})^{-1})^i $ and $(\hat{z}, \hat{y}) \in {R_{min}}^j$.
+
+  That is, there are $\hat{x_1}, \hat{x_2}, \dots, \hat{x_i}$ and $\hat{y_1}, \hat{y_2}, \dots, \hat{y_j}$ such that
+
+  \xymatrix{
+  &&&& \hat{z} \ar[r]^{R_{min}} & \ar[r]^{R_{min}} \hat{x_1} \ar[r]^{R_{min}} & \hat{x_2} \ar[r]^{R_{min}} & \dots \ar[r]^{R_{min}} & \ar[r]^{R_{min}} \hat{x_i} \ar[r]^{R_{min}} & \hat{x} \\
+  &&&& \hat{z} \ar[r]^{R_{min}} & \ar[r]^{R_{min}} \hat{y_1} \ar[r]^{R_{min}} & \hat{y_2} \ar[r]^{R_{min}} & \dots \ar[r]^{R_{min}} & \ar[r]^{R_{min}} \hat{y_j} \ar[r]^{R_{min}} & \hat{y} \\
+  }
+
+  ???
+\end{proof}
+
+\section{The case of 2-transitivity}
+
+
 Let us define the logic $\mathcal{L}$ as ${\bf K} \oplus \Diamond \Diamond \Diamond p \to \Diamond p$. Let $R$ be a binary relation, the $\mathcal{L}$-closure of $R$ is defined (denoted as $R^{\davidsstar}$) as the following union:
 \begin{center}
   $R^{\davidsstar} = R \cup R^3 \cup R^5 \cup \dots \cup R^{2k+1} \cup \dots$
