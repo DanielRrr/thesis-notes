@@ -372,52 +372,6 @@ Let us define the logic $\mathcal{L}$ as ${\bf K} \oplus \Diamond \Diamond \Diam
   We have $(\hat{x}, \hat{z}) \in \widehat{R} \circ \widehat{R} \circ \widehat{R}$, but $\Diamond r$ is not true at $x$.
 \end{proof}
 
-\section{Finite ``canonical'' models}
-
-Let $\mathcal{L}$ be a normal modal logic, $\mathcal{M}_{\mathcal{L}}$ its canonical model, and $\Gamma$ a finite $\operatorname{Sub}$-closed set of formulas. Let us put $\Gamma' = \operatorname{Sub}(\varphi) \cup \{ \neg \psi \: | \: \psi \in \operatorname{Sub}(\varphi) \}$.
-
-A subset $\Delta \subseteq '\Gamma$ is a \emph{finite $\mathcal{L}$-consistent set} if $\neg \bigwedge \Delta \notin \mathcal{L}$. A subset $\Delta$ is maximal, if (the following are obviously equivalent):
-\begin{enumerate}
-  \item $\Delta$ is maximal amongst finite $\mathcal{L}$-consistent sets,
-  \item For each $\psi \in \operatorname{Sub}(\varphi)$ either $\psi \in \Delta$ or
-  $\neg \psi \in \Delta$.
-\end{enumerate}
-
-Every finite $\mathcal{L}$-theory is clearly can be extended to some maximal one. It is the finite version of Lindenbaum's lemma.
-
-\begin{defin}\label{fin}
-  Let $\mathcal{L}$ be a modal logic and $\Gamma$ be a finite $\operatorname{Sub}$-closed set of formulas. A finite ``canonical'' model is a triple $\mathcal{M}_{\mathcal{L}}^{\Gamma} = \langle W_{\mathcal{L}}^{\Gamma}, R_{\mathcal{L}}^{\Gamma}, \vartheta_{\mathcal{L}}^{\Gamma} \rangle$, where
-  \begin{enumerate}
-    \item $W_{\mathcal{L}}^{\Gamma}$ is the set all maximal theories that extend finite $\mathcal{L}$-theories
-    \item $R_{\mathcal{L}}^{\Gamma}$ is a relation such that
-    $\langle W_{\mathcal{L}}^{\Gamma}, R_{\mathcal{L}}^{\Gamma} \rangle$ is an $\mathcal{L}$-frame
-    and
-    \begin{center}
-    $\forall \Box \psi \in \operatorname{Sub}(\varphi) \:\:
-    \forall \Delta_1 \in W_{\mathcal{L}}^{\Gamma} \:\: (\Box \psi \in \Delta_1 \Leftrightarrow
-    \forall \Delta_2 \in R_{\mathcal{L}}^{\Gamma}(\Delta_1) \:\: \psi \in \Delta_2)$
-    \end{center}
-    \item $\vartheta_{\mathcal{L}}^{\Gamma}(p) = \{ \Delta \in W_{\mathcal{L}}^{\varphi} \: | \: p \in \Delta \}$ for every variable $p \in \Gamma$.
-  \end{enumerate}
-\end{defin}
-
-\begin{lemma}\label{good}
-  Let $\mathcal{L}$ be a modal logic and $\varphi \not\in \mathcal{L}$, then $\mathcal{M}_{\mathcal{L}}^{\operatorname{Sub}(\varphi)} \nvDash \varphi$.
-\end{lemma}
-
-\begin{lemma} Let $\mathcal{L}$ be a modal logic and $\Gamma$ a finite $\operatorname{Sub}$-closed set of formulas, then if $\mathcal{L}$ admits strict filtrations, then there exists a finite ``canonical'' model $\mathcal{M}_{\mathcal{L}}^{\Gamma}$ such that $\mathcal{M}_{\mathcal{L}}^{\Gamma} \models \mathcal{L}$.
-\end{lemma}
-
-\begin{proof}
-  $ $
-$(\Rightarrow)$
-  Let $\Gamma$ be a finite $\operatorname{Sub}$-closed of formulas. $\mathcal{L}$ admits strict filtrations, so the filtration of the canonical model $\mathcal{M}_{\mathcal{L}}$ through $\Gamma$ is also an $\mathcal{L}$-model. The underlying set of $\mathcal{M}_{\mathcal{L}} / \sim_{\Gamma}$ consists of maximal $\mathcal{L}$ theories up to $\Gamma$-equivalence and this quotient set is finite.
-
-  It is readily checked that the quotient model $\mathcal{M}_{\mathcal{L}} / \sim_{\Gamma}$ satifsfies Definition~\ref{fin}.
-\end{proof}
-
-The converse implication does not have to true generally. ${\bf GL}$ might be an example of a logic that has the ``finite canonical'' model property with no filtrations.
-
 \section{Fusion stuff}
 
 \begin{defin}
@@ -425,16 +379,19 @@ The converse implication does not have to true generally. ${\bf GL}$ might be an
 \end{defin}
 
 \begin{lemma}\label{extension}
-  $ $
+  Let $\Gamma$ be a finite and $\operatorname{Sub}$-closed set of formulas.
 
-  \begin{itemize}
-  \item Let $\Gamma$ be a finite and $\operatorname{Sub}$-closed set of formulas and $\mathcal{M} = \langle W, R, \vartheta \rangle$. Consider $\Gamma' = \Gamma \cup \{ \Diamond \Box \psi \: | \: \Box \psi \in \Gamma \}$. Let $\Delta$ be any finite and $\operatorname{Sub}$-closed extension of $\Gamma'$. Then a model $\widehat{M} = \langle W / \sim_{\Delta}, (R^{min}_{\Delta})^{E}, \widehat{\vartheta} \rangle$ is a filtration of $\mathcal{M}$ through $\Delta$.
-  \item The same for ${\bf K} \oplus \Diamond \Diamond \Diamond p \to \Diamond p$
-  \end{itemize}
+  \begin{enumerate}
+  \item  $\mathcal{M} = \langle W, R, \vartheta \rangle$ be a ${\bf K}5$-model. Consider $\Gamma' = \Gamma \cup \{ \Diamond \Box \psi \: | \: \Box \psi \in \Gamma \}$. Let $\Delta$ be any finite and $\operatorname{Sub}$-closed extension of $\Gamma'$. Then a model $\widehat{M} = \langle W / \sim_{\Delta}, (R^{min}_{\Delta})^{E}, \widehat{\vartheta} \rangle$ is a filtration of $\mathcal{M}$ through $\Delta$.
+  \item Let $\mathcal{L} = {\bf K} \oplus \Diamond \Diamond \Diamond p \to \Diamond p$, then we have the similar statement for $\mathcal{L}$, where $\Delta$ is an extension of $\Gamma' = \{ \Diamond \Diamond \psi \: | \: \Diamond \psi \}$.
+  \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-  Recall that $(R^{min}_{\Delta})^{E}$ is defined inductively as:
+\begin{enumerate}
+  $ $
+
+  \item Recall that $(R^{min}_{\Delta})^{E}$ is defined inductively as:
   \begin{enumerate}
     \item $R_{\Delta}^{0} = R_{\Delta}^{min}$
     \item $R_{\Delta}^{n + 1} = R_{\Delta}^{n} \cup ({R_{\Delta}^{n}}^{-1} \circ R_{\Delta}^{n})$
@@ -443,22 +400,33 @@ The converse implication does not have to true generally. ${\bf GL}$ might be an
 
   If $R^{min}_{\Delta}$ is already a subrelation of $R^{max}$, so the base case is self-evident.
 
-  Suppose the statement holds for $R_{\Delta}^{n}$, $(\hat{x},\hat{y}) \in R_{\Delta}^{n + 1}$, that is, there exists $\hat{z}$ such that $(\hat{z}, \hat{x}), (\hat{z}, \hat{y}) \in R_{\Delta}^{n}$.
-  Let $\mathcal{M}, x \models \Box \psi$ (for $\Box \psi \in \Gamma$).
+  Suppose the statement holds for $R_{\Delta}^{n}$, $(\hat{x},\hat{y}) \in R_{\Delta}^{n + 1}$ such that $\mathcal{M}, y \models \psi$ for $\Diamond \psi \in \Delta$.
 
-  We rewrite $(\hat{z}, \hat{x}) \in R_{\Delta}^{n}$ as the following sausage (for some $\widehat{u_1},  \widehat{u_2}, \dots, \widehat{u_{n - 1}}, \widehat{u_{n}}$):
+  According to the third item of Lemma~\ref{equivHorn}, this is the same as there exist $\widehat{z_0}, \widehat{z_1}, \dots, \widehat{z_{n-1}}, \widehat{z_n}$ such that
+  $\widehat{z_1} R^{min}_{\Delta} \hat{x}$, $\widehat{z_n} R^{min}_{\Delta} \hat{y}$, and for each $i \in n + 1$ we have either $\widehat{z_i} R^{min}_{\Delta} \widehat{z_{i + 1}}$ or $\widehat{z_{i + 1}} R^{min}_{\Delta} \widehat{z_i}$.
+
+  We visualise this with the following graph:
 
   \xymatrix{
-  &&& \hat{z} & \ar[l]_{R_{\Delta}^{min}} \ar[r]^{R'} \widehat{u_1} & \ar[r]^{R'} \widehat{u_2} \ar[r]^{R'} & \dots \ar[r]^{R'} & \widehat{u_{n - 1}} \ar[r]^{R'} & \widehat{u_{n}} \ar[r]^{R_{\Delta}^{min}} & \hat{x}
+  &&& \hat{x} & \ar[l]_{R_{\Delta}^{min}} \ar@{<->}[r]^{R'} \widehat{z_0} & \ar@{<->}[r]^{R'} \widehat{z_1} \ar@{<->}[r]^{R'} & \dots \ar@{<->}[r]^{R'} & \widehat{z_{n - 1}} \ar[r]^{R'} & \widehat{z_n} \ar[r]^{R_{\Delta}^{min}} & \hat{y}
   }
-  where $R'$ is either $R_{\Delta}^{min}$ or its converse. We have $\mathcal{M}, z \models \Box \psi$, since $\mathcal{M}, x \models \Box \psi$ implies $\mathcal{M}, u_{n} \models \Diamond \Box \psi$. After that we apply the following property of ${\bf K}5$-models:
-  \begin{center}
-    For each $a, b \in M_i$ such that $a R_i b$ we have $\mathcal{M}_i, a \models \Diamond \Box p_{\psi}$ iff $\mathcal{M}_i, b \models \Diamond \Box p_{\psi}$
-  \end{center}
-  Note that we always stay within $\Delta$ since $\Gamma' \subseteq \Delta$.
-  Finally, we conclude $\mathcal{M}, x \models \psi$ from IH and $\mathcal{M}, z \models \Box \psi$.
+  where $R'$ is either $R_{\Delta}^{min}$ or its converse. We have $\mathcal{M}, z \models \Box \psi$, $\mathcal{M}, y \models \psi$, so $\mathcal{M}, z_{n} \models \Diamond \psi$. Since $\mathcal{M}$ is a ${\bf K}5$-model, we have $\mathcal{M}, z_{n} \models \Box \Diamond \psi$.
 
-  The second item is shown similarly.
+  After that we apply the following property of ${\bf K}5$-models:
+  \begin{center}
+    Let $\mathcal{M} \models {\bf K}5$ and $\varphi$ a formula, then for each $a, b \in \mathcal{M}$ such that $a R b$ we have $\mathcal{M}, a \models \Box \Diamond \varphi$ iff $\mathcal{M}, b \models \Box \Diamond \varphi$
+  \end{center}
+  So we have $\mathcal{M}, z_0 \models \Box \Diamond \varphi$. Note that we always stay within $\Delta$. Thus, $\mathcal{M}, x \models \Diamond \varphi$.
+
+  \item Let us prove the second item. Let $\mathcal{M}$ be an $\mathcal{L}$-model.
+  The $\mathcal{L}$-closure of the minimal filtered relation modulo $\Delta$, namely ${R_{\Delta}^{min}}^{\mathcal{L}}$ has the following form:
+  \begin{center}
+    ${R_{\Delta}^{min}}^{\mathcal{L}} = \bigcup \limits_{i < \omega} {R_{\Delta}^{min}}^{2i + 1}$
+  \end{center}
+  Let $\Diamond \psi \in \Delta$, $(\hat{x}, \hat{y}) \in {R_{\Delta}^{min}}^{\mathcal{L}}$, and $\mathcal{M}, y \models \psi$. The base case is self-evident.
+  Let $k < \omega$ and $(\hat{x}, \hat{y}) \in {R_{\Delta}^{min}}^{2k + 3}$ and the statement holds for ${R_{\Delta}^{min}}^{2k + 1}$.
+  
+\end{enumerate}
 \end{proof}
 
 \begin{theorem}
