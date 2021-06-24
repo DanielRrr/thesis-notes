@@ -60,6 +60,7 @@
 
 \section{Preliminaries}
 
+
 Let $\mathcal{M} = \langle W, R_1, \dots, R_n, \vartheta \rangle$ be a Kripke model and $\Gamma$ a set of formulas closed under subformulas. An equivalence relation $\sim$ is set to have a finite index if the quotient set $W / \sim$ is finite. The equivalence relation $\sim_{\Gamma}$ induced by $\Gamma$ is defined as
 
 \begin{center}
@@ -68,11 +69,13 @@ Let $\mathcal{M} = \langle W, R_1, \dots, R_n, \vartheta \rangle$ be a Kripke mo
 
 If $\Gamma$ is finite, then $\sim_{\Gamma}$ has a finite index. An equivalence relation $\sim$ respects $\sim_{\Gamma}$, if $w \sim v$ implies $w \sim_{\Gamma} v$.
 
+The following definition of a filtration is due to, e.g., \cite{shehtman2004filtration}.
+
 \begin{defin}
   Let $\mathcal{M} = \langle W, R_1, \dots, R_n, \vartheta \rangle$ be a Kripke model and $\Gamma$ be a Sub-closed set formulas. A $\Gamma$-filtration of $\mathcal{M}$ is a model
   $\widehat{\mathcal{M}} = \langle \widehat{W}, \widehat{R_1}, \dots, \widehat{R_n}, \widehat{\vartheta} \rangle$ such that:
   \begin{enumerate}
-    \item $\widehat{W} = W / \sim$, where $\sim$ is an equivalence relation having a finite index that respects $\Gamma$
+    \item $\widehat{W} = W / \sim$, where $\sim$ is an equivalence relation that respects $\Gamma$
     \item $\widehat{\vartheta}(p) = \{ [x]_{\sim} \: | \: x \in W \: \& \: x \in \vartheta(p)\}$
     \item For each $i \in I$ one has $\widehat{R}_i^{\text{min}} \subseteq \widehat{R}_i \subseteq \widehat{R}_i^{\text{max}}$. $\widehat{R}_{i, \sim}^{\text{min}}$ is the $i$-th minimal filtered relation on $\widehat{W}$ defined as
     \begin{center}
@@ -85,8 +88,21 @@ If $\Gamma$ is finite, then $\sim_{\Gamma}$ has a finite index. An equivalence r
   \end{enumerate}
 \end{defin}
 
-If $\Phi$ is finite subset of $\Gamma$ and $\sim = \sim_{\Phi}$, then $\widehat{\mathcal{M}}$ is a definable $\Gamma$-filtration of $\mathcal{M}$ through $\Phi$. If $\sim = \sim_{\Gamma}$, then such a filtration by means of the definiton above is called \emph{strict}. A class of models $\mathbb{M}$ admits strict filtrations for models (ASF), if for every $\operatorname{Sub}$-closed set $\Gamma$ and for every $\mathcal{M} \in \mathbb{M}$ there exists a $\Gamma$ filtration of $\mathcal{M}$.
-A class of frames $\mathbb{F}$ admits strict filtrations for frames, if for every $\operatorname{Sub}$-closed set $\Gamma$ and for every frame $\mathcal{F} \in \mathbb{F}$ and every model $\mathcal{M}$ over $\mathcal{F}$ there exists a $\Gamma$ filtration of $\mathcal{M}$. If $\mathcal{L}$ is canonical, then the ASF property for frames and ASF property for models are equivalent \cite[Theorem 2.10]{kikot2020completeness}.
+Alternatively, one may reformulate the condition of the maximal filtered relations using $\Diamond$'s as follows. We will use this formulation occasionally:
+
+\begin{center}
+  $\hat{x} \widehat{R}_{\Gamma,i}^{\text{max}} \hat{y} \Leftrightarrow \forall \Diamond_i \varphi \in \Gamma \: (\mathcal{M}, y \models \varphi \Rightarrow \mathcal{M}, x \models \Diamond_i \varphi)$
+\end{center}
+
+If $\Phi$ is an extension of $\Gamma$ and $\sim = \sim_{\Phi}$, then $\widehat{\mathcal{M}}$ is a definable $\Gamma$-filtration of $\mathcal{M}$ through $\Phi$. If $\sim = \sim_{\Gamma}$, then such a filtration by means of the definiton above is called \emph{strict}.
+
+A class of models $\mathbb{M}$ admits strict filtrations for models (ASF), if for every $\operatorname{Sub}$-closed set $\Gamma$ and for every $\mathcal{M} \in \mathbb{M}$ there exists a model $\widehat{\mathcal{M}}$ such that $\widehat{\mathcal{M}} \in \mathbb{M}$ and $\widehat{\mathcal{M}}$ is a filtration of $\mathcal{M}$ through $\Gamma$.
+
+A class of frames $\mathbb{F}$ admits strict filtrations for frames, if for every $\operatorname{Sub}$-closed set $\Gamma$ and for every frame $\mathcal{F} \in \mathbb{F}$ and every model $\mathcal{M}$ over $\mathcal{F}$ there exists a $\Gamma$ filtration of $\mathcal{M}$, and the underlying frame of this filtration belongs to $\mathbb{F}$.
+
+If $\mathcal{L}$ is canonical, then the ASF property for frames and ASF property for models are equivalent, see \cite[Theorem 2.10]{kikot2020completeness}.
+
+The key lemma about filtrations is the following, see \cite[Theorem 2.39]{blackburn_rijke_venema_2001}:
 
 \begin{lemma}
   Let $\Gamma$ be a finite set of formulas closed under subformulas and $\widehat{\mathcal{M}}$ a filtration of $\mathcal{M}$ through $\Gamma$, then for each $x \in W$ and for each $\varphi \in \Gamma$ one has
@@ -95,7 +111,14 @@ A class of frames $\mathbb{F}$ admits strict filtrations for frames, if for ever
   \end{center}
 \end{lemma}
 
-\begin{defin} Let $\mathbb{F}$ be a class of Kripke frames and $\Gamma$ a finite set of formulas closed under subformulas. If for every model $\mathcal{M}$ over $\mathcal{F} \in \mathbb{F}$ there exists a model that is a $\Gamma$-definable filtration of $\mathcal{M}$, then $\mathbb{F}$ admits definable filtration. A class of models $\mathbb{M}$ admits definable filtration if for every $\mathcal{M} \in \mathbb{M}$ there exists a model belonging to the same class that is a definable $\Gamma$-filtration of $\mathcal{M}$.
+\begin{defin}
+$ $
+
+  \begin{enumerate}
+    \item Let $\mathbb{F}$ be a class of Kripke frames and $\Gamma$ a finite set of formulas closed under subformulas. If for every model $\mathcal{M}$ over $\mathcal{F} \in \mathbb{F}$ there exists a model that is a $\Gamma$-definable filtration of $\mathcal{M}$, then $\mathbb{F}$ admits definable filtration.
+
+    \item A class of models $\mathbb{M}$ admits definable filtration if for every $\mathcal{M} \in \mathbb{M}$ there exists a model belonging to the same class that is a definable $\Gamma$-filtration of $\mathcal{M}$.
+  \end{enumerate}
 \end{defin}
 
 \begin{lemma}
@@ -107,10 +130,10 @@ A class of frames $\mathbb{F}$ admits strict filtrations for frames, if for ever
 \end{enumerate}
 \end{lemma}
 
-\begin{defin} A first-order formula is called Horn if it has the following form:
+\begin{defin} A first-order formula is called Horn if it has the following form (see \cite{chang1990model}):
 
   \begin{center}
-    $\forall x_1, \dots, x_n (x_{i_1} R x_{j_1} \land \dots \land x_{i_s} R x_{j_s} \rightarrow x_k R x_l)$
+    $\forall x_1, \dots, x_n (x_{i_1} R x_{j_1} \land \dots \land x_{i_s} R x_{j_s} \rightarrow A)$, where $A$ is either $x_k R x_l$ or $\bot$.
   \end{center}
 \end{defin}
 
@@ -129,22 +152,22 @@ A class of frames $\mathbb{F}$ admits strict filtrations for frames, if for ever
 
 \section{Filtrations for {\bf K5}}
 
-$E$-closure (an Euclidean Horn closure of a binary relation) has the following equivalent definitions:
+The ${\bf K5}$-closure (an Euclidean Horn closure of a binary relation) has the following equivalent definitions:
 \begin{lemma} \label{equivHorn}
-  Let $\mathcal{F} = \langle W, R \rangle$ be a Kripke frame.
+  Let $\mathcal{F} = \langle W, R \rangle$ be a Kripke frame and $R \subseteq R^{\bf K5}$.
   The following conditions are equivalent:
 
   \begin{enumerate}
-    \item $R^{E}$ is the smallest Euclidean relation containing $R$.
-    \item $R^{E} = \bigcup \limits_{i < \omega} R_i$, where
+    \item $R^{\bf K5}$ is the smallest Euclidean relation containing $R$, that is, the Horn closure of $R$.
+    \item $R^{\bf K5} = \bigcup \limits_{i < \omega} R_i$, where
     \begin{itemize}
       \item $R_0 = R$
       \item $R_{n + 1} = R_n \cup (R^{-1}_n \circ R_n)$
     \end{itemize}
-    \item $x R^E y$ iff there exists $n < \omega$ such that
+    \item $x R^{\bf K5} y$ iff there exists $n < \omega$ such that
     either $x R y$ or $\exists z_1, \dots, z_n$ with $z_1 R x$ and $z_{n - 1} R y$ and for each $1 < i \leq n$ one has
     either $z_{i - 1} R z_i$ or $z_i R z_{i - 1}$.
-    \item $R^{E} = R \cup \bigcup \limits_{i < \omega} (R^{-1} \circ (R \circ R^{-1})^n \circ R)$.
+    \item $R^{\bf K5} = R \cup \bigcup \limits_{i < \omega} (R^{-1} \circ (R \cup R^{-1})^n \circ R)$.
   \end{enumerate}
 \end{lemma}
 
@@ -190,57 +213,53 @@ $ $
 \end{enumerate}
 \end{proof}
 
-\begin{lemma}
- Let $\mathcal{F} = \langle W, R \rangle$ be a Kripke frame. Let us define $R^{E} = \bigcup \limits_{i < \omega} R_i$ where:
-
- \begin{enumerate}
-   \item $R_0 = R$
-   \item $R_{n + 1} = R_n \cup ({R_n}^{-1} \circ R_n)$
- \end{enumerate}
- Then $R^{E}$ is Euclidean.
-\end{lemma}
+\begin{theorem}\label{sad}
+  ${\bf K}5$ does not admit strict filtrations.
+\end{theorem}
 
 \begin{proof}
-  Let $(x, y), (x, z) \in R^{E}$, one needs to show that $(y, z) \in R^{E}$.
-  Clearly that $(x, y) \in R_i$ and $(x, z) \in R_j$ for some $i, j < \omega$. Thus, we need $(y, z) \in R_m$ for some $m$ depending on $i$ and $j$.
+  Let us consider a ${\bf K}5$ model whose Euclidean closure of the minimal filtration does not give us a filtration.
 
-  Let us consider the following cases:
-  \begin{enumerate}
-    \item $i = 0$ and $j = 0$
+  Let us consider a frame called $\mathcal{F}_{bad}$. We define this frame with the following graph:
 
-    Suppose $(x, y), (x, z) \in R_0 = R$, then $(y, z) \in R^{-1} \circ R$. Thus, $(y, z) \in R_1$
-    \item $i = 0$ and $j = k + 1$
+\vspace{\baselineskip}
 
-    Suppose $(x, y) \in R$ and $(x, z) \in R_{k + 1} = R_{k} \cup ({R_k}^{-1} \circ R_k)$.
-    Clearly that $(x, y) \in R_{k + 1}$ as well. It is obviously that $(y, z) \in R_{k + 2}$ since
-    $(y, x) \in R_{k + 1}^{-1}$ and $(x, z) \in R_{k + 1}$.
+  \xymatrix{
+  &&&&&&& w_5\ar@(ul,ur) \ar@<-.5ex>[d] \\
+  &&&&&& w_1\ar@(ul,ur)  & w_4 \ar@<.5ex>[u] \ar@(dl,ul)^{} \\
+  &&&&&& w_2 \ar[u] & w_3 \ar[u]
+  }
 
-    \item The case with $i = k + 1$ and $j = 0$ is similar to the previous one.
+Let us define a valuation $\vartheta$ such that $\vartheta(p) = \{ w_5\}$ and $\vartheta(q) = \{ w_1\}$. Let us consider a minimal filtration of $\mathcal{M}_{bad}$ through the Sub-closure of $\Gamma = \{ \neg p, \neg \Diamond p\}$.
 
-    \item Suppose $i = m + 1$ and $j = k + 1$. That is, $(x, y) \in R_{m + 1} = R_m \cup ({R_m}^{-1} \circ R_m)$ and $(x, z) \in R_{k + 1} = R_k \cup ({R_k}^{-1} \circ R_k)$.
-    Consider the following four subcases:
-    \begin{enumerate}
-      \item Suppose $(x, y) \in R_m$ and $(x, z) \in R_k$ and $m \leq k$ without loss of generality.
-      $m \leq k$ implies $R_m \subseteq R_k$ and $(x, y) \in R_k$ in particular. Thus, $(y, z) \in {R_k}^{-1} \circ R_k$, so $(y, z) \in R_{k + 1}$.
-      \item The rest of the cases are similar to the first one.
-    \end{enumerate}
-    \end{enumerate}
+Clearly that $w_2 \sim_{\Gamma} w_3$, since $\neg p$ and $\neg \Diamond p$ are true both at $w_2$ and $w_3$.
+
+Moreover, $R_{min} \cup (R_{min}^{-1} \circ R_{min})$ is not a subset of $R_{max}$ since $(\hat{w_1}, \hat{w_5}) \in (R_{min}^{-1} \circ R_{min})$, but $\Diamond p$ is not true at $w_5$.
+
+Let us also note that strict filtrations of this model is not Euclidean.
+Suppose by contrary that $\widehat{R}^{\mathcal{E}}$ is a strict filtraction of that model. So $R_{min}^E \subseteq \widehat{R}^{\mathcal{E}}$, since $R_{min}^E$ is the minimal Euclidean relation containing $R_{min}$. On the other hand, $R_{min}^E \not\subseteq R_{max}$, so is not $\widehat{R}^{\mathcal{E}}$.
 \end{proof}
+
+\begin{theorem}
+  ${\bf K5}$ admits definable filtrations.
+\end{theorem}
 
 \begin{theorem}
   ${\bf K}45$ admits strict filtrations.
 \end{theorem}
 
 \begin{proof}
-  Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ be a transitive Euclidean model and $\overline{\mathcal{M}} = \langle \overline{W}, \overline{R}, \overline{\vartheta} \rangle$ its minimal filtration through $\Gamma$, where $\Gamma$ is finite and Sub-closed. Let us put $\widehat{R} = \overline{R}^{+} \cup \overline{R}^{E}$. Let us show that $\overline{R}^{+} \cup \overline{R}^{E} \subseteq \overline{R}^{max}$.
+  Let $\mathcal{M} = \langle W, R, \vartheta \rangle$ be a transitive Euclidean model and $\overline{\mathcal{M}} = \langle \overline{W}, \overline{R}, \overline{\vartheta} \rangle$ its minimal filtration through $\Gamma$, where $\Gamma$ is finite and Sub-closed. Let us put $\widehat{R} = \overline{R}^{+} \cup \overline{R}^{\bf K5}$. Let us show that $\overline{R}^{+} \cup \overline{R}^{{\bf K}45} \subseteq \overline{R}^{max}$.
 
   That is, if $\mathcal{M}, y \models \varphi$ for $\Diamond \varphi \in \Gamma$ and $\hat{x} \widehat{R} \hat{y}$, then $\mathcal{M}, x \models \Diamond \varphi$.
 
-  Let $\hat{x} \widehat{R} \hat{y}$. Let us consider the case when $(\hat{x}, \hat{y}) \in \overline{R}^{E}$
+  Let $\hat{x} \widehat{R} \hat{y}$.
 
   \begin{enumerate}
     \item Suppose $(\hat{x}, \hat{y}) \in \overline{R}$, then $\mathcal{M}, x \models \Diamond \varphi$ holds trivially by the definition of the minimal filtration.
-    \item Suppose the statement holds $\overline{R}_n$ and $(\hat{x}, \hat{y}) \in \overline{R}_{n + 1} = \overline{R}_n \cup (\overline{R}_n^{-1} \circ \overline{R}_n)$. We consider the case of $(\hat{x}, \hat{y}) \in (\overline{R}_n^{-1} \circ \overline{R}_n)$.
+    \item Let us consider the case when $(\hat{x}, \hat{y}) \in \overline{R}^{{\bf K}5}$. The second alternative is the same as for the ${\bf K}4$-case, see \cite[p. 141]{chagrov}.
+
+    Suppose the statement holds $\overline{R}_n$ and $(\hat{x}, \hat{y}) \in \overline{R}_{n + 1} = \overline{R}_n \cup (\overline{R}_n^{-1} \circ \overline{R}_n)$. We consider the case of $(\hat{x}, \hat{y}) \in (\overline{R}_n^{-1} \circ \overline{R}_n)$.
 
     Then there exists $\hat{z}$ such that $(\hat{z}, \hat{x}), (\hat{z}, \hat{y}) \in \overline{R}_n$.
 
@@ -272,55 +291,29 @@ $ $
   Finally, we have $\hat{u}_n \widehat{R} \hat{x}$. Thus, $u_n' R x'$ for some $u_n' \in \hat{u}_n$ and $x' \in \hat{x}$. $\mathcal{M}, u_n' \models \Diamond \varphi$, so $\mathcal{M}, u_n' \models \Box \Diamond \varphi$. Then $\mathcal{M}, x' \models \Diamond \varphi$.
 \end{proof}
 
-\begin{theorem}\label{sad}
-  ${\bf K}5$ does not admit strict filtrations.
-\end{theorem}
-
-\begin{proof}
-  Let us consider a ${\bf K}5$ model whose Euclidean closure of the minimal filtration does not give us a filtration.
-
-  Let us consider a frame called $\mathcal{F}_{bad}$. We define this frame with the following graph:
-
-\vspace{\baselineskip}
-
-  \xymatrix{
-  &&&&&&& w_5\ar@(ul,ur) \ar@<-.5ex>[d] \\
-  &&&&&& w_1\ar@(ul,ur)  & w_4 \ar@<.5ex>[u] \ar@(dl,ul)^{} \\
-  &&&&&& w_2 \ar[u] & w_3 \ar[u]
-  }
-
-Let us define a valuation $\vartheta$ such that $\vartheta(p) = \{ w_5\}$ and $\vartheta(q) = \{ w_1\}$. Let us consider a minimal filtration of $\mathcal{M}_{bad}$ through the Sub-closure of $\Gamma = \{ \neg p, \neg \Diamond p\}$.
-
-Clearly that $w_2 \sim_{\Gamma} w_3$, since $\neg p$ and $\neg \Diamond p$ are true both at $w_2$ and $w_3$.
-
-Moreover, $R_{min} \cup (R_{min}^{-1} \circ R_{min})$ is not a subset of $R_{max}$ since $(\hat{w_1}, \hat{w_5}) \in (R_{min}^{-1} \circ R_{min})$, but $\Diamond p$ is not true at $w_5$.
-
-Let us also note that strict filtrations of this model is not Euclidean.
-Suppose by contrary that $\widehat{R}^{\mathcal{E}}$ is a strict filtraction of that model. So $R_{min}^E \subseteq \widehat{R}^{\mathcal{E}}$, since $R_{min}^E$ is the minimal Euclidean relation containing $R_{min}$. On the other hand, $R_{min}^E \not\subseteq R_{max}$, so is not $\widehat{R}^{\mathcal{E}}$.
-
-\end{proof}
-
 \section{i,j-Euclideaness}
 
-Let $R$ be a binary relation on $W \neq \emptyset$, then the $i,j$-Euclidean closure of $R$ (where $i, j < \omega$), denoted as $R^{E_{i,j}}$, is a binary relation defined recursively as follows:
+A binary relation $R \subseteq W \times W$ is called $i,j$-Euclidean for $i, j < \omega$, if for each $x, y, z$ such that $x R^{i} y$ and $x R^{j} z$ implies $x R z$.
+
+\begin{prop}
+  Let $\mathcal{F} = \langle W, R \rangle$, then $\mathcal{F}$ is $i,j$-Euclidean iff $\mathcal{F} \models \Diamond^i p \to \Box^j \Diamond p$. As a corollary, the logic ${\bf K}5^{i,j} = {\bf K} \oplus \Diamond^i p \to \Box^j \Diamond p$ is Kripke-complete.
+\end{prop}
+
+Let $R$ be a binary relation on $W \neq \emptyset$, then the $i,j$-Euclidean closure of $R$ (where $i, j < \omega$), denoted as $R^{{\bf K}5_{i,j}}$, is a binary relation defined recursively as follows:
 \begin{enumerate}
   \item $R_0 = R$
   \item $R_{n + 1} = R_n \cup (((R_n)^{-1})^i \circ {R_n}^j)$
   \item $R^{E_{i,j}} = \bigcup \limits_{k < \omega} R_k$
 \end{enumerate}
 
-\begin{prop}
-  If $R$ be a binary relation on $W \neq \emptyset$, $R^{E_{i,j}}$ is $i,j$-Euclidean.
-\end{prop}
-\begin{proof}
-  By induction. Let $(x,y_1), (y_1,y_2), (y_2,y_3), \dots, (y_{i - 1},y_i), (x,z_1), (z_1,z_2), (z_2,z_3), \dots, (z_{j - 1},z_j) \in R^{E_{i,j}}$.
-  That is, each of these pairs belong to some $R_k$ and every $k < \omega$ for every pair is its own.
-  If $k = 0$ for each pair, then $(y_i, z_j) \in R_1$.
-  If some those $k$ is non-zero, then we take the greatest amongst them, say $e$ and all given pairs will be elements of $R_{e + 1}$.
-\end{proof}
+Note that the following property holds not for every ${\bf K5}^{i,j}$, consider ${\bf KB}$ as an example (clearly, ${\bf KB} = {\bf K5}^{0,1}$).
+
+\begin{lemma}
+${\bf K5}^{i,j}$ has $n$ non-equivalent sequences of modalities, if . TODO: define $n$.
+\end{lemma}
 
 \begin{theorem}
-  ${\bf K5}^{i,j} = {\bf K} \oplus \Diamond^{i} p \to \Box^{j} \Diamond p$ admits definable filtrations.
+  ${\bf K5}^{i,j}$ admits definable filtrations.
 \end{theorem}
 
 \begin{proof}
