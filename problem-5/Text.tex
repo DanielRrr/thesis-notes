@@ -411,7 +411,10 @@ Let us define an atomic game.
     \begin{enumerate}
     \item Suppose $x \in rep(c_i a)$, then there exists an atom $b$ such that $x \in \prescript{\omega}{}N_b$ with $l_b(x) \leq c_i a$. Then there exists $y \equiv_i x$ with $l_b(y) \leq a$, so $x \in {\bf C}_i(rep(a))$.
 
-    If $x \in {\bf C}_i(rep(a))$, then there exists $y \equiv_i x$ such that $y \in rep(a)$, that is, there exists an atom $b$ such that $y \in \prescript{\omega}{}N_b$ and $l_b(y) \leq a$.
+    Let $x \in {\bf C}_i(rep(a))$. We need $x \in (rep(c_i a))$, that is, one needs to find an atom $c$ such that $l_c(x) \leq c_i a$.
+
+    We already know that there exists $y \equiv_i x$ such that $y \in rep(a)$, that is, there exists an atom $b$ such that $y \in \prescript{\omega}{}N_b$ and $l_b(y) \leq a$.
+
     \item If $x \in rep(d_{ij})$, so there exists an atom $b$ with $x \in \prescript{\omega}{}N_a$ and $l_b(x) \leq d_{ij}$, then $x_i = x_j$, then $x \in D_{ij}$.
     \end{enumerate}
   \end{enumerate}
@@ -420,7 +423,7 @@ Let us define an atomic game.
 \begin{theorem} Let $\mathcal{A}$ be a BAO of type ${\bf CA}_{\omega}$:
 
 \begin{enumerate}
-  \item $\exists$ has a winning strategy in $\mathcal{G}_{m}(\mathcal{A})$ ($m < \omega$), then $\exists$ has a winning strategy in $\mathcal{G}_{\omega}(\Pi_U \mathcal{A})$, where $\Pi_U \mathcal{A}$ is the non-principal ultrapower of $\mathcal{A}$ modulo ultrafilter $U$ over $\omega$.
+  \item $\exists$ has a winning strategy in $\mathcal{G}_{m}(\mathcal{A})$ ($m < \omega$), then $\exists$ has a winning strategy in $\mathcal{G}_{\omega}(\Pi_U \mathcal{A})$, where $\Pi_U \mathcal{A}$ is the non-principal ultrapower of $\mathcal{A}$ modulo $U$, an ultrafilter over $\omega$.
   \item $\exists$ has a winning strategy in $\mathcal{G}_{m}(\mathcal{A})$ (for every $m < \omega$) iff $\mathcal{A}$ is elementarily equivalent to a completely representable cylindric algebra of dimension $\omega$.
 \end{enumerate}
 \end{theorem}

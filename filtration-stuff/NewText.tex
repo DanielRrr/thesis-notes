@@ -382,8 +382,8 @@ Let us define the logic $\mathcal{L}$ as ${\bf K} \oplus \Diamond \Diamond \Diam
   Let $\Gamma$ be a finite and $\operatorname{Sub}$-closed set of formulas.
 
   \begin{enumerate}
-  \item  $\mathcal{M} = \langle W, R, \vartheta \rangle$ be a ${\bf K}5$-model. Consider $\Gamma' = \Gamma \cup \{ \Diamond \Box \psi \: | \: \Box \psi \in \Gamma \}$. Let $\Delta$ be any finite and $\operatorname{Sub}$-closed extension of $\Gamma'$. Then a model $\widehat{M} = \langle W / \sim_{\Delta}, (R^{min}_{\Delta})^{E}, \widehat{\vartheta} \rangle$ is a filtration of $\mathcal{M}$ through $\Delta$.
-  \item Let $\mathcal{L} = {\bf K} \oplus \Diamond \Diamond \Diamond p \to \Diamond p$, then we have the similar statement for $\mathcal{L}$, where $\Delta$ is an extension of $\Gamma' = \{ \Diamond \Diamond \psi \: | \: \Diamond \psi \}$.
+  \item  $\mathcal{M} = \langle W, R, \vartheta \rangle$ be a ${\bf K}5$-model. Consider $\Gamma' = \Gamma \cup \{ \Diamond \Box \psi \: | \: \Box \psi \in \Gamma \}$. Let $\Delta$ be any finite and $\operatorname{Sub}$-closed extension of $\Gamma'$ that contains all $\Diamond \Box \psi$ for each $\Box \psi \in \Delta$. Then a model $\widehat{M} = \langle W / \sim_{\Delta}, (R^{min}_{\Delta})^{E}, \widehat{\vartheta} \rangle$ is a filtration of $\mathcal{M}$ through $\Delta$.
+  \item Let $\mathcal{L} = {\bf K} \oplus \Diamond \Diamond \Diamond p \to \Diamond p$, then we have the similar statement for $\mathcal{L}$, where $\Delta$ is an extension of $\Gamma' = \{ \Diamond \Diamond \psi \: | \: \Diamond \psi \}$ that contains all $\Diamond \Diamond \varphi$ for $\Diamond \varphi \in \Delta$.
   \end{enumerate}
 \end{lemma}
 
@@ -421,12 +421,27 @@ Let us define the logic $\mathcal{L}$ as ${\bf K} \oplus \Diamond \Diamond \Diam
   \item Let us prove the second item. Let $\mathcal{M}$ be an $\mathcal{L}$-model.
   The $\mathcal{L}$-closure of the minimal filtered relation modulo $\Delta$, namely ${R_{\Delta}^{min}}^{\mathcal{L}}$ has the following form:
   \begin{center}
-    ${R_{\Delta}^{min}}^{\mathcal{L}} = \bigcup \limits_{i < \omega} {R_{\Delta}^{min}}^{2i + 1}$
+    ${R_{\Delta}^{min}}^{\mathcal{L}} = \bigcup \limits_{k < \omega} {R_{\Delta}^{min}}^{2k + 1}$
   \end{center}
-  Let $\Diamond \psi \in \Delta$, $(\hat{x}, \hat{y}) \in {R_{\Delta}^{min}}^{\mathcal{L}}$, and $\mathcal{M}, y \models \psi$. The base case is self-evident.
-  Let $k < \omega$ and $(\hat{x}, \hat{y}) \in {R_{\Delta}^{min}}^{2k + 3}$ and the statement holds for ${R_{\Delta}^{min}}^{2k + 1}$.
-  
+  We reformulate this closure equivalently as follows:
+  \begin{enumerate}
+    \item $R_0 = R_{\Delta}^{min}$
+    \item $R_{n + 1} = R_n \cup ((R_{\Delta}^{min})^2 \circ R_n)$
+    \item ${R_{\Delta}^{min}}^{\mathcal{L}} = \bigcup \limits_{k < \omega}$
+  \end{enumerate}
+
+  The base case is self-evident. Suppose the statement holds for $R_{n}$ and $(\hat{x}, \hat{y}) \in (R_{\Delta}^{min})^2 \circ R_n$, that is, there exists $\hat{z}$ such that $(\hat{x}, \hat{z}) \in (R_{\Delta}^{min})^2$ and $(\hat{z}, \hat{y}) \in R_n$. By IH, we have $\mathcal{M}, z \models \Diamond \varphi$.
+
+  We have the following:
+
+  \xymatrix{
+  &&&&&& \hat{x} \ar[r]^{R_{\Delta}^{min}} & \widehat{y_1} \ar[r]^{R_{\Delta}^{min}} & \hat{z}
+  }
 \end{enumerate}
+  The sequence of implications if the following:
+  \begin{center}
+    $\widehat{\mathcal{M}}, \hat{z} \models \Diamond \varphi \Rightarrow \widehat{\mathcal{M}}, \widehat{y_1} \models \Diamond \Diamond \varphi \Rightarrow \mathcal{M}, x \models \Diamond \Diamond \Diamond \varphi \Rightarrow \mathcal{M}, x \models \Diamond \varphi$
+  \end{center}
 \end{proof}
 
 \begin{theorem}
