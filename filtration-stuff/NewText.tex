@@ -41,6 +41,9 @@
 \theoremstyle{fact}
 \newtheorem{fact}{Fact}
 
+\theoremstyle{exercise}
+\newtheorem{exercise}{Exercise}
+
 \theoremstyle{ex}
 \newtheorem{ex}{Example}
 
@@ -217,7 +220,7 @@ Models with designated points $\langle \mathcal{M}_1, x \rangle$ and  $\langle \
 \end{center}
 
 \begin{defin}
-  Let $\langle \mathcal{M}_1, x \rangle$ and $\langle \mathcal{M}_2, y \rangle$ be models with designated points and $r < \omega$. The $r$-round bisimulation game $\mathcal{G}(\mathcal{M}_1, \mathcal{M}_2, x, y)$ is played by two players, $\forall$ (Abelard, man) and $\exists$ (Heloise, woman). The rules of the game are the following:
+  Let $\langle \mathcal{M}_1, x \rangle$ and $\langle \mathcal{M}_2, y \rangle$ be models with designated points and $r < \omega$. The $r$-round bisimulation game $\mathcal{G}_r(\mathcal{M}_1, \mathcal{M}_2, x, y)$ is played by two players, $\forall$ (Abelard, man) and $\exists$ (Heloise, woman). The rules of the game are the following:
   \begin{enumerate}
     \item ({\bf Round 0}) $\exists$ wins, if $x \equiv_0 y$. Otherwise, $\forall$ wins.
     \item ({\bf Round $n+1$}) Let $n + 1 < r$. Suppose rounds $0, \dots, n$ have been played.
@@ -228,7 +231,7 @@ Models with designated points $\langle \mathcal{M}_1, x \rangle$ and  $\langle \
   $\exists$ wins the game after $r$ rounds. $\forall$ wins the game, if there exists $k < r$ such that $\forall$ wins in {\bf Round $k$}.
 \end{defin}
 
-There are two $n$-equivalences for formulas and games (the first one is due to Fine \cite{fine1974logics}). These definitions are equivalent, this is due to Stirling.
+There are two $n$-equivalences for formulas and games (the first one is due to Fine \cite{fine1974logics}).
 
 \begin{defin}
   $ $
@@ -236,9 +239,14 @@ There are two $n$-equivalences for formulas and games (the first one is due to F
   \begin{itemize}
   \item $(\mathcal{M}_1, x) \equiv_n (\mathcal{M}_2, y)$ iff for every $\varphi$ such that
   $md(\varphi) \leq n$ we have $\mathcal{M}_1, x \models \varphi$ iff $\mathcal{M}_2, y \models \varphi$.
-  \item $(\mathcal{M}_1, x) \equiv_n (\mathcal{M}_2, y)$ iff $\exists$ has a winning strategy in $\mathcal{G}(\mathcal{M}_1, \mathcal{M}_2, x, y)$.
+  \item $(\mathcal{M}_1, x) \equiv_n (\mathcal{M}_2, y)$ iff $\exists$ has a winning strategy in $\mathcal{G}_n(\mathcal{M}_1, \mathcal{M}_2, x, y)$.
   \end{itemize}
 \end{defin}
+
+\begin{lemma} [See \cite{goranko20075}] \label{bisimequiv}
+
+  The definitions of $n$-equivalence are equivalent for weak Kripke models.
+\end{lemma}
 
 \begin{lemma} (Stabilisation lemma)
 
@@ -254,8 +262,7 @@ There are two $n$-equivalences for formulas and games (the first one is due to F
 
 The ${\bf K5}$-closure (the Euclidean Horn closure of a binary relation) has the following equivalent definitions:
 \begin{lemma} \label{equivHorn}
-  Let $\mathcal{F} = \langle W, R \rangle$ be a Kripke frame and $R \subseteq R^{\bf K5}$.
-  The following conditions are equivalent:
+  Let $\mathcal{F} = \langle W, R \rangle$ be a Kripke frame. The following are equivalent:
 
   \begin{enumerate}
     \item $R^{\bf K5}$ is the smallest Euclidean relation containing $R$, that is, the Horn closure of $R$.
@@ -271,47 +278,6 @@ The ${\bf K5}$-closure (the Euclidean Horn closure of a binary relation) has the
   \end{enumerate}
 \end{lemma}
 
-\begin{proof}
-$ $
-
-\begin{enumerate}
-  \item $(1) \Rightarrow (2)$
-  Let us show that if $R^{E}$ is the smallest Euclidean relation containing $R$, then $R^{E} = \bigcup \limits_{i < \omega} R_i$. There are two inclusions:
-  \begin{itemize}
-    \item $R^{E} \subseteq \bigcup \limits_{i < \omega} R_i$. Recall that $R^{E}$ has the form (?):
-    \begin{center}
-      $R^{E} = \bigcap \{ R' \: | \: R \subseteq R', \forall a, b \in W \: R'(a,b) \Rightarrow \exists x \in W \: R'(x, a) \: \& \: R'(x, b)\}$
-    \end{center}
-
-    \item $\bigcup \limits_{i < \omega} R_i \subseteq R^{E}$.
-    Let us show that $x R_n y$ for each $n < \omega$ implies $x R^E y$ by induction on $n$.
-    If $n = 0$, then $x R y$, thus, $x R^{E} y$, since $R$ is a subrelation of $R^{E}$.
-    Suppose $n = m + 1$ and $x R_{m + 1} y$. Let us show that $x R^{E} y$.
-    From $x R_{m + 1} y$, one has $(x, y) \in R^n \cup (R^{-1}_n \circ R_n)$. There are two cases:
-    \begin{itemize}
-      \item $x R^n y$, one needs to merely apply the IH.
-      \item $x R^{-1}_n \circ R_n y$. Then $\exists z \in W \: x R^{-1}_n z \: \& \: z R_n$. That is,
-      $z R_n x$ and $z R_n y$ for some $z$. $R_n$ is already a subrelation of $R^E$. Thus,
-      $z R^{E} x$ and $z R^{E} y$. That implies $x R^{E} y$.
-    \end{itemize}
-  \end{itemize}
-  \item $(2) \Rightarrow (3)$
-  Let $(x, y) \in R_m$, let us the statement by induction on $m$.
-  \begin{enumerate}
-    \item Suppose $m = 0$, then $x R y$, and the statement is shown putting $n = 0$.
-    \item Suppose $m = p + 1$ and $x R_{p + 1} y$.
-    Assume that either $x R y$ or $\exists z_1, \dots, z_p$ with $z_1 R x$ and $z_{p - 1} R y$ and for each $1 < i \leq p$ one has
-    either $z_{i - 1} R z_i$ or $z_i R z_{i - 1}$.
-
-    $x R_{p + 1} y$ implies $(x, y) \in R_{p} \cup (R^{-1}_p \circ R_p)$. If $(x, y) \in R_{p}$, then we merely apply the IH.
-    Suppose $(x, y) \in R^{-1}_p \circ R_p$, then $(z, x) \in R_p$ and $(z, y) \in R_p$
-  \end{enumerate}
-  \item $(3) \Rightarrow (4)$
-  Suppose either $x R y$ or there exist $n \geq 1$ and $z_1, \dots, z_n$ with $z_1 R x$ and $z_{n - 1} R y$ and for each $1 < i \leq n$ one has either $z_{i - 1} R z_i$ or $z_i R z_{i - 1}$.
-  If $x R y$, then we are done. Otherwise there exists $n \geq 1$ with the condition above. Then $(x, y) \in R_{n + 1}$ that follows from the condition.
-  \item $(4) \Rightarrow (1)$
-\end{enumerate}
-\end{proof}
 
 \begin{theorem}\label{sad}
   ${\bf K}5$ does not admit strict filtrations.
@@ -393,7 +359,9 @@ Suppose by contrary that $\widehat{R}^{\mathcal{E}}$ is a strict filtraction of 
 
 \section{i,j-Euclideaness}
 
+\begin{defin}
 A binary relation $R \subseteq W \times W$ is called $i,j$-Euclidean for $i, j < \omega$, if for each $x, y, z$ such that $x R^{i} y$ and $x R^{j} z$ implies $x R z$.
+\end{defin}
 
 \begin{prop}
   Let $\mathcal{F} = \langle W, R \rangle$, then $\mathcal{F}$ is $i,j$-Euclidean iff $\mathcal{F} \models \Diamond^i p \to \Box^j \Diamond p$. As a corollary, the logic ${\bf K}5^{i,j} = {\bf K} \oplus \Diamond^i p \to \Box^j \Diamond p$ is Kripke-complete.
@@ -403,18 +371,40 @@ Let $R$ be a binary relation on $W \neq \emptyset$, then the $i,j$-Euclidean clo
 \begin{enumerate}
   \item $R_0 = R$
   \item $R_{n + 1} = R_n \cup (((R_n)^{-1})^i \circ {R_n}^j)$
-  \item $R^{E_{i,j}} = \bigcup \limits_{k < \omega} R_k$
+  \item $R^{{\bf K}5_{i,j}} = \bigcup \limits_{k < \omega} R_k$
 \end{enumerate}
 
 Note that the following property holds not for every ${\bf K5}^{i,j}$, consider ${\bf KB}$ as an example (clearly, ${\bf KB} = {\bf K5}^{0,1}$), whose modal depth is $\infty$.
 
-\begin{theorem}
-$md({\bf K5}^{i,j}) = 1 + j + i$, if $i \neq 0$.
-\end{theorem}
+\begin{exercise}
+$md({\bf K5}) = 2$.
+\end{exercise}
+
+\begin{proof}
+  For the upper bound, let us show that $\equiv_2 = \equiv_3$ in every weak canonical model of ${\bf K5}$, namely $\mathcal{L}_{\bf K5} \upharpoonright k$ for $k < \omega$.
+  For that, we show that if $\exists$ can win $\mathcal{G}_2(\mathcal{L}_{\bf K5} \upharpoonright k, \Gamma, \Delta)$ (where $\Gamma$ and $\Delta$ are maximal consistent ${\bf K5} \upharpoonright k$-theories), then she can the game $\mathcal{G}_2(\mathcal{L}_{\bf K5} \upharpoonright k, \Gamma, \Delta)$ as well.
+
+  If $\exists$ has a winning strategy in $\mathcal{G}_2(\mathcal{L}_{\bf K5} \upharpoonright k, \Gamma_0, \Delta_0)$, then, by Lemma~\ref{bisimequiv}, $\langle \mathcal{L}_{\bf K5} \upharpoonright k, \Gamma_0 \rangle \equiv_2 \langle \mathcal{L}_{\bf K5} \upharpoonright k, \Delta_0 \rangle$.
+
+  Therefore, $\Gamma_0$ and $\Delta_0$ consist of the same formulas whose modal depth is less than or equal to $2$.
+
+  Suppose $(\Gamma_2, \Delta_2)$ is the second position. Clearly $\Gamma_2 \equiv_0 \Delta_2$
+
+  Let us assume that $\forall$ picks $\Gamma_3$ such that $\Gamma_2 R_{{\bf K5} \upharpoonright k} \Gamma_3$. $\exists$ has to find a proper response, namely $\Delta_3$, to win the game.
+
+\end{proof}
+
+\begin{exercise}
+  Let $i = j$, then $md({\bf K5}^{i,i}) = i + 1$. So ${\bf K5}^{i,i}$ is locally finite.
+\end{exercise}
 
 \begin{proof}
 
 \end{proof}
+
+\begin{theorem}
+$md({\bf K5}^{i,j}) = 1 + j + i$, where $i > 0$.
+\end{theorem}
 
 \begin{theorem}
   ${\bf K5}^{i,j}$ admits definable filtrations.
@@ -425,7 +415,7 @@ $md({\bf K5}^{i,j}) = 1 + j + i$, if $i \neq 0$.
   \begin{center}
     $\Delta = \Gamma \cup \operatorname{Sub}\{  \Diamond^{i} \psi \: | \: \Box \psi \in \Gamma \} \cup \operatorname{Sub}\{ \Box^{j} \Diamond \psi \: | \: \Diamond \psi \in \Gamma \}$
   \end{center}
-  Let $(\hat{x}, \hat{y}) \in R^{E_{i,j}}$, $\mathcal{M}, x \models \Box \psi$ for $\Box \psi$ in $\Delta$.
+  Let $(\hat{x}, \hat{y}) \in R^{{\bf K}5_{i,j}}$, $\mathcal{M}, x \models \Box \psi$ for $\Box \psi$ in $\Delta$.
   If $n = 0$, then the statement is obvious. Suppose $n = 1$.
   Then $(\hat{x}, \hat{y}) \in R_{min} \cup (((R_{min})^{-1})^i \circ {R_{min}}^j)$. Consider the second alternative. Then there exists $\hat{z}$ such that $(\hat{x}, \hat{z}) \in ((R_{min})^{-1})^i $ and $(\hat{z}, \hat{y}) \in {R_{min}}^j$.
 
@@ -626,8 +616,7 @@ $ $
 \end{theorem}
 
 \begin{proof}
-  Let $\mathcal{M} = \langle W, R_1, R_2, \vartheta \rangle$ be an $\mathcal{L}_1 * \mathcal{L}_2$.
-  We define a notation $\nabla = \{ \neg \Diamond, \Diamond \neg, \Diamond \}$.
+  Let $\mathcal{M} = \langle W, R_1, R_2, \vartheta \rangle$ be an $\mathcal{L}_1 * \mathcal{L}_2$-model. We define a notation $\nabla = \{ \neg \Diamond, \Diamond \neg, \Diamond \}$.
 
   Both logics admit definable filtrations, so for every finite $\operatorname{Sub}$-closed set $\Gamma$ and for every $\mathfrak{M}$, an $\mathcal{L}_1$-model (or an $\mathcal{L}_2$ one) there exists there exists $\Delta$, a extension of $\Gamma$ having the form:
   \begin{center}

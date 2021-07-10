@@ -52,7 +52,7 @@
 
 \author{Daniel Rogozin}
 \date{}
-\title{Representable cylindric algebras of dimension $\omega$: the aspects of canonicity}
+\title{Representable cylindric algebras of dimension $\omega$: the aspects of canonicity and axiomatisability}
 
 \begin{document}
 
@@ -172,7 +172,7 @@ The following definition is due to, for example, \cite[Definition 5.40]{venema20
 \begin{enumerate}
   \item There exists $\iota : \mathcal{A} \hookrightarrow \mathcal{A}^{+}$ such that
   $\iota : a \mapsto \{ \gamma \in {\bf Uf}(\mathcal{A}) \: | \: a \in \gamma \}$.
-  \item If $i : \mathcal{A} \hookrightarrow \mathcal{B}$, then this embedding might be extented to the embedding
+  \item $i : \mathcal{A} \hookrightarrow \mathcal{B}$ implies
   $i^{+} : \mathcal{A}^{+} \hookrightarrow \mathcal{B}^{+}$
 \end{enumerate}
 \end{theorem}
@@ -180,9 +180,9 @@ The following definition is due to, for example, \cite[Definition 5.40]{venema20
 \begin{fact}
 \end{fact}
 
-\subsection{(Representable) cylindric algebras and cylindric set algebras}
+\section{Cylindric algebras and cylindric set algebras}
 
-Cylindric algebras provide a generalisation of relation algebras for relations of an arbitrary arity. Let $\alpha$ be an ordinal. Let $\prescript{\alpha}{}U$ be the set of all functions mapping $\alpha$ to a non-empty set $U$. We denote $x(i) = x_i$ for
+ Let $\alpha$ be an ordinal. Let $\prescript{\alpha}{}U$ be the set of all functions mapping $\alpha$ to a non-empty set $U$. We denote $x(i) = x_i$ for
 $x \in \prescript{\alpha}{}U$ and $i < \alpha$.
 
 A subset of $\prescript{\alpha}{}U$ is an $\alpha$-ry relation on $U$. For $i, j < \alpha$, the \emph{$i,j$-diagonal} $D_{ij}$ is the set of all elements of $\prescript{\alpha}{}U$ such that $y_i = y_j$.
@@ -205,7 +205,7 @@ Then one may reformulate the definition of the $i$-th cylindrification in the fo
 
 According to this version of the definiton, one may think of the cylindrification as an ${\bf S}5$ modal operator.
 
-The following definition is due to \cite{sankappanavar1981course}:
+The following definition is due to, e.g., \cite{sankappanavar1981course}:
 
 \begin{defin}
   Let $(\mathcal{A}_i)_{i \in I}$ be a family of algebras (of an abstract signature) and $\mathcal{A}$ is a subalgebra of $\prod \limits_{i \in I} \mathcal{A}_i$, then $\mathcal{A}$ is a subdirect product, if every projection is onto. That is, for every $i \in I$, $\pi_i[\mathcal{A}] = \mathcal{A}_i$.
@@ -213,7 +213,7 @@ The following definition is due to \cite{sankappanavar1981course}:
 
 \begin{defin}
   A cylindic set algebra of dimension $\alpha$ is an algebra consisting of a set $S$ of $\alpha$-ry relation on some base set $U$
-    with the constants and operations $0 = \emptyset$, $1 = \prescript{\alpha}{}U$, $\cap$, $-$, the diagonal elements $\{ D_{ij} \}_{i, j < \alpha}$, the cylindrifications $\{ C_i \}_{i < \alpha}$. A generalised cylindric set algebra of dimension $\alpha$ is a subdirect of cylindric algebras that have dimension $\alpha$
+    with the constants and operations $0 = \emptyset$, $1 = \prescript{\alpha}{}U$, $\cap$, $-$, the diagonal elements $\{ D_{ij} \}_{i, j < \alpha}$, the cylindrifications $\{ C_i \}_{i < \alpha}$. A generalised cylindric set algebra of dimension $\alpha$ is a subdirect of cylindric algebras that have dimension $\alpha$.
 \end{defin}
 
 \begin{defin}
@@ -225,7 +225,11 @@ The following definition is due to \cite{sankappanavar1981course}:
       \item If $k \neq i, j < \alpha$, then $d_{ij} = c_k (d_{ij} \land d_{jk})$
       \item If $i \neq j$, then $c_i (d_{ij} \land a) \land c_i (d_{ij} \land - a) = 0$
     \end{itemize}
-    ${\bf CA}_{\alpha}$ is the class of all cylindric algebras of dimension $\alpha$
+    ${\bf CA}_{\alpha}$ is the class of all cylindric algebras of dimension $\alpha$.
+\end{defin}
+
+\begin{defin}
+  Let $\mathcal{A} = \langle A, +, -, 0, 1, (c_i)_{i < \alpha}, (d_ij)_{i,j < \alpha} \rangle \in {\bf CA}_{\alpha}$ and $\beta < \alpha$, then the $\beta$-reduct of $\mathcal{A}$ is an algebra $\mathcal{A}_{\beta} = \langle A, +, -, 0, 1, (c_i)_{i < \beta}, (d_ij)_{i,j < \beta} \rangle$,
 \end{defin}
 
 One may define a representation of a cylindric algebra explicitly in the following way:
@@ -252,7 +256,7 @@ of dimension $\alpha$. Such is isomorphism is a representation of $C$. ${\bf RCA
 
 It is well known that ${\bf RCA}_{\alpha}$ is a variety, ${\bf RCA}_{\alpha}$ ($\alpha \leq 2$) is finitely axiomatisable and ${\bf RCA}_{\alpha}$ ($2 < \alpha < \omega$) has no finite axiomatisation, see \cite{Henkin1988-HENCAP-4}.
 
-Let $\mathcal{A} \in {\bf C}_{\omega}$, then $\mathcal{A}$ has a \emph{complete representation}, if this representation preserves all existing suprema. In other words, $\mathcal{A}$ is completely representable.
+Let $\mathcal{A} \in {\bf CA}_{\omega}$, then $\mathcal{A}$ has a \emph{complete representation}, if this representation preserves all existing suprema. In other words, $\mathcal{A}$ is completely representable.
 
 Let us concretise the definition of a canonical extension for ${\bf CA}_{\alpha}$-type BAOs.
 
@@ -267,7 +271,7 @@ Let us concretise the definition of a canonical extension for ${\bf CA}_{\alpha}
   The structure $\mathcal{C}^{+} = \langle  {\bf Uf}(\mathcal{C}), \cup, -, \emptyset, C, {\bf C}_{i < \alpha}, \{D_{ij}\}_{i, j < \alpha} \rangle$ is called the canonical extension of $\mathcal{C}$.
 \end{defin}
 
-Let us discuss the connection between representability and canonical extensions.
+\subsection{Closed elements}
 
 The following definitions and facts are due to Henkin, Monk, and Tarski \cite{henkin1971cylindric}.
 
@@ -280,7 +284,7 @@ is the set of all ordinals $\gamma < \alpha$ such that $c_\gamma x \neq x$. More
 Let us discuss some metamathematical intuitions standing behind the notion of a dimension. Let $\Theta$ be a first-order theory and $\mathcal{C}/\equiv_{\Theta}$ its Lindenbaum-Tarski algebra. Let $\varphi$ be a formula in the signature of $\Theta$. Then $\Delta(\varphi/\Theta)$ consists of all $\kappa < \alpha$ such that $\exists x_{\kappa} \varphi \leftrightarrow \varphi$ is not valid in $\Theta$.
 That is, $\Delta(\varphi/\Theta)$ contains ordinals $\kappa$ for which $x_{\kappa}$ is free in $\varphi$. Moreover, $\Delta(\varphi/\Theta)$ consists only of those ordinals for which $x_{\kappa}$ is free in every $\psi \in \varphi/\Theta$.
 
-In particular, an element $x$ is called \emph{zero-dimensional} if $\Delta x = 0$. Zero-dimensional elements reflect equivalence classes of sentences in the Lindenbaum-Tarski algebra of a given first-order theory. Thus, the set of zero-dimensional elements form a Boolean algebras of sentences associated with $\Theta$.
+In particular, an element $x$ is called \emph{zero-dimensional} if $\Delta x = 0$. Zero-dimensional elements correspond to equivalence classes of sentences in the Lindenbaum-Tarski algebra of a given first-order theory. Thus, the set of zero-dimensional elements form a Boolean algebras of sentences associated with $\Theta$.
 
 \begin{defin}
   Let $\mathcal{A}$ be an $\alpha$-dimensional cylindric algebra. Let $\alpha$ be an ordinal and $\Gamma$ a subset $\alpha$, then an element $x \in \mathcal{A}$ is $\Gamma$-closed if $\Delta x \cdot \Gamma = \emptyset$. Alternatively, $x$ is a $\Gamma$-cylinder.
@@ -289,6 +293,8 @@ In particular, an element $x$ is called \emph{zero-dimensional} if $\Delta x = 0
 \end{defin}
 
 Metamathematically, $\Gamma$-closed elements reflect universal closures (is it correct?).
+
+\subsection{Neat reducts}
 
 Let $\mathcal{C} = \langle C, +, -, 0, 1, \{d_{ij}\}_{i, j < \beta}, \{ c \}_{c < \beta} \rangle$ be a $\beta$-dimensional cylindic algebra and $\alpha \leq \beta$ an ordinal. The \emph{$\alpha$-th reduct} of $\mathcal{C}$, denoted as $\mathfrak{R}\mathfrak{d}_{\alpha}\mathcal{C}$, is an algebra having the form
 \begin{center}
@@ -320,7 +326,7 @@ Let $\mathcal{C}$ be a $\beta$-dimensional cylindic algebra and $\alpha$ an ordi
 
 \section{Completely representable cylindric algebras of dimension $\omega$}
 
-\begin{defin}
+\begin{defin} \label{network}
   Let $\mathcal{A}$ be a BAO of type ${\bf CA}_{\omega}$, an $\mathcal{A}$-pre-network is a pair
   $\mathcal{N} = \langle N, l \rangle$, where $N$ is a set of nodes and $l : \prescript{\omega}{}N \to \operatorname{At}(\mathcal{A})$.
 
@@ -358,10 +364,9 @@ $h(b) = \{ x \: | \: \exists a \in \operatorname{At}(\mathcal{A}), x \in \prescr
 
 Let us define an atomic game.
 
-\begin{defin}
-  Let $\mathcal{A}$ be an atomic BAO of type ${\bf CA}_{\omega}$ and $\kappa > 0$ a cardinal. The game $\mathcal{G}^{\kappa}(\mathcal{A})$ is defined as follows. The game has two players: $\forall$ (Abelard, he/his) and $\exists$ (H\'{e}lo\"{i}se, she/her). A play of the game $\mathcal{G}^{\kappa}(\mathcal{A})$ is the sequence of networks
+\begin{defin} Let $n \leq \omega$ an $\mathcal{A}$ be an atomic BAO of type ${\bf CA}_{\omega}$ that has countably atoms. The game $\mathcal{G}_{n}(\mathcal{A})$ is defined as follows. The game has two players: $\forall$ (Abelard, he/his) and $\exists$ (H\'{e}lo\"{i}se, she/her). A play of the game $\mathcal{G}_{n}(\mathcal{A})$ is the sequence of networks
   \begin{center}
-    $\mathcal{N}_0 \subseteq \mathcal{N}_1 \subseteq \mathcal{N}_2 \subseteq \dots \subseteq \mathcal{N}_{\lambda} \subseteq \dots$ for $\lambda < \kappa$
+    $\mathcal{N}_0 \subseteq \mathcal{N}_1 \subseteq \mathcal{N}_2 \subseteq \dots \subseteq \mathcal{N}_{k} \subseteq \dots$ for $k < n$
   \end{center}
   The game consists of the following stages:
   \begin{enumerate}
@@ -370,11 +375,11 @@ Let us define an atomic game.
     $\forall$ picks an atom $a \in \operatorname{At}(\mathcal{A})$ and $\exists$ plays a network $\mathcal{N}_0$. If there is no $x \in \prescript{\omega}{}N_0$ such that $l_0(x) = a$, then $\forall$ wins the play.
     \item ({\bf Successor round})
 
-    Let $0 < \lambda$ be a cardinal such that $\lambda + 1 < \kappa$ and a network $\mathcal{N}_{\lambda} = \langle N_{\lambda}, l_{\lambda} \rangle$ has been already played.
+    Let $k < n$ such that $k + 1 < \kappa$ and a network $\mathcal{N}_{\lambda} = \langle N_{k}, l_{k} \rangle$ has been already played.
 
-    $\forall$ picks $i < \omega$, $x \in \prescript{\omega}{}N_{\lambda}$, $a \in \operatorname{At}$ such that $l_{\lambda}(x) \leq c_i a$.
-    We denote this move as $(i, x, a)$. $\exists$ responds with a network $\mathcal{N}_{\lambda + 1} \supseteq \mathcal{N}_{\lambda}$. $\forall$ wins, if there is no node $c \in N$ such that $l_{\lambda+1}(x[i/c]) = a$, then $\forall$ wins
-    \item The limit of the play is defined as $\bigcup \limits_{\lambda < \kappa} \mathcal{N}_{\lambda}$. $\forall$ wins the play, if there exists $\kappa_1 < \kappa$ such that $\exists$ does not win the $\kappa_1$th-round. Otherwise, $\exists$ wins the play.
+    $\forall$ picks $i \leq k$, $x \in \prescript{\omega}{}N_{k}$, $a \in \operatorname{At}(\mathcal{A})$ such that $l_{k}(x) \leq c_i a$.
+    We denote this move as $(i, x, a)$. $\exists$ responds with a network $\mathcal{N}_{k + 1} \supseteq \mathcal{N}_{k}$. $\forall$ wins, if there is no node $c \in N$ such that $l_{\lambda+1}(x[i/c]) = a$, then $\forall$ wins
+    \item The limit of the play is defined as $\bigcup \limits_{k < n} \mathcal{N}_{k}$. $\forall$ wins the play, if there exists $m < n$ such that $\exists$ does not win the $m$-th round. Otherwise, $\exists$ wins the play.
   \end{enumerate}
 \end{defin}
 
@@ -383,7 +388,7 @@ Let us define an atomic game.
 
   \begin{enumerate}
     \item $\mathcal{A}$ is completely representable.
-    \item $\exists$ has a winning strategy in $\mathcal{G}^{\kappa + \omega}$.
+    \item $\exists$ has a winning strategy in $\mathcal{G}_{\kappa + \omega}$.
   \end{enumerate}
 \end{theorem}
 
@@ -396,7 +401,7 @@ Let us define an atomic game.
 
     \item $\Leftarrow$
 
-    Suppose $\exists$ has a winning strategy in $\mathcal{G}^{\kappa + \omega}(\mathcal{A})$.
+    Suppose $\exists$ has a winning strategy in $\mathcal{G}_{\kappa + \omega}(\mathcal{A})$.
     In every round $\forall$ picks all possible $i < \omega$, $a \in \operatorname{At}(\mathcal{A})$, all possible hyperedges and all appropriate atoms and $\exists$ has a proper response for every $\forall$'s move.
 
     For each atom consider a play of the game with fewer than $\kappa + \omega$ nodes. For each $a \in \operatorname{At}(\mathcal{A})$ we associate a network $\mathcal{N}_a$, the resulting network of a corresponding game. Consider the set $\{ \mathcal{N}_a \: | \: a \in \operatorname{At}(\mathcal{A}) \}$.
@@ -405,20 +410,64 @@ Let us define an atomic game.
 
     So we define a map $rep$:
     \begin{center}
-    $rep(a) = \{ x \: | \: \exists b \in \operatorname{At}(\mathcal{A}) \: x \in \prescript{\omega}{}N_a, l_a(x) \leq b \}$.
+    $\operatorname{rep}(a) = \{ x \: | \: \exists b \in \operatorname{At}(\mathcal{A}) \: x \in \prescript{\omega}{}N_a, l_a(x) \leq b \}$.
   \end{center}
     We check that $rep$ preserves cylindrifications and diagonal elements. Let $i, j < \omega$ and $a \in \mathcal{A}$:
     \begin{enumerate}
-    \item Suppose $x \in rep(c_i a)$, then there exists an atom $b$ such that $x \in \prescript{\omega}{}N_b$ with $l_b(x) \leq c_i a$. Then there exists $y \equiv_i x$ with $l_b(y) \leq a$, so $x \in {\bf C}_i(rep(a))$.
+    \item Suppose $x \in \operatorname{rep}(c_i a)$, then there exists an atom $b$ such that $x \in \prescript{\omega}{}N_b$ with $l_b(x) \leq c_i a$. Then there exists $y \equiv_i x$ with $l_b(y) \leq a$, so $x \in {\bf C}_i(\operatorname{rep}(a))$.
 
-    Let $x \in {\bf C}_i(rep(a))$. We need $x \in (rep(c_i a))$, that is, one needs to find an atom $c$ such that $l_c(x) \leq c_i a$.
+    Let $x \in {\bf C}_i(\operatorname{rep}(a))$. We need $x \in (\operatorname{rep}(c_i a))$, that is, one needs to find an atom $c$ such that $l_c(x) \leq c_i a$.
 
-    We already know that there exists $y \equiv_i x$ such that $y \in rep(a)$, that is, there exists an atom $b$ such that $y \in \prescript{\omega}{}N_b$ and $l_b(y) \leq a$.
+    We already know that there exists $y \equiv_i x$ such that $y \in \operatorname{rep}(a)$, that is, there exists an atom $b$ such that $y \in \prescript{\omega}{}N_b$ and $l_b(y) \leq a$.
 
-    \item If $x \in rep(d_{ij})$, so there exists an atom $b$ with $x \in \prescript{\omega}{}N_a$ and $l_b(x) \leq d_{ij}$, then $x_i = x_j$, then $x \in D_{ij}$.
+    \item If $x \in \operatorname{rep}(d_{ij})$, so there exists an atom $b$ with $x \in \prescript{\omega}{}N_a$ and $l_b(x) \leq d_{ij}$, then $x_i = x_j$, then $x \in D_{ij}$.
     \end{enumerate}
   \end{enumerate}
 \end{proof}
+
+If $\mathcal{A} \in {\bf CA}_{n}$ is atomic, then we have the following criterion of complete representability formulated in terms of back-and-forth games, see \cite[Theorem 3.3.3 and Corollary 3.3.5]{hirsch2013completions}. Here, the definition of a network for the case of ${\bf CA}_n$ is the same as Definition~\ref{network}, but hyperedges have lenght $n$.
+
+\begin{theorem}
+  Let $\mathcal{A}$ be an atomic BAO of type ${\bf CA}_n$ such that $|\operatorname{At}(\mathcal{A})| = \kappa$, where $\kappa$ is an arbitrary cardinal. Then the following are equivalent:
+
+  \begin{enumerate}
+    \item $\mathcal{A}$ is completely representable iff $\exists$ has a winning strategy in $\mathcal{G}_{\kappa + \omega}(\mathcal{A})$.
+    \item $\exists$ has a winning strategy in $\mathcal{G}_{m}(\mathcal{A})$ for every $m < \omega$ iff $\mathcal{A}$ is elementarily equivalent to a completely representable cylindric algebra.
+  \end{enumerate}
+\end{theorem}
+
+Now we formulate the Lyndon conditions for BAOs of type ${\bf CA}_{\omega}$, but we need their analogues for the finite case which are due to \cite[Theorem 34]{hirsch1997step}. Let $\mathcal{A}$ be an atomic BAO of type ${\bf CA}_{n}$. $lc_k^n$ is a first-order sentence such that $\mathcal{A} \models lc_k^n$ iff $\exists$ has a winning strategy in the game $\mathcal{G}_k(\mathcal{A})$ of length $k < \omega$.
+
+Consider the following set of formulas:
+\begin{center}
+  $LC_{\omega} = \{ lc_n^n \: | \: n < \omega \}$
+\end{center}
+We shall think of $LC_{\omega}$ as the Lyndon conditions for atomic cylindric algebras of dimension $\omega$. Let us write down those $lc_n^n$s explicitly, this is due to \cite[Sections 11.3 and 11.4]{hirsch1997step}. For that, we need a bit of definitions.
+
+\begin{proposition}
+  Let $\mathcal{A}$ be a BAO of type ${\bf CA}_{\omega}$ and $m < \omega$, then $\exists$ has a winning strategy in $\mathcal{G}_m(\mathcal{A})$ iff $\mathcal{A}_m \models lc(m,m)$
+\end{proposition}
+
+\begin{proof}
+\end{proof}
+
+Let us recall the definition of an ultraproduct, see \cite[Section 9.5]{hodges1993model}. Let $I$ be an index set, $U$ an ultrafiler over $I$, an $(\mathcal{A}_i)_{i \in I}$ a family of structures of the same signature. The ultraproduct of $(\mathcal{A}_i)_{i \in I}$ modulo $U$, denoted as $\Pi_U \mathcal{A}_i$, is an algebra of the same signature whose elements are elements of the direct product
+$\Pi_{i \in I} \mathcal{A}_i$ factorised through an equivalence relation $\sim$ such that for every $a, b \in \Pi_{i \in I} \mathcal{A}_i$:
+\begin{center}
+  $a \sim b \Leftrightarrow \{ i \in I \: | \: a(i) = b(i)\} \in U$
+\end{center}
+
+\begin{lemma}
+  Let $\mathcal{A}$ be an atomic BAO of type ${\bf CA}_{\omega}$ such that for every $n < \omega$ $\mathcal{A}_n \models lc(n,n)$, then $\exists$ has a winning strategy in $\mathcal{G}_{\omega}(\Pi_U \mathcal{A})$, where $\Pi_U \mathcal{A}$ is a non-principal ultrapower of $\mathcal{A}$ and $U$ is a non-principal ultrafilter over $\omega$.
+\end{lemma}
+
+\begin{proof}
+  Suppose $\mathcal{A}_n \models lc(n,n)$ for each $n$.
+\end{proof}
+
+\begin{theorem}
+  What's going on? :(
+\end{theorem}
 
 \begin{theorem} Let $\mathcal{A}$ be a BAO of type ${\bf CA}_{\omega}$:
 
@@ -431,13 +480,17 @@ Let us define an atomic game.
 \begin{proof}
   $ $
 
-  The argument uses \L o\'s's Theorem, see \cite[Theorem 8.5.3]{hodges1997shorter}.
+  The argument uses \L o\'s's Theorem, see \cite[Theorem 9.5.1]{hodges1993model}.
 
   \begin{enumerate}
     \item
     \item
   \end{enumerate}
 \end{proof}
+
+\begin{theorem}
+  The elementary closure of the class of completely representable cylindric algebras of dimension $\omega$ is axiomatised with the axioms of ${\bf CA}_{\omega}$ and the Lyndon conditions.
+\end{theorem}
 
 \section{The result itself}
 
@@ -473,7 +526,7 @@ $ $
 
   Let us show that $\mathcal{A}$ is atomic.
 
-  Consider $\rho(\mathcal{A})$. Let us show that $\exists$ has a winning strategy on $\mathcal{G}^{\kappa + \omega}(\rho(\mathcal{A}))$
+  Consider $\rho(\mathcal{A})$. Let us show that $\exists$ has a winning strategy on $\mathcal{G}_{\kappa + \omega}(\rho(\mathcal{A}))$
 \end{proof}
 
 Lemma~\ref{Neat} and Theorem~\ref{Neat2} imply the following theorem.
