@@ -476,8 +476,8 @@ Let us define the logic $\mathcal{L}$ as ${\bf K} \oplus \Diamond \Diamond \Diam
   Let $\Gamma$ be a finite and $\operatorname{Sub}$-closed set of formulas.
 
   \begin{enumerate}
-  \item  $\mathcal{M} = \langle W, R, \vartheta \rangle$ be a ${\bf K}5$-model. Consider $\Gamma' = \Gamma \cup \{ \Diamond \Box \psi \: | \: \Box \psi \in \Gamma \}$. Let $\Delta$ be any finite and $\operatorname{Sub}$-closed extension of $\Gamma'$ that contains all $\Diamond \Box \psi$ for each $\Box \psi \in \Delta$. Then a model $\widehat{M} = \langle W / \sim_{\Delta}, (R^{min}_{\Delta})^{\bf K5}, \widehat{\vartheta} \rangle$ is a filtration of $\mathcal{M}$ through $\Delta$.
-  \item Let $\mathcal{L} = {\bf K} \oplus \Diamond \Diamond \Diamond p \to \Diamond p$, then we have the similar statement for $\mathcal{L}$, where $\Delta$ is an extension of $\Gamma' = \{ \Diamond \Diamond \psi \: | \: \Diamond \psi \}$ that contains all $\Diamond \Diamond \varphi$ for $\Diamond \varphi \in \Delta$.
+  \item  $\mathcal{M} = \langle W, R, \vartheta \rangle$ be a ${\bf K}5$-model. Consider $\Gamma' = \Gamma \cup \{ \Diamond \Box \psi \: | \: \Box \psi \in \Gamma \}$. Let $\Delta$ be any finite and $\operatorname{Sub}$-closed extension of $\Gamma'$ tThen a model $\widehat{M} = \langle W / \sim_{\Delta}, (R^{min}_{\Gamma'})^{\bf K5}, \widehat{\vartheta} \rangle$ is a filtration of $\mathcal{M}$ through $\Gamma'$.
+  \item Let $\mathcal{L} = {\bf K} \oplus \Diamond \Diamond \Diamond p \to \Diamond p$, then we have the similar statement for $\mathcal{L}$, where $\Delta$ is a $\operatorname{Sub}$-closed extension extension of $\Gamma'$
   \end{enumerate}
 \end{lemma}
 
@@ -485,51 +485,51 @@ Let us define the logic $\mathcal{L}$ as ${\bf K} \oplus \Diamond \Diamond \Diam
 \begin{enumerate}
   $ $
 
-  \item Recall that $(R^{min}_{\Delta})^{E}$ is defined inductively as:
+  \item Recall that $(R^{min}_{\Delta})^{\bf K5}$ is defined inductively as:
   \begin{enumerate}
-    \item $R_{\Delta}^{0} = R_{\Delta}^{min}$
-    \item $R_{\Delta}^{n + 1} = R_{\Delta}^{n} \cup ({R_{\Delta}^{n}}^{-1} \circ R_{\Delta}^{n})$
-    \item $(R^{min}_{\Delta})^{E} = \bigcup_{k < \omega} R_{\Delta}^{k}$
+    \item $R_{\Gamma'}^{0} = R_{\Gamma'}^{min}$
+    \item $R_{\Gamma'}^{n + 1} = R_{\Gamma'}^{n} \cup ({R_{\Gamma'}^{n}}^{-1} \circ R_{\Gamma'}^{n})$
+    \item $(R^{min}_{\Gamma'})^{E} = \bigcup_{k < \omega} R_{\Gamma'}^{k}$
   \end{enumerate}
 
-  If $R^{min}_{\Delta}$ is already a subrelation of $R^{max}$, so the base case is self-evident.
+  If $R^{min}_{\Gamma'}$ is already a subrelation of $R^{max}$, so the base case is self-evident.
 
-  Suppose the statement holds for $R_{\Delta}^{n}$, $(\hat{x},\hat{y}) \in R_{\Delta}^{n + 1}$ such that $\mathcal{M}, y \models \psi$ for $\Diamond \psi \in \Delta$.
+  Suppose the statement holds for $R_{\Gamma'}^{n}$, $(\hat{x},\hat{y}) \in R_{\Gamma'}^{n + 1}$ such that $\mathcal{M}, y \models \psi$ for $\Diamond \psi \in \Gamma'$.
 
   According to the third item of Lemma~\ref{equivHorn}, this is the same as there exist $\widehat{z_0}, \widehat{z_1}, \dots, \widehat{z_{n-1}}, \widehat{z_n}$ such that
-  $\widehat{z_1} R^{min}_{\Delta} \hat{x}$, $\widehat{z_n} R^{min}_{\Delta} \hat{y}$, and for each $i \in n + 1$ we have either $\widehat{z_i} R^{min}_{\Delta} \widehat{z_{i + 1}}$ or $\widehat{z_{i + 1}} R^{min}_{\Delta} \widehat{z_i}$.
+  $\widehat{z_1} R^{min}_{\Gamma'} \hat{x}$, $\widehat{z_n} R^{min}_{\Gamma'} \hat{y}$, and for each $i \in n + 1$ we have either $\widehat{z_i} R^{min}_{\Gamma'} \widehat{z_{i + 1}}$ or $\widehat{z_{i + 1}} R^{min}_{\Delta} \widehat{z_i}$.
 
   We visualise this with the following graph:
 
   \xymatrix{
-  &&& \hat{x} & \ar[l]_{R_{\Delta}^{min}} \ar@{<->}[r]^{R'} \widehat{z_0} & \ar@{<->}[r]^{R'} \widehat{z_1} \ar@{<->}[r]^{R'} & \dots \ar@{<->}[r]^{R'} & \widehat{z_{n - 1}} \ar[r]^{R'} & \widehat{z_n} \ar[r]^{R_{\Delta}^{min}} & \hat{y}
+  &&& \hat{x} & \ar[l]_{R_{\Gamma'}^{min}} \ar@{<->}[r]^{R'} \widehat{z_0} & \ar@{<->}[r]^{R'} \widehat{z_1} \ar@{<->}[r]^{R'} & \dots \ar@{<->}[r]^{R'} & \widehat{z_{n - 1}} \ar[r]^{R'} & \widehat{z_n} \ar[r]^{R_{\Gamma'}^{min}} & \hat{y}
   }
-  where $R'$ is either $R_{\Delta}^{min}$ or its converse. We have $\mathcal{M}, z \models \Box \psi$, $\mathcal{M}, y \models \psi$, so $\mathcal{M}, z_{n} \models \Diamond \psi$. Since $\mathcal{M}$ is a ${\bf K}5$-model, we have $\mathcal{M}, z_{n} \models \Box \Diamond \psi$.
+  where $R'$ is either $R_{\Gamma'}^{min}$ or its converse. We have $\mathcal{M}, z \models \Box \psi$, $\mathcal{M}, y \models \psi$, so $\mathcal{M}, z_{n} \models \Diamond \psi$. Since $\mathcal{M}$ is a ${\bf K}5$-model, we have $\mathcal{M}, z_{n} \models \Box \Diamond \psi$.
 
   After that we apply the following property of ${\bf K}5$-models:
   \begin{center}
     Let $\mathcal{M} \models {\bf K}5$ and $\varphi$ a formula, then for each $a, b \in \mathcal{M}$ such that $a R b$ we have $\mathcal{M}, a \models \Box \Diamond \varphi$ iff $\mathcal{M}, b \models \Box \Diamond \varphi$
   \end{center}
-  So we have $\mathcal{M}, z_0 \models \Box \Diamond \varphi$. Note that we always stay within $\Delta$. Thus, $\mathcal{M}, x \models \Diamond \varphi$.
+  So we have $\mathcal{M}, z_0 \models \Box \Diamond \varphi$. Note that we always stay within $\Gamma'$. Thus, $\mathcal{M}, x \models \Diamond \varphi$.
 
   \item Let us prove the second item. Let $\mathcal{M}$ be an $\mathcal{L}$-model.
-  The $\mathcal{L}$-closure of the minimal filtered relation modulo $\Delta$, namely ${R_{\Delta}^{min}}^{\mathcal{L}}$ has the following form:
+  The $\mathcal{L}$-closure of the minimal filtered relation modulo $\Gamma'$, namely ${R_{\Gamma'}^{min}}^{\mathcal{L}}$ has the following form:
   \begin{center}
-    ${R_{\Delta}^{min}}^{\mathcal{L}} = \bigcup \limits_{k < \omega} {R_{\Delta}^{min}}^{2k + 1}$
+    ${R_{\Gamma'}^{min}}^{\mathcal{L}} = \bigcup \limits_{k < \omega} {R_{\Gamma'}^{min}}^{2k + 1}$
   \end{center}
   We reformulate this closure equivalently as follows:
   \begin{enumerate}
-    \item $R_0 = R_{\Delta}^{min}$
+    \item $R_0 = R_{\Gamma'}^{min}$
     \item $R_{n + 1} = R_n \cup ((R_{\Delta}^{min})^2 \circ R_n)$
-    \item ${R_{\Delta}^{min}}^{\mathcal{L}} = \bigcup \limits_{k < \omega}$
+    \item ${R_{\Gamma'}^{min}}^{\mathcal{L}} = \bigcup \limits_{k < \omega}$
   \end{enumerate}
 
-  The base case is self-evident. Suppose the statement holds for $R_{n}$ and $(\hat{x}, \hat{y}) \in (R_{\Delta}^{min})^2 \circ R_n$, that is, there exists $\hat{z}$ such that $(\hat{x}, \hat{z}) \in (R_{\Delta}^{min})^2$ and $(\hat{z}, \hat{y}) \in R_n$. By IH, we have $\mathcal{M}, z \models \Diamond \varphi$.
+  The base case is self-evident. Suppose the statement holds for $R_{n}$ and $(\hat{x}, \hat{y}) \in (R_{\Gamma'}^{min})^2 \circ R_n$, that is, there exists $\hat{z}$ such that $(\hat{x}, \hat{z}) \in (R_{\Gamma'}^{min})^2$ and $(\hat{z}, \hat{y}) \in R_n$. By IH, we have $\mathcal{M}, z \models \Diamond \varphi$.
 
   We have the following:
 
   \xymatrix{
-  &&&&&& \hat{x} \ar[r]^{R_{\Delta}^{min}} & \widehat{y_1} \ar[r]^{R_{\Delta}^{min}} & \hat{z}
+  &&&&&& \hat{x} \ar[r]^{R_{\Delta}^{min}} & \widehat{y_1} \ar[r]^{R_{\Gamma'}^{min}} & \hat{z}
   }
 \end{enumerate}
   The sequence of implications if the following:
