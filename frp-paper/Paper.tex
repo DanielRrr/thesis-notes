@@ -54,7 +54,7 @@
 
 \author{Daniel Rogozin \\ Institute for Information Transmission Problems, Russian Academy of Sciences \\ daniel.rogozin@serokell.io}
 \date{}
-\title{The finite representation property for some reducts of relation algebras}
+\title{Reducts of relation algebras: finite representability and recursively enumerable axiomatisability}
 \providecommand{\keywords}[1]{\textbf{\textit{Keywords---}} #1}
 
 \begin{document}
@@ -65,24 +65,24 @@
 In this paper, we show that the class of representable residuated semigroups has the finite representation property. That is, every finite representable residuated semigroup is isomorphic to some algebra over a finite base. This result gives a positive solution to Problem 19.17 from the monograph by Hirsch and Hodkinson \cite{hirsch2002relation}.
 
 We also show that the class of representable join semilattice-ordered semigroups has a recursively
-enumerable axiomatisation and the finite representation property.
+enumerable axiomatisation using back-and-forth games.
 \end{abstract}
 
 \keywords{relation algebras, finite representation property, residuated semigroups, join semilattice-ordered semigroups}
 
 \section{Introduction}
 
-Relation algebras are the kind of Boolean algebras with operators that provide algebraisation
+Relation algebras are a kind of Boolean algebras with operators that provide algebraisation
 of binary relations \cite{jonsson1951boolean}. The class of all relation algebras,
-denoted as ${\bf RA}$, consists of algebras the signature of which is $\{ 0, 1, +, -, ;, {}^{\smile}, {\bf 1}' \}$ obeying certain axioms.
+denoted as ${\bf RA}$, consists of algebras of the signature of which is $\{ 0, 1, +, -, ;, {}^{\smile}, {\bf 1}' \}$, and all those algebras obey certain axioms.
 The class of representable relation algebras, ${\bf RRA}$, consists of algebras isomorphic to set relation algebras. ${\bf RRA}$ is a subclass of ${\bf RA}$, but the converse inclusion does not hold.
 That is, there exist relation algebras with no representation as set relation algebras
-\cite{lyndon1950representation}. Moreover, the class ${\bf RRA}$ is not finitely axiomatisable \cite{monk1964representable}. The problem of determining whether a given finite relation algebra
+\cite{lyndon1950representation}. Moreover, the class ${\bf RRA}$ is not a finitely axiomatisable variety \cite{monk1964representable} with neither Sahlqvist \cite{venema1997atom} nor axiomatisation \cite{hodkinson2005canonical}. The problem of determining whether a given finite relation algebra
 is representable is undecidable, see \cite{hirsch2001representability}.
 
-In other words, relation algebras are quite badly behaved. The study of such reducts is mostly motivated by such ``bad behaviour'' in order to avoid these restrictions and determine the possible reasons for them.
+In other words, relation algebras are quite badly behaved. For this reason, we are interested in reduct since they might behave better.
 
-There are several results on reducts of relation algebras having no finite axiomatisation such as ordered monoids \cite{hirsch2005class}, distributive residuated lattices \cite{andreka1994lambek}, join semilattice-ordered semigroups \cite{andreka2011axiomatizability}, algebras whose signature contains composition, meet, and converse \cite{hodkinson2000axiomatizability}, etc.
+There are several results on reducts of relation algebras that have no finite axiomatisation such as ordered monoids \cite{hirsch2005class}, distributive residuated lattices \cite{andreka1994lambek}, join semilattice-ordered semigroups \cite{andreka2011axiomatizability}, algebras whose signature contains composition, meet, and converse \cite{hodkinson2000axiomatizability}, etc.
 
 On the other hand, such classes as representable residuated semigroups and monoids \cite{andreka1994lambek}, and ordered domain algebras \cite{hirsch2013ordered} are finitely axiomatisable. There are also plenty of subsignatures for which the question of finite axiomatisability remains open, see, e. g., \cite{andreka2011axiomatizability}.
 
@@ -94,15 +94,13 @@ In this paper, we consider reducts of relation algebras the signature of which c
 
 In the last section, we study the class of representable join semilattice-ordered semigroups, denoted as ${\bf R}(;,+)$. It is
 already known that this class is not finitely axiomatisable \cite{andreka2011axiomatizability}.
-First, we show that ${\bf R}(;,+)$ has a recursively enumerable axiomatisation. For that,
+We show that ${\bf R}(;,+)$ has a recursively enumerable axiomatisation. For that,
 we define networks and representability games for them. This class is axiomatised with the axioms of join semilattice-ordered semigroups plus the countable set of universal formulas claiming that
-$\exists$ has a winning strategy on every finitary step.
-
-After that, we show that ${\bf R}(;,+)$ has the finite representation property. Moreover, we extract the explicit recursively enumerable axiomatisation of ${\bf R}(;,+)$. As a corollary, the representability problem for finite join semilattice-ordered semigroup is decidable.
+$\exists$ has a winning strategy on every finitary step. The question of finite representability for this class remains open \cite{vsemrl2021domain}.
 
 \section{Preliminaries}
 
-Let us the basic definitions related to relation algebras \cite{hirsch2002relation}.
+Let us introduce the basic definitions related to relation algebras. See \cite[Section 3]{hirsch2002relation} to have more details.
 \begin{definition} A relation algebra is an algebra $\mathcal{R} = \langle R, 0, 1, +, -, ;, {}^{\smile}, {\bf 1 }\rangle$ such that $\langle R, 0, 1, +, - \rangle$ is a Boolean algebra and the following equations hold, for each $a, b, c \in R$:
     \begin{enumerate}
       \item $a ; (b ; c) = (a ; b) ; c$,
@@ -130,6 +128,23 @@ Note that $a \leq b$ iff $a + b = b$ iff $a \cdot b = a$, where $a \cdot b = - (
 Let $\tau$ be a subset of operations and predicates definable in ${\bf RA}$. ${\bf R}(\tau)$ is the class of subalgebras of $\tau$-subreducts of algebras belonging to ${\bf RRA}$. We assume that ${\bf R}(\tau)$ is closed under isomorphic copies.
 
 A $\tau$-structure is \emph{representable} if it is isomorphic to some algebra of relations of $\tau$-signature. A representable finite $\tau$-structure has a \emph{finite representation over a finite base} if it is isomoprhic to some finite representable over a finite base. ${\bf R}(\tau)$ has the finite representation property if every $\mathcal{A} \in {\bf R}(\tau)$ has a finite representation over a finite base.
+
+The finite representation property and recursively enumerable axiomatisability imply decidability for finite structures in the following sense. One may think of that as a counterpart of Harrop's theorem from universal algebra \cite{harrop1958existence}.
+
+\begin{proposition}\label{dec}
+  Let $\tau$ be a signature of operations and predicates definable in ${\bf RA}$, then, if ${\bf R}(\tau)$ has a recursively enumerable axiomatisation and the finite representation property, then the membership problem for finite $\tau$-structures is decidable.
+\end{proposition}
+
+\begin{proof}
+  Suppose ${\bf R}(\tau)$ has a recursively enumerable axiomatisation and every finite
+  $\mathcal{A} \in {\bf R}(\tau)$ is representable over a finite base.
+
+  Let $\mathcal{A}$ be a $\tau$-structure. We check axioms of $\mathcal{A} \in {\bf R}(\tau)$  with the algorithm $S$ that yields ``no'' and halts, if $\mathcal{A}$ is not representable.
+
+  In parallel, we check whether $\mathcal{A}$ has a finite representation. If there exists such $0 < n < \omega$ such that $\mathcal{A}$ is representable over size $n$, then the algorithm $T$ does output ``yes'' and terminates.
+
+  So, one has either $S(\mathcal{A}) = \text{no}$ and $T(\mathcal{A}) = \text{yes}$.
+\end{proof}
 
 One may express residuals in every $\mathcal{R} \in {\bf RA}$ as follows using Boolean negation, inversion, and composition as follows:
 
@@ -273,7 +288,7 @@ $m (\down{x}) = \down{x}$.
 $m : \mathcal{P}(A) \to \mathcal{P}(A)$ is a closure operator and the set
 
 \begin{center}
-$(\mathcal{P}(A))_m = \{ X \in \mathcal{P}(S) \: | \: m X = X\}$ )
+$(\mathcal{P}(A))_m = \{ X \in \mathcal{P}(S) \: | \: m X = X\}$
 \end{center}
 forms a complete lattice with $\Sigma_{m} \mathcal{X} = m ( \bigcup \mathcal{X})$ and $\Pi_{m} = \bigcap \mathcal{X}$, see \cite[Theorem 7.3]{davey2002introduction}.
 
@@ -384,26 +399,11 @@ As a corollary, of Theorem~\ref{solution} is that the Lambek calculus is complet
 
 Moreover, finite axiomatisability and having the finite representation property of ${\bf R}(;, \setminus, /, \leq)$ imply that the membership of ${\bf R}(\tau)_{fin}$ is decidable.
 
-\section{Join semilattice-ordered semigroups: the explicit axiomatisation and the finite representation property}
+\section{Join semilattice-ordered semigroups: the explicit axiomatisation}
 
-We  note  that  a  similar  construction  does  not  work  for  finite  representableupper semilattice-ordered semigroups. From the one hand, the notions of afinite upper semilattice-ordered semigroup and finite quantale are quite close to each other. From the other hand, there are examples of non-representable upper semilattice-ordered semigroups whose any non-principal ultraproduct is representable, see \cite[Theorem 3.1]{andreka2011axiomatizability}. That makes ${\bf R}(;,+)$ not finitely axiomatisable. Thus, one needs to show the decidability of membership in a different way. We have the following fact:
+We  note  that  a  similar  construction  does  not  work  for  finite  representableupper semilattice-ordered semigroups. From the one hand, the notions of afinite upper semilattice-ordered semigroup and finite quantale are quite close to each other. From the other hand, there are examples of non-representable upper semilattice-ordered semigroups whose any non-principal ultraproduct is representable, see \cite[Theorem 3.1]{andreka2011axiomatizability}. That makes ${\bf R}(;,+)$ not finitely axiomatisable. Although, this class has a universal recursively enumerable axiomatisation.
 
-\begin{proposition}\label{dec}
-  Let $\tau$ be a signature of operations and predicates definable in ${\bf RA}$, then, if ${\bf R}(\tau)$ has a recursively enumerable axiomatisation and the finite representation property, then the membership problem for finite $\tau$-structures is decidable.
-\end{proposition}
-
-\begin{proof}
-  Suppose ${\bf R}(\tau)$ has a recursively enumerable axiomatisation and every finite
-  $\mathcal{A} \in {\bf R}(\tau)$ is representable over a finite base.
-
-  Let $\mathcal{A}$ be a $\tau$-structure. We check axioms of $\mathcal{A} \in {\bf R}(\tau)$  with the algorithm $S$ that yields ``no'' and halts, if $\mathcal{A}$ is not representable.
-
-  In parallel, we check whether $\mathcal{A}$ has a finite representation. If there exists such $0 < n < \omega$ such that $\mathcal{A}$ is representable over size $n$, then the algorithm $T$ does output ``yes'' and terminates.
-
-  So, one has either $S(\mathcal{A}) = \text{no}$ and $T(\mathcal{A}) = \text{yes}$.
-\end{proof}
-
-In this section, we show that ${\bf R}(+, ;)$ has a recursively enumerable universal axiomatisation. For that, we characterise representability using Ehrenfeucht-Fra\"{i}ss\'{e} games on networks. After that, we show that every finite $\mathcal{A} \in {\bf R}(+, ;)$ is representable by factorising its network through an equivalence relation having a finite index. That is, an equivalence relation whose quotient is finite.
+In this section, we show that ${\bf R}(+, ;)$ has a recursively enumerable universal axiomatisation. For that, we characterise representability using Ehrenfeucht-Fra\"{i}ss\'{e} games on networks.
 
 \subsection{Axiomatising ${\bf R}(+, ;)$}
 
@@ -636,32 +636,9 @@ This inductive sequence of formulas provides us the explicit axiomatisation of t
   So we apply \cite[Theorem 9.28]{hirsch2002relation}.
 \end{proof}
 
-\subsection{The finite representation property for ${\bf R}(+, ;)$}
-
-Let us show finite representability for ${\bf R}(+, ;)$. Suppose that a finite $\mathcal{A}$ is representable, so $\exists$ has a winning strategy on $\mathcal{G}^{\omega}(\mathcal{A})$. Let us consider $\mathcal{N} = \langle V, E, l \rangle$, the network constructed during the $\mathcal{G}^{\omega}(\mathcal{A})$ game.
-
-\begin{definition}
-  Let $\mathcal{A}$ be a join semilattice-ordered semigroup and let $\mathcal{N}_1$ and $\mathcal{N}_2$ be $\mathcal{A}$-networks. A strong homomorphism from $\mathcal{N}_1$ onto $\mathcal{N}_2$ is a map $f : \mathcal{N}_1 \twoheadrightarrow \mathcal{N}_2$ such that:
-  \begin{enumerate}
-    \item $(x, y) \in E_2$ implies $(f(x), f(y)) \in E_1$,
-    \item If $(x', y') \in E_2$, then there exists $x, y \in E_1$ such that $f(x) = x'$ and $f(y) = y'$ and $(x, y) \in E_1$,
-    \item $l_{\mathcal{N}_1}(x, y) = l_{\mathcal{N}_2}(f(x),f(y))$
-  \end{enumerate}
-  By $\mathcal{N}_1 \twoheadrightarrow \mathcal{N}_2$ we mean that there exists a strong homomorphism of $\mathcal{N}_1$ onto $\mathcal{N}_2$.
-\end{definition}
-
-\begin{lemma}
-  Let $\mathcal{A}$ be a representable join semilattice-ordered semigroup and $\mathcal{N} = \langle V, E, l \rangle$ and $\mathcal{N}' = \langle V', E', l' \rangle$ $\mathcal{A}$-networks.
-
-  Suppose $\mathcal{N} \twoheadrightarrow \mathcal{N}'$. If $\mathcal{N}^{*}$ is a representation of $\mathcal{A}$, so is $ $
-\end{lemma}
-
-\begin{lemma}
-\end{lemma}
-
 \section{Acknowledgements}
 
-The author is sincerely grateful to Robin Hirsch, Ian Hodkinson, and his supervisor Ilya Shapirovsky for valuable comments. The previous version of this paper contained an error. Many thanks to Ja\v{s} \v{S}emrl for noticing that.
+The author is sincerely grateful to Robin Hirsch, Ja\v{s} \v{S}emrl, and his supervisor Ilya Shapirovsky for valuable comments.
 
 \bibliographystyle{plain}
 \bibliography{Paper}

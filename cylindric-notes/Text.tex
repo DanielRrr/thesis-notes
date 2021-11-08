@@ -1,0 +1,276 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{mathtools}
+\usepackage{verbatim}
+\usepackage{dsfont}
+\usepackage{mathabx}
+\usepackage[all, 2cell]{xy}
+\usepackage[all]{xy}
+\usepackage{wasysym}
+\usepackage{rotating}
+\usepackage{geometry}
+\usepackage{trfsigns}
+\usepackage{cmll}
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{lipsum}
+\usepackage{extpfeil}
+\usepackage{soul}
+\usepackage{graphicx}
+
+\newcommand\mapsfrom{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+
+\theoremstyle{defin}
+\newtheorem{defin}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\theoremstyle{prop}
+\newtheorem{prop}{Proposition}
+
+\theoremstyle{lemma}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{fact}
+\newtheorem{fact}{Fact}
+
+\theoremstyle{ex}
+\newtheorem{ex}{Example}
+
+
+\theoremstyle{col}
+\newtheorem{col}{Corollary}
+
+\let\strokeL\L
+\DeclareRobustCommand{\L}{\ifmmode\mathbf{L}\else\strokeL\fi}
+
+\author{Daniel Rogozin}
+\date{}
+\title{Representable cylindric algebras of dimension $\omega$}
+
+\begin{document}
+\maketitle
+
+\section{The problem itself}
+
+Suppose $\mathcal{C} \in {\bf RCA}_{\omega}$, whether $\mathcal{C}^{+}$ has a complete, $\omega$-dimensional representation? \cite{hirsch2002relation}
+
+\section{Atomic Representations}
+
+A representation of a Boolean algebra $\mathcal{B}$ is an embedding $h$ of $\mathcal{B}$ to some field of sets.
+
+Let $a \in \mathcal{B}$ be an element of a Boolean algebra $\mathcal{B}$, $a$ is called an atom, if for every $b \in \mathcal{B}$
+$b < a$ implies $b = 0$. That is, an atom is a minimal non-zero element. $\operatorname{At}(\mathcal{B})$ is the set of all atoms
+of $\mathcal{B}$.
+
+Let $\mathcal{B}$ be a Boolean algebra and $\mathcal{F}$ a field of sets such that $h : \mathcal{B} \to \mathcal{F}$ is a
+representation of $\mathcal{B}$, then $\mathcal{B}$ is a complete representation of $\mathcal{B}$, if for every
+$A \subseteq \mathcal{B}$ we have the following whenever $\Sigma A$ is defined:
+\begin{center}
+  $h(\Sigma A) = \bigcup h[A]$
+\end{center}
+
+A representation $h$ is called atomic, if $x \in h(1)$ there exists $b \in \operatorname{At}(\mathcal{B})$ such that $x \in h(b)$.
+
+\begin{theorem} \label{completeboolean}
+  Let $\mathcal{B}$ be a Boolean algebra, then $\mathcal{B}$ is atomic iff $\mathcal{B}$ is completely representable. See \cite[Corollary 6]{hirsch1997complete}.
+\end{theorem}
+
+\section{BAOs and Duality}
+
+By default, we assume that all operators are at most unary. Here is the rigorous definition:
+
+\begin{defin}
+
+$ $
+
+  \begin{enumerate}
+    \item Let $\mathcal{B} = \langle B, +, -, 0, 1 \rangle$ be a Boolean algebra. An operator is a function $\Omega : B \to B$ satisfying the following conditions:
+    \begin{itemize}
+      \item Normality: $\Omega(0) = 0$
+      \item Additivity: $\Omega(b + b') = \Omega(b) + \Omega(b')$
+    \end{itemize}
+    \item Let $I$ be an index set, a Boolean algebra with operators (BAO) is an algebra $\langle B, +, -, 0, 1, (\Omega_{i})_{i \in I} \rangle$ such that $\langle B, +, -, 0, 1 \rangle$ is a Boolean algebra and for each $i \in I$ $\Omega_{i}$ is an operator.
+  \end{enumerate}
+\end{defin}
+
+\begin{defin} Let $\mathcal{B} = \langle B, +, -, 0, 1, (\Omega_{i})_{i \in I} \rangle$ be a BAO, then
+
+  \begin{enumerate}
+    \item An opetator $\Omega$ is completely additive, if for every $X \subseteq B$ such that $\Sigma X$ is defined, one has
+
+    \begin{center}
+      $\Omega(\sum X) = \sum \limits_{x \in X} \Omega(x)$
+    \end{center}
+    \item $\mathcal{B}$ is completely additive, if for each $i \in I$ $\Omega_{i}$ is additive,
+    \item A class $\mathcal{K}$ of BAOs is completely additive, if every $\mathcal{B} \in \mathcal{K}$ is completely additive.
+  \end{enumerate}
+\end{defin}
+
+\subsection{Atom structures and canonical extensions}
+
+\begin{defin}  Let $I$ be an index set and $(\Omega_i)_{i \in I}$ a set of function symbols
+\begin{enumerate}
+  \item A structure is a relational structrure
+  $\mathcal{F} = \langle W, (R_{i})_{i \in I} \rangle$
+  such that $R_{i}$ is a binary relation symbol for a function symbol $\Omega_{i \in I}$ with the corresponding index,
+  \item Let $\mathcal{B}$ be an atomic BAO of the signature $I$,
+the atom structure of $\mathcal{B}$, written as $\mathfrak{At} \mathcal{B}$, is a structure $\langle \operatorname{At}(\mathcal{B}), (R_{i})_{i \in I} \rangle$ such that for all
+$a, b \in \operatorname{At}(\mathcal{B})$ and for all $i \in I$
+\begin{center}
+  $\mathfrak{At} \mathcal{B} \models R_{i}(a,b)$ iff $\mathcal{B} \models a \leq \Omega_{i}(b)$
+\end{center}
+\item Let $\mathcal{F} = \langle W, (R_{i})_{i \in I} \rangle$ be an atom structure, the complex algebra of $\mathcal{F}$, written as $\mathfrak{Cm} \mathcal{F}$, is a BAO
+$\langle \mathcal{P}(W), \cup, -, \emptyset, W, (\Omega_{R_{i}})_{i \in I} \rangle$ such that
+for all $X \subseteq W$ and for each $i \in I$:
+\begin{center}
+  $\Omega_{R_{i}}(X) = \{ a \in W \: | \: \exists b \in X \: \mathcal{F} \models R_{i}(a, b)\}$
+\end{center}
+\end{enumerate}
+\end{defin}
+
+\begin{defin} Let $\mathcal{F} = \langle W, (R_{i})_{i \in I} \rangle$ and $\mathcal{F}' = \langle W', ({R'}_{i})_{i \in I} \rangle$, then a function $f : \mathcal{F} \to \mathcal{F}'$ is a bounded morphism, if the following holds:
+\begin{enumerate}
+\item $x R_i y$ implies $f(x) {R'}_i f(y)$;
+\item $f(x) {R'}_i z$, then there exists $y \in W$ such that $x R_i y$ and $f(y) = z$.
+\end{enumerate}
+A bounded morphism $f : \mathcal{F} \to \mathcal{F}'$ is a $p$-morphism, if $f$ is onto. $\mathcal{F} \twoheadrightarrow \mathcal{F}'$ iff there exists a $p$-morphism from $\mathcal{F}$ onto $\mathcal{F}'$, or $\mathcal{F}'$ is a $p$-morphic image of $\mathcal{F}$.
+\end{defin}
+
+\begin{defin} Let $\mathcal{F} = \langle W, (R_{i})_{i \in I} \rangle$ is an inner substructure \footnote{Or alternatively, a generated subframe} of $\mathcal{F}' = \langle W', ({R'}_{i})_{i \in I} \rangle$, if $W \subseteq W'$ and the embedding $\mathcal{F} \hookrightarrow \mathcal{F}'$ is a bounded morphism.
+\end{defin}
+
+Let $\mathbb{F}$ be a class of structures, define:
+\begin{enumerate}
+\item $\mathfrak{Cm}(\mathbb{F}) = \{ \mathcal{B} \: | \: \mathcal{B} \cong \mathfrak{Cm}(\mathcal{F}) \text{ for some $\mathcal{F} \in {\bf F}$}\}$.
+\item ${\bf Up}(\mathbb{F})$ is the class of structures isomorphic to disjoint unions of elements of $\mathbb{F}$.
+\item ${\bf S}(\mathbb{F})$ is the closure of $\mathbb{F}$ under inner substructures.
+\end{enumerate}
+
+Let $A$ be a non-empty subset of a Boolean algebra $\mathcal{B}$, $A$ is a \emph{filter}, if $A$ is closed under finite infima and it is upward closed. $A$ is an ultrafilter, if it has no non-trivial extensions. That is, if $A \subseteq A'$, then $A' = \mathcal{B}$. This is a well-known fact that every filter can be extended to a maximal one using Zorn's lemma.
+
+The following definition is due to, for example, \cite[Definition 5.40]{venema2010}.
+
+\begin{defin}
+  Let $\mathcal{B} = \langle B, +, -, 0, 1, (\Omega_i)_{i \in I} \rangle$ be a BAO and ${\bf Spec}(\mathcal{B})$ the set of its ultrafilters. The ultrafilter frame of $\mathcal{B}$ (or the canonical frame) is a relational structure $\mathcal{F}_{\mathcal{B}} = \langle {\bf Spec}(\mathcal{B}), R_{\Omega_i} \rangle$ such that for all ultrafilters $U_1, U_2$ one has
+  \begin{center}
+    ${\bf Spec}(\mathcal{B}) \models R_{\Omega_i}(U_1, U_2)$ iff $\{ \Omega_i(b) \: | \: b \in U_1 \} \subseteq U_2$.
+  \end{center}
+\end{defin}
+
+Given $\mathcal{B}$ be a BAO, we denoted as $\mathcal{B}^{+}$ as the complex algebra of the canonical frame $\mathfrak{Cm}(\mathcal{F}_{\mathcal{B}})$, that is, \emph{the canonical extension} of $\mathcal{B}$.
+A class of BAOs ${\bf K}$ is canonical, if it is closed under canonical extensions. That is, $\mathcal{B}^{+} \in {\bf K}$ whenever $\mathcal{B} \in {\bf K}$.
+
+\begin{theorem} Let $\mathcal{A}$, $\mathcal{B}$ be BAOs,
+
+\begin{enumerate}
+  \item There exists $\iota : \mathcal{A} \hookrightarrow \mathcal{A}^{+}$ such that
+  $\iota : a \mapsto \{ \gamma \in {\bf Spec}(\mathcal{A}) \: | \: a \in \gamma \}$.
+  \item $i : \mathcal{A} \hookrightarrow \mathcal{B}$ implies
+  $i^{+} : \mathcal{A}^{+} \hookrightarrow \mathcal{B}^{+}$
+\end{enumerate}
+\end{theorem}
+
+\section{Representable cylindric algebras}
+
+Let $\alpha$ be an ordinal. Let $\prescript{\alpha}{}U$ be the set of all functions mapping $\alpha$ to a non-empty set $U$. We denote $x(i) = x_i$ for
+$x \in \prescript{\alpha}{}U$ and $i < \alpha$.
+
+A subset of $\prescript{\alpha}{}U$ is an $\alpha$-ry relation on $U$. For $i, j < \alpha$, the \emph{$i,j$-diagonal} $D_{ij}$ is the set of all elements of $\prescript{\alpha}{}U$ such that $y_i = y_j$.
+
+If $i < \alpha$ and $X$ is an $\alpha$-ry relation on $U$, then
+the $i$-th cylindrification $C_i X$ is the set of all elements of $U$ that agree with some element of $X$ on each coordinate except, perhaps, the $i$-th one. To be more precise,
+\begin{center}
+$C_i X = \{ y \in \prescript{\alpha}{}U \: |
+\: \exists x \in X \forall i < \alpha \: (i \neq j \Rightarrow y_j = x_j)\}$.
+\end{center}
+We define the following equivalence relation for $i < \alpha$ and $x, y \in \prescript{\alpha}{}U$:
+\begin{center}
+ $x \equiv_i y \Leftrightarrow \forall j \in \alpha \: (i \neq j \Rightarrow x(i) = y(j))$
+\end{center}
+Then one may reformulate the definition of the $i$-th cylindrification in the following way:
+
+\begin{center}
+ $C_i X = \{ y \in \prescript{\alpha}{}U \: | \: \exists x \in X \:\: x \equiv_i y \}$
+\end{center}
+
+According to this version of the definiton, one may think of the cylindrification as an ${\bf S}5$ modal operator.
+
+\begin{defin}
+ A cylindic set algebra of dimension $\alpha$ is an algebra consisting of a set $S$ of $\alpha$-ry relation on some base set $U$
+   with the constants and operations $0 = \emptyset$, $1 = \prescript{\alpha}{}U$, $\cap$, $-$, the diagonal elements $(D_{ij})_{i, j < \alpha}$, the cylindrifications $(C_i)_{i < \alpha}$. A generalised cylindric set algebra of dimension $\alpha$ is a subdirect of cylindric algebras that have dimension $\alpha$.
+\end{defin}
+
+\begin{defin}
+   A cylindric algebra of dimension $\alpha$ is an algebra $\mathcal{C} = \langle \mathcal{B}, \{ c_i \}_{i < \alpha}, \{ d_{ij} \}_{i, j < \alpha} \rangle$ such that
+   \begin{itemize}
+     \item $\mathcal{B}$ is a Boolean algebra, for each $i, j < \alpha$ $c_i$ is an operator and $d_{ij} \in \mathcal{B}$
+     \item For each $i < \alpha$, $a \leq c_i a$, $c_i (a \cdot c_i b) = c_i a \cdot c_i b$ and $d_{ii} = 1$
+     \item For every $i, j < \alpha$, $c_i c_j a = c_j c_i a$
+     \item If $k \neq i, j < \alpha$, then $d_{ij} = c_k (d_{ij} \cdot d_{jk})$
+     \item If $i \neq j$, then $c_i (d_{ij} \cdot a) \cdot c_i (d_{ij} \cdot - a) = 0$
+   \end{itemize}
+   ${\bf CA}_{\alpha}$ is the class of all cylindric algebras of dimension $\alpha$.
+\end{defin}
+
+One may define a representation of a cylindric algebra explicitly in the following way:
+
+\begin{defin}
+ Let $\mathcal{A}$ be a cylindric algebra of dimension $\alpha$. A representation of $\mathcal{A}$ over the non-empty domain $X$ is a map $f : \mathcal{A} \hookrightarrow 2^{\prescript{\alpha}{}U}$ such that:
+ \begin{enumerate}
+   \item $f(1) = \bigcup \limits_{i \in I} \prescript{\alpha}{}X_i$ for some disjoint family $\{X_i\}_{i \in I}$ where each $X_i \subseteq X$
+   \item $h : \mathcal{A} \to 2^{f(1)}$ is a representation of a Boolean reduct
+   \item for all $\lambda, \eta < \alpha$, $x \in h(d_{\lambda \eta})$ iff $x_{\lambda} = x_{\eta}$
+   \item for all $\lambda < \alpha$ and $a \in \mathcal{A}$, $x \in h(c_{\lambda}(a))$ iff there is $y \in X$ such that $x[\lambda \mapsto y] \in h(a)$
+ \end{enumerate}
+\end{defin}
+
+An $\alpha$-dimensional cylindric algebra $C$ is representable, if there exists a representation of $h$.
+${\bf RCA}_{\alpha}$ is the class of all representable cylindric algebras that have dimension $\alpha$. In particular, we are interested in the case $\alpha = \omega$.
+
+It is well known that ${\bf RCA}_{\alpha}$ is a variety, ${\bf RCA}_{\alpha}$ ($\alpha \leq 2$) is finitely axiomatisable and ${\bf RCA}_{\alpha}$ ($2 < \alpha < \omega$) has no finite axiomatisation, see \cite{Henkin1988-HENCAP-4}.
+
+Let $\mathcal{A} \in {\bf CA}_{\omega}$, then $\mathcal{A}$ has a \emph{complete representation}, if its representation preserves all existing suprema. In other words, $\mathcal{A}$ is completely representable.
+
+\section{${\bf RCA}_{\omega}$ and canonicity}
+
+The following definition of an $\omega$-frame is due to \cite{Venema2013}.
+\begin{defin}
+  A cylindric $\omega$-frame is a structure $\mathcal{F} = \langle W, (R_i)_{i < \omega}, (E_{ij})_{i, j < \omega} \rangle$ where $(R_i)_{i < \omega}$ are binary relations and $(E_ij)_{i, j < \omega}$ are unary relations such that, for all $i, j, k < \omega$:
+  \begin{enumerate}
+  \item Every $R_i$ is an equivalence relation on $W$,
+  \item $R_i \circ R_j = R_j \circ R_i$, that is, the set $(R_i)_{i < \omega}$ forms a commutative semigroup under composition.
+  \item For all $x \in W$, $E_{ii}(x)$ holds.
+  \item For all $x, y, z \in W$, $x R_i y \: \& \: E_{ij}(y) \: \& \: x R_i z \: \& \: E_{ij}(y)$ implies $y = z$.
+  \item For all $x \in W$, $E_{ij}(x)$ iff there exists $y \in W$ such that $x R_k y$, $E_{ik}(y)$, and $E_{kj}(y)$.
+  \end{enumerate}
+\end{defin}
+
+The following fact is by Venema, see \cite[Proposition 2.1.5]{Venema2013}:
+\begin{prop}
+An $\omega$-frame $\mathcal{F}$ is cylindric iff $\mathfrak{Cm}(\mathcal{F})$ is a cylindric algebra of dimension $\omega$.
+\end{prop}
+A cylindric $\omega$-frame $\mathcal{F}$ is completely representable, if $\mathfrak{Cm}(\mathcal{F})$ is completely representable as a cylindric algebra of dimension $\omega$.
+
+In this section, we reproduce the results related to characterisation ${\bf RCA}_{\omega}$. The following results are due to Goldblatt \cite{goldblatt1995elementary}.
+
+\begin{lemma}
+${\bf RCA}_{\omega} = {\bf S} \: \mathfrak{Cm} {\bf Ud} \mathcal{F} \mathfrak{ct}_{\alpha}$
+\end{lemma}
+
+\begin{theorem}
+${\bf RCA}_{\omega}$ is a canonical variety.
+\end{theorem}
+
+\section{Representability games}
+
+\bibliographystyle{plain}
+\bibliography{Text}
+
+\end{document}
