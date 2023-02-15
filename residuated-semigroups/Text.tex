@@ -124,23 +124,120 @@ The Lambek calculus is defined as a Gentzen-style sequent calculus:
 \end{flushright}
 \end{minipage}
 
+\subsection{Completeness}
+
 \begin{theorem}
 Let $RS$ be the class of all residuated semigroups, then $\Gamma \rightarrow \varphi$ iff $RS \models \Gamma \rightarrow \varphi$
 \end{theorem}
 
 \section{Representability networks for at most countable residuated semigroups}
 
-Let $\mathcal{A}$ be a residuated semigroup, an $\mathcal{A}$-network is a triple $\mathcal{N} = (V, E, l)$, where
+\subsection{Relational residuated semigroups as Kripke models}
+
+One can introduce Kripke-style relational semantics for the Lambek calculus as follows. Let $W$ be a non-empty set and $R$ a transitive relation on $W$. We consider models of the kind $M = (R, \vartheta)$, where $\vartheta : PV \to 2^R$. The truth definition is inductive:
 \begin{itemize}
-\item $(V, E)$ is a directed graph with no loops and $E$ is transitive
-\item $l : E \to \mathcal{A}$ such that
-\begin{itemize}
-\item $l(x, z) \leq l(x, y) ; l(y,z)$, whenever $(x, y), (y, z) \in E$, for all $x, y, z \in V$.
-\item 
-\end{itemize}
+\item $\mathcal{M}, (x,y) \models p_i$ iff $(x, y) \in \vartheta(p_i)$,
+\item $\mathcal{M}, (x,y) \models \varphi \bullet \psi$ iff there exists $z \in W$ such that
+$(x,z), (z, y) \in R$ and $\mathcal{M}, (x, z) \models \varphi$ and $\mathcal{M}, (z, y) \models \phi$
+\item $\mathcal{M}, (x, y) \models \varphi \setminus \psi$ iff for all $z \in W$ such that if $(z, x) \in R$ and $\mathcal{M}, (z, x) \models \varphi$, then $\mathcal{M}, (z, y) \models \psi$
+\item $\mathcal{M}, (x, y) \models \varphi / \psi$ iff for all $z \in W$ such that if $(y, z) \in R$ and $\mathcal{M}, (y, z) \models \psi$, then $\mathcal{M}, (x, z) \models \varphi$
+\item $\mathcal{M}, (x, y) \models \varphi_1, \varphi_2, \dots, \varphi_n \rightarrow \varphi$ iff $\mathcal{M}, (x, y) \models \varphi_1 \bullet \varphi_2 \bullet \dots \bullet \varphi_n$ implies $\mathcal{M}, (x, y) \models \varphi$.
 \end{itemize}
 
-Let $n \leq \omega$
+According to the definition above, to refute a sequent $\varphi_1, \varphi_2, \dots, \varphi_n \rightarrow \varphi$, we have to find a transitive binary relation $R$, some valuation $\vartheta : PV \to 2^R$ and $(x, y) \in R$ such that
+$\mathcal{M}, (x, y) \models \varphi_1 \bullet \varphi_2 \bullet \dots \bullet \varphi_n$, but $\mathcal{M}, (x, y) \nvDash \varphi$. Alternatively, one can reformulate that condition as
+\begin{center}
+$(x, y) \in ||\varphi_1|| ; ||\varphi_2|| ; \dots ; ||\varphi_n||$, but $(x, y) \notin ||(x, y)||$
+\end{center}
+
+\subsection{Relational representation of residuated semigroups: a game-theoretic approach}
+
+Let $\mathcal{A}$ be a residuated semigroup, an $\mathcal{A}$-prenetwork is a triple $\mathcal{N} = (V, E, l)$, where where $(V, E)$ is a directed graph and $l : E \to \mathcal{A}$ is a labelling function. A prenetwork is a network if
+the following conditions hold:
+\begin{itemize}
+\item $E$ has no loops and it is transitive,
+\item $l(x, z) \leq l(x, y) ; l(y,z)$, whenever $(x, y), (y, z) \in E$, for all $x, y, z \in V$,
+\item For all $a \in \mathcal{A}$, for all $x \in U$, there is some $u \in U$ such that $l(u, x) = a$,
+\item For all $a \in \mathcal{A}$, for all $y \in U$, there is some $v \in U$ such that $l(y, v) = a$,
+\item For all $a, b, c \in \mathcal{A}$, for all $x, y \in U$, if $c \leq a ; b$, $(x, y) \in E$ and $l(x, y) = c$, then there exists $z \in U$ such that $l(x,y) = a$ and $l(y, z) = b$.
+\end{itemize}
+
+Let $n \leq \omega$, define a game $\mathcal{G}(\mathcal{A})_n$ for two players $\forall$ and $\exists$ by induction on $n$.
+\begin{enumerate}
+\item {\bf step} 0
+
+$\forall$ picks a pair of elements $a, b \in \mathcal{A}$ such that $a \not\leq b$. $\exists$ must respond with a network $\mathcal{N}_0 = (\{ x, y\}, \{(x,y)\}, l_0 : (x,y) \mapsto a)$:
+
+\xymatrix{
+&&&&&& x \ar[rr]^{a} && y
+}
+
+\item {\bf step} $n + 1 < \omega$
+
+Suppose the networks:
+\begin{center}
+$\mathcal{N}_0 \subseteq \mathcal{N}_1 \subseteq \dots \subseteq \mathcal{N}_n$
+\end{center}
+have been already constructed.
+
+There are four different options:
+\begin{enumerate}
+\item {\bf Composition move}
+
+$\forall$ picks $x, y, z \in \mathcal{N}_n$ such that $b = l_n(x, y)$ and $c = l_n(y, z)$:
+
+\xymatrix{
+&&&&&&& y \ar[dr]^{c} \\
+&&&&&& x \ar[ur]^{b} && z
+}
+
+$\exists$ has to respond with $\mathcal{N}_{n + 1} = (V_n, E_n \cup \{ (x,z)\}, l_{n+1})$ where $l_{n+1}(x,z) = b ; c$ and $l_{n+1}(x',y') = l_n(x',y')$ for $(x', y') \in E_n$.
+
+\xymatrix{
+&&&&&&& y \ar[dr]^{c} \\
+&&&&&& x \ar@{-->}[rr]_{b ; c} \ar[ur]^{b} && z
+}
+
+\item {\bf Witness move}
+$\forall$ picks $(x,y) \in E_n$ such that $l_n(x,y) = a$ and $a \leq b ; c$:
+
+\xymatrix{
+&&&&&& x \ar[rr]^{a} && y
+}
+
+$\exists$ has to respond with $\mathcal{N}_{n + 1} = (V_n \cup \{ z \}, E_n \cup \{ (x,z), (z, y) \}, l_{n + 1})$, where
+\begin{center}
+$l_{n + 1}(x, z) = b$
+
+$l_{n + 1}(y, z) = c$
+
+$l_{n + 1}(p) = l_n$ for others $p \in E_n$
+\end{center}
+
+The latter can be visualised with the following triangle:
+
+\xymatrix{
+&&&&&& x \ar[rr]^{a} \ar@{-->}[dr]_{b} && y \\
+&&&&&&& z \ar@{-->}[ur]_{c}
+}
+
+
+\item {\bf Left redisual move}
+\item {\bf Right residual move}
+\end{enumerate}
+\end{enumerate}
+
+\begin{theorem}
+
+Let $\mathcal{A}$ be a at most countable residuated semigroup, then
+
+\begin{enumerate}
+\item $\exists$ has a winning stragery in $\mathcal{G}_{\omega}(\mathcal{A})$
+\item $\mathcal{A}$ is representable.
+\end{enumerate}
+\end{theorem}
+
+TODO: check if the representability class is closed under products, subalgebras and ultraproducts. Check the criterion for the Horn formulas. Closed under H? can't be defined by equations?
 
 \section{Games for the FMP}
 
