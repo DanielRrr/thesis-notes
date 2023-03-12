@@ -256,7 +256,156 @@ $rep(a) = \{ (x,y) \: | \: l(x, y) \leq a \}$
 
 TODO: check if the representability class is closed under products, subalgebras and ultraproducts. Check the criterion for the Horn formulas. Closed under H? can't be defined by equations?
 
-\section{Games for the FMP}
+\section{Step-by-step construction for the FMP}
+
+\subsection{Example 1}
+
+Consider a sequent $\varphi_1 \bullet \varphi_2 \rightarrow \varphi_1 \bullet (\psi_1 \setminus \psi_2)$, which is known to unprovable in the Lambek calculus. We would like to construct a finite model on a network such that there exists $(u, v) \nvDash \varphi_1 \bullet \varphi_2 \rightarrow \varphi_1 \bullet (\psi_1 \setminus \psi_2)$, that is, $(u, v) \in ||\varphi_1|| ; ||\varphi_2||$ and $(u, v) \notin ||\varphi_1|| ; (||\psi_1|| \setminus ||\psi_2||)$.
+
+The construction is step-by-step:
+\begin{enumerate}
+\item {\bf Step 0}
+
+We construct the edge $(u, v)$ labelled by a pair of sets $\lambda_0$ and $\delta_0$:
+
+\centerline{
+\xymatrix{
+u \ar[rr]^{\lambda_0}_{\delta_0} && v
+}
+}
+
+\begin{center}
+$\lambda_{0}(u, v) = \{ \varphi_1 \bullet \varphi_2, -(\varphi_1 \bullet (\psi_1 \setminus \psi_2)) \}$
+
+$\delta_{0}(u, v) = \{ \varphi_1 \bullet \varphi_2\}$
+\end{center}
+
+\item {\bf Step 1}
+
+We have to create a witness for $\varphi_1 \bullet \varphi_2 \in \delta_{0}(u, v)$ by adding a vertice $w$:
+
+\centerline{
+\xymatrix{
+& w \ar[ddr]^{\lambda_1}_{\delta_1} \\
+\\
+u \ar[uur]^{\lambda_1}_{\delta_1}
+\ar[rr]^{\lambda_0}_{\delta_0} && v
+}
+}
+
+\begin{center}
+$\lambda_1(u, w) = \{ \varphi_1 \}$
+
+$\lambda_1(w, v) = \{ \varphi_2, -(\psi_1 \setminus \psi_2)\}$
+
+$\delta_1(u, w) = \emptyset$
+
+$\delta_1(w, v) = \{ - (\psi_1 \setminus \psi_2) \}$
+\end{center}
+
+\item {\bf Step 2}
+
+We create a witness $w'$ for $- (\psi_1 \setminus \psi_2) \in \delta_1(w, v)$
+
+\centerline{
+\xymatrix{
+w \ar[ddrr]^{\lambda_1}_{\delta_1} && w' \ar[ll]_{\lambda_2}^{\delta_2} \ar[dd]_{\lambda_2}^{\delta_2} \\
+\\
+u \ar[uu]^{\lambda_1}_{\delta_1}
+\ar[rr]^{\lambda_0}_{\delta_0} && v
+}
+}
+
+By putting:
+\begin{center}
+$\lambda_2(w', w) = \{ \psi_1 \}$
+
+$\lambda_2(w', v) = \{ -\psi_2 \}$
+
+$\delta_2(w', w) = \emptyset$
+
+$\delta_2(w', v) = \emptyset$
+\end{center}
+
+\end{enumerate}
+
+Now let us describe $||\varphi_1|| ; ||\varphi_2||$ as follows:
+
+TODO:
+
+\subsection{Example 2}
+
+Let us consider a sequent $LC \not\vdash \varphi_1 \setminus (\varphi_2 \bullet \varphi_3) \rightarrow \varphi_1 \setminus \psi$
+
+\begin{enumerate}
+\item {\bf Step 0}
+
+Introduce a wedge $(u, v)$ with labelling $\lambda_0$ and $\delta_0$
+
+\centerline{
+\xymatrix{
+u \ar[rr]^{\lambda_0}_{\delta_0} && v
+}
+}
+
+where
+
+\begin{center}
+$\lambda_0(u, v) = \{\varphi_1 \setminus (\varphi_2 \bullet \varphi_3), -(\varphi_1 \setminus \psi)\}$
+
+$\delta_0(u, v) = \{ -(\varphi_1 \setminus \psi) \}$
+\end{center}
+
+\item {\bf Step 1}
+
+We create a witness $w$ for $-(\varphi_1 \setminus \psi) \in \delta_0(u, v)$
+
+\centerline{
+\xymatrix{
+& w \ar[ddr]^{\lambda_1}_{\delta_1} \ar[ddl]_{\lambda_1}^{\delta_1} \\
+\\
+u \ar[rr]^{\lambda_0}_{\delta_0} && v
+}
+}
+where
+\begin{center}
+$\lambda_1(w, u) = \{ \varphi_1 \}$
+
+$\lambda_1(w, v) = \{ -\psi, \varphi_1 \bullet (\varphi_1 \setminus (\varphi_2 \bullet \varphi_3)), \varphi_2 \bullet \varphi_3\}$
+
+$\delta_1(w, u) = \emptyset$
+
+$\delta_1(w, v) = \{ \varphi_2 \bullet \varphi_3 \}$
+
+\end{center}
+
+\item {\bf Step 2}
+
+We have to create a witness $w'$ for $\varphi_2 \bullet \varphi_3 \in \delta_1(w, v)$
+
+\centerline{
+\xymatrix{
+w \ar[ddrr]^{\lambda_1}_{\delta_1} \ar[dd]_{\lambda_1}^{\delta_1} \ar[rr]^{\lambda_2}_{\delta_2} && w' \ar[dd]_{\lambda_2}^{\delta_2} \\
+\\
+u \ar[rr]^{\lambda_0}_{\delta_0} && v
+}
+}
+
+\begin{center}
+$\lambda_2(w, w') = \{ \varphi_2 \}$
+
+$\lambda_2(w', v) = \{ \varphi_3 \}$
+
+$\delta_2(w, w') = \emptyset$
+
+$\delta_2(w', v) = \emptyset$
+\end{center}
+
+\end{enumerate}
+
+\subsection{General case}
+
+Consider a sequent $\Gamma \rightarrow \varphi$ such that $LC \not\vdash \Gamma \rightarrow \varphi$. We have to construct a finite relational model over some network such that $(u, v) \not\models \Gamma \rightarrow \varphi$, that is, $(u, v) \models \Gamma$ and $(u, v) \not\models \varphi$.
 
 \bibliographystyle{alpha}
 \bibliography{Text}
