@@ -64,28 +64,112 @@
 
 \section{Distributive lattice representation and Priestley duality}
 
-\begin{lemma}
+Given a bounded distributive lattice $\mathcal{L}$, a proper subset $F \subset \mathcal{L}$ is said to be a \emph{filter} if it is upward closed and closer under finite infima. A filter $F$ is \emph{prime} if $a + b \in F$ implies either $a \in F$ or $b \in F$. The spectrum of $\mathcal{L}$, denoted as $\operatorname{Spec}(\mathcal{L})$, is the set of all prime filters.
+
+A filter is \emph{complete} if whenever $\Pi T$ exists for $T \subseteq F$, then $\Pi T \in F$. A filter is \emph{completely prime} if whenever $\Sigma T$ exists for $T \subseteq F$, then there exists $t \in T$ such that $t \in F$. The dual definitions are for ideals.
+
+\begin{prop}
 Let $h : \mathcal{L} \to \mathcal{R}$ be a representation, then then
 \begin{center}
-$h^{-1}[x] = \{ a \in \mathcal{L} \: | \: x \in h(a) \}$
+$h^{-1}[x] = \{ a \in \mathcal{L} \: | \: x \in h(a) \} \in \operatorname{Spec}(\mathcal{L})$
 \end{center}
-is prime filter in $\mathcal{L}$.
-\end{lemma}
+\end{prop}
 
-\begin{proof}
-Let $c \in h^{-1}[x]$ and $c \leq d$, then $x \in h(c)$, but $h$ is order-preserving, so $x \in h(d)$. If $c, d \in h^{-1}[x]$, then $x \in h(c)$ and $x \in h(d)$, so $x \in h(c) \cap h(d)$, then $x \in h(c \cdot d)$, so $c \cdot d \in h^{-1}[x]$. Let $c + d \in h^{-1}[x]$, then $x \in h(c + d) = h(c) \cup h(d)$, so either $x \in h(c)$ or $x \in h(d)$, so either $c \in h^{-1}[x]$ or $d \in h^{-1}[x]$.
-\end{proof}
+Recall that a \emph{Priestley space} is a triple $\mathcal{X} = (X, \tau, \leq)$ such that $(X, \tau)$ is a compact topological space, $(X, \leq)$ is a bounded poset such that if $x \not\leq y$, then there exists a clopen $U$ such that $x \in U$ and $y \notin U$. Given a bounded distributive lattice $\mathcal{L}$, define the map $\phi : \mathcal{L} \to 2^{\operatorname{Spec}(\mathcal{L})}$ such that
+\begin{center}
+$\phi : a \mapsto \{ F \in \operatorname{Spec}(\mathcal{L}) \: | \: a \in F \}$
+\end{center}
 
-\subsection{Priestley duality}
+\begin{fact}
 
+\begin{enumerate}
+\item The sets $\phi(a)$ and $- \phi(a)$ form the subbasis of the topology $\tau$ on $\operatorname{Spec}(\mathcal{L})$.
+\item $(\operatorname{Spec}(\mathcal{L}), \tau, \subseteq)$ is a Priestley space.
+\end{enumerate}
+\end{fact}
+
+Given a Priestley space $\mathcal{X} = (X, \tau, \leq)$, the set $\operatorname{ClOp}(\mathcal{X})$ consists of all clopens of $\mathcal{X}$. The structure $(\operatorname{ClOp}(\mathcal{X}), \cap, \cup, \emptyset, X)$ is a distributive lattice.
+
+\begin{fact}
+
+\begin{enumerate} Let $\mathcal{L}$ be a distributive lattice and let $\mathcal{X}$ be a Priestley space:
+\item $\mathcal{L} \hookrightarrow \mathcal{L}^{+} = (2^{\operatorname{Spec}(\mathcal{L})}, \cap, \cup, \emptyset, \operatorname{Spec}(\mathcal{L}))$,
+\item $\mathcal{L} \cong \operatorname{ClOp}(\operatorname{Spec}(\mathcal{L}))$,
+\item $\mathcal{X} \cong \operatorname{Spec}(\operatorname{ClOp}(\mathcal{X}))$,
+\item The categories of Priestley spaces and bounded distributive lattices are dually equivalent.
+\end{enumerate}
+\end{fact}
 
 \section{Representatiting positive relation algebras}
 
+\begin{definition}
+
+A positive relation algebra is a algebra $\mathcal{R} = (R, \cdot, +, ;, \smile, 0, 1, {\bf 1}')$ such that
+\begin{enumerate}
+\item $(R, \cdot, +, 0, 1)$ is a bounded distributive lattice,
+\item $(R, ;, {\bf 1}')$ is a monoid,
+\item for all $a, b, c \in R$
+\begin{enumerate}
+\item $a ; (b + c) = a ; b + a ; c$,
+\item $a^{\smile \smile} = a$,
+\item $(a + b)^{\smile} = a^{\smile} + b^{\smile}$,
+\item $(a ; b)^{\smile} = b^{\smile} ; a^{\smile}$,
+\item $(a ; b) \cdot c^{\smile} = 0 \leftrightarrow (b ; c) \cdot c^{\smile} = 0$.
+\end{enumerate}
+\end{enumerate}
+\end{definition}
+
+A positive relation algebra $\mathcal{R}$ is \emph{representable} if there exists a one-to-one function $h : \mathcal{R} \to 2^{X \times X}$ over the base set $X \neq \emptyset$ such that:
+\begin{itemize}
+\item $f(a \cdot b) = f(a) \cap f(b)$,
+\item $f(a + b) = f(a) + f(b)$,
+\item $f(0) = \emptyset$,
+\item $f(1) = \bigcup \limits_{a \in \mathcal{R}} f(a)$,
+\item $f({\bf 1}') = \Delta_X$,
+\item $f(a ; b) = \{ (x, z) \: | \: \exists y \in X \: ((x, y) \in f(a) \: \& \: (y,z) \in f(b))\} = f(a) | f(b)$,
+\item $f(a^{\smile}) = \{ (y, x) \: | \: (x, y) \in f(a) \}$.
+\end{itemize}
+
 \section{Spectral spaces for positive relation algebras}
+
+A PRA-space is a structure $(X, \tau, \leq, R, I, E)$ where $X = (X, \tau, \leq)$ is a Priestley space and $R \subseteq X^3$, $I \subseteq X^2$ and $E \subseteq X$ such that:
+\begin{itemize}
+\item For all $x, y, z, w \in X$ there exists $u \in X$ such that $R(x, y, u)$ and $R(u, z, w)$ iff there exists $v \in X$ such that $R(y,z,v)$ and $R(x, v, w)$,
+\item If $A, B \subseteq X$ are upward closed, so is $R[A, B, \underline{\:\:\:}]$,
+\item $I(A)$ is upward closed clopen whenever $A$ is upward closed clopen,
+\item $I(x)$ is closed for each $x \in X$,
+\item For all $x, y, z \in X$, $x \leq y$ and $I(x, z)$ imply $I(y, z)$,
+\item For all $x, y \in X$ there exists $z \in X$ such that $x = y$ iff $I(z, y)$ and $I(x, z)$,
+\item For all $x, y, z \in X$ there exists $u \in X$ such that $I(u, z)$ and $R(x, y, u)$ iff there exist $u, w \in X$ such that $R(v, w, z)$, $I(y,v)$ and $I(x, w)$.
+\item For all $x,y,u, v \in X$, $R(u,v,y)$ and $I(x, u)$ implies $R(x,y,v)$,
+\item $E$ is upward closed clopen such that for each clopen $A \subseteq X$ one has
+\begin{center}
+$R[A, E, \overline{\:\:\:}] = R[E, A, \overline{\:\:\:}] = A$
+\end{center}
+\end{itemize}
+
+\begin{lemma} Let $\mathcal{R}$ be a positive relation algebra, then
+
+\begin{enumerate}
+\item
+\item 
+\end{enumerate}
+\end{lemma}
 
 \section{Complete representability}
 
 \subsection{Completely representable distibutive lattices}
+
+Let $\mathcal{L}$ be a bounded distributive lattice, then a set $S \subseteq 2^{\mathcal{L}}$ is said to be distinguishing if for every $a, b \in \mathcal{L}$ such that $a \neq b$ there exists $s \in S$ such that either $a \in s$ and $b \notin b$ or vice versa.
+
+\begin{theorem} Let $\mathcal{L}$ be a bounded distributive lattice, then
+
+\begin{enumerate}
+\item $\mathcal{L}$ is completely representable iff $\mathcal{L}$ has a distinguishing set of complete, completely prime filters,
+\item $(\mathcal{L}_+)^{+}$ is completely representable.
+\end{enumerate}
+
+\end{theorem}
 
 TODO: read \cite{egrot2012completely}
 
