@@ -55,7 +55,7 @@
 
 \author{Daniel Rogozin}
 \date{}
-\title{Characterising representable positive relation algebras via Priestley duality}
+\title{Characterising representable positive relation algebras with Priestley duality}
 
 \begin{document}
 \maketitle
@@ -82,6 +82,8 @@ $\phi : a \mapsto \{ F \in \operatorname{Spec}(\mathcal{L}) \: | \: a \in F \}$
 
 \begin{fact}
 
+$ $
+
 \begin{enumerate}
 \item The sets $\phi(a)$ and $- \phi(a)$ form the subbasis of the topology $\tau$ on $\operatorname{Spec}(\mathcal{L})$.
 \item $(\operatorname{Spec}(\mathcal{L}), \tau, \subseteq)$ is a Priestley space.
@@ -90,15 +92,29 @@ $\phi : a \mapsto \{ F \in \operatorname{Spec}(\mathcal{L}) \: | \: a \in F \}$
 
 Given a Priestley space $\mathcal{X} = (X, \tau, \leq)$, the set $\operatorname{ClOp}(\mathcal{X})$ consists of all clopens of $\mathcal{X}$. The structure $(\operatorname{ClOp}(\mathcal{X}), \cap, \cup, \emptyset, X)$ is a distributive lattice.
 
-\begin{fact}
+\begin{fact} Let $\mathcal{L}$ be a distributive lattice and let $\mathcal{X}$ be a Priestley space:
 
-\begin{enumerate} Let $\mathcal{L}$ be a distributive lattice and let $\mathcal{X}$ be a Priestley space:
+\begin{enumerate}
 \item $\mathcal{L} \hookrightarrow \mathcal{L}^{+} = (2^{\operatorname{Spec}(\mathcal{L})}, \cap, \cup, \emptyset, \operatorname{Spec}(\mathcal{L}))$,
 \item $\mathcal{L} \cong \operatorname{ClOp}(\operatorname{Spec}(\mathcal{L}))$,
 \item $\mathcal{X} \cong \operatorname{Spec}(\operatorname{ClOp}(\mathcal{X}))$,
 \item The categories of Priestley spaces and bounded distributive lattices are dually equivalent.
 \end{enumerate}
 \end{fact}
+
+\subsection{Completely representable distibutive lattices}
+
+Let $\mathcal{L}$ be a bounded distributive lattice, then a set $S \subseteq 2^{\mathcal{L}}$ is said to be distinguishing if for every $a, b \in \mathcal{L}$ such that $a \neq b$ there exists $s \in S$ such that either $a \in s$ and $b \notin b$ or vice versa.
+
+\begin{theorem} Let $\mathcal{L}$ be a bounded distributive lattice, then
+
+\begin{enumerate}
+\item $\mathcal{L}$ is completely representable iff $\mathcal{L}$ has a distinguishing set of complete, completely prime filters,
+\item $(\mathcal{L}_+)^{+}$ is completely representable.
+\end{enumerate}
+\end{theorem}
+
+TODO: read \cite{egrot2012completely}
 
 \section{Representatiting positive relation algebras}
 
@@ -130,7 +146,9 @@ A positive relation algebra $\mathcal{R}$ is \emph{representable} if there exist
 \item $f(a^{\smile}) = \{ (y, x) \: | \: (x, y) \in f(a) \}$.
 \end{itemize}
 
-\section{Spectral spaces for positive relation algebras}
+A positive relation algebra is \emph{completely representable} if it is representable and its bounded distributive lattice reduct is completely representable.
+
+\section{Priestley spaces for positive relation algebras}
 
 A PRA-space is a structure $(X, \tau, \leq, R, I, E)$ where $X = (X, \tau, \leq)$ is a Priestley space and $R \subseteq X^3$, $I \subseteq X^2$ and $E \subseteq X$ such that:
 \begin{itemize}
@@ -148,32 +166,25 @@ $R[A, E, \overline{\:\:\:}] = R[E, A, \overline{\:\:\:}] = A$
 \end{center}
 \end{itemize}
 
-\begin{lemma} Let $\mathcal{R}$ be a positive relation algebra, then
+\begin{fact} Let $\mathcal{R}$ be a positive relation algebra, then
 
 \begin{enumerate}
-\item
-\item 
+\item If $F \subseteq \mathcal{R}$ is a filter, then for each $X, Y \subseteq \mathcal{R}$ $X ; Y \subseteq F$ iff $\uparrow (X ; Y) \subseteq F$
+\item If $F_1, F_2 \subseteq \mathcal{R}$ are filters, so is $\uparrow (F_1 ; F_2)$,
+\item Let $F_1, F_2$ be filters and $F_3 \in \operatorname{Spec}(\mathcal{R})$ such that $\uparrow (F_1 ; F_2) \subseteq F_3$, then there are $F_1', F_2' \in \operatorname{Spec}(\mathcal{R})$ such that $F_1 \subseteq F_1'$, $F_2 \subseteq F_2'$ and $\uparrow (F_1' ; F_2') \subseteq F_3$.
 \end{enumerate}
-\end{lemma}
 
-\section{Complete representability}
+\end{fact}
 
-\subsection{Completely representable distibutive lattices}
-
-Let $\mathcal{L}$ be a bounded distributive lattice, then a set $S \subseteq 2^{\mathcal{L}}$ is said to be distinguishing if for every $a, b \in \mathcal{L}$ such that $a \neq b$ there exists $s \in S$ such that either $a \in s$ and $b \notin b$ or vice versa.
-
-\begin{theorem} Let $\mathcal{L}$ be a bounded distributive lattice, then
+\begin{theorem} Let $\mathcal{R}$ be a positive relation algebra and $\mathcal{X}$ a PRA-space, then
 
 \begin{enumerate}
-\item $\mathcal{L}$ is completely representable iff $\mathcal{L}$ has a distinguishing set of complete, completely prime filters,
-\item $(\mathcal{L}_+)^{+}$ is completely representable.
+\item $\mathcal{R} \hookrightarrow (2^{\operatorname{Spec}(R)}, \cup, \cap, \emptyset, \operatorname{Spec}(R), \bullet, \iota, \epsilon)$,
+\item $\mathcal{R} \cong \operatorname{ClOp}(\operatorname{Spec}(\mathcal{R}))$,
+\item $\mathcal{X} \cong \operatorname{Spec}(\operatorname{ClOp}(\mathcal{X}))$,
+\item The categories of positive relation algebras and PRA-spaces are dually equivalent.
 \end{enumerate}
-
 \end{theorem}
-
-TODO: read \cite{egrot2012completely}
-
-\subsection{Completely representable positive relation algebras}
 
 \section{The main result}
 
@@ -225,12 +236,59 @@ $T_{\mathcal{A}}$ is satisfiable whenever $\mathcal{A}$ is representable.
 \end{prop}
 
 \begin{theorem}
-Let $\mathcal{A}$ be a positive relation algebra, then $\mathcal{R}$ is representable iff $(\mathcal{R}_{+})^{+}$ is completely representable.
+Let $\mathcal{A}$ be a positive relation algebra, then $\mathcal{R}$ is representable iff $\mathcal{R}^{+}$ is completely representable.
 \end{theorem}
 
+\begin{proof}
+The right-to-left implication is easy. If $\mathcal{R}^{+}$ is representable (no completeness needed here), so is $\operatorname{ClOp}(\operatorname{Spec}(\mathcal{L}))$ as a subalgebra of $\mathcal{R}^{+}$. But, by Priestley duality for positive relation algebras, $\operatorname{ClOp}(\operatorname{Spec}(\mathcal{L})) \cong \mathcal{L}$, so $\mathcal{L}$ is representable.
+
+Assume that $\mathcal{R}$ is representable, then $T_{\mathcal{R}}$ is satisfiable, let $M \models T_{\mathcal{R}}$ and $M$ is $\omega$-saturated. Define a map $h : \mathcal{R}^+ \to 2^{M \times M}$ as
+\begin{center}
+$h : F \mapsto \{ (x, y) \in 1^M \: | \: f_{x, y} \in F \}$
+\end{center}
+where
+\begin{center}
+$f_{x, y} = \{ a \in \mathcal{R} \: | \: M \models R_a(x,y) \}$
+\end{center}
+
+\begin{claim}
+$f_{x, y} \in \operatorname{Spec}(\mathcal{R})$ whenever $M \models 1(x, y)$.
+\end{claim}
+
+\begin{proof}
+Let $a \in f_{x, y}$ and $a \leq b$.
+
+Then $M \models R_a(x, y)$. But $a \leq b$ iff $a \cdot b = a$, so, from the axiom $R_{\cdot}(R_a, R_a, R_b)$ we have $M \models R_b(x, y)$.
+
+Let $a, b \in f_{x, y}$, so $M \models R_a(x, y) \land R_b(x, y)$, so $R_{a \cdot b}(x, y)$ by the axiom $R_{\cdot}(R_a, R_a, R_b)$ again.
+
+Let $a + b \in f_{x, y}$, so $M \models R_{a + b}(x, y)$, then we have either $M \models R_a(x, y)$ or $M \models R_b(x, y)$, so either $a \in f_{x,y}$ or $b \in f_{x,y}$.
+\end{proof}
+
+\begin{claim}
+$h$ is one-to-one.
+\end{claim}
+
+\begin{claim}
+$h$ is a complete representation of the bounded lattice reduct.
+\end{claim}
+
+\begin{proof}
+Follows from the fact that $\operatorname{Spec}(\mathcal{L})$ is a Hausdorff space. (????)
+\end{proof}
+
+\begin{claim}
+$h$ preserves the structure of an involutive monoid.
+\end{claim}
+\end{proof}
+
 \begin{theorem}
-${\bf RPRA}$ is a canonical variety.
+${\bf RPRA}$ is a canonical variety. (is it a variety at all?)
 \end{theorem}
+
+\section{Union-free reducts of positive relation algebras}
+
+TODO: \cite{bezhanishvili2011priestley}.
 
 \bibliographystyle{alpha}
 \bibliography{Text}
