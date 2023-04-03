@@ -148,10 +148,40 @@ A positive relation algebra $\mathcal{R}$ is \emph{representable} if there exist
 
 A positive relation algebra is \emph{completely representable} if it is representable and its bounded distributive lattice reduct is completely representable.
 
-\section{Priestley spaces for positive relation algebras}
+\subsection{Priestley duality for positive relation algebras}
+
+Given a positive relation algebra $\mathcal{R} = (R, \cdot, +, ;, \smile, {\bf 1}', 0, 1)$, let $A, B \subseteq \mathcal{R}$, define the usual pointwise product operation:
+\begin{center}
+$A ; B = \{ a ; b \: | \: a \in A, b \in B \}$
+\end{center}
+We modify this operation with the upward closure:
+\begin{center}
+$A \bullet B = \uparrow (A ; B)$
+\end{center}
+
+We use the $\bullet$ operation to analyse the following properties of filters in positive relation algebras:
+\begin{fact} Let $\mathcal{R}$ be a positive relation algebra, then
+
+\begin{enumerate}
+\item If $F \subseteq \mathcal{R}$ is a filter, then for each $X, Y \subseteq \mathcal{R}$ $X ; Y \subseteq F$ iff $X \bullet Y \subseteq F$
+\item If $F_1, F_2 \subseteq \mathcal{R}$ are filters, so is $F_1 \bullet F_2$,
+\item Let $F_1, F_2$ be filters and $F_3 \in \operatorname{Spec}(\mathcal{R})$ such that $F_1 \bullet F_2 \subseteq F_3$, then there are $F_1', F_2' \in \operatorname{Spec}(\mathcal{R})$ such that $F_1 \subseteq F_1'$, $F_2 \subseteq F_2'$ and $F_1' \bullet F_2' \subseteq F_3$.
+\end{enumerate}
+\end{fact}
+
+First of all, given a positive relation algebra $\mathcal{R} = (R, \cdot, +, ;, \smile, 0, 1, {\bf 1}')$, we define its canonical extension $\mathcal{R}^{+}$ on the subsets of the spectrum $\operatorname{Spec}(\mathcal{R})$ by piggybacking Priestley representation of bounded distibutive lattices.
+
+TODO:
+
 
 A PRA-space is a structure $(X, \tau, \leq, R, I, E)$ where $X = (X, \tau, \leq)$ is a Priestley space and $R \subseteq X^3$, $I \subseteq X^2$ and $E \subseteq X$ such that:
+\begin{enumerate}
+\item For all $x, y, z \in X$ such that $R(x, y, z)$:
 \begin{itemize}
+\item $x \geq x'$ for $x' \in X$ implies $R(x', y, z)$,
+\item $y \leq y'$ for $y' \in X$ implies $R(x, y', z)$,
+\item $z \leq z'$ for $z' \in X$ implies $R(x, y, z')$.
+\end{itemize}
 \item For all $x, y, z, w \in X$ there exists $u \in X$ such that $R(x, y, u)$ and $R(u, z, w)$ iff there exists $v \in X$ such that $R(y,z,v)$ and $R(x, v, w)$,
 \item If $A, B \subseteq X$ are upward closed, so is $R[A, B, \underline{\:\:\:}]$,
 \item $I(A)$ is upward closed clopen whenever $A$ is upward closed clopen,
@@ -164,27 +194,36 @@ A PRA-space is a structure $(X, \tau, \leq, R, I, E)$ where $X = (X, \tau, \leq)
 \begin{center}
 $R[A, E, \overline{\:\:\:}] = R[E, A, \overline{\:\:\:}] = A$
 \end{center}
-\end{itemize}
-
-\begin{fact} Let $\mathcal{R}$ be a positive relation algebra, then
-
-\begin{enumerate}
-\item If $F \subseteq \mathcal{R}$ is a filter, then for each $X, Y \subseteq \mathcal{R}$ $X ; Y \subseteq F$ iff $\uparrow (X ; Y) \subseteq F$
-\item If $F_1, F_2 \subseteq \mathcal{R}$ are filters, so is $\uparrow (F_1 ; F_2)$,
-\item Let $F_1, F_2$ be filters and $F_3 \in \operatorname{Spec}(\mathcal{R})$ such that $\uparrow (F_1 ; F_2) \subseteq F_3$, then there are $F_1', F_2' \in \operatorname{Spec}(\mathcal{R})$ such that $F_1 \subseteq F_1'$, $F_2 \subseteq F_2'$ and $\uparrow (F_1' ; F_2') \subseteq F_3$.
 \end{enumerate}
-
-\end{fact}
 
 \begin{theorem} Let $\mathcal{R}$ be a positive relation algebra and $\mathcal{X}$ a PRA-space, then
 
 \begin{enumerate}
-\item $\mathcal{R} \hookrightarrow (2^{\operatorname{Spec}(R)}, \cup, \cap, \emptyset, \operatorname{Spec}(R), \bullet, \iota, \epsilon)$,
+\item $\mathcal{R} \hookrightarrow \mathcal{R}^{+} = (2^{\operatorname{Spec}(R)}, \cup, \cap, \emptyset, \operatorname{Spec}(R), \bullet, \iota, \epsilon)$,
 \item $\mathcal{R} \cong \operatorname{ClOp}(\operatorname{Spec}(\mathcal{R}))$,
 \item $\mathcal{X} \cong \operatorname{Spec}(\operatorname{ClOp}(\mathcal{X}))$,
 \item The categories of positive relation algebras and PRA-spaces are dually equivalent.
 \end{enumerate}
+
+\begin{proof} $ $
+
+\begin{enumerate}
+\item We check only the cases of $\bullet$, $\iota$ and $\epsilon$.
+\item Note that the dual space of a positive relation algebra $\mathcal{R}$ is a PRA-space.
+
+TODO: check the claim above
+
+\item The dual space of a PRA-space is a positive relation algebra.
+
+TODO: check the claim above
+
+\item
+\end{enumerate}
+\end{proof}
+
 \end{theorem}
+
+
 
 \section{The main result}
 
